@@ -203,6 +203,7 @@ export class AdvertisingPopupComponent {
     this.validateAdvertisementForm();
   }
 
+  isTempimage: boolean = false;
   onImageChange(event: Event): void {
     this.error = false;
     const input = event.target as HTMLInputElement;
@@ -216,6 +217,8 @@ export class AdvertisingPopupComponent {
       const isImageFile = fileToUpload.type.startsWith('image');
 
       // If it's a video, create a URL for it
+
+      this.isTempimage = true;
       if (isVideoFile) {
         this.imagePreview = URL.createObjectURL(fileToUpload); // Video Preview URL
         this.generateThumbnailFromVideo(this.imagePreview); // Generate Video Thumbnail
@@ -228,7 +231,6 @@ export class AdvertisingPopupComponent {
         };
         reader.readAsDataURL(fileToUpload);
       }
-
       // Validation or any further logic
       this.validateAdvertisementForm();
     }
@@ -240,6 +242,7 @@ export class AdvertisingPopupComponent {
     this.imagePreview = null;
     this.imageUrl = null;
     this.imageToUpload = '';
+    this.isTempimage = false;
   }
 
   selectedDate() {
@@ -562,6 +565,10 @@ export class AdvertisingPopupComponent {
 
         // Convert the canvas to base64 image
         this.imageUrl = canvas.toDataURL('image/jpeg'); // Store as image URL for video preview
+
+        if (this.isTempimage) {
+          this.imagePreview = canvas.toDataURL('image/jpeg');
+        }
       };
     };
   }

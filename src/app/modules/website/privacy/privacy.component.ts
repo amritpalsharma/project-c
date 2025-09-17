@@ -14,9 +14,10 @@ export class PrivacyComponent implements OnInit {
   banner_img: any = null;
   base_url: any = null;
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
 
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
   accordionDataPrivacy: any = [];
 
@@ -96,6 +97,7 @@ export class PrivacyComponent implements OnInit {
 
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
 

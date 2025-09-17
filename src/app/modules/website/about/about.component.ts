@@ -50,8 +50,9 @@ export class AboutComponent {
   // advertisementData:any=null;
   advertisementList: any = null;
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
 
   // isLoading : boolean = true;
@@ -159,6 +160,7 @@ export class AboutComponent {
         this.advertisementList = res.data.allAdsList;
         // this.advertisementData = [];
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
 
         this.isLoading = false;
         this.startCountdown();

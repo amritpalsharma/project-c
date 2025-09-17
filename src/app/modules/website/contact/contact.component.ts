@@ -35,10 +35,11 @@ export class ContactComponent implements OnInit {
   txt_before_radio_btn: string = '';
   advertisementList: any;
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
   messageText: string = '';
 
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
 
 
@@ -155,6 +156,7 @@ export class ContactComponent implements OnInit {
 
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
         this.base_url = res.data.base_url;
         this.name_placeholder = res.data.pageData.name_placeholder;
         this.phone_placeholder = res.data.pageData.phone_placeholder;

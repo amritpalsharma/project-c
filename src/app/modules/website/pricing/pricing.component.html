@@ -13,21 +13,37 @@
       </div>
 
       <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-        <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+        <a href="{{ advertisementData?.skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image"
+                type="video/mp4">
+            </video>
+          </ng-container>
         </a>
         <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
             class="fa-solid fa-xmark"></i></button>
-        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
       </div>
 
       <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
-        <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        <a href="{{ advertisementData?.wide_skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image"
+                type="video/mp4">
+            </video>
+          </ng-container>
         </a>
         <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
             class="fa-solid fa-xmark"></i></button>
-        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
       </div>
 
     </div>
@@ -38,8 +54,8 @@
           <div class="col-lg-7">
             <div class="sec_title">
               <!-- <h3 class="price-heading3 text-uppercase">Pricing : 2 months free on yearly plan </h3> -->
-              <h3 class="price-heading3 text-uppercase">{{'freePlanText' | translate}}</h3>
-              <!-- <h3 class="price-heading3 text-uppercase">{{'pricing' | translate}}: {{'freePlanText' | translate}}</h3> -->
+              <h3 class="price-heading3 text-uppercase">{{ 'freePlanText' | translate }}</h3>
+              <!-- <h3 class="price-heading3 text-uppercase">{{ 'pricing' | translate }}: {{ 'freePlanText' | translate }}</h3> -->
             </div>
           </div>
           <div class="col-lg-5">
@@ -47,11 +63,13 @@
               <ul class="nav nav-tabs justify-content-center border-0 mt-lg-0" role="tablist">
                 <li class="nav-item" role="presentation">
                   <a class="nav-link active uppercase-letters" data-bs-toggle="tab" href="#Tab1" role="tab"
-                    aria-selected="true" (click)="setActiveTab('monthly')">{{'billedMonthly' | translate}}</a>
+                    aria-selected="true"
+                    (click)="setActiveTab('monthly')">{{ 'billedMonthly' | translate }}</a>
                 </li>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link uppercase-letters" data-bs-toggle="tab" href="#Tab2" role="tab"
-                    aria-selected="false" (click)="setActiveTab('yearly')">{{'billedYearly' | translate}}</a>
+                    aria-selected="false"
+                    (click)="setActiveTab('yearly')">{{ 'billedYearly' | translate }}</a>
                 </li>
               </ul>
             </div>
@@ -60,132 +78,6 @@
 
         <div class="pricing_tabs_container">
           <div class="tab_data_wrapper">
-            <!-- <div class="tab-pane active" id="Tab1" role="tabpanel" *ngIf="selectedTab == 'monthly'">
-                  <div class="shadow_container">
-                      <div class="row">
-                          <div class="col-md-4 item_column">
-                            <div class="item_card">
-                                <div class="header_card">
-                                    <h2 class="premium-heading3">47<span>.- CHF / <span>Monthly</span></span></h2>
-                                    <h3 class="premium-heading2">Premium</h3>
-                                    <h5 class="premium-heading5">For Talents, Clubs & Scouts</h5>
-                                </div>
-                                <div class="body_card">
-                                    <h5 class="premium-heading5">Premium Features:</h5>
-                                    <div class="text_List_wrap">
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>Talent profiles with detailed statistics, performance data, achievements, and transfers visible.</p>
-                                        </div>
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>Club and scout profiles with all contents visible</p>
-                                        </div>
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>Download talent profile as PDF</p>
-                                        </div>
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>Create your own favorites lists with talents, scouts, or clubs</p>
-                                        </div>
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>Upload highlight photos and videos and view them on other profiles</p>
-                                        </div>
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>Provide and link social media channels and website in your profile</p>
-                                        </div>
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>For scouts: Create a portfolio and invite talents to join it</p>
-                                        </div>
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>For clubs: Organize scouting sessions and invite registered talents to join</p>
-                                        </div>
-                                        <div class="premium-text">
-                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                            <p>For clubs: Manage your own club players directly in the teams on SoccerYou</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer_card buy_now_btn_front_price">
-                                    <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                        class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                    <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                        class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="col-md-4 item_column">
-                              <div class="item_card">
-                                  <div class="header_card">
-                                      <h2 class="premium-heading3">11<span>.- CHF / <span>Monthly</span></span></h2>
-                                      <h3 class="premium-heading2"> Multi-Country </h3>
-                                      <h5 class="premium-heading5">For Talents and Scouts</h5>
-                                  </div>
-                                  <div class="body_card">
-                                      <h5 class="premium-heading5">Multi-Country Features:</h5>
-                                      <div class="text_List_wrap">
-                                          <div class="premium-text">
-                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                              <p>Make your profile visible in other countries of your choice</p>
-                                          </div>
-                                          <div class="premium-text">
-                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                              <p>Increase your visibility – internationally</p>
-                                          </div>
-                                          <div class="premium-text">
-                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                              <p>Build an international network</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="footer_card buy_now_btn_front_price">
-                                      <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                          class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                          class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-4 item_column">
-                              <div class="item_card">
-                                  <div class="header_card">
-                                      <h2 class="premium-heading3">11<span>.- CHF / <span>Monthly</span></span></h2>
-                                      <h3 class="premium-heading2"> Boost Profile</h3>
-                                      <h5 class="premium-heading5">For Talents and Scouts</h5>
-                                  </div>
-                                  <div class="body_card">
-                                      <h5 class="premium-heading5">Boost Features:</h5>
-                                      <div class="text_List_wrap">
-                                          <div class="premium-text">
-                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                              <p>Your profile picture will have a special and highlighted background</p>
-                                          </div>
-                                          <div class="premium-text">
-                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                              <p>Your profile will appear at the top of the search results when your characteristics are searched for</p>
-                                          </div>
-                                          <div class="premium-text">
-                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                              <p>More visibility - higher chances of being discovered</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="footer_card buy_now_btn_front_price">
-                                      <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                          class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                          class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div> -->
             <div class="tab-pane" id="Tab2" role="tabpanel">
               <div class="shadow_container">
                 <div class="row">
@@ -194,22 +86,23 @@
                     <div class="item_card">
                       <div class="header_card">
                         <h2 class="premium-heading3">
-                          {{ selectedTab != 'yearly' ? boostPrice : boostYearlyPrice }}<span>.- {{Currency}} /
-                            <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
-                            <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
+                          {{ selectedTab != 'yearly' ? boostPrice : boostYearlyPrice }}<span>.-
+                            {{ Currency }} /
+                            <span *ngIf="selectedTab == 'yearly'">{{ pageData?.first_tab_yearly_label }}</span>
+                            <span *ngIf="selectedTab != 'yearly'">{{ pageData?.first_tab_monthly_label }}</span>
                           </span>
                         </h2>
                         <h3 class="premium-heading2">{{ pageData?.third_tab_plan_name }}</h3>
-                        <h5 class="premium-heading5">{{pageData?.third_tab_free_features_title }}</h5>
+                        <h5 class="premium-heading5">{{ pageData?.third_tab_free_features_title }}</h5>
                       </div>
                       <div class="body_card">
                         <h5 class="premium-heading5" *ngIf="pageData?.third_tab_free_features_sub_title">
-                          {{pageData?.third_tab_free_features_sub_title}}</h5>
+                          {{ pageData?.third_tab_free_features_sub_title }}</h5>
                         <div class="text_List_wrap">
                           <div class="premium-text" *ngFor="let feature of pageData?.third_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" class="theme_white_icon" alt="Checkmark">
                             <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue" alt="Checkmark">
-                            <p>{{feature}}</p>
+                            <p>{{ feature }}</p>
                           </div>
                         </div>
                       </div>
@@ -228,28 +121,30 @@
                         <h3 class="premium-heading2"> {{ pageData?.first_tab_plan_name }} </h3>
                         <h2 class="premium-heading3">
                           {{ selectedTab != 'yearly' ? premiumTalentPrice : premiumTalentYearlyPrice }}<span>.-
-                            {{Currency}} /
-                            <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
-                            <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
+                            {{ Currency }} /
+                            <span *ngIf="selectedTab == 'yearly'">{{ pageData?.first_tab_yearly_label }}</span>
+                            <span *ngIf="selectedTab != 'yearly'">{{ pageData?.first_tab_monthly_label }}</span>
                           </span>
                         </h2>
-                        <h5 class="premium-heading5">{{'premiumPlanForTalent' | translate}}</h5>
-                        <!-- <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5> -->
+                        <h5 class="premium-heading5">{{ 'premiumPlanForTalent' | translate }}
+                        </h5>
+                        <!-- <h5 class="premium-heading5">{{ pageData?.first_tab_free_features_title }}</h5> -->
                         <hr />
                         <h2 class="premium-heading3">
-                          {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.- {{Currency}} /
-                            <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
-                            <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
+                          {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.-
+                            {{ Currency }} /
+                            <span *ngIf="selectedTab == 'yearly'">{{ pageData?.first_tab_yearly_label }}</span>
+                            <span *ngIf="selectedTab != 'yearly'">{{ pageData?.first_tab_monthly_label }}</span>
                           </span>
                         </h2>
-                        <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5>
+                        <h5 class="premium-heading5">{{ pageData?.first_tab_free_features_title }}</h5>
                       </div>
                       <div class="body_card">
-                        <h5 class="premium-heading5">{{pageData?.first_tab_free_features_sub_title}}</h5>
+                        <h5 class="premium-heading5">{{ pageData?.first_tab_free_features_sub_title }}</h5>
                         <div class="text_List_wrap">
                           <div class="premium-text" *ngFor="let feature of pageData?.first_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                            <p>{{feature}}</p>
+                            <p>{{ feature }}</p>
                           </div>
                         </div>
                       </div>
@@ -266,21 +161,22 @@
                     <div class="item_card">
                       <div class="header_card">
                         <h2 class="premium-heading3">
-                          {{ selectedTab != 'yearly' ? countryPrice : countryYearlyPrice }}<span>.- {{Currency}} /
-                            <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
-                            <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
+                          {{ selectedTab != 'yearly' ? countryPrice : countryYearlyPrice }}<span>.-
+                            {{ Currency }} /
+                            <span *ngIf="selectedTab == 'yearly'">{{ pageData?.first_tab_yearly_label }}</span>
+                            <span *ngIf="selectedTab != 'yearly'">{{ pageData?.first_tab_monthly_label }}</span>
                           </span>
                         </h2>
-                        <h3 class="premium-heading2"> {{pageData?.sec_tab_plan_name}}</h3>
-                        <h5 class="premium-heading5">{{pageData?.sec_tab_free_features_title}}</h5>
+                        <h3 class="premium-heading2"> {{ pageData?.sec_tab_plan_name }}</h3>
+                        <h5 class="premium-heading5">{{ pageData?.sec_tab_free_features_title }}</h5>
                       </div>
                       <div class="body_card">
-                        <h5 class="premium-heading5">{{pageData?.sec_tab_free_features_sub_title}}:</h5>
+                        <h5 class="premium-heading5">{{ pageData?.sec_tab_free_features_sub_title }}:</h5>
                         <div class="text_List_wrap">
                           <div class="premium-text" *ngFor="let feature of pageData?.sec_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" class="theme_white_icon" alt="Checkmark">
                             <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue" alt="Checkmark">
-                            <p>{{feature}}</p>
+                            <p>{{ feature }}</p>
                           </div>
                         </div>
                       </div>
@@ -303,7 +199,7 @@
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
-                  <small>{{'freePlanText' | translate}}</small>
+                  <small>{{ 'freePlanText' | translate }}</small>
                   <div class="billed">
                     <p [ngClass]="{ 'active-text': isActive1, 'inactive-text': !isActive1 }" class="billed-monthly">
                       {{ pageData?.first_tab_monthly_label }}
@@ -320,10 +216,10 @@
                   <div class="premium-img">
                     <h2 class="premium-heading2">{{ pageData?.first_tab_plan_name }}</h2>
                     <h3 class="premium-heading3">
-                      {{isActive1 ? premiumYearlyPrice : premiumPrice}}<span>.- {{Currency}} / {{isActive1 ?
+                      {{ isActive1 ? premiumYearlyPrice : premiumPrice }}<span>.- {{ Currency }} / {{isActive1 ?
                         pageData?.first_tab_yearly_label :
                         pageData?.first_tab_monthly_label}}</span>
-                      <!-- {{isActive1 ? pageData?.first_tab_yearly_price: pageData?.first_tab_monthly_price}}<span>.- CHF / {{ isActive1 ? ('year' | translate) : ('month' | translate) }}</span> -->
+                      <!-- {{ isActive1 ? pageData?.first_tab_yearly_price: pageData?.first_tab_monthly_price }}<span>.- CHF / {{ isActive1 ? ('year' | translate) : ('month' | translate) }}</span> -->
                     </h3>
                     <div class="buy_now_btn_front_price">
                       <!-- <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a> -->
@@ -359,7 +255,7 @@
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
                   <!-- <small>2 months free on yearly plan</small> -->
-                  <small>{{'freePlanText' | translate}}</small>
+                  <small>{{ 'freePlanText' | translate }}</small>
                   <div class="billed">
                     <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{
                       pageData?.sec_tab_monthly_label }}</p>
@@ -374,7 +270,7 @@
                   <div class="premium-img">
                     <h2 class="premium-heading2">{{ pageData?.sec_tab_plan_name }}</h2>
                     <h3 class="premium-heading3">
-                      {{isActive2 ? countryYearlyPrice : countryPrice}}<span>.- {{Currency}} / {{isActive2 ?
+                      {{ isActive2 ? countryYearlyPrice : countryPrice }}<span>.- {{ Currency }} / {{isActive2 ?
                         pageData?.sec_tab_yearly_label :
                         pageData?.sec_tab_monthly_label}}</span>
                       <!-- {{ isActive2 ? pageData?.sec_tab_yearly_price : pageData?.sec_tab_monthly_price }}<span>.- CHF / {{ isActive2 ? ('year' | translate) : ('month' | translate) }}</span> -->
@@ -413,7 +309,7 @@
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
                   <!-- <small>2 months free on yearly plan</small> -->
-                  <small>{{'freePlanText' | translate}}</small>
+                  <small>{{ 'freePlanText' | translate }}</small>
                   <div class="billed">
                     <p [ngClass]="{ 'active-text': isActive3, 'inactive-text': !isActive3 }">{{
                       pageData?.third_tab_monthly_label }}</p>
@@ -430,7 +326,7 @@
                     <h3 class="premium-heading3">
                       <!-- {{ isActive3 ? pageData?.third_tab_yearly_price : pageData?.third_tab_monthly_price }}<span>.- CHF -->
                       <!-- / {{ isActive3 ? ('year' | translate) : ('month' | translate) }}</span> -->
-                      {{isActive3 ? boostYearlyPrice : boostPrice}}<span>.- {{Currency}} / {{isActive3 ?
+                      {{ isActive3 ? boostYearlyPrice : boostPrice }}<span>.- {{ Currency }} / {{isActive3 ?
                         pageData?.third_tab_yearly_label :
                         pageData?.third_tab_monthly_label}}</span>
                     </h3>
@@ -472,30 +368,58 @@
           *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
 
           <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
-            <a href="{{advertisementData?.large_rectangle?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
+            <a href="{{ advertisementData?.large_rectangle?.redirect_url }}" target="_blank">
+              <!-- <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image"> -->
+              <ng-container *ngIf="advertisementData?.large_rectangle?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.large_rectangle?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.large_rectangle?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.large_rectangle?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('large_rectangle')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
 
           <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
-            <a href="{{advertisementData?.inline_rectangle?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
+            <a href="{{ advertisementData?.inline_rectangle?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.inline_rectangle?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.inline_rectangle?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.inline_rectangle?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.inline_rectangle?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
 
           <div *ngIf="checkActive('square')  && !isLoading" class="square">
-            <a href="{{advertisementData?.square?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
+            <a href="{{ advertisementData?.square?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.square?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.square?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.square?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.square?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
 
         </div>

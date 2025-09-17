@@ -1,34 +1,50 @@
 <section class="website-code">
   <!-- <app-header></app-header> -->
   <div class="main">
-    <div class="main-bnr" style="background-image: url('{{about_banner_bg_img}}'); background-position: bottom center;">
+    <div class="main-bnr" style="background-image: url('{{ about_banner_bg_img }}'); background-position: bottom center;">
 
 
       <div class="overlay"></div>
       <div class="banner-inner py_0">
         <div class="container">
           <div class="about">
-            <h3 class="about-text">{{about_banner_title}}</h3>
+            <h3 class="about-text">{{ about_banner_title }}</h3>
           </div>
         </div>
       </div>
 
       <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-        <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+        <a href="{{ advertisementData?.skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image"
+                type="video/mp4">
+            </video>
+          </ng-container>
         </a>
         <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
             class="fa-solid fa-xmark"></i></button>
-        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
       </div>
 
       <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
-        <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        <a href="{{ advertisementData?.wide_skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image"
+                type="video/mp4">
+            </video>
+          </ng-container>
         </a>
         <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
             class="fa-solid fa-xmark"></i></button>
-        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
       </div>
 
     </div>
@@ -42,9 +58,10 @@
                 class="w-100">
               <img *ngIf="currentTheme == 'dark'" src="/assets/images/about_page/banner_img_dark.png" alt="About Us"
                 class="w-100"> -->
-              <img src="/assets/images/about_page/banner_img.png" alt="{{about_banner_title}}" class="w-100">
-              <p>{{'aboutImageCaption' | translate}}&nbsp;<small>Timo Fuhlbrügge, Elton Morina, Fisnik Morina</small></p>
-              <!-- <p><strong>{{'aboutImageCaption' | translate}}</strong>&nbsp;<small>Timo Fuhlbrügge, Elton Morina, Fisnik Morina</small></p> -->
+              <img src="/assets/images/about_page/banner_img.png" alt="{{ about_banner_title }}" class="w-100">
+              <p>{{ 'aboutImageCaption' | translate }}&nbsp;<small>Timo Fuhlbrügge, Elton
+                  Morina, Fisnik Morina</small></p>
+              <!-- <p><strong>{{ 'aboutImageCaption' | translate }}</strong>&nbsp;<small>Timo Fuhlbrügge, Elton Morina, Fisnik Morina</small></p> -->
             </div>
 
 
@@ -61,27 +78,44 @@
       <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
 
         <div *ngIf="isExists('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_large">
-          <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+          <a href="{{ advertisementData?.leaderboard?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image"
+                  type="video/mp4">
+              </video>
+            </ng-container>
           </a>
           <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i
               class="fa-solid fa-xmark"></i></button>
-          <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
         </div>
         <div *ngIf="!isExists('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_small">
-          <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+          <a href="{{ advertisementData?.banner?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image" type="video/mp4">
+              </video>
+            </ng-container>
           </a>
           <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
               class="fa-solid fa-xmark"></i></button>
-          <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
         </div>
       </div>
     </div>
 
     <div class="countries py_0">
       <div class="container">
-        <h2 class="country-available">{{country_section_title}}
+        <h2 class="country-available">{{ country_section_title }}
         </h2>
         <div class="row">
           <div class="col-xxl-4 col-lg-6 col-md-6 col-12" *ngIf="countries">
@@ -93,7 +127,7 @@
                     <!-- <img src="/assets/images/flag-switzerland.svg"> -->
                     <img [src]="'/assets/images/flags/' + (i + 1) + '.svg'">
                   </span>
-                  {{country}}</a>
+                  {{ country }}</a>
               </mat-list-item>
             </mat-list>
           </div>
@@ -101,9 +135,9 @@
             <div class="map">
               <img class="light-map" src="assets/images/about_page/light_map.png" alt="Light Map">
               <img class="dark-map" src="assets/images/dark-map.png" alt="Light Map">
-              <!-- <img class="light-map" src="{{country_section_banner_img ? country_section_banner_img : './assets/images/dark-map.png'}}" alt="Light Map"> -->
+              <!-- <img class="light-map" src="{{ country_section_banner_img ? country_section_banner_img : './assets/images/dark-map.png' }}" alt="Light Map"> -->
               <!-- <img class="dark-map" src="./assets/images/dark-map.png" alt="Dark Map"> -->
-              <!-- <img class="dark-map" src="{{country_section_banner_img_dark_mode ? country_section_banner_img_dark_mode : './assets/images/dark-map.png'}}" -->
+              <!-- <img class="dark-map" src="{{ country_section_banner_img_dark_mode ? country_section_banner_img_dark_mode : './assets/images/dark-map.png' }}" -->
               <!-- alt="Dark Map"> -->
             </div>
           </div>
@@ -116,21 +150,39 @@
         <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
 
           <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
-            <a href="{{advertisementData?.large_leaderboard?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
+            <a href="{{ advertisementData?.large_leaderboard?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.large_leaderboard?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.large_leaderboard?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.large_leaderboard?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.large_leaderboard?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
 
           <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-            <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+            <a href="{{ advertisementData?.small_square?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
 
         </div>
@@ -138,20 +190,38 @@
         <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
 
           <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-            <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+            <a href="{{ advertisementData?.small_square?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
           <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
-            <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+            <a href="{{ advertisementData?.banner?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
         </div>
       </div>
@@ -162,14 +232,14 @@
           <div class="data_wrapper">
             <div class="text_side_wrapper">
               <div class="title_text_p">
-                <h3 class="mb-3">{{about_hero_heading}}</h3>
-                <p><strong>{{about_hero_heading_txt}}</strong></p>
+                <h3 class="mb-3">{{ about_hero_heading }}</h3>
+                <p><strong>{{ about_hero_heading_txt }}</strong></p>
               </div>
               <div class="club-buttons">
                 <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
                   <div class="button-border">
                     <div class="join-text">
-                      <p>{{about_hero_btn_txt}}</p>
+                      <p>{{ about_hero_btn_txt }}</p>
                       <!-- <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png"> -->
                       <!-- <img class="join-btn check-image-light" src="./assets/images/light-join-now.png"> -->
                     </div>
@@ -186,14 +256,14 @@
           <div class="data_wrapper">
             <div class="text_side_wrapper">
               <div class="title_text_p">
-                <h3 class="mb-3">{{about_hero_heading}}</h3>
-                <p><strong>{{about_hero_heading_txt}}</strong></p>
+                <h3 class="mb-3">{{ about_hero_heading }}</h3>
+                <p><strong>{{ about_hero_heading_txt }}</strong></p>
               </div>
               <div class="club-buttons">
                 <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
                   <div class="button-border">
                     <div class="join-text">
-                      <p>{{about_hero_btn_txt}}</p>
+                      <p>{{ about_hero_btn_txt }}</p>
                       <!-- <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png"> -->
                       <!-- <img class="join-btn check-image-light" src="./assets/images/light-join-now.png"> -->
                     </div>
@@ -215,30 +285,57 @@
           *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
 
           <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
-            <a href="{{advertisementData?.large_rectangle?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
+            <a href="{{ advertisementData?.large_rectangle?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.large_rectangle?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.large_rectangle?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.large_rectangle?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.large_rectangle?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('large_rectangle')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
 
           <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
-            <a href="{{advertisementData?.inline_rectangle?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
+            <a href="{{ advertisementData?.inline_rectangle?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.inline_rectangle?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.inline_rectangle?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.inline_rectangle?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.inline_rectangle?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
 
           <div *ngIf="checkActive('square')  && !isLoading" class="square">
-            <a href="{{advertisementData?.square?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
+            <a href="{{ advertisementData?.square?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.square?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.square?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.square?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+                  loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.square?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
 
         </div>

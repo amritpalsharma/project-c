@@ -13,11 +13,12 @@ export class ImprintComponent implements OnInit {
   // advertisementData:any;
   page_content:any=null;
   advertisemnet_base_url:string = '';
+  advertisemnet_new_base_url:string = '';
   banner_img:any=null;
   base_url:any=null;
 
   isLoading : boolean = true;
-  btnLoading : boolean = true;
+  btnLoading : boolean = false;
   countdown: number = 10;
 
   // advertisemnet_base_url:string= '';
@@ -95,6 +96,7 @@ export class ImprintComponent implements OnInit {
           this.page_content = res.data.pageData.page_content;
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+          this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
          
           this.banner_img = res.data.pageData.banner_img;
           this.base_url =  res.data.base_url;

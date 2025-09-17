@@ -1,361 +1,425 @@
 <section class="website-code">
 
-    <div class="main talent_page">
+  <div class="main talent_page">
 
-        <!-- <app-header></app-header> -->
+    <!-- <app-header></app-header> -->
 
-        <div class="banner py-0">
-            <!-- [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'"> -->
-            <!-- <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');"> -->
-            <div class="overlay1"></div>
+    <div class="banner py-0">
+      <!-- [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'"> -->
+      <!-- <div class="banner py-0" style="background-image: url('{{ baseUrl + pageData?.banner_bg_img }}');"> -->
+      <div class="overlay1"></div>
 
-            <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-                <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
-                    <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
-                </a>
-                <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
-                        class="fa-solid fa-xmark"></i></button>
-                <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-            </div>
+      <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
+        <a href="{{ advertisementData?.skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image"
+                type="video/mp4">
+              
+            </video>
+          </ng-container>
+        </a>
+        <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
+            class="fa-solid fa-xmark"></i></button>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+      </div>
 
-            <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
-                <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-                    <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
-                </a>
-                <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
-                        class="fa-solid fa-xmark"></i></button>
-                <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-            </div>
+      <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
+        <a href="{{ advertisementData?.wide_skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image"
+                type="video/mp4">
+              
+            </video>
+          </ng-container>
+        </a>
+        <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
+            class="fa-solid fa-xmark"></i></button>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+      </div>
 
-            <div class="container">
-                <div class="banner-data">
-                    <div class="row">
-                        <div class="col-lg-6 col-lg-4 col-12" *ngIf="pageData?.banner_title">
-                            <div class="banner-left">
-                                <!-- <h1>Theme {{currentTheme}}</h1> -->
-                                <h1 class="banner-heading">{{pageData?.banner_title}}</h1>
-                                <h4 class="banner-heading5" [innerHTML]="pageData?.banner_desc"></h4>
-                                <a class="btn btn-register" data-bs-toggle="modal" data-bs-target="#exampleModal1">{{
+      <div class="container">
+        <div class="banner-data">
+          <div class="row">
+            <div class="col-lg-6 col-lg-4 col-12" *ngIf="pageData?.banner_title">
+              <div class="banner-left">
+                <!-- <h1>Theme {{ currentTheme }}</h1> -->
+                <h1 class="banner-heading">{{ pageData?.banner_title }}</h1>
+                <h4 class="banner-heading5" [innerHTML]="pageData?.banner_desc"></h4>
+                <a class="btn btn-register" data-bs-toggle="modal" data-bs-target="#exampleModal1">{{
                                     pageData?.banner_btn_txt }}</a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-lg-8 col-12" *ngIf="selectedLangSlug">
-                            <div class="banner_image_combo">
-                                <!-- <img src="./assets/images/How-it-works.png" /> -->
-                                <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
-                                    src="{{baseUrl + pageData?.banner_img}}" /> -->
-                                <img *ngIf="currentTheme == 'light'"
-                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_' + selectedLangSlug + '.png'" />
-                                <!-- <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
-                                    src="{{baseUrl + pageData?.banner_img_dark_mode}}" /> -->
-                                <img *ngIf="currentTheme == 'dark'"
-                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
 
-
-        </div>
-
-        <div class="container">
-            <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
-                <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
-                    class="leaderboard-club-image advirtismnt_2_large">
-                    <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-                <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading"
-                    class="leaderboard-club-image advirtismnt_2_small">
-                    <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
+            <div class="col-lg-6 col-lg-8 col-12" *ngIf="selectedLangSlug">
+              <div class="banner_image_combo">
+                <!-- <img src="./assets/images/How-it-works.png" /> -->
+                <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
+                                    src="{{ baseUrl + pageData?.banner_img }}" /> -->
+                <img *ngIf="currentTheme == 'light'"
+                  [src]="'../../../../assets/images/talent_page/talent_banner_img_' + selectedLangSlug + '.png'" />
+                <!-- <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
+                                    src="{{ baseUrl + pageData?.banner_img_dark_mode }}" /> -->
+                <img *ngIf="currentTheme == 'dark'"
+                  [src]="'../../../../assets/images/talent_page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
 
     </div>
 
-    <div class="club-scout py_0" *ngIf="pageData?.talent_section_title">
-        <div class="container">
-            <h3 class="club-heading4 pb-4">{{pageData?.talent_section_title}}</h3>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
-                    <div class="club_text">
-                        <img class="light-images" src="./assets/images/talent_page/icons/icon-1.svg">
-                        <img class="dark-images" src="./assets/images/talent_page/icons/icon-dark-1.svg">
-                        <!-- <img class="dark-images" src="./assets/images/dark-talent-icon1.svg"> -->
-                        <p class="club-text1">{{pageData?.talent_section?.first_tab?.txt}}</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
-                    <div class="club_text">
-                        <img class="light-images" src="./assets/images/talent_page/icons/icon-2.svg">
-                        <img class="dark-images" src="./assets/images/talent_page/icons/icon-dark-2.svg">
-                        <!-- <img class="dark-images" src="./assets/images/dark-talent-icon2.svg"> -->
-                        <p class="club-text1">{{pageData?.talent_section?.sec_tab?.txt}}</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
-                    <div class="club_text">
-                        <img class="light-images" src="./assets/images/talent_page/icons/icon-3.svg">
-                        <img class="dark-images" src="./assets/images/talent_page/icons/icon-dark-3.svg">
-                        <!-- <img class="dark-images" src="./assets/images/dark-talent-icon3.svg"> -->
-                        <p class="club-text1">{{pageData?.talent_section?.third_tab?.txt}}</p>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+      <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
+        <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
+          class="leaderboard-club-image advirtismnt_2_large">
+          <a href="{{ advertisementData?.leaderboard?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image"
+                  type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
         </div>
+        <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading"
+          class="leaderboard-club-image advirtismnt_2_small">
+          <a href="{{ advertisementData?.banner?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image" type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+        </div>
+      </div>
     </div>
 
-    <div class="features py_0" *ngIf="pageData.feature_sctn">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="left-accordion">
-                        <h3 class="feature-heading3">{{pageData?.feature_sctn_title}} </h3>
-                        <div class="accordion" id="accordionExample">
-                            <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                <div class="accordion-item">
-                                    <div class="accordion-flex" data-bs-toggle="collapse"
-                                        [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
-                                        [attr.aria-controls]="'collapse' + i"
-                                        (click)="getArrayItemByIndex(i,'dark_icon')">
-                                        <img class="light-feature1"
-                                            src="/assets/images/talent_page/icons/{{i}}_light.svg">
-                                        <img class="dark-feature1"
-                                            src="/assets/images/talent_page/icons/{{i}}_dark.svg">
-                                        <h2 class="accordion-header" (click)="getArrayItemByIndex(i,'dark_icon')">
-                                            {{feature.title}}
-                                        </h2>
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
-                                            [attr.aria-controls]="'collapse' + i"
-                                            [ngClass]="{'collapsed' : activeAccordionIndex != i}">
-                                        </button>
-                                    </div>
-                                    <div [id]="'collapse' + i" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionExample" [class.show]="activeAccordionIndex === i">
-                                        <div class="accordion-body">
-                                            <p class="feature-text feature-content-text" [innerHTML]="feature.desc">
-                                                <!-- {{feature.desc}} -->
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-container>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="talent_page_accordion">
-                        <div class="club-offer">
-                            <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 1 }">
-                                <img class="single_tab_img light-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_' +'1.png'">
-                                <img class="single_tab_img dark-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + '1.png'">
-                            </div>
-                            <!-- 2 -->
-                            <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 2 }">
-                                <img class="single_tab_img light-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_'  + '2.png'">
-                                <img class="single_tab_img dark-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_'  + '2.png'">
-                            </div>
-                            <!-- 3 -->
-                            <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 3 }">
-                                <img class="single_tab_img light-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_en_'  + '3.png'">
-                                <img class="single_tab_img dark-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_en_' + '3.png'">
-                            </div>
-                            <!-- 4 -->
-                            <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 4 }">
-                                <img class="single_tab_img light-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_light_' + selectedLangSlug + '_'  + '4.png'">
-                                <img class="single_tab_img dark-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + '4.png'">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  </div>
+
+  <div class="club-scout py_0" *ngIf="pageData?.talent_section_title">
+    <div class="container">
+      <h3 class="club-heading4 pb-4">{{ pageData?.talent_section_title }}</h3>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="club_text">
+            <img class="light-images" src="./assets/images/talent_page/icons/icon-1.svg">
+            <img class="dark-images" src="./assets/images/talent_page/icons/icon-dark-1.svg">
+            <!-- <img class="dark-images" src="./assets/images/dark-talent-icon1.svg"> -->
+            <p class="club-text1">{{ pageData?.talent_section?.first_tab?.txt }}</p>
+          </div>
         </div>
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="club_text">
+            <img class="light-images" src="./assets/images/talent_page/icons/icon-2.svg">
+            <img class="dark-images" src="./assets/images/talent_page/icons/icon-dark-2.svg">
+            <!-- <img class="dark-images" src="./assets/images/dark-talent-icon2.svg"> -->
+            <p class="club-text1">{{ pageData?.talent_section?.sec_tab?.txt }}</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="club_text">
+            <img class="light-images" src="./assets/images/talent_page/icons/icon-3.svg">
+            <img class="dark-images" src="./assets/images/talent_page/icons/icon-dark-3.svg">
+            <!-- <img class="dark-images" src="./assets/images/dark-talent-icon3.svg"> -->
+            <p class="club-text1">{{ pageData?.talent_section?.third_tab?.txt }}</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- mobile-features -->
-    <div class="features1 py_0 " *ngIf="pageData.feature_sctn">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="left-accordion">
-                        <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
-                        <div class="accordion" id="accordionExample" style="display:none">
-                            <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                <div class="accordion-item">
-                                    <div class="accordion-flex" data-bs-toggle="collapse"
-                                        [attr.data-bs-target]="'#collapseOne' + i"
-                                        [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
-                                        [attr.aria-controls]="'collapseOne' + i" (click)="setActiveAccordion(i)">
-                                        <img class="light-feature1"
-                                            src="/assets/images/talent_page/icons/{{i}}_light.svg">
-                                        <img class="dark-feature1"
-                                            src="/assets/images/talent_page/icons/{{i}}_dark.svg">
-
-                                        <h2 class="accordion-header">
-                                            {{feature.title}}
-                                        </h2>
-
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            [attr.data-bs-target]="'#collapseOne' + i"
-                                            [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
-                                            [attr.aria-controls]="'collapseOne' + i"
-                                            [ngClass]="{'collapsed' : activeAccordionIndex != i}">
-                                        </button>
-                                    </div>
-
-                                    <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
-                                        [class.show]="activeAccordionIndex === i" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text feature-content-text" [innerHTML]="feature.desc"></p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_light_' + selectedLangSlug + '_' + (activeAccordionIndex + 1) + '.png'">
-                                                <img class="single_tab_img dark-images"
-                                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' +  (activeAccordionIndex + 1) + '.png'">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-container>
-                        </div>
-
-                        <!-- ChatGPT CODE -->
-                        <div class="accordion" id="accordionExample">
-                            <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                <div class="accordion-item">
-                                    <div class="accordion-flex" data-bs-toggle="collapse"
-                                        [attr.data-bs-target]="'#collapseOne' + i"
-                                        [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
-                                        [attr.aria-controls]="'collapseOne' + i"
-                                        (click)="setActiveAccordion(i, $event)">
-
-                                        <img class="light-feature1"
-                                            src="/assets/images/talent_page/icons/{{i}}_light.svg">
-                                        <img class="dark-feature1"
-                                            src="/assets/images/talent_page/icons/{{i}}_dark.svg">
-
-                                        <h2 class="accordion-header">
-                                            {{feature.title}}
-                                        </h2>
-
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            [attr.data-bs-target]="'#collapseOne' + i"
-                                            [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
-                                            [attr.aria-controls]="'collapseOne' + i"
-                                            [ngClass]="{'collapsed' : activeAccordionIndex != i}">
-                                        </button>
-                                    </div>
-
-                                    <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
-                                        [class.show]="activeAccordionIndex === i" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text feature-content-text" [innerHTML]="feature.desc"></p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_light_' + selectedLangSlug + '_' + (activeAccordionIndex + 1) + '.png'">
-                                                <img class="single_tab_img dark-images"
-                                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' +  (activeAccordionIndex + 1) + '.png'">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-container>
-                        </div>
-
+  <div class="features py_0" *ngIf="pageData.feature_sctn">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-12">
+          <div class="left-accordion">
+            <h3 class="feature-heading3">{{ pageData?.feature_sctn_title }} </h3>
+            <div class="accordion" id="accordionExample">
+              <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
+                <div class="accordion-item">
+                  <div class="accordion-flex" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i"
+                    aria-expanded="false" [attr.aria-controls]="'collapse' + i"
+                    (click)="getArrayItemByIndex(i,'dark_icon')">
+                    <img class="light-feature1" src="/assets/images/talent_page/icons/{{ i }}_light.svg">
+                    <img class="dark-feature1" src="/assets/images/talent_page/icons/{{ i }}_dark.svg">
+                    <h2 class="accordion-header" (click)="getArrayItemByIndex(i,'dark_icon')">
+                      {{ feature.title }}
+                    </h2>
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                      [attr.aria-controls]="'collapse' + i" [ngClass]="{'collapsed' : activeAccordionIndex != i}">
+                    </button>
+                  </div>
+                  <div [id]="'collapse' + i" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
+                    [class.show]="activeAccordionIndex === i">
+                    <div class="accordion-body">
+                      <p class="feature-text feature-content-text" [innerHTML]="feature.desc">
+                        <!-- {{ feature.desc }} -->
+                      </p>
                     </div>
+                  </div>
                 </div>
+              </ng-container>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- mobile-features -->
-
-    <div class="advertismnt_container">
-        <div class="container">
-            <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
-
-                <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
-                    <a href="{{advertisementData?.large_leaderboard?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-
-                <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-                    <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-
+        <div class="col-lg-6 col-md-12 col-12">
+          <div class="talent_page_accordion">
+            <div class="club-offer">
+              <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 1 }">
+                <img class="single_tab_img light-images"
+                  [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_' +'1.png'">
+                <img class="single_tab_img dark-images"
+                  [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + '1.png'">
+              </div>
+              <!-- 2 -->
+              <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 2 }">
+                <img class="single_tab_img light-images"
+                  [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_'  + '2.png'">
+                <img class="single_tab_img dark-images"
+                  [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_'  + '2.png'">
+              </div>
+              <!-- 3 -->
+              <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 3 }">
+                <img class="single_tab_img light-images"
+                  [src]="'../../../../assets/images/talent_page/talent_featured_img_en_'  + '3.png'">
+                <img class="single_tab_img dark-images"
+                  [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_en_' + '3.png'">
+              </div>
+              <!-- 4 -->
+              <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 4 }">
+                <img class="single_tab_img light-images"
+                  [src]="'../../../../assets/images/talent_page/talent_featured_img_light_' + selectedLangSlug + '_'  + '4.png'">
+                <img class="single_tab_img dark-images"
+                  [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + '4.png'">
+              </div>
             </div>
-
-            <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
-
-                <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-                    <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-                <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
-                    <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-
-
-            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="pricing py_0 pb-0" *ngIf="priceArr">
-        <div class="container">
-            <div class="sec_title text-center">
-                <h2 class="text-uppercase price-heading3">{{'freePlanText' | translate}}</h2>
+  <!-- mobile-features -->
+  <div class="features1 py_0 " *ngIf="pageData.feature_sctn">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-12">
+          <div class="left-accordion">
+            <h3 class="feature-heading3">{{ pageData?.feature_sctn_title }}</h3>
+            <div class="accordion" id="accordionExample" style="display:none">
+              <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
+                <div class="accordion-item">
+                  <div class="accordion-flex" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne' + i"
+                    [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
+                    [attr.aria-controls]="'collapseOne' + i" (click)="setActiveAccordion(i)">
+                    <img class="light-feature1" src="/assets/images/talent_page/icons/{{ i }}_light.svg">
+                    <img class="dark-feature1" src="/assets/images/talent_page/icons/{{ i }}_dark.svg">
+
+                    <h2 class="accordion-header">
+                      {{ feature.title }}
+                    </h2>
+
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      [attr.data-bs-target]="'#collapseOne' + i"
+                      [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
+                      [attr.aria-controls]="'collapseOne' + i" [ngClass]="{'collapsed' : activeAccordionIndex != i}">
+                    </button>
+                  </div>
+
+                  <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
+                    [class.show]="activeAccordionIndex === i" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p class="feature-text feature-content-text" [innerHTML]="feature.desc"></p>
+                      <div class="talent_tab_image">
+                        <img class="single_tab_img light-images"
+                          [src]="'../../../../assets/images/talent_page/talent_featured_img_light_' + selectedLangSlug + '_' + (activeAccordionIndex + 1) + '.png'">
+                        <img class="single_tab_img dark-images"
+                          [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' +  (activeAccordionIndex + 1) + '.png'">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
             </div>
-            <div class="pricing_tabs_container">
-                <ul class="nav nav-tabs justify-content-center border-0" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active uppercase-letters" data-bs-toggle="tab" href="#Tab1" role="tab"
-                            aria-selected="true" (click)="setActiveTab('monthly')">{{'billedMonthly'| translate}}</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link uppercase-letters" data-bs-toggle="tab" href="#Tab2" role="tab"
-                            aria-selected="false" (click)="setActiveTab('yearly')">{{'billedYearly'| translate}}</a>
-                    </li>
-                </ul>
-                <div class="tab_data_wrapper">
-                    <!-- <div class="tab-pane active" id="Tab1" role="tabpanel" *ngIf="selectedTab == 'monthly'">
+
+            <!-- ChatGPT CODE -->
+            <div class="accordion" id="accordionExample">
+              <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
+                <div class="accordion-item">
+                  <div class="accordion-flex" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne' + i"
+                    [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
+                    [attr.aria-controls]="'collapseOne' + i" (click)="setActiveAccordion(i, $event)">
+
+                    <img class="light-feature1" src="/assets/images/talent_page/icons/{{ i }}_light.svg">
+                    <img class="dark-feature1" src="/assets/images/talent_page/icons/{{ i }}_dark.svg">
+
+                    <h2 class="accordion-header">
+                      {{ feature.title }}
+                    </h2>
+
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      [attr.data-bs-target]="'#collapseOne' + i"
+                      [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
+                      [attr.aria-controls]="'collapseOne' + i" [ngClass]="{'collapsed' : activeAccordionIndex != i}">
+                    </button>
+                  </div>
+
+                  <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
+                    [class.show]="activeAccordionIndex === i" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p class="feature-text feature-content-text" [innerHTML]="feature.desc"></p>
+                      <div class="talent_tab_image">
+                        <img class="single_tab_img light-images"
+                          [src]="'../../../../assets/images/talent_page/talent_featured_img_light_' + selectedLangSlug + '_' + (activeAccordionIndex + 1) + '.png'">
+                        <img class="single_tab_img dark-images"
+                          [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' +  (activeAccordionIndex + 1) + '.png'">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- mobile-features -->
+
+  <div class="advertismnt_container">
+    <div class="container">
+      <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
+
+        <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
+          <a href="{{ advertisementData?.large_leaderboard?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.large_leaderboard?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.large_leaderboard?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.large_leaderboard?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.large_leaderboard?.featured_image"
+                  type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+        </div>
+
+        <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
+          <a href="{{ advertisementData?.small_square?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
+                  type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+        </div>
+
+      </div>
+
+      <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
+
+        <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
+          <a href="{{ advertisementData?.small_square?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
+                  type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+        </div>
+        <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
+          <a href="{{ advertisementData?.banner?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image" type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing py_0 pb-0" *ngIf="priceArr">
+    <div class="container">
+      <div class="sec_title text-center">
+        <h2 class="text-uppercase price-heading3">{{ 'freePlanText' | translate }}</h2>
+      </div>
+      <div class="pricing_tabs_container">
+        <ul class="nav nav-tabs justify-content-center border-0" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active uppercase-letters" data-bs-toggle="tab" href="#Tab1" role="tab"
+              aria-selected="true"
+              (click)="setActiveTab('monthly')">{{ 'billedMonthly'| translate }}</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link uppercase-letters" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false"
+              (click)="setActiveTab('yearly')">{{ 'billedYearly'| translate }}</a>
+          </li>
+        </ul>
+        <div class="tab_data_wrapper">
+          <!-- <div class="tab-pane active" id="Tab1" role="tabpanel" *ngIf="selectedTab == 'monthly'">
                         <div class="shadow_container">
                             <div class="row">
                                 <div class="col-md-4 item_column">
@@ -458,240 +522,254 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="tab-pane" id="Tab2" role="tabpanel">
-                        <div class="shadow_container">
-                            <div class="row">
-                                <div class="col-md-4 item_column">
-                                    <div class="item_card">
-                                        <div class="header_card">
-                                            <h2 class="premium-heading3">
-                                                {{ getPlanPriceByName('boost')}}<span>.- {{Currency}} /
-                                                    <span
-                                                        *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
-                                                    <span
-                                                        *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
-                                                </span>
-                                            </h2>
-                                            <h3 class="premium-heading2"> {{getDynamicPlanName('boost')}} </h3>
-                                        </div>
-                                        <div class="body_card">
-                                            <h5 class="premium-heading5" *ngIf="priceArr[2].plan_feature_title">
-                                                {{priceArr[2].plan_feature_title}}</h5>
-                                            <div class="text_List_wrap">
-                                                <div class="premium-text"
-                                                    *ngFor="let desc of getDescByPlanName('boost');">
-                                                    <img src="./assets/images/mdi_tick.svg" class="theme_white_icon"
-                                                        alt="Checkmark">
-                                                    <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue"
-                                                        alt="Checkmark">
-                                                    <p>{{desc}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
-                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
-                                                translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
-                                                translate }}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 item_column">
-                                    <div class="item_card">
-                                        <div class="header_card">
-                                            <h2 class="premium-heading3">
-                                                {{getPlanPriceByName('premium')}}<span>.- {{Currency}} /
-                                                    <span
-                                                        *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
-                                                    <span
-                                                        *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
-                                                </span>
-                                            </h2>
-                                            <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
-                                        </div>
-                                        <div class="body_card">
-                                            <h5 class="premium-heading5" *ngIf="priceArr[0].plan_feature_title">
-                                                {{priceArr[0].plan_feature_title}}</h5>
-                                            <div class="text_List_wrap">
-                                                <div class="premium-text"
-                                                    *ngFor="let desc of getDescByPlanName('premium');">
-                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>{{desc}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
-                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
-                                                translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
-                                                translate }}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 item_column">
-                                    <div class="item_card">
-                                        <div class="header_card">
-                                            <h2 class="premium-heading3">
-                                                <!-- 10<span>.- GBP / <span>Yearly</span></span> -->
-                                                {{ getPlanPriceByName('country')}}<span>.- {{Currency}} /
-                                                    <span
-                                                        *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
-                                                    <span
-                                                        *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
-                                                </span>
-                                            </h2>
-                                            <h3 class="premium-heading2"> {{getDynamicPlanName('country')}}</h3>
-                                        </div>
-                                        <div class="body_card">
-                                            <h5 class="premium-heading5" *ngIf="priceArr[1].plan_feature_title">
-                                                {{priceArr[1].plan_feature_title}}</h5>
-                                            <div class="text_List_wrap">
-                                                <div class="premium-text"
-                                                    *ngFor="let desc of getDescByPlanName('country');">
-                                                    <img src="./assets/images/mdi_tick.svg" class="theme_white_icon"
-                                                        alt="Checkmark">
-                                                    <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue"
-                                                        alt="Checkmark">
-                                                    <p>{{desc}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
-                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
-                                                translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
-                                                translate }}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+          <div class="tab-pane" id="Tab2" role="tabpanel">
+            <div class="shadow_container">
+              <div class="row">
+                <div class="col-md-4 item_column">
+                  <div class="item_card">
+                    <div class="header_card">
+                      <h2 class="premium-heading3">
+                        {{ getPlanPriceByName('boost') }}<span>.- {{ Currency }} /
+                          <span *ngIf="selectedTab == 'yearly' && priceArr">{{ priceArr[0].yearly_label }}</span>
+                          <span *ngIf="selectedTab != 'yearly' && priceArr">{{ priceArr[0].monthly_label }}</span>
+                        </span>
+                      </h2>
+                      <h3 class="premium-heading2"> {{ getDynamicPlanName('boost') }} </h3>
                     </div>
+                    <div class="body_card">
+                      <h5 class="premium-heading5" *ngIf="priceArr[2].plan_feature_title">
+                        {{ priceArr[2].plan_feature_title }}</h5>
+                      <div class="text_List_wrap">
+                        <div class="premium-text" *ngFor="let desc of getDescByPlanName('boost');">
+                          <img src="./assets/images/mdi_tick.svg" class="theme_white_icon" alt="Checkmark">
+                          <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue" alt="Checkmark">
+                          <p>{{ desc }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="footer_card buy_now_btn_front_price">
+                      <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                        class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                        class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                    </div>
+                  </div>
                 </div>
+                <div class="col-md-4 item_column">
+                  <div class="item_card">
+                    <div class="header_card">
+                      <h2 class="premium-heading3">
+                        {{ getPlanPriceByName('premium') }}<span>.- {{ Currency }} /
+                          <span *ngIf="selectedTab == 'yearly' && priceArr">{{ priceArr[0].yearly_label }}</span>
+                          <span *ngIf="selectedTab != 'yearly' && priceArr">{{ priceArr[0].monthly_label }}</span>
+                        </span>
+                      </h2>
+                      <h3 class="premium-heading2">{{ getDynamicPlanName('premium') }}</h3>
+                    </div>
+                    <div class="body_card">
+                      <h5 class="premium-heading5" *ngIf="priceArr[0].plan_feature_title">
+                        {{ priceArr[0].plan_feature_title }}</h5>
+                      <div class="text_List_wrap">
+                        <div class="premium-text" *ngFor="let desc of getDescByPlanName('premium');">
+                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                          <p>{{ desc }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="footer_card buy_now_btn_front_price">
+                      <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                        class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                        class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 item_column">
+                  <div class="item_card">
+                    <div class="header_card">
+                      <h2 class="premium-heading3">
+                        <!-- 10<span>.- GBP / <span>Yearly</span></span> -->
+                        {{ getPlanPriceByName('country') }}<span>.- {{ Currency }} /
+                          <span *ngIf="selectedTab == 'yearly' && priceArr">{{ priceArr[0].yearly_label }}</span>
+                          <span *ngIf="selectedTab != 'yearly' && priceArr">{{ priceArr[0].monthly_label }}</span>
+                        </span>
+                      </h2>
+                      <h3 class="premium-heading2"> {{ getDynamicPlanName('country') }}</h3>
+                    </div>
+                    <div class="body_card">
+                      <h5 class="premium-heading5" *ngIf="priceArr[1].plan_feature_title">
+                        {{ priceArr[1].plan_feature_title }}</h5>
+                      <div class="text_List_wrap">
+                        <div class="premium-text" *ngFor="let desc of getDescByPlanName('country');">
+                          <img src="./assets/images/mdi_tick.svg" class="theme_white_icon" alt="Checkmark">
+                          <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue" alt="Checkmark">
+                          <p>{{ desc }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="footer_card buy_now_btn_front_price">
+                      <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                        class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                        class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style="display: none;" *ngFor="let plan of pageData.pricing_tab; let i = index">
-                <div class="billed_wrapp " [ngClass]="{ 'first_plan_with_title': i === 0 }">
-                    <h3 *ngIf="i === 0" class="price-heading3">{{'pricing' | translate}}</h3>
-                    <div class="plan_btn_and_text">
-                        <div class="red_text_plan">{{'freePlanText' | translate}}</div>
-                        <div class="billed">
-                            <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
-                                class="billed-monthly">
-                                <!-- {{'billedMonthly' | translate}} -->
-                                {{plan.monthly_label}}
-                            </p>
-                            <div class="toggle-button"
-                                [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
-                                (click)="togglePlan(i)">
-                            </div>
-                            <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
-                                <!-- {{'billedYearly' | translate}} -->
-                                {{plan.yearly_label}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: none;" *ngFor="let plan of pageData.pricing_tab; let i = index">
+        <div class="billed_wrapp " [ngClass]="{ 'first_plan_with_title': i === 0 }">
+          <h3 *ngIf="i === 0" class="price-heading3">{{ 'pricing' | translate }}</h3>
+          <div class="plan_btn_and_text">
+            <div class="red_text_plan">{{ 'freePlanText' | translate }}</div>
+            <div class="billed">
+              <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
+                class="billed-monthly">
+                <!-- {{ 'billedMonthly' | translate }} -->
+                {{ plan.monthly_label }}
+              </p>
+              <div class="toggle-button" [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
+                (click)="togglePlan(i)">
+              </div>
+              <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
+                <!-- {{ 'billedYearly' | translate }} -->
+                {{ plan.yearly_label }}
+              </p>
+            </div>
+          </div>
+        </div>
 
-                <div class="premium">
-                    <div class="row">
+        <div class="premium">
+          <div class="row">
 
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <div class="premium-img">
-                                <img class="bg-image" src="./assets/images/feature-image.svg">
-                                <h2 class="premium-heading2">{{ plan.plan_name }}</h2>
-                                <h3 class="premium-heading3">
-                                    <!-- {{ !isActivePlan[i] ? plan.monthly_plan_price : plan.yearly_plan_price }}<span>.- {{
+            <div class="col-lg-6 col-md-6 col-12">
+              <div class="premium-img">
+                <img class="bg-image" src="./assets/images/feature-image.svg">
+                <h2 class="premium-heading2">{{ plan.plan_name }}</h2>
+                <h3 class="premium-heading3">
+                  <!-- {{ !isActivePlan[i] ? plan.monthly_plan_price : plan.yearly_plan_price }}<span>.- {{
                                         !isActivePlan[i] ? plan.monthly_plan_price_currency :
                                         plan.yearly_plan_price_currency }}
                                         / {{ !isActivePlan[i] ? 'Month' : 'Year' }}</span> -->
-                                    <!-- <div *ngIf="plan.plan_name?.toLowerCase() === 'premium'">
-                                        {{!isActivePlan[i]? premiumPrice : premiumYearlyPrice}}<span>.-/ {{Currency}}{{
+                  <!-- <div *ngIf="plan.plan_name?.toLowerCase() === 'premium'">
+                                        {{ !isActivePlan[i]? premiumPrice : premiumYearlyPrice }}<span>.-/ {{ Currency }}{{
                                             !isActivePlan[i] ? 'Month' : 'Year' }}</span>
                                     </div>
                                     <div *ngIf="plan.plan_name?.toLowerCase().includes('country')">
-                                        {{!isActivePlan[i]? countryPrice : countryYearlyPrice}}<span>.-/ {{Currency}}{{
+                                        {{ !isActivePlan[i]? countryPrice : countryYearlyPrice }}<span>.-/ {{ Currency }}{{
                                             !isActivePlan[i] ? 'Month' : 'Year' }}</span>
                                     </div>
                                     <div *ngIf="plan.plan_name?.toLowerCase().includes('boost')">
-                                        {{!isActivePlan[i]? boostPrice : boostYearlyPrice}}<span>.-/ {{Currency}}{{
+                                        {{ !isActivePlan[i]? boostPrice : boostYearlyPrice }}<span>.-/ {{ Currency }}{{
                                             !isActivePlan[i] ? 'Month' : 'Year' }}</span>
                                     </div> -->
-                                    {{ getPlanPrice(plan.plan_name, isActivePlan[i]) }}<span>.- {{ Currency }} /
-                                        <!-- {{ !isActivePlan[i] ? 'billedMonthly' : 'billedYearly' }} -->
-                                        <!-- {{'billedMonthly' | translate}} -->
-                                        <span *ngIf="!isActivePlan[i]">{{plan.monthly_label}}</span>
-                                        <!-- <span *ngIf="!isActivePlan[i]">{{'billedMonthly' | translate}}</span> -->
-                                        <!-- <span *ngIf="isActivePlan[i]">{{'billedYearly' | translate}}</span> -->
-                                        <span *ngIf="isActivePlan[i]">{{plan.yearly_label}}</span>
-                                    </span>
-                                </h3>
+                  {{ getPlanPrice(plan.plan_name, isActivePlan[i]) }}<span>.- {{ Currency }} /
+                    <!-- {{ !isActivePlan[i] ? 'billedMonthly' : 'billedYearly' }} -->
+                    <!-- {{ 'billedMonthly' | translate }} -->
+                    <span *ngIf="!isActivePlan[i]">{{ plan.monthly_label }}</span>
+                    <!-- <span *ngIf="!isActivePlan[i]">{{ 'billedMonthly' | translate }}</span> -->
+                    <!-- <span *ngIf="isActivePlan[i]">{{ 'billedYearly' | translate }}</span> -->
+                    <span *ngIf="isActivePlan[i]">{{ plan.yearly_label }}</span>
+                  </span>
+                </h3>
 
-                                <div class="buy_now_btn_front_price">
-                                    <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                        class="btn fill_btn">{{ 'buyNow' | translate }}</a>
-                                    <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                        class="btn fill_btn">{{ 'buyNow' | translate }}</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <div class="premium-col-right">
-                                <h5 class="premium-heading5">{{ plan.plan_feature_title }}</h5>
-                                <div class="premium-text" *ngFor="let feature of plan.plan_feature_desc">
-                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                    <p>{{ feature }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="buy_now_btn_front_price">
+                  <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                    class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                  <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                    class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
 
-    <div class="">
-        <div class="container">
-            <div class="advertisment advertisement1 advertisement_three_block"
-                *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
-
-                <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
-                    <a href="{{advertisementData?.large_rectangle?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('large_rectangle')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="col-lg-6 col-md-6 col-12">
+              <div class="premium-col-right">
+                <h5 class="premium-heading5">{{ plan.plan_feature_title }}</h5>
+                <div class="premium-text" *ngFor="let feature of plan.plan_feature_desc">
+                  <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                  <p>{{ feature }}</p>
                 </div>
-
-                <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
-                    <a href="{{advertisementData?.inline_rectangle?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-
-                <div *ngIf="checkActive('square')  && !isLoading" class="square">
-                    <a href="{{advertisementData?.square?.redirect_url}}" target="_blank">
-                        <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
-                    </a>
-                    <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
+  <div class="">
+    <div class="container">
+      <div class="advertisment advertisement1 advertisement_three_block"
+        *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
 
-    <!-- <app-footer></app-footer> -->
+        <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
+          <a href="{{ advertisementData?.large_rectangle?.redirect_url }}" target="_blank">
+            <ng-container *ngIf="advertisementData?.large_rectangle?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.large_rectangle?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.large_rectangle?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.large_rectangle?.featured_image"
+                  type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('large_rectangle')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+        </div>
+
+        <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
+          <a href="{{ advertisementData?.inline_rectangle?.redirect_url }}" target="_blank">
+            <!-- <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image"> -->
+            <ng-container *ngIf="advertisementData?.inline_rectangle?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.inline_rectangle?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.inline_rectangle?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.inline_rectangle?.featured_image"
+                  type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+        </div>
+
+        <div *ngIf="checkActive('square')  && !isLoading" class="square">
+          <a href="{{ advertisementData?.square?.redirect_url }}" target="_blank">
+            <!-- <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image"> -->
+            <ng-container *ngIf="advertisementData?.square?.featured_type  == 'image'">
+              <img [src]="advertisemnet_new_base_url + advertisementData?.square?.featured_image">
+            </ng-container>
+            <ng-container *ngIf="advertisementData?.square?.featured_type  == 'video'">
+              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto"
+                loop="">
+                <source [src]="advertisemnet_new_base_url + advertisementData?.square?.featured_image" type="video/mp4">
+                
+              </video>
+            </ng-container>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </section>

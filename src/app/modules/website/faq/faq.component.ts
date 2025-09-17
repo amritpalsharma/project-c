@@ -14,9 +14,10 @@ export class FaqComponent {
   faq_sec_btn_txt: string = '';
   faq_third_btn_txt: string = '';
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
 
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
 
 
@@ -107,6 +108,7 @@ export class FaqComponent {
         this.advertisementList = res?.data?.allAdsList;
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
 
         this.isLoading = false;
         this.startCountdown();
@@ -127,162 +129,15 @@ export class FaqComponent {
   }
   // Sections for each tab
   talentSections: any = [
-    // {
-    //   title: 'What is Soccer?',
-    //   desc: `Soccer, also known as football in most countries outside of the United States and Canada, is a popular team sport played between two teams of eleven players each. The game is played on a rectangular field with a goal at each end. The objective is to score by getting a ball into the opposing team's goal. Players primarily use their feet to move the ball, but they can also use their head or torso. The goalkeeper is the only player allowed to use their hands and arms, but only within the penalty area surrounding the goal.`,
-    //   content2: `Soccer is governed by a set of rules known as the Laws of the Game, which include regulations on the field's dimensions, the ball, the duration of the match, and the roles of the players.`
-    // },
-    // {
-    //   title: 'How can I create a profile on SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What are the benefits of a premium membership?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How do I connect with clubs and scouts on SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'Can I upload highlight videos and match reports to my profile?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How does SoccerYou ensure the credibility of profiles?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'Is SoccerYou available in multiple languages?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What kind of support does SoccerYou offer?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How can clubs and scouts benefit from SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What security measures does SoccerYou have in place?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
+    
   ];
 
   clubSections: any = [
-    // {
-    //   title: 'What is Soccer?',
-    //   desc: `Soccer, also known as football in most countries outside of the United States and Canada, is a popular team sport played between two teams of eleven players each. The game is played on a rectangular field with a goal at each end. The objective is to score by getting a ball into the opposing team's goal. Players primarily use their feet to move the ball, but they can also use their head or torso. The goalkeeper is the only player allowed to use their hands and arms, but only within the penalty area surrounding the goal.`,
-    //   content2: `Soccer is governed by a set of rules known as the Laws of the Game, which include regulations on the field's dimensions, the ball, the duration of the match, and the roles of the players.`
-    // },
-    // {
-    //   title: 'How can I create a profile on SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What are the benefits of a premium membership?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How do I connect with clubs and scouts on SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'Can I upload highlight videos and match reports to my profile?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How does SoccerYou ensure the credibility of profiles?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'Is SoccerYou available in multiple languages?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What kind of support does SoccerYou offer?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How can clubs and scouts benefit from SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What security measures does SoccerYou have in place?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
+   
   ];
 
   scoutSections: any = [
-    // {
-    //   title: 'What is Soccer?',
-    //   desc: `Soccer, also known as football in most countries outside of the United States and Canada, is a popular team sport played between two teams of eleven players each. The game is played on a rectangular field with a goal at each end. The objective is to score by getting a ball into the opposing team's goal. Players primarily use their feet to move the ball, but they can also use their head or torso. The goalkeeper is the only player allowed to use their hands and arms, but only within the penalty area surrounding the goal.`,
-    //   content2: `Soccer is governed by a set of rules known as the Laws of the Game, which include regulations on the field's dimensions, the ball, the duration of the match, and the roles of the players.`
-    // },
-    // {
-    //   title: 'How can I create a profile on SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What are the benefits of a premium membership?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How do I connect with clubs and scouts on SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'Can I upload highlight videos and match reports to my profile?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How does SoccerYou ensure the credibility of profiles?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'Is SoccerYou available in multiple languages?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What kind of support does SoccerYou offer?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'How can clubs and scouts benefit from SoccerYou?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
-    // {
-    //   title: 'What security measures does SoccerYou have in place?',
-    //   desc: `SoccerYou is a platform dedicated to soccer enthusiasts. It offers various features and information to help users stay engaged with the sport.`,
-    //   content2: `On SoccerYou, you can find news, match updates, player statistics, and more. It's designed to enhance your soccer experience and keep you connected with the latest in the game.`
-    // },
+   
   ];
 
 

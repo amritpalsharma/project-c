@@ -1,80 +1,88 @@
 <section class="website-code">
   <!-- <app-header></app-header> -->
-   <div class="grey_common_banner">
-      <div class="container">
-        <h2 class="cookie-text">{{banner_title}}</h2>
-        <h3>Succer You Sports AG</h3>
-        <div class="row">
-          <div class="col-md-6 address_col">
-            <div class="contact-text">
-                <div class="location">
-                    <div class="location-image">
-                        <img class="dark-location" src="./assets/images/location logo.svg">
-                        <img class="light-location" src="./assets/images/location-light.svg">
-                    </div>
-                    <div class="location-text">
-                      <p>Succer You Sports AG</p>
-                      <p>Ida-Stäuli-Strasse 95</p>
-                      <p>CH-8404 Winterthur | Switzerland</p>
-                    </div>
-                </div>
+  <div class="grey_common_banner">
+    <div class="container">
+      <h2 class="cookie-text">{{ banner_title }}</h2>
+      <h3>Succer You Sports AG</h3>
+      <div class="row">
+        <div class="col-md-6 address_col">
+          <div class="contact-text">
+            <div class="location">
+              <div class="location-image">
+                <img class="dark-location" src="./assets/images/location logo.svg">
+                <img class="light-location" src="./assets/images/location-light.svg">
               </div>
+              <div class="location-text">
+                <p>Succer You Sports AG</p>
+                <p>Ida-Stäuli-Strasse 95</p>
+                <p>CH-8404 Winterthur | Switzerland</p>
+              </div>
+            </div>
           </div>
-          <div class="col-md-6">
-            <div class="contact-text">
-                <div class="mail">
-                    <div class="location-image">
-                        <img class="dark-mail" src="./assets/images/website-dark.svg">
-                        <img class="light-mail" src="./assets/images/website-light.svg">
-                    </div>
-                    <div>
-                        <a class="location-text" href="https://www.socceryou.ch/">www.socceryou.ch</a>
-                    </div>
-                </div>
-                <div class="mail">
-                    <div class="location-image">
-                        <img class="dark-mail" src="./assets/images/mail logo.svg">
-                        <img class="light-mail" src="./assets/images/mail-light.svg">
-                    </div>
-                    <div>
-                      <a class="location-text" href="mailto:info&#64;socceryou.ch">info&#64;socceryou.ch</a>
-                        <!-- <a class="location-text" href="mailto:info@socceryou.ch">info@socceryou.ch</a> -->
-                    </div>
-                </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-text">
+            <div class="mail">
+              <div class="location-image">
+                <img class="dark-mail" src="./assets/images/website-dark.svg">
+                <img class="light-mail" src="./assets/images/website-light.svg">
+              </div>
+              <div>
+                <a class="location-text" href="https://www.socceryou.ch/">www.socceryou.ch</a>
+              </div>
+            </div>
+            <div class="mail">
+              <div class="location-image">
+                <img class="dark-mail" src="./assets/images/mail logo.svg">
+                <img class="light-mail" src="./assets/images/mail-light.svg">
+              </div>
+              <div>
+                <a class="location-text" href="mailto:info&#64;socceryou.ch">info&#64;socceryou.ch</a>
+                <!-- <a class="location-text" href="mailto:info@socceryou.ch">info@socceryou.ch</a> -->
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
   <div class="main">
-    <!-- <div class="main1" style="background-image: url('/assets/images/banner_images/imprint_banner_image.png');">
-      <div class="overlay"></div>
-      <div class="banner-inner py_0">
-        <div class="container">
-          <div class="about">
-            <h2 class="privacy-text">{{banner_title}}</h2>
-          </div>
-        </div>
-      </div>
-      </div> -->
     <div class="adsss">
       <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-        <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+        <a href="{{ advertisementData?.skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+              loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image"
+                type="video/mp4">
+            </video>
+          </ng-container>
         </a>
         <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
             class="fa-solid fa-xmark"></i></button>
-        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
       </div>
 
       <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
-        <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        <a href="{{ advertisementData?.wide_skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+              loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image"
+                type="video/mp4">
+            </video>
+          </ng-container>
         </a>
         <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
             class="fa-solid fa-xmark"></i></button>
-        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
       </div>
 
     </div>
@@ -82,77 +90,6 @@
     <div class="imprint common_static_page">
 
       <div class="container content_page " [innerHTML]="page_content">
-        <!-- <div class="imprint-cols">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="information">
-                    <div class="info-text">
-                    <h4 class="company-heading">Company Information</h4>
-                    <p>SoccerYou</p>
-                    </div>
-  
-                    <div>
-                        <h4 class="company-heading">Address:</h4>
-                    <p>SoccerYou</p>
-                    <p>Succer You Sports AG</p>
-                    <p>CH-8404 Winterthur</p>
-                    <p>Switzerland</p>
-                    </div>
-                    </div>
-  
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="address">
-                        <div class="info-text">
-                            <h4 class="company-heading">Contact Information</h4>
-                            <p class="e-mail">
-                              <a href="mailto:info@socceryou.ch">E-Mail</a>
-                            </p>
-                          </div>
-                        <div>
-                            <h4 class="company-heading">Company Registration</h4>
-                        <p>CHE-485.510.837 UID</p>
-                        <p>CHE-485.510.837 MWST</p>
-                        <p>Zuerich</p>
-                        </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-  
-        <div class="py_0">
-            <h4>Disclaimer</h4>
-            <ul>
-                <li>Accountability for Content:</li>
-            </ul>
-            <p class="list-text">The contents of our pages have been created with the utmost care. However, we cannot guarantee the accuracy, completeness, or topicality of the contents. As a service provider, we are responsible for our own content on these pages under the general laws. According to §§ 8 to 10 of the Telemedia Act (TMG), we are not obliged to monitor transmitted or stored information or to investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information according to general laws remain unaffected.
-            </p>
-  
-            <ul>
-                <li>Accountability for Links</li>
-            </ul>
-            <p class="list-text">Our website contains links to external websites. We have no influence on the content of these websites; therefore, we cannot assume any liability for their content. The respective providers or operators of the linked websites are always responsible for their content. At the time of linking, the linked websites were checked for possible legal violations. Illegal contents were not identifiable at the time of linking. Permanent monitoring of the content of the linked pages is not reasonable without concrete evidence of a violation. Upon notification of violations, we will remove such links immediately.
-            </p>
-        </div>
-  
-        <div class="py_0">
-            <h4>Copyright</h4>
-            <p>The content and works on these pages created by the site operators are subject to German copyright law. Duplication, processing, distribution, or any form of commercialization of such material beyond the scope of the copyright law shall require the prior written consent of its respective author or creator. Downloads and copies of these pages are permitted for private, non-commercial use only. Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is marked as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. Upon notification of violations, we will remove such content immediately.
-            </p>
-        </div>
-  
-        <div class="py_0">
-            <h4>Privacy Policy</h4>
-            <p>For information about how we collect and use personal data, please refer to our [Privacy Policy](link to privacy policy).
-            </p>
-        </div>
-  
-        <div class="py_0">
-            <h4>Dispute Resolution</h4>
-            <p>We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.
-            </p>
-        </div>
-   -->
 
 
       </div>
@@ -161,21 +98,39 @@
           <div class="advertisment advirtismnt_2">
             <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
               class="leaderboard-club-image advirtismnt_2_large">
-              <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
-                <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+              <a href="{{ advertisementData?.leaderboard?.redirect_url }}" target="_blank">
+                <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'image'">
+                  <img [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image">
+                </ng-container>
+                <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'video'">
+                  <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline
+                    preload="auto" loop="">
+                    <source [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image"
+                      type="video/mp4">
+                  </video>
+                </ng-container>
               </a>
               <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
-              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+              <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
             </div>
             <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading"
               class="leaderboard-club-image advirtismnt_2_small">
-              <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-                <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+              <a href="{{ advertisementData?.banner?.redirect_url }}" target="_blank">
+                <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'image'">
+                  <img [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image">
+                </ng-container>
+                <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'video'">
+                  <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline
+                    preload="auto" loop="">
+                    <source [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image"
+                      type="video/mp4">
+                  </video>
+                </ng-container>
               </a>
               <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
-              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+              <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
             </div>
           </div>
         </div>

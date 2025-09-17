@@ -7,7 +7,7 @@
     <div class="main-bnr home_banner">
       <div class="banner_video_wrapper">
         <!-- New CODE -->
-        <video #heroVideo id="hero-video" autoplay muted loop playsinline
+        <video #heroVideo id="hero-video" autoplay [muted]="true" loop playsinline
           poster="./assets/images/video-thumbnail-poster.png">
           <source src="./assets/images/header-video.webm" type="video/webm" />
           <source src="./assets/images/header-video.mp4" type="video/mp4" />
@@ -21,7 +21,7 @@
             <img [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image">
           </ng-container>
           <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'video'">
-            <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
               <source [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image" type="video/mp4">
               <!-- Your browser does not support the video tag. -->
             </video>
@@ -37,7 +37,7 @@
             <img [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image">
           </ng-container>
           <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'video'">
-            <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
               <source [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image"
                 type="video/mp4">
               <!-- Your browser does not support the video tag. -->
@@ -83,7 +83,7 @@
               <img [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image">
             </ng-container>
             <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'video'">
-              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+              <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
                 <source [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image"
                   type="video/mp4">
                 <!-- Your browser does not support the video tag. -->
@@ -101,7 +101,7 @@
               <img [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image">
             </ng-container>
             <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'video'">
-              <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+              <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
                 <source [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image" type="video/mp4">
                 <!-- Your browser does not support the video tag. -->
               </video>
@@ -573,7 +573,7 @@
                 <img [src]="advertisemnet_new_base_url + advertisementData?.large_leaderboard?.featured_image">
               </ng-container>
               <ng-container *ngIf="advertisementData?.large_leaderboard?.featured_type  == 'video'">
-                <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
                   <source [src]="advertisemnet_new_base_url + advertisementData?.large_leaderboard?.featured_image"
                     type="video/mp4">
                   <!-- Your browser does not support the video tag. -->
@@ -592,7 +592,7 @@
                 <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
               </ng-container>
               <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
-                <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
                   <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
                     type="video/mp4">
                   <!-- Your browser does not support the video tag. -->
@@ -613,7 +613,7 @@
                 <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
               </ng-container>
               <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
-                <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
                   <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
                     type="video/mp4">
                   <!-- Your browser does not support the video tag. -->
@@ -630,7 +630,7 @@
                 <img [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image">
               </ng-container>
               <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'video'">
-                <video class="auto-play-video" width="100%" height="auto" autoplay muted playsinline preload="auto" loop="">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto" loop="">
                   <source [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image"
                     type="video/mp4">
                   <!-- Your browser does not support the video tag. -->

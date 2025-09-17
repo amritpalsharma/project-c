@@ -2,7 +2,7 @@
   <!-- <app-header></app-header> -->
   <div class="grey_common_banner">
     <div class="container">
-      <h2 class="cookie-text">{{banner_title}}</h2>
+      <h2 class="cookie-text">{{ banner_title }}</h2>
       <h3>Succer You Sports AG</h3>
       <div class="row">
         <div class="col-md-6 address_col">
@@ -48,34 +48,41 @@
   </div>
 
   <div class="main">
-    <!-- <div class="main1" style="background-image: url('{{base_url+banner_img}}');"> -->
-    <!-- <div class="main1" style="background-image: url('/assets/images/banner_images/privacy_policy_banner_image.png');">
-      <div class="overlay"></div>
-      <div class="banner-inner py_0">
-        <div class="container">
-          <div class="about">
-            <h2 class="privacy-text">{{banner_title}}</h2>
-          </div>
-        </div>
-      </div>
-      </div> -->
     <div class="adsss">
       <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-        <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+        <a href="{{ advertisementData?.skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+              loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image"
+                type="video/mp4">
+            </video>
+          </ng-container>
         </a>
         <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
             class="fa-solid fa-xmark"></i></button>
-        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
       </div>
 
       <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
-        <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        <a href="{{ advertisementData?.wide_skyscraper?.redirect_url }}" target="_blank">
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'image'">
+            <img [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image">
+          </ng-container>
+          <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'video'">
+            <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+              loop="">
+              <source [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image"
+                type="video/mp4">
+            </video>
+          </ng-container>
         </a>
         <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
             class="fa-solid fa-xmark"></i></button>
-        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
       </div>
     </div>
 
@@ -85,13 +92,13 @@
         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="card" *ngFor="let section of accordionDataPrivacy; let i = index">
             <div class="card-header p-0" role="tab" id="accordionone">
-              <a data-bs-toggle="collapse" href="#accordionPrivacy_{{i}}" role="button" aria-controls="accordion__one"
+              <a data-bs-toggle="collapse" href="#accordionPrivacy_{{ i }}" role="button" aria-controls="accordion__one"
                 [ngClass]="{'collapse': i === 0,'collapsed': i != 0, 'show': i === 0}">
                 <!-- Privacy Policy of Succer You Sports AG (SoccerYou) -->
-                {{section.title}}
+                {{ section.title }}
               </a>
             </div>
-            <div id="accordionPrivacy_{{i}}" [ngClass]="{'collapse': true, 'show': i === 0}" role="tabpanel"
+            <div id="accordionPrivacy_{{ i }}" [ngClass]="{'collapse': true, 'show': i === 0}" role="tabpanel"
               aria-labelledby="accordionone" data-bs-parent="#accordion">
               <div class="card-body" [innerHTML]="section.description">
                 <!-- <p>Data protection and data security are important to Succer You Sports AG (“SoccerYou"; "we"). We process your personal data responsibly, in accordance with applicable legal provisions and in accordance with this Privacy Policy.</p> -->
@@ -112,196 +119,9 @@
               </div>
             </div>
           </div>
-          <!-- <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionfour">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__four" role="button" aria-expanded="false"
-                aria-controls="accordion__four">Person responsible for data processing</a>
-            </div>
-            <div id="accordion__four" class="collapse" role="tabpanel" aria-labelledby="accordionfour"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>Succer You Sports AG, Ida-Sträuli-Strasse 95, CH-8404 Winterthur, is responsible for the data processing described in this privacy policy. If you have any questions or would like to exercise your rights under data protection law, please contact us at socceryou.ch or write to us at Succer You Sports AG, Ida-Sträuli-Strasse 95, CH-8404 Winterthur.</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionfive">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__five" role="button" aria-expanded="false"
-                aria-controls="accordion__five">Personal data processed during communication and service provision</a>
-            </div>
-            <div id="accordion__five" class="collapse" role="tabpanel" aria-labelledby="accordionfive"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>We collect the information you provide to us as follows:</p>
-                <ul>
-                  <li>when you contact us;</li>
-                  <li>when you register as a user on the website or online platform;</li>
-                  <li>when you order goods or services;</li>
-                  <li>when you apply for a job with us;</li>
-                </ul>
-                <p>This includes general personal data, e.g. name and contact details (e.g. address, telephone number or e-mail address) , details of your position or role at the organization on whose behalf you are contacting us and information of any kind from correspondence, contacts and interactions with us . If you order chargeable goods or services, we will also ask for your financial data, e.g. your preferred payment method and billing address. We also process personal data that we receive from third parties. This regularly includes personal data that we receive in correspondence or in meetings with customers or business partners, e.g. your name and details of your activity as a team member of the customer or business partner. To the extent necessary to achieve the purposes described in this Privacy Policy, we also collect general personal data from publicly accessible registers, websites or platforms (e.g. to verify your authorization to sign) or by obtaining information from third parties (e.g. for reference purposes in the application process, if you consent to this).</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionsix">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__six" role="button" aria-expanded="false"
-                aria-controls="accordion__six">Provision and use of our website and online platform</a>
-            </div>
-            <div id="accordion__six" class="collapse" role="tabpanel" aria-labelledby="accordionsix"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>You can find out about SoccerYou and our range of services on the website without telling us who you are. As with any connection to a web server, the server on which we have the website and the online platform made available automatically logs and stores certain technical data and stores it for a short period of time. This includes the IP address and operating system of your device, the date and time of use and the type of browser you use to access the website or online platform.</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionseven">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__seven" role="button"
-                aria-expanded="false" aria-controls="accordion__seven">Use of our online platform</a>
-            </div>
-            <div id="accordion__seven" class="collapse" role="tabpanel" aria-labelledby="accordionseven"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>We operate www.socceryou.co.uk ("Online Platform"). When you register as a user on the Online Platform, we collect the information you provide to us. This includes general personal data such as name and contact details as well as personal information that you or other users enter, upload, generate, store and process when using the Online Platform.</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordioneight">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__eight" role="button"
-                aria-expanded="false" aria-controls="accordion__eight">Note on the use of cookies</a>
-            </div>
-            <div id="accordion__eight" class="collapse" role="tabpanel" aria-labelledby="accordioneight"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>We use cookies, tags and similar technologies on the website to provide you with the best possible user experience and to help us improve the website. Cookies are text files that are downloaded to your computer or mobile device when you visit a website or use an app. Some of the cookies we use are necessary to provide certain functions of the website. You can instruct your browser not to accept cookies or to ask you each time before a cookie is set. You can also delete cookies on your device by using the corresponding function of your browser.</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionnine">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__nine" role="button" aria-expanded="false"
-                aria-controls="accordion__nine">Use of our social media pages</a>
-            </div>
-            <div id="accordion__nine" class="collapse" role="tabpanel" aria-labelledby="accordionnine"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>On our social media pages you will find posts about current developments at SoccerYou and our range of services. The social media providers collect and analyze usage data such as the number of visits and demographic information about visitors to our company pages. We receive evaluations from the social media providers based on this data. These only contain aggregated or otherwise sufficiently anonymized data. Only the respective provider can identify you on the basis of the usage data collected. Therefore, please note the data protection information of the respective provider.</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionten">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__ten" role="button" aria-expanded="false"
-                aria-controls="accordion__ten">Use and optimization of our newsletter</a>
-            </div>
-            <div id="accordion__ten" class="collapse" role="tabpanel" aria-labelledby="accordionten"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>When you register for our newsletter, we collect the information you provide to us. This includes general personal data such as first name, surname and e-mail address. We use analysis services to measure and analyze the use of our newsletter. The analysis services collect and analyze usage data such as the number of people who have opened a newsletter or clicked on certain posts. We receive evaluations based on this data. These enable us to optimize our newsletter and provide you with content that is of interest to you. You can also inform us at any time that you do not wish to receive our newsletter in future. To do so, please use the unsubscribe link at the end of the newsletter. If you click on this link, we will no longer measure and analyze your use of the newsletter in future.</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordioneleven">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__eleven" role="button"
-                aria-expanded="false" aria-controls="accordion__eleven">For what purposes we process your personal data and on what basis</a>
-            </div>
-            <div id="accordion__eleven" class="collapse" role="tabpanel" aria-labelledby="accordioneleven"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>We process your personal data primarily to inform you about our range of services and to provide, document and invoice our services in accordance with our contractual and legal obligations. We also process your personal data for the following purposes:</p>
-                <ul>
-                  <li>Answering your inquiries and communicating with you;</li>
-                  <li>Processing your registration or orders;</li>
-                  <li>Answering applications;</li>
-                  <li>Provision of the website and the online platform;</li>
-                  <li>Development and improvement of products and services;</li>
-                  <li>Optimization of our posts on our social media company pages;</li>
-                  <li>Information about new developments at SoccerYou and about new services (e.g. via our newsletter; whereby you can inform us at any time that you do not wish to receive such information in the future);</li>
-                  <li>fulfillment of legal obligations; and</li>
-                  <li>Enforcement of legal claims.</li>
-                  <li>Other purposes, e.g. as part of our internal processes and administration, for training and quality assurance purposes, for corporate governance or for risk management.</li>
-                </ul>
-                <p>We obtain and process personal data in order to ensure and continuously improve the appropriate security of our IT and other infrastructure (e.g. buildings). This includes, for example, monitoring and controlling electronic access to our IT systems and physical access to our premises, analyzing and testing our IT infrastructures, system and error checks and creating backup copies. We have a legitimate interest in the processing of your personal data in accordance with the stated purposes. Some processing is also necessary so that we can fulfill our contractual obligations towards you or our legal obligations (e.g. retention obligations). On this basis, we process your personal data if and insofar as the applicable data protection law requires a legal basis or justification for the lawfulness of data processing in general or for certain processing activities.</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordiontwelve">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__twelve" role="button" aria-expanded="false"
-                aria-controls="accordion__twelve">How we store and protect your personal data</a>
-            </div>
-            <div id="accordion__twelve" class="collapse" role="tabpanel" aria-labelledby="accordiontwelve"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>We store your personal data only to the extent and for as long as is necessary to fulfill the purposes described in this privacy policy or to comply with legal obligations. In the interest of the integrity and confidentiality of personal data, we take appropriate technical and organizational measures. In particular, we implement access controls, access controls and procedures for regularly reviewing, assessing and evaluating the effectiveness of the measures in accordance with our risk assessment.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionthirteen">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__thirteen" role="button"
-                aria-expanded="false" aria-controls="accordion__thirteen">To whom we disclose your personal data</a>
-            </div>
-            <div id="accordion__thirteen" class="collapse" role="tabpanel" aria-labelledby="accordionthirteen"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>In order to achieve the purposes described in this privacy policy, it may be necessary for us to pass on your personal data to other companies. These are the following categories of recipients:</p>
-                <ul>
-                  <li>other Group companies;</li>
-                  <li>external service providers;</li>
-                  <li>other customers;</li>
-                  <li>Suppliers and business partners;</li>
-                  <li>(if applicable) authorities and courts.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionforteen">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__forteen" role="button" aria-expanded="false"
-                aria-controls="accordion__forteen">Place of processing</a>
-            </div>
-            <div id="accordion__forteen" class="collapse" role="tabpanel" aria-labelledby="accordionforteen"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>We only store and process your personal data in Switzerland and the EU. However, your data may also be processed in any country in the world. We may also transfer the personal data to recipients who process the personal data in other countries, including those that do not guarantee a level of data protection comparable to Swiss law. We will do the latter based on consent or standard contractual clauses, or if it is necessary for the performance of a contract or the enforcement of legal claims.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionfifteen">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__fifteen" role="button" aria-expanded="false"
-                aria-controls="accordion__fifteen">Your rights in relation to your personal data</a>
-            </div>
-            <div id="accordion__fifteen" class="collapse" role="tabpanel" aria-labelledby="accordionfifteen"
-              data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>You have the following rights in relation to personal data concerning you:</p>
-                <ul>
-                  <li>The right to receive information about what personal data we store about you and how we process it;</li>
-                  <li>the right to receive or transfer a copy of your personal data in a commonly used format;</li>
-                  <li>the right to rectification of your personal data;</li>
-                  <li>the right to erasure of your personal data; and</li>
-                  <li>the right to object to the processing of your personal data.</li>
-                </ul>
-                <p>Please note that legal requirements and exceptions apply to these rights. To the extent permitted by law, we may refuse your request to exercise these rights. You also have the right to lodge a complaint with the competent data protection supervisory authority.</p>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionsixteen">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__sixteen" role="button" aria-expanded="false"
-                aria-controls="accordion__sixteen">How we can change this privacy policy</a>
-            </div>
-            <div id="accordion__sixteen" class="collapse" role="tabpanel" aria-labelledby="accordionsixteen"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>We may amend this Privacy Policy at any time, in particular if we change our data processing or if new legislation becomes applicable. The version provided on www.socceryou.co.uk</p></div>
-            </div>
-          </div> -->
+
         </div>
-        <!-- <div *ngIf="adVisible[2]" class="leaderboard-image">
-        <img src="./assets/images/leaderboard - 728x90.png">
-        <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-      </div> -->
+
 
         <div class="advertisment" [ngClass]="{'hidden': !adVisible[2]}">
           <div *ngIf="adVisible[2]" class="leaderboard-image">
@@ -312,9 +132,9 @@
       </div>
       <div class="container common_download_btns_page" *ngIf="!isLoading">
         <a type="button" class="btn fill_btn donlod_btn_style" (click)="downloadPDf('privacy_policy')"><i
-            class="fa fa-download"></i> {{'downloadPDFPrivacyPolicy' | translate}}</a>
+            class="fa fa-download"></i> {{ 'downloadPDFPrivacyPolicy' | translate }}</a>
         <a type="button" class="btn fill_btn donlod_btn_style" (click)="downloadPDf('community')"><i
-            class="fa fa-download"></i> {{'downloadPDFCommunityGuidelines' | translate}}</a>
+            class="fa fa-download"></i> {{ 'downloadPDFCommunityGuidelines' | translate }}</a>
       </div>
     </div>
 
@@ -323,21 +143,39 @@
         <div class="advertisment advirtismnt_2">
           <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
             class="leaderboard-club-image advirtismnt_2_large">
-            <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+            <a href="{{ advertisementData?.leaderboard?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.leaderboard?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline
+                  preload="auto" loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.leaderboard?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
           <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading"
             class="leaderboard-club-image advirtismnt_2_small">
-            <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+            <a href="{{ advertisementData?.banner?.redirect_url }}" target="_blank">
+              <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'image'">
+                <img [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image">
+              </ng-container>
+              <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'video'">
+                <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline
+                  preload="auto" loop="">
+                  <source [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image"
+                    type="video/mp4">
+                </video>
+              </ng-container>
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
           </div>
         </div>
       </div>

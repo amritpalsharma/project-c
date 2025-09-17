@@ -15,10 +15,11 @@ export class TermsComponent implements OnInit {
   banner_img: any = null;
   base_url: any = null;
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
   accordionDataTerms: any = [];
 
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
 
 
@@ -96,6 +97,7 @@ export class TermsComponent implements OnInit {
         this.banner_img = res.data.pageData.banner_img;
         this.base_url = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
         if (res?.data?.pageData?.accordionDataTerms && typeof res?.data?.pageData?.accordionDataTerms !== undefined) {

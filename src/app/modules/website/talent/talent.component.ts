@@ -50,7 +50,7 @@ export class TalentComponent {
   advertisemnet_base_url: string = '';
 
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
 
   Currency: string = '';
@@ -67,6 +67,7 @@ export class TalentComponent {
   countryYearlyPrice: number = 0;
 
 
+  advertisemnet_new_base_url: string = '';
 
   setActiveAccordion(index: number, event?: Event): void {
     if (event) { event.preventDefault(); }
@@ -198,6 +199,7 @@ export class TalentComponent {
         this.advertisementData = res.data.advertisementData;
         this.advertisementList = res.data.allAdsList;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
         this.priceArr = this.pageData.pricing_tab;
         // console.info('priceArr', this.priceArr);
         // Initialize toggle states for pricing plans with Monthly active (false)
@@ -224,6 +226,7 @@ export class TalentComponent {
         }
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
         // Initialize toggle states for pricing plans with Monthly active (false)
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
           this.isActivePlan[index] = false; // Default to "Monthly"

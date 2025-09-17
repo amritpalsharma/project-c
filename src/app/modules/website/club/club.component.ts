@@ -41,8 +41,9 @@ export class ClubComponent {
 
   advertisementList: any = null;
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
 
 
@@ -180,6 +181,7 @@ export class ClubComponent {
         this.advertisementList = res.data.allAdsList;
         // this.advertisementData = [];
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
 
         // Initialize toggle states for pricing plans with Monthly active (false)
         this.pageData.pricing_tab.forEach((_: any, index: number) => {

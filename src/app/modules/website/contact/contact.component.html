@@ -2,7 +2,7 @@
   <!-- <app-header></app-header> -->
   <div class="grey_common_banner">
     <div class="container">
-      <h2 class="cookie-text">{{banner_title}}</h2>
+      <h2 class="cookie-text">{{ banner_title }}</h2>
       <h3>Succer You Sports AG</h3>
       <div class="row">
         <div class="col-md-6 address_col">
@@ -33,7 +33,7 @@
                 <img class="light-mail" src="./assets/images/mail-light.svg">
               </div>
               <div>
-                <a class="location-text" href="mailto:info@socceryou.ch">{{semail}}</a>
+                <a class="location-text" href="mailto:info@socceryou.ch">{{ semail }}</a>
               </div>
             </div>
           </div>
@@ -53,47 +53,64 @@
   </div> -->
   <div class="adsss">
     <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-      <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
-        <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+      <a href="{{ advertisementData?.skyscraper?.redirect_url }}" target="_blank">
+        <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'image'">
+          <img [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image">
+        </ng-container>
+        <ng-container *ngIf="advertisementData?.skyscraper?.featured_type  == 'video'">
+          <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+            loop="">
+            <source [src]="advertisemnet_new_base_url + advertisementData?.skyscraper?.featured_image" type="video/mp4">
+          </video>
+        </ng-container>
       </a>
       <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
           class="fa-solid fa-xmark"></i></button>
-      <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+      <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
     </div>
 
     <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
-      <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-        <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+      <a href="{{ advertisementData?.wide_skyscraper?.redirect_url }}" target="_blank">
+        <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'image'">
+          <img [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        </ng-container>
+        <ng-container *ngIf="advertisementData?.wide_skyscraper?.featured_type  == 'video'">
+          <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline preload="auto"
+            loop="">
+            <source [src]="advertisemnet_new_base_url + advertisementData?.wide_skyscraper?.featured_image"
+              type="video/mp4">
+          </video>
+        </ng-container>
       </a>
       <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
           class="fa-solid fa-xmark"></i></button>
-      <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+      <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
     </div>
 
   </div>
 
   <div class="contact-form py_0">
     <div class="container">
-      <h3 class="form-heading text-uppercase">{{form_title}}</h3>
+      <h3 class="form-heading text-uppercase">{{ form_title }}</h3>
       <div class="form_wrapper">
         <div class="radio-group">
-          <label>{{txt_before_radio_btn}}</label>
+          <label>{{ txt_before_radio_btn }}</label>
           <label class="custom-radio">
             <input type="radio" name="options" value="option1" [(ngModel)]="selectedOption" />
             <span class="radio-button"></span>
-            {{talent_label_txt}}
+            {{ talent_label_txt }}
           </label>
 
           <label class="custom-radio">
             <input type="radio" name="options" value="option2" [(ngModel)]="selectedOption" />
             <span class="radio-button"></span>
-            {{club_label_txt}}
+            {{ club_label_txt }}
           </label>
 
           <label class="custom-radio">
             <input type="radio" name="options" value="option3" [(ngModel)]="selectedOption" />
             <span class="radio-button"></span>
-            {{scout_label_txt}}
+            {{ scout_label_txt }}
           </label>
         </div>
         <div>
@@ -105,7 +122,7 @@
                 <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder"
                   ng-model="contactForm.name" />
                 <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error">
-                  <div *ngIf="name?.errors?.['required']">{{'nameRequired' | translate}}</div>
+                  <div *ngIf="name?.errors?.['required']">{{ 'nameRequired' | translate }}</div>
                 </div>
               </div>
 
@@ -113,8 +130,9 @@
                 <input id="email" class="form-control" type="email" formControlName="email"
                   [placeholder]="email_placeholder" ng-model="contactForm.email" />
                 <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
-                  <div *ngIf="email?.errors?.['required']">{{'emailRequired' | translate}}</div>
-                  <!-- <div *ngIf="email?.errors?.['email']">{{'emailRequired' | translate}}</div> -->
+                  <div *ngIf="email?.errors?.['required']">{{ 'emailRequired' | translate }}
+                  </div>
+                  <!-- <div *ngIf="email?.errors?.['email']">{{ 'emailRequired' | translate }}</div> -->
                   <!-- <div *ngIf="email?.errors?.['email']">Invalid email address.</div> -->
                 </div>
               </div>
@@ -124,7 +142,7 @@
                   [placeholder]="phone_placeholder" ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
                   (paste)="preventTextPaste($event)" />
                 <!-- <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
-                <div *ngIf="phone?.errors?.['required']">{{'phoneRequired' | translate}}</div>
+                <div *ngIf="phone?.errors?.['required']">{{ 'phoneRequired' | translate }}</div>
               </div> -->
               </div>
 
@@ -136,7 +154,8 @@
 
                 <div *ngIf="message?.invalid && (message?.dirty || message?.touched)" class="error">
 
-                  <div *ngIf="message?.errors?.['required']">{{'messageRequired' | translate}}</div>
+                  <div *ngIf="message?.errors?.['required']">{{ 'messageRequired' | translate }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -146,15 +165,15 @@
                 <form class="recapthe-code" (ngSubmit)="onSubmit()">
                   <!-- <re-captcha siteKey="6Ld7hb8qAAAAAKFcBW581ppk9_MZnGPIwgAQ3nWE" (resolved)="resolved($event)">
                   </re-captcha> -->
-                  <re-captcha siteKey="{{captchaKey}}" (resolved)="resolved($event)">
+                  <re-captcha siteKey="{{ captchaKey }}" (resolved)="resolved($event)">
                   </re-captcha>
                 </form>
                 <div class="error">
-                  <div *ngIf="showcaptchaError">{{'fillCaptcha' | translate}}</div>
+                  <div *ngIf="showcaptchaError">{{ 'fillCaptcha' | translate }}</div>
                 </div>
               </div>
               <div class="col-lg-5 col-md-5 col-12">
-                <button class="submit_btn" type="submit"> {{submit_btn_txt}}</button>
+                <button class="submit_btn" type="submit"> {{ submit_btn_txt }}</button>
               </div>
             </div>
 
@@ -168,21 +187,39 @@
           <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
 
             <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
-              <a href="{{advertisementData?.large_leaderboard?.redirect_url}}" target="_blank">
-                <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
+              <a href="{{ advertisementData?.large_leaderboard?.redirect_url }}" target="_blank">
+                <ng-container *ngIf="advertisementData?.large_leaderboard?.featured_type  == 'image'">
+                  <img [src]="advertisemnet_new_base_url + advertisementData?.large_leaderboard?.featured_image">
+                </ng-container>
+                <ng-container *ngIf="advertisementData?.large_leaderboard?.featured_type  == 'video'">
+                  <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline
+                    preload="auto" loop="">
+                    <source [src]="advertisemnet_new_base_url + advertisementData?.large_leaderboard?.featured_image"
+                      type="video/mp4">
+                  </video>
+                </ng-container>
               </a>
               <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
-              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+              <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
             </div>
 
             <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-              <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-                <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+              <a href="{{ advertisementData?.small_square?.redirect_url }}" target="_blank">
+                <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'image'">
+                  <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
+                </ng-container>
+                <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
+                  <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline
+                    preload="auto" loop="">
+                    <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
+                      type="video/mp4">
+                  </video>
+                </ng-container>
               </a>
               <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
-              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+              <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
             </div>
 
           </div>
@@ -190,20 +227,38 @@
           <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
 
             <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-              <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-                <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+              <a href="{{ advertisementData?.small_square?.redirect_url }}" target="_blank">
+                <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'image'">
+                  <img [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image">
+                </ng-container>
+                <ng-container *ngIf="advertisementData?.small_square?.featured_type  == 'video'">
+                  <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline
+                    preload="auto" loop="">
+                    <source [src]="advertisemnet_new_base_url + advertisementData?.small_square?.featured_image"
+                      type="video/mp4">
+                  </video>
+                </ng-container>
               </a>
               <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
-              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+              <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
             </div>
             <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
-              <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-                <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+              <a href="{{ advertisementData?.banner?.redirect_url }}" target="_blank">
+                <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'image'">
+                  <img [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image">
+                </ng-container>
+                <ng-container *ngIf="advertisementData?.banner?.featured_type  == 'video'">
+                  <video class="auto-play-video" width="100%" height="auto" autoplay [muted]="true" playsinline
+                    preload="auto" loop="">
+                    <source [src]="advertisemnet_new_base_url + advertisementData?.banner?.featured_image"
+                      type="video/mp4">
+                  </video>
+                </ng-container>
               </a>
               <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
-              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+              <div class="countdown" *ngIf="btnLoading">{{ countdown }}</div>
             </div>
 
 

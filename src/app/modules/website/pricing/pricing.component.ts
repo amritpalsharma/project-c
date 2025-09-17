@@ -14,8 +14,9 @@ export class PricingComponent {
   selectedTab: string = 'monthly';
   pageData: any; // To hold the API response data
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
   // advertisemnet_base_url: string = '';
   base_url: string = '';
@@ -146,6 +147,7 @@ export class PricingComponent {
       if (res.status) {
         this.pageData = res.data.pageData; // Store the page data in the component
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
         this.priceArr = this.pageData.pricing_tab;

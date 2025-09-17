@@ -89,14 +89,16 @@
       <div *ngIf="errorMsg.image" class="error-msg mb-3 text-center">{{ errorMsg.image }}</div>
 
       <div *ngIf="imagePreview || imageUrl" class="preview-image-container position-relative">
-        <img *ngIf="imagePreview && !isVideo(imageUrl)" [src]="imagePreview" alt="Preview" class="image-preview" />
-        <!-- <img *ngIf="imageUrl" [src]="baseUrl + imageUrl" alt="Preview" class="image-preview" /> -->
-        <img *ngIf="imageUrl && !isVideo(imageUrl)" [src]="apiBaseUrl + 'public/uploads/advertisements/' + imageUrl"
+        <img *ngIf="!isTempimage && imagePreview && !isVideo(imageUrl)" [src]="imagePreview" alt="Preview" class="image-preview" />
+        <img *ngIf="!isTempimage && imageUrl && !isVideo(imageUrl)" [src]="apiBaseUrl + 'public/uploads/advertisements/' + imageUrl"
           alt="Preview" class="image-preview" />
-        <ng-container *ngIf="isVideo(imageUrl)">
+        <ng-container *ngIf="!isTempimage && isVideo(imageUrl)">
           <video #videoPlayer [src]="apiBaseUrl + 'public/uploads/advertisements/' + imageUrl"
             (loadeddata)="generateThumbnail(videoPlayer)" class="image-preview">
           </video>
+        </ng-container>
+        <ng-container *ngIf="isTempimage && imagePreview || imageUrl">
+          <img *ngIf="imagePreview" [src]="imagePreview" alt="Preview" class="image-preview" />
         </ng-container>
 
         <button (click)="closeImage()" class="ad-close-button d-block">
@@ -233,12 +235,6 @@
               <option value="">{{ 'select' | translate }}</option>
               <option *ngFor="let option of pageOptions" [value]="option.id">{{ option.page }}</option>
             </select>
-            <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                fill="#646464" />
-            </svg>
           </div>
         </div>
         <div class="form-group col-sm-6 col-lg-6">
@@ -248,13 +244,7 @@
               aria-label="Default select example" [(ngModel)]="type">
               <option value="">{{ 'select' | translate }}</option>
               <option *ngFor="let option of typeOptions" value="{{ option }}">{{ option }}</option>
-            </select>
-            <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                fill="#646464" />
-            </svg>
+            </select>            
           </div>
         </div>
 

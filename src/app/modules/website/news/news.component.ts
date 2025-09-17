@@ -36,13 +36,14 @@ export class NewsComponent implements OnInit, OnDestroy {
   bannerImg: string = '';
   // advertisementData: any;
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
   base_url: string = 'https://api.socceryou.ch/uploads/';
   base_url2: string = '';
   adVisible: boolean[] = [true, true, true, true, true];
   DataFound: boolean = false;
 
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
 
 
@@ -129,6 +130,7 @@ export class NewsComponent implements OnInit, OnDestroy {
         }
         this.DataFound = true;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
         if (res.data.pageData != '' && res.data.pageData != undefined) {
           this.slider_title = res.data.pageData.slider_title;
           this.banner_title = res.data.pageData.banner_title;
@@ -159,6 +161,7 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.base_url2 = res.data.base_url;
         // this.addThreeElements(this.latestNewsData);
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
 
