@@ -22,6 +22,7 @@ export class ProfileTabComponent {
   countryFlagUrl: any;
   baseUrl: string = environment.baseUrl;
   userDomains: any = environment.domains_de;
+  lanuagesArr: any = environment.langs_de;
 
   @Input() userData: any;
   @Input() userCountryFlag: any;
@@ -59,6 +60,7 @@ export class ProfileTabComponent {
     let langID = localStorage.getItem('lang_id');
     if (Number(langID) === 1) {
       this.userDomains = environment.domains;
+      this.lanuagesArr = environment.langs;
     }
   }
 
@@ -253,7 +255,13 @@ export class ProfileTabComponent {
         return domain.flag;
       } else if (field == 'location') {
         return domain.name;
-      } else {
+      } else if (field == 'language') {
+        const languageArr = this.lanuagesArr.find((lang: any) => lang.id === Number(id));
+        return languageArr.language;
+      } else if (field == 'lang_flag') {
+        const languageArr = this.lanuagesArr.find((lang: any) => lang.id === Number(id));
+        return languageArr.flag;
+      }  else {
         return { name: domain.name, flag: domain.flag };
       }
     } else {

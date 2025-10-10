@@ -75,6 +75,8 @@ export class UserEditPopupComponent {
   clubSearching = new FormControl('');
   club_Searching = new FormControl('');
   userDomains: any = environment.domains_de;
+  user_lang: number = 0;
+  lanuagesArr: any = environment.langs_de;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -92,6 +94,7 @@ export class UserEditPopupComponent {
     let langID = localStorage.getItem('lang_id');
     if (langID == '1') {
       this.userDomains = environment.domains;
+      this.lanuagesArr = environment.langs;
     }
     // console.info('user',this.data)
   }
@@ -203,6 +206,9 @@ export class UserEditPopupComponent {
 
     if (this.data.user_domain_id && this.data.user_domain_id) {
       this.user_domain = Number(this.data.user_domain_id);
+    }
+    if (this.data.lang && this.data.lang) {
+      this.user_lang = Number(this.data.lang);
     }
     if (this.data && this.data?.current_club_id) {
       this.playerClub = this.data?.current_club_id;
@@ -382,6 +388,7 @@ export class UserEditPopupComponent {
     let lang_id = localStorage.getItem('lang_id');
     formdata.append('lang', lang_id + '');
     formdata.append('user[change_user_location]', String(this.user_domain));
+    formdata.append('user[change_user_lang]', String(this.user_lang));
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {
@@ -425,6 +432,7 @@ export class UserEditPopupComponent {
     let lang_id = localStorage.getItem('lang_id');
     formdata.append('lang', lang_id + '');
     formdata.append('user[change_user_location]', String(this.user_domain));
+    formdata.append('user[change_user_lang]', String(this.user_lang));
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {
@@ -555,6 +563,7 @@ export class UserEditPopupComponent {
       formdata.append('user[registered_club_team_type]', this.team_type);
     }
     formdata.append('user[change_user_location]', String(this.user_domain));
+    formdata.append('user[change_user_lang]', String(this.user_lang));
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {

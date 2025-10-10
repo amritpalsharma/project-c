@@ -201,6 +201,18 @@
         </div>
       </div>
     </div>
+
+        <!-- Language -->
+     <div class="col-lg-3 td_col" *ngIf="userData?.user_domain_id">
+      <div class="team-details">
+        <p> {{ 'language' | translate }}</p>
+        <div class="d-flex align-items-center">
+          <img  [src]="'../assets/images/flags/'+getNameAndFlagById(userData?.lang,'lang_flag')"
+            alt="" style="width: 35px;">
+          <h6>{{ getNameAndFlagById(userData?.lang,'language') }}</h6>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="row">

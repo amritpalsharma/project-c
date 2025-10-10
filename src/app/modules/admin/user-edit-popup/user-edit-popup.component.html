@@ -76,6 +76,17 @@
             </mat-select>
           </div>
         </div>
+
+        <div class="col-12 col-md-6 form-group mb-3">
+          <p class="code-text">{{ 'language' | translate }}</p>
+          <div class="btn-group">
+            <mat-select class="form-control" [(ngModel)]="user_lang">
+              @for(option of lanuagesArr; track option) {
+                <mat-option [value]="option.id">{{ option.language }}</mat-option>
+                }
+            </mat-select>
+          </div>
+        </div>
       </div>
 
       <div class="social-media-section">
@@ -356,17 +367,8 @@
           </div>
         </div>
         <div class="col-12 md-6 form-group mb-3">
-          <!-- <p class="code-text">{{ 'country' | translate }}</p> -->
           <mat-label class="code-text">{{ 'country' | translate }}</mat-label>
           <div class="btn-group">
-            <!-- <select class="form-control form-select" aria-label="Default select example"
-                            [(ngModel)]="selectedCountry">
-                            <option value="">{{ 'select' | translate }}</option>
-                            <option *ngFor="let option of countriesListing" value="{{ option.id }}">
-                                {{ option.country_name }}</option>
-                        </select> -->
-
-
             <mat-form-field appearance="fill" class="w-100 custom_select_mat">
               <mat-select [(ngModel)]="selectedCountry" class="form-select mat_search_selector" id="currentClub"
                 name="currentClub">
@@ -386,6 +388,16 @@
                 </ng-container>
               </mat-select>
             </mat-form-field>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 form-group mb-3">
+          <p class="code-text">{{ 'language' | translate }}</p>
+          <div class="btn-group">
+            <mat-select class="form-control" [(ngModel)]="user_lang">
+              @for(option of lanuagesArr; track option) {
+                <mat-option [value]="option.id">{{ option.language }}</mat-option>
+                }
+            </mat-select>
           </div>
         </div>
       </div>
@@ -810,6 +822,16 @@
             <mat-select class="form-control" [(ngModel)]="user_domain">
               @for(option of userDomains; track option) {
                 <mat-option [value]="option.id">{{ option.name }}</mat-option>
+                }
+            </mat-select>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 form-group mb-3">
+          <p class="code-text">{{ 'language' | translate }}</p>
+          <div class="btn-group">
+            <mat-select class="form-control" [(ngModel)]="user_lang">
+              @for(option of lanuagesArr; track option) {
+                <mat-option [value]="option.id">{{ option.language }}</mat-option>
                 }
             </mat-select>
           </div>

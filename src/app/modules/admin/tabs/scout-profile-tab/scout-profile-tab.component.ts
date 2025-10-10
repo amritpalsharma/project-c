@@ -25,6 +25,7 @@ export class ScoutProfileTabComponent {
   @Input() userData: any;
   @Output() dataEmitter = new EventEmitter<string>();
   userDomains: any = environment.domains_de;
+  lanuagesArr: any = environment.langs_de;
   constructor(
     public toaster: ToastrService,
     public userRoleService: UserRoleService,
@@ -34,6 +35,7 @@ export class ScoutProfileTabComponent {
     let langID = localStorage.getItem('lang_id');
     if (Number(langID) === 1) {
       this.userDomains = environment.domains;
+      this.lanuagesArr = environment.langs;
     }
   }
 
@@ -232,14 +234,20 @@ export class ScoutProfileTabComponent {
     );
   }
 
-  getNameAndFlagById(id: number, field: any) {
+   getNameAndFlagById(id: number, field: any) {
     const domain = this.userDomains.find((domain: any) => domain.id === Number(id));
     if (domain) {
       if (field == 'flag') {
         return domain.flag;
       } else if (field == 'location') {
         return domain.name;
-      } else {
+      } else if (field == 'language') {
+        const languageArr = this.lanuagesArr.find((lang: any) => lang.id === Number(id));
+        return languageArr.language;
+      } else if (field == 'lang_flag') {
+        const languageArr = this.lanuagesArr.find((lang: any) => lang.id === Number(id));
+        return languageArr.flag;
+      }  else {
         return { name: domain.name, flag: domain.flag };
       }
     } else {

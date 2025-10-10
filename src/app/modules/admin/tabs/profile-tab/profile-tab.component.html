@@ -175,7 +175,7 @@
     </div>
     <!-- {{ scoutInfoDetails | json }} -->
     <div class="col-lg-3 td_col"
-      *ngIf="this.userDataArr?.scout_info && scoutInfoDetails != null && scoutInfoDetails !== ''">
+      *ngIf="this.userDataArr?.scout_info && scoutInfoDetails != null && scoutInfoDetails !== '' && scoutInfoDetails?.first_name">
       <div class="team-details">
         <p *ngIf="scoutInfoDetails?.first_name"> {{ 'scout' | translate }}</p>
         <div class="d-flex align-items-center cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
@@ -195,6 +195,17 @@
           <img *ngIf="baseUrl" [src]="'../assets/images/flags/'+getNameAndFlagById(userData?.user_domain_id,'flag')"
             alt="" style="width: 35px;">
           <h6>{{ getNameAndFlagById(userData?.user_domain_id,'location') }}</h6>
+        </div>
+      </div>
+    </div>
+    <!-- Language -->
+     <div class="col-lg-3 td_col" *ngIf="userData?.lang">
+      <div class="team-details">
+        <p> {{ 'language' | translate }}</p>
+        <div class="d-flex align-items-center">
+          <img *ngIf="baseUrl" [src]="'../assets/images/flags/'+getNameAndFlagById(userData?.lang,'lang_flag')"
+            alt="" style="width: 35px;">
+          <h6>{{ getNameAndFlagById(userData?.lang,'language') }}</h6>
         </div>
       </div>
     </div>
