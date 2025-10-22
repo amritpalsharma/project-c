@@ -12,67 +12,39 @@
   <div class="popup__body news_content_form_popup px-0">
     <div class="container">
       <div class="row">
-        <!-- <div class="col-12 col-sm-6 col-lg-5">
-          <div class="form-group template-name-input">
-            <label class="text-size">{{ 'name' | translate }}:</label>
-            <input type="text" class="form-control template-name-inputField" [(ngModel)]="title">
-            <div *ngIf="errorMsg.title" class="error-msg">{{errorMsg.title}}</div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-5">
-          <div class="form-group template-name-input">
-            <label class="text-size" style="margin-right: 5px;">{{ 'metaTitle' | translate }}:</label>
-            <input type="text" class="form-control template-name-inputField" [(ngModel)]="meta_title">
-            <div *ngIf="errorMsg.meta_title" class="error-msg">{{errorMsg.meta_title}}</div>
-          </div>
-        </div> -->
-        <div class="col-12 col-sm-6 col-lg-5">
+        <div class="col-sm-6">
           <div class="form-group template-name-input">
             <label class="text-size">{{ 'slug' | translate }}:</label>
             <input type="text" class="form-control template-name-inputField" [(ngModel)]="slug">
-            <div *ngIf="errorMsg.slug" class="error-msg">{{errorMsg.slug}}</div>
+            <div *ngIf="errorMsg.slug" class="error-msg">{{ errorMsg.slug }}</div>
           </div>
         </div>
-        <!-- <div class="col-12 col-sm-6 col-lg-5">
-          <div class="form-group template-name-input">
-            <label class="text-size">{{ 'metaDescription' | translate }}:</label>
-            <input type="text" class="form-control template-name-inputField add_custom_width"
-              [(ngModel)]="meta_description">
-            <div *ngIf="errorMsg.meta_description" class="error-msg" style="padding-left:60px;">
-              {{errorMsg.meta_description}}</div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="text-size" *ngIf="!featuredImage && !UploadedfeaturedImage">
+              {{ 'featuredImage' | translate }}
+            </label>
+            <div class="btn-group" *ngIf="!featuredImage && !UploadedfeaturedImage">
+              <input type="file" class="form-control" (change)="onProfileFileChange($event)" accept="image/*" />
+            </div>
+            <div class="preview-image-container position-relative">
+              <label *ngIf="UploadedfeaturedImage" class="text-size">&nbsp;</label>
+              <label *ngIf="featuredImage" class="text-size">&nbsp;</label>
+              <img *ngIf="UploadedfeaturedImage" [src]="baseUrl + UploadedfeaturedImage" alt="Preview"
+                class="image-preview" />
+              <button *ngIf="UploadedfeaturedImage && UploadedfeaturedImage" (click)="closeUploadedfeaturedImage()"
+                class="ad-close-button d-block">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <img *ngIf="featuredImage" [src]="featuredImage" alt="Preview" class="image-preview" />
+              <button *ngIf="featuredImage && featuredImage" (click)="closefeaturedImage()"
+                class="ad-close-button d-block">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
           </div>
-        </div> -->
+        </div>
       </div>
-      <!-- <div class="col-12 col-sm-6 col-lg-5">
-        <div class="form-group">
-          <label class="text-size">{{ 'language' | translate }}</label>
-          <div class="btn-group">
-            <mat-select [(ngModel)]="selectedLang" class="mat-select-div form-control ">
-              @for (lang of langs; track lang) {
-              <mat-option [value]="lang.id" *ngIf="selectedLang == lang.id" selected>{{lang.language}}</mat-option>
-              <mat-option [value]="lang.id" *ngIf="selectedLang != lang.id">{{lang.language}}</mat-option>
-              }
-            </mat-select>
-            <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                fill="#646464" />
-            </svg>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="col-12 col-sm-6 col-lg-5">
-        <div class="form-group">
-          <label class="text-size">{{ 'status' | translate }}:</label>
-          <div class="btn-group">
-            <mat-select [(ngModel)]="status" class="mat-select-div form-control ">
-              <mat-option [value]="'published'">{{ 'publish' | translate }}</mat-option>
-              <mat-option [value]="'draft'">{{ 'draft' | translate }}</mat-option>
-            </mat-select>
-          </div>
-        </div>
-      </div> -->
       <mat-tab-group [(selectedIndex)]="selectedLang">
         <mat-tab *ngFor="let lang of langs; let i = index" [label]="lang.language" [ngClass]="'text-size'">
           <ng-template matTabContent>
@@ -83,16 +55,17 @@
                   <div class="form-group template-name-input">
                     <label class="text-size">{{ 'name' | translate }}:</label>
                     <input type="text" class="form-control template-name-inputField" [(ngModel)]="titles[lang.slug]">
-                    <div *ngIf="errorMsg.title" class="error-msg">{{errorMsg.title}}</div>
+                    <div *ngIf="errorMsg.title" class="error-msg">{{ errorMsg.title }}</div>
                   </div>
                 </div>
                 <!-- Title -->
                 <div class="col-lg-6">
                   <div class="form-group template-name-input">
-                    <label class="text-size" style="margin-right: 5px;">{{ 'metaTitle' | translate }}:</label>
+                    <label class="text-size"
+                      style="margin-right: 5px;">{{ 'metaTitle' | translate }}:</label>
                     <input type="text" class="form-control template-name-inputField"
                       [(ngModel)]="meta_titles[lang.slug]">
-                    <div *ngIf="errorMsg.meta_title" class="error-msg">{{errorMsg.meta_title}}</div>
+                    <div *ngIf="errorMsg.meta_title" class="error-msg">{{ errorMsg.meta_title }}</div>
                   </div>
                 </div>
                 <!-- Description -->
@@ -102,12 +75,12 @@
                     <input type="text" class="form-control template-name-inputField add_custom_width"
                       [(ngModel)]="meta_descriptions[lang.slug]">
                     <div *ngIf="errorMsg.meta_description" class="error-msg" style="padding-left:60px;">
-                      {{errorMsg.meta_description}}</div>
+                      {{ errorMsg.meta_description }}</div>
                   </div>
                 </div>
 
                 <!-- Featured Image -->
-                <div class="col-lg-6">
+                <div class="col-lg-6 d-none">
                   <div class="form-group">
                     <label class="text-size">
                       {{ 'featuredImage' | translate }}({{ lang.slug }}):
@@ -122,46 +95,20 @@
                       class="preview-image-container position-relative">
                       <img *ngIf="imagePreview[lang.slug]" [src]="imagePreview[lang.slug]" alt="Preview"
                         class="image-preview" />
-                      <img *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]"
-                        [src]="'https://api.socceryou.ch/uploads/' + imageUrl[lang.slug]" alt="Preview"
-                        class="image-preview" />
+                      <img *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]" [src]="baseUrl + imageUrl[lang.slug]"
+                        alt="Preview" class="image-preview" />
 
-                      <button *ngIf="imagePreview[lang.slug]" (click)="closeImage(lang.slug)" class="ad-close-button d-block">
+                      <button *ngIf="imagePreview[lang.slug]" (click)="closeImage(lang.slug)"
+                        class="ad-close-button d-block">
                         <i class="fa-solid fa-xmark"></i>
                       </button>
-                      <button *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]" (click)="closeImage(lang.slug, imageUrl[lang.slug])" class="ad-close-button d-block">
+                      <button *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]"
+                        (click)="closeImage(lang.slug, imageUrl[lang.slug])" class="ad-close-button d-block">
                         <i class="fa-solid fa-xmark"></i>
                       </button>
-
                     </div>
                   </div>
-                  <!-- <div *ngIf="imagePreview[lang.slug] || imageUrl[lang.slug]"
-                    class="preview-image-container position-relative">
-                    <label class="text-size">
-                      {{ 'featuredImage' | translate }}({{ lang.slug }}):
-                    </label>
-                    <img *ngIf="imagePreview[lang.slug]" [src]="imagePreview[lang.slug]" alt="Preview"
-                      class="image-preview" />
-                    <img *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]"
-                      [src]="'https://api.socceryou.ch/uploads/' + imageUrl[lang.slug]" alt="Preview"
-                      class="image-preview" />
-
-                    <button (click)="closeImage(lang.slug)" class="ad-close-button d-block">
-                      <i class="fa-solid fa-xmark"></i>
-                    </button>
-                  </div> -->
                 </div>
-
-                <!-- <div *ngIf="imagePreview[lang.slug] || imageUrl[lang.slug]" class="preview-image-container position-relative">
-                  <img *ngIf="imagePreview[lang.slug]" [src]="imagePreview[lang.slug]" alt="Preview" class="image-preview" />
-                  <img *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]"
-                    [src]="'https://api.socceryou.ch/uploads/' + imageUrl[lang.slug]" alt="Preview" class="image-preview" />
-
-                  <button (click)="closeImage(lang.slug)" class="ad-close-button d-block">
-                    <i class="fa-solid fa-xmark"></i>
-                  </button>
-                </div> -->
-
                 <!-- Editor -->
                 <div class="col-12">
                   <div class="form-group">
@@ -169,12 +116,7 @@
                       {{ 'contentFor' | translate }}({{ lang.slug }}):
                     </label>
                     <div class="NgxEditor__Wrapper">
-                      <!-- <ngx-editor-menu [editor]="editors[lang.slug]" [colorPresets]="colorPresets"></ngx-editor-menu>
-                      <ngx-editor [editor]="editors[lang.slug]" class="editor-width" [(ngModel)]="allContent[lang.slug]"
-                        [disabled]="false" [placeholder]="'editors.placeholder' | translate"></ngx-editor> -->
-
                       <editor [(ngModel)]="allContent[lang.slug]" [init]="editorConfig" class="ngx-editor"></editor>
-
                       <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">
                         {{ errorMsg.content }}
                       </div>
@@ -194,8 +136,24 @@
       <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
     </div>
     <div>
-      <a class="btn Launch px-5" *ngIf="!blog" (click)="createBlog()">{{ 'createAndLaunch' | translate }}</a>
-      <a class="btn Launch px-5" *ngIf="blog" (click)="updateBlog()">{{ 'update' | translate }}</a>
+      <button class="btn Launch px-5" *ngIf="!blog" (click)="createBlog()" [disabled]="isBtnLoading">
+        <ng-container *ngIf="isBtnLoading; else loginText">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="sr-only">Loading...</span>
+        </ng-container>
+        <ng-template #loginText>
+          {{ 'createAndLaunch' | translate }}
+        </ng-template>
+      </button>
+      <button class="btn Launch px-5" *ngIf="blog" (click)="updateBlog()" [disabled]="isBtnLoading">
+        <ng-container *ngIf="isBtnLoading; else loginText">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="sr-only">Loading...</span>
+        </ng-container>
+        <ng-template #loginText>
+          {{ 'update' | translate }}
+        </ng-template>
+      </button>
     </div>
   </div>
 </div>

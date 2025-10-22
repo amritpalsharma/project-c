@@ -640,3 +640,10 @@ img.banner-image {
 :host-context(.dark-theme) ::ng-deep .news_html li a {
   color: #bde34e !important;
 }
+// css by amrit
+::ng-deep .dark-theme .text_wrapper h2 strong a {
+    color: #bde34e !important;
+}
+::ng-deep .light-theme .text_wrapper h2 strong a {
+      color: #e05263 !important;
+}

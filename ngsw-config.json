@@ -41,7 +41,7 @@
     {
       "name": "images",
       "urls": [
-        "https://testing.socceryou.co.uk/assets/**",
+        "/assets/**",
         "https://api.socceryou.ch/uploads/**"
       ],
       "cacheConfig": {

@@ -101,6 +101,7 @@ import { PerformanceAnalysisComponent } from './tabs/performance-analysis/perfor
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { AddTeamPlayerComponent } from './tabs/add-team-player/add-team-player.component';
+import { AdminCropperComponent } from './admin-cropper/admin-cropper.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD.MM.YYYY', // Parse input in DD.MM.YYYY format
@@ -183,7 +184,8 @@ export const MY_FORMATS = {
     AddPricingPageComponent,
     NotificationsLogComponent,
     PerformanceAnalysisComponent,
-    AddTeamPlayerComponent
+    AddTeamPlayerComponent,
+    AdminCropperComponent
   ],
   imports: [
     CommonModule,
