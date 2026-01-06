@@ -14,6 +14,7 @@ import {
 })
 export class FooterComponent {
   event$: any;
+  currentYear: number = new Date().getFullYear();
   constructor(public domainSlugService: DomainSlugService, public router: Router) {
     this.event$ = this.router.events.subscribe((event: NavigationEvent) => {
       if (event instanceof NavigationStart) {

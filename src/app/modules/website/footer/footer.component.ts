@@ -27,7 +27,7 @@ export class FooterComponent implements OnInit {
 
   @ViewChild('invalidCredMessage') invalidCredMessage!: ElementRef;
   @ViewChild('registerForm') registerForm!: NgForm; // Define registerForm using ViewChild
-
+  currentYear: number = new Date().getFullYear();
   selectedcountry: number = 1;
   name: string = 'England'; // Current country name, update as needed
   countrie: any[] = [];

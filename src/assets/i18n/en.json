@@ -523,7 +523,7 @@
   "privacy": "Privacy",
   "terms": "Terms",
   "cookiePolicy": "Cookie Policy",
-  "copyright": "© 2025 Succer You Sports AG. All Rights Reserved.",
+  "copyright": "© {{currentYear}} Succer You Sports AG. All Rights Reserved.",
   "welcomeBack": "Welcome back - SoccerYou is waiting!",
   "loginMessage": "Log in and get started!",
   "emailLabel": "Email",

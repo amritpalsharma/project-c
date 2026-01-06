@@ -1,6 +1,7 @@
 <div class="dashboard_footer footer_main footer-responsive ">
     <div class="center-copyright">
-        <p class="footer-text">{{ 'copyright' | translate }}</p>
+        <!-- <p class="footer-text">{{ 'copyright' | translate }}</p> -->
+         <p class="footer-text" [innerHTML]="'copyright' | translate: {currentYear: currentYear}"></p>
     </div>
     <div class="footer_main_inner">
         <!-- <p><a routerLink="/privacy">{{ 'privacyPolicy' | translate }}</a></p>

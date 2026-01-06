@@ -13,6 +13,7 @@ import {
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
+  currentYear: number = new Date().getFullYear();
   event$: any;
   constructor(public domainSlugService: DomainSlugService, public router: Router) {
     this.event$ = this.router.events.subscribe((event: NavigationEvent) => {

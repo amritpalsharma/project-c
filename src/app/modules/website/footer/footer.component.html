@@ -112,7 +112,8 @@
 
   <div class="footer-bottom bgprimary">
     <div class="text-center text-white">
-      <p class="mb-0">{{ 'copyright' | translate }}</p>
+      <!-- <p class="mb-0">{{ 'copyright' | translate }}</p> -->
+      <p class="mb-0" [innerHTML]="'copyright' | translate: {currentYear: currentYear}"></p>
       <p class="footer_link_mobile">
         <a [routerLink]="['/' + imprint]">{{ 'imprint' | translate }}</a> |
         <a [routerLink]="['/' + privacySlug]">{{ 'privacyPolicy' | translate }}</a> |
