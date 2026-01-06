@@ -291,7 +291,7 @@
   "privacy": "Integritetspolicy",
   "terms": "Villkor",
   "cookiePolicy": "Cookie-policy",
-  "copyright": "© 2025 Succer You Sports AG. Alla rättigheter förbehålls.",
+  "copyright": "© {{currentYear}} Succer You Sports AG. Alla rättigheter förbehålls.",
   "welcomeBack": "Välkommen tillbaka – SoccerYou väntar!",
   "loginMessage": "Logga in och sätt igång!",
   "emailLabel": "Email",

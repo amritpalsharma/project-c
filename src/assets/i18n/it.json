@@ -295,7 +295,7 @@
   "terms": "Termini",
   "getStartedNow": "Inizia ora",
   "cookiePolicy": "Politica sui cookie",
-  "copyright": "© 2025 Succer You Sports AG. Tutti i diritti riservati.",
+  "copyright": "© {{currentYear}} Succer You Sports AG. Tutti i diritti riservati.",
   "welcomeBack": "Benvenuto di nuovo – SoccerYou ti aspetta!",
   "loginMessage": "Accedi e inizia subito!",
   "emailLabel": "Email",

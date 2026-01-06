@@ -378,7 +378,7 @@
   "userAlreadyVerified": "Denne bruger er allerede verificeret.",
   "confirmDeleteUser": "Når brugeren er slettet, kan det ikke gøres om. Vil du slette?",
   "deleteAccount": "Slet konto",
-  "copyright": "© 2025 Succer You Sports AG. Alle rettigheder forbeholdes.",
+  "copyright": "© {{currentYear}} Succer You Sports AG. Alle rettigheder forbeholdes.",
   "privacy": "Privatlivspolitik",
   "terms": "Vilkår",
   "faq": "Ofte stillede spørgsmål",

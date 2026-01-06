@@ -293,7 +293,7 @@
   "privacy": "Confidentialité",
   "terms": "Conditions",
   "cookiePolicy": "Politique de cookies",
-  "copyright": "© 2025 Succer You Sports AG. Tous droits réservés.",
+  "copyright": "© {{currentYear}} Succer You Sports AG. Tous droits réservés.",
   "welcomeBack": "Bienvenue de nouveau – SoccerYou vous attend!",
   "loginMessage": "Connecte-toi et commence!",
   "emailLabel": "Email",
