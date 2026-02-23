@@ -400,7 +400,7 @@ export class TalkService {
       da: 'Samtalen blev slettet med succes.',
       sv: 'Konversationen raderades framgångsrikt.'
     };
-    return messages[lang] || messages.en;
+    return messages[lang] || messages.de;
   }
 
 

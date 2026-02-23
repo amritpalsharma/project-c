@@ -1008,6 +1008,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     return allowedRoles.includes(userRole);
   }
 
+  getYears(): number[] {
+    const currentYear = new Date().getFullYear();
+    const startYear = 2025;
+    const yearArray: number[] = [];
+
+    for (let year = startYear; year <= currentYear; year++) {
+      yearArray.push(year);
+    }
+
+    return yearArray;
+  }
+
 }
 
 // @Component({
