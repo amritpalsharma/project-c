@@ -120,7 +120,7 @@ export class ChatComponent implements AfterViewInit {
         });
 
         const script = document.createElement('script');
-        script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.608185e6.js';
+        script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.ad87d153.js';
         script.onload = () => {
             (window as any)['ChatWidget'].init({
                 projectId: "soccer",
