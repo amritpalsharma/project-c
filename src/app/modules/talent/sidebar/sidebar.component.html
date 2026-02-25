@@ -47,9 +47,21 @@
           </a>
         </li>
         <!-- CHAT -->
-        <li [ngClass]="{'locksideBar': locksideBar}">
+        <!-- <li [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="isUserVerified" [matTooltip]="!sidebarOpen ? ( 'chat' | translate) : ''" matTooltipPosition="right"
             [routerLink]="'/talent/chat'" (click)="closeSidebar(true)" [class.disabled]="!isUserVerified"
+            routerLinkActive="active"><svg width="28" height="26" viewBox="0 0 28 26" fill="none"
+              xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
+              <path
+                d="M0 0H20V16H10.3438L4 21.0938V16H0V0ZM2 2V14H6V16.9062L9.65625 14H18V2H2ZM22 4H28V20H24V25.0938L17.6562 20H8.34375L10.8438 18H18.3438L22 20.9062V18H26V6H22V4Z"
+                fill="white" class="my-path" />
+            </svg>
+            <p class="sidebar_menu_span"> {{ 'chat' | translate }}</p>
+          </a>
+        </li> -->
+        <li [ngClass]="{'locksideBar': locksideBar}">
+          <a *ngIf="isUserVerified" [matTooltip]="!sidebarOpen ? ( 'chat' | translate) : ''" matTooltipPosition="right"
+            [routerLink]="'/talent/chat'" (click)="comingSoonPopup($event)" [class.disabled]="!isUserVerified"
             routerLinkActive="active"><svg width="28" height="26" viewBox="0 0 28 26" fill="none"
               xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
               <path
@@ -141,9 +153,20 @@
             <p class="sidebar_menu_span">{{ 'explore' | translate }}</p>
           </a>
         </li>
-        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
+        <!-- <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="!isUserVerified" [matTooltip]="!sidebarOpen ? ( 'chat' | translate) : ''" matTooltipPosition="right"
             (click)="showVerificationPopup($event)" [class.disabled]="!isUserVerified"><svg width="28" height="26"
+              viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
+              <path
+                d="M0 0H20V16H10.3438L4 21.0938V16H0V0ZM2 2V14H6V16.9062L9.65625 14H18V2H2ZM22 4H28V20H24V25.0938L17.6562 20H8.34375L10.8438 18H18.3438L22 20.9062V18H26V6H22V4Z"
+                fill="white" class="my-path" />
+            </svg>
+            <p class="sidebar_menu_span"> {{ 'chat' | translate }}</p>
+          </a>
+        </li> -->
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
+          <a *ngIf="!isUserVerified" [matTooltip]="!sidebarOpen ? ( 'chat' | translate) : ''" matTooltipPosition="right"
+            (click)="comingSoonPopup($event)" [class.disabled]="!isUserVerified"><svg width="28" height="26"
               viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
               <path
                 d="M0 0H20V16H10.3438L4 21.0938V16H0V0ZM2 2V14H6V16.9062L9.65625 14H18V2H2ZM22 4H28V20H24V25.0938L17.6562 20H8.34375L10.8438 18H18.3438L22 20.9062V18H26V6H22V4Z"

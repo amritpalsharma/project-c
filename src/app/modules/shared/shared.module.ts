@@ -66,6 +66,7 @@ import { PasswordSettingsComponent } from './setting/password-settings/password-
 import { PremiumPurchaseComponent } from './premium-purchase/premium-purchase.component';
 import { CoverImageCropperComponent } from './cover-image-cropper/cover-image-cropper.component';
 import { TalkJsHelperComponent } from './talk-js-helper/talk-js-helper.component';
+import { ChatComingSoonComponent } from './chat-coming-soon/chat-coming-soon.component';
 // import { TinymceWrapperComponent } from './tinymce-wrapper/tinymce-wrapper.component';
 // import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
@@ -122,6 +123,7 @@ import { TalkJsHelperComponent } from './talk-js-helper/talk-js-helper.component
     PremiumPurchaseComponent,
     CoverImageCropperComponent,
     TalkJsHelperComponent,
+    ChatComingSoonComponent,
     // TinymceWrapperComponent,
     // ImageCropperDialogComponent
   ],

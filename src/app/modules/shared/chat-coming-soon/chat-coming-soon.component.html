@@ -1,0 +1,27 @@
+<div class="popup-overlay" *ngIf="isOpen">
+    <div class="popup-container">
+
+        <!-- Close Button -->
+        <div class="msg-popup-close" (click)="close()">
+            <img src="../../../assets/images/carbon_close-outline-light.svg" alt="">
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <!-- <img src="assets/images/sy-logo.png" alt="SoccerYou Logo"> -->
+            <img src="../../../../assets/images/light-logo.svg" alt="">
+        </div>
+
+        <!-- Content -->
+        <h2 class="main_heading">Chat Feature Coming Soon</h2>
+        <p>
+            We’re working on an exciting new way for you to communicate directly
+            within SoccerYou.
+        </p>
+
+        <!-- CTA -->
+        <button class="cta-btn" (click)="goToDashboard()">
+            Go to Dashboard
+        </button>
+
+    </div>
+</div>
