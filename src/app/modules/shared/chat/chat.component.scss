@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "Nioicon";
+  src: url('https://bigstuffmovers.au/widget/build/fonts/Nioicon.woff2') format('woff2'),
+       url('https://bigstuffmovers.au/widget/build/fonts/Nioicon.woff') format('woff'),
+       url('https://bigstuffmovers.au/widget/build/fonts/Nioicon.ttf') format('truetype'),
+       url('https://bigstuffmovers.au/widget/build/fonts/Nioicon.eot') format('embedded-opentype'),
+       url('https://bigstuffmovers.au/widget/build/fonts/Nioicon.svg#Nioicon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .chat-box {
   display: flex;
   column-gap: 100px;

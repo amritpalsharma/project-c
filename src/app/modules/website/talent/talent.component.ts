@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { provideNetlifyLoader } from '@angular/common';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
-import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
 
 
 @Component({
@@ -44,7 +44,7 @@ export class TalentComponent {
     pricing_sctn_title: '',
     pricing_tab: [],
   }];
-  currentTheme: string = localStorage.getItem('theme') + '';
+  currentTheme: string = 'light';
   activeAccordionIndex = 0;
   // advertisementData:any=null;
   advertisemnet_base_url: string = '';
@@ -65,12 +65,13 @@ export class TalentComponent {
 
   countryPrice: number = 0;
   countryYearlyPrice: number = 0;
+  isUserLoggedIn:any;
+  LoggedInUserPlansLink:any;
+
+  advertisemnet_new_base_url: any = '';
 
 
-  advertisemnet_new_base_url: string = '';
-
-  setActiveAccordion(index: number, event?: Event): void {
-    if (event) { event.preventDefault(); }
+  setActiveAccordion(index: number, event: any): void {
     this.activeAccordionIndex = index;
     // const accordionElement = document.getElementById('collapseOne' + index);
     // if (accordionElement) {
@@ -80,7 +81,11 @@ export class TalentComponent {
     // }
   }
 
-  constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) { }
+  constructor(
+    private webPages: WebPages,
+    private globalSettings: GlobalSettingsService,
+    private authService: AuthService
+  ) { }
 
   plansPageLink: any = this.globalSettings.getPlansLink();
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
@@ -100,40 +105,22 @@ export class TalentComponent {
     this.isActive3 = savedState2 === 'true' ? true : false;
     this.adVisible = [true, true, true, true, true, true, true];
 
-    // this.webPages.languageId$.subscribe((data) => {
-    //   // alert(data);
-    //   this.getPageData(data)
-    //   this.getCurrencyPrice('monthly');
-    //   this.getCurrencyPrice('yearly');
-    //   this.custIndex = 1;
-    //   this.selectedLangSlug = localStorage.getItem('lang') || "en";
-    // });
-
-    this.webPages.languageId$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        // ✅ This will stop running after component is destroyed
-        this.getPageData(data);
-        this.getCurrencyPrice('monthly');
-        this.getCurrencyPrice('yearly');
-        this.custIndex = 1;
-        this.selectedLangSlug = localStorage.getItem('lang') || "en";
-      });
-
+    this.webPages.languageId$.subscribe((data) => {
+      // alert(data);
+      this.getPageData(data)
+      this.getCurrencyPrice('monthly');
+      this.getCurrencyPrice('yearly');
+      this.custIndex = 1;
+      this.selectedLangSlug = localStorage.getItem('lang') || "en";
+    });
+    this.ThemeUpdated();
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.ThemeUpdated(); // Call the function when event is received
     });
 
-    if (this.selectedLangSlug == 'se') {
-      this.selectedLangSlug = 'sv';
-    }
-  }
+    this.isUserLoggedIn = this.authService.isLoggedIn();
+    this.LoggedInUserPlansLink = this.authService.getPlansPageLink();
 
-  destroy$ = new Subject<void>();
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   advertisementList: any = null;
@@ -218,6 +205,13 @@ export class TalentComponent {
         } else {
           this.pageData.banner_bg_img = this.pageData.banner_bg_img_dark_mode;
         }
+        //  alert('this.currentTheme is '+this.currentTheme)
+        if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme) {
+        } else {
+          this.currentTheme = 'light'; // default value is light for theme
+        }
+
+
 
         if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme != null) {
 
@@ -448,7 +442,6 @@ export class TalentComponent {
 
     // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
   }
-
 
 
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
