@@ -254,16 +254,19 @@
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
+<<<<<<< HEAD
+=======
                   <!-- <small>2 months free on yearly plan</small> -->
-                  <small>{{ 'freePlanText' | translate }}</small>
-                  <div class="billed">
-                    <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{
-                      pageData?.sec_tab_monthly_label }}</p>
-                    <div class="toggle-button" [ngClass]="{ 'active': isActive2, 'inactive': !isActive2 }"
-                      (click)="toggle2()"></div>
-                    <p [ngClass]="{ 'active-text': !isActive2, 'inactive-text': isActive2 }">{{
-                      pageData?.sec_tab_yearly_label }}</p>
-                  </div>
+>>>>>>> 4a35e8933f7d272629c7515bc6fc997136234e9b
+                  <small>{{'freePlanText' | translate}}</small>
+                <div class="billed">
+                  <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{
+                    pageData?.sec_tab_monthly_label }}</p>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive2, 'inactive': !isActive2 }"
+                    (click)="toggle2()"></div>
+                  <p [ngClass]="{ 'active-text': !isActive2, 'inactive-text': isActive2 }">{{
+                    pageData?.sec_tab_yearly_label }}</p>
+                </div>
                 </div>
 
                 <div class="premium">

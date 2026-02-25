@@ -1,7 +1,7 @@
 <div class="page-content">
     <div class="main-wrapper">
-        <div class="card bg-color chat_height_mobile">
-            <div class="card-header">
+        <div class="card bg-color chat_height_mobile py-0">
+            <div class="card-header py-3">
                 <div class="d-flex align-items-center justify-content-between inbox-header-bar">
                     <div class="d-flex align-items-center heading w-100">
                         <h2 class="card-title mb-0 me-3 hide_title_mobile">{{'inbox' | translate}}</h2>
@@ -21,8 +21,13 @@
             <div class="card-body p-0">
                 <div class="chat_row d-flex h-100" style="min-height: 68vh;">
                     <!-- <h1>isLoading {{isLoading}}</h1> -->
-                    <div class="col-lg-12 border-end px-0 " id="talkjs-container"
+                    <!-- <div class="col-lg-12 border-end px-0 " id="talkjs-container"
                         [ngClass]="{ 'invisible': isLoading }">
+                    </div> -->
+                    <!-- <div class="col-lg-12 border-end px-0 " id="my-chat-widget"
+                        [ngClass]="{ 'invisible': isLoading }">
+                    </div> -->
+                    <div class="col-lg-12 border-end px-0" id="my-chat-widget">
                     </div>
                     <div *ngIf="isLoading" class="col-sm-12" [ngClass]="{ 'invisible': isLoading }">
                          <app-loader></app-loader>

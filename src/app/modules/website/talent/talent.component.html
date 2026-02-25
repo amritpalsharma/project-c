@@ -2,12 +2,11 @@
 
   <div class="main talent_page">
 
-    <!-- <app-header></app-header> -->
-
-    <div class="banner py-0">
-      <!-- [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'"> -->
-      <!-- <div class="banner py-0" style="background-image: url('{{ baseUrl + pageData?.banner_bg_img }}');"> -->
-      <div class="overlay1"></div>
+        <!-- <app-header></app-header> -->
+        <div class="banner py-0">
+            <!-- [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'"> -->
+            <!-- <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');"> -->
+            <div class="overlay1"></div>
 
       <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
         <a href="{{ advertisementData?.skyscraper?.redirect_url }}" target="_blank">
@@ -58,22 +57,23 @@
               </div>
             </div>
 
-            <div class="col-lg-6 col-lg-8 col-12" *ngIf="selectedLangSlug">
-              <div class="banner_image_combo">
-                <!-- <img src="./assets/images/How-it-works.png" /> -->
-                <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
-                                    src="{{ baseUrl + pageData?.banner_img }}" /> -->
-                <img *ngIf="currentTheme == 'light'"
-                  [src]="'../../../../assets/images/talent_page/talent_banner_img_' + selectedLangSlug + '.png'" />
-                <!-- <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
-                                    src="{{ baseUrl + pageData?.banner_img_dark_mode }}" /> -->
-                <img *ngIf="currentTheme == 'dark'"
-                  [src]="'../../../../assets/images/talent_page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
-              </div>
+                        <div class="col-lg-6 col-lg-8 col-12">
+                            <div class="banner_image_combo">
+                                <h1 class="d-none">currentTheme {{currentTheme}}</h1>
+                                <!-- <img src="./assets/images/How-it-works.png" /> --> 
+                                <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
+                                    src="{{baseUrl + pageData?.banner_img}}" /> -->
+                                <img *ngIf="currentTheme == 'light'"
+                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_' + selectedLangSlug + '.png'" />
+                                <!-- <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
+                                    src="{{baseUrl + pageData?.banner_img_dark_mode}}" /> -->
+                                <img *ngIf="currentTheme == 'dark'"
+                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
 
     </div>
@@ -238,7 +238,7 @@
                 <div class="accordion-item">
                   <div class="accordion-flex" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne' + i"
                     [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
-                    [attr.aria-controls]="'collapseOne' + i" (click)="setActiveAccordion(i)">
+                    [attr.aria-controls]="'collapseOne' + i" (click)="setActiveAccordion(i, $event)">
                     <img class="light-feature1" src="/assets/images/talent_page/icons/{{ i }}_light.svg">
                     <img class="dark-feature1" src="/assets/images/talent_page/icons/{{ i }}_dark.svg">
 
