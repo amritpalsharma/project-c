@@ -56,7 +56,7 @@ h2 {
 
 /* Text */
 p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: #cfd8e3;
   margin-bottom: 28px;
@@ -80,4 +80,10 @@ p {
 }
 .main_heading{
     color: #bde34f;
+}
+.msg-popup-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
 }

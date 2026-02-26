@@ -1537,5 +1537,8 @@
   "noClubFound": "Siete un club? Registratevi ora gratuitamente – il vostro profilo sarà visibile qui e potrete scoprire il vostro prossimo talento.",
   "deleteSelectPerformanceFirst": "Seleziona quali analisi desideri eliminare.",
   "areYouSureToDeleteConvo": "Sei sicuro di voler eliminare definitivamente questa conversazione? Questa azione non può essere annullata.",
-  "updateSubscriptionSuccess": "Il tuo abbonamento è stato aggiornato con successo."
+  "updateSubscriptionSuccess": "Il tuo abbonamento è stato aggiornato con successo.",
+  "chatFeatureTitle": "Funzione chat disponibile a breve!",
+  "chatFeatureSubTitle": "Stiamo lavorando a una nuova entusiasmante funzionalità che vi consentirà di comunicare direttamente all'interno di SoccerYou.",
+  "chatFeatureBtn": "Vai alla dashboard"
 }

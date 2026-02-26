@@ -29,6 +29,7 @@ export class SidebarComponent implements OnInit {
     private socketService: SocketService,
     public dialog: MatDialog,
     private router: Router,// New Code
+    // private dialogRef: MatDialogRef<ChatComingSoonComponent>
     // New Code
   ) { }
 
@@ -171,14 +172,13 @@ export class SidebarComponent implements OnInit {
   }
 
   comingSoonPopup(event: Event) {
-    // 
     event.preventDefault();
-    const messageDialog = this.dialog.open(ChatComingSoonComponent, {
+    this.dialog.open(ChatComingSoonComponent, {
       width: '500px',
-      position: {
-        top: '150px'
-      }
-    })
+      position: { top: '150px' },
+      hasBackdrop: true,         
+      backdropClass: 'custom-backdrop'
+    });
   }
 
   ngOnDestroy() {

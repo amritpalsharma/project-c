@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { AuthService } from '../../../services/auth.service';
+import { ChatComingSoonComponent } from '../../shared/chat-coming-soon/chat-coming-soon.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,6 +16,7 @@ export class SidebarComponent {
   constructor(
     private authService: AuthService,
     private globalSettings: GlobalSettingsService,
+    public dialog: MatDialog,
   ) {
 
   }
@@ -53,33 +56,6 @@ export class SidebarComponent {
     }
   }
 
-  logout240625() {
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
-    }
-    let lang_id = localStorage.getItem('lang_id');
-    let cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
-    let cookiesent = localStorage.getItem('cookieConsent');
-
-    console.log(userId);
-    // this.socketService.disconnectUser(userId);
-    let theme = localStorage.getItem('theme') || 'light';
-    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
-    let domainLang = this.globalSettings.getLanguage();
-    if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
-      lang = domainLang;
-    }
-    localStorage.clear();
-    localStorage.setItem('cookieConsent', cookiesent + '');
-    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang);
-    localStorage.setItem('lang_id', lang_id + '');
-    this.authService.logout();
-  }
 
   logout() {
     const jsonData = localStorage.getItem("userData");
@@ -122,6 +98,16 @@ export class SidebarComponent {
     // window.location.href = '/';
   }
 
+  comingSoonPopup(event: Event) {
+    event.preventDefault();
+    this.dialog.open(ChatComingSoonComponent, {
+      width: '500px',
+      position: { top: '150px' },
+      hasBackdrop: true,
+      backdropClass: 'custom-backdrop'
+    });
+  }
+
   ngAfterViewInit() {
     // Adding the click event listener to detect clicks anywhere in the document
     document.body.addEventListener('click', (event) => {
@@ -130,7 +116,7 @@ export class SidebarComponent {
       if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
         // Find the closest parent <a> tag
         const parentLink = target.closest('a') as HTMLElement;
-        
+
         // Check if the parent <a> tag has the "active" class
         if (parentLink && parentLink.classList.contains('active')) {
           console.info('target', target.tagName)

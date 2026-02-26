@@ -61,7 +61,7 @@
         </li> -->
         <li [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="isUserVerified" [matTooltip]="!sidebarOpen ? ( 'chat' | translate) : ''" matTooltipPosition="right"
-            [routerLink]="'/talent/chat'" (click)="comingSoonPopup($event)" [class.disabled]="!isUserVerified"
+         (click)="comingSoonPopup($event)" [class.disabled]="!isUserVerified"
             routerLinkActive="active"><svg width="28" height="26" viewBox="0 0 28 26" fill="none"
               xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
               <path

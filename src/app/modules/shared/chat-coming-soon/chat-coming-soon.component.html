@@ -8,19 +8,18 @@
         <!-- Logo -->
         <div class="logo">
             <!-- <img src="assets/images/sy-logo.png" alt="SoccerYou Logo"> -->
-            <img src="../../../../assets/images/light-logo.svg" alt="">
+            <img src="../../../../assets/images/chat-{{currentTheme}}-logo.svg" alt="">
         </div>
 
         <!-- Content -->
-        <h2 class="main_heading">Chat Feature Coming Soon</h2>
+        <h2 class="main_heading">{{ 'chatFeatureTitle' | translate }}</h2>
         <p>
-            We’re working on an exciting new way for you to communicate directly
-            within SoccerYou.
+            {{ 'chatFeatureSubTitle' | translate }}
         </p>
 
         <!-- CTA -->
         <button class="cta-btn" (click)="goToDashboard()">
-            Go to Dashboard
+            {{ 'chatFeatureBtn' | translate }}
         </button>
 
     </div>
