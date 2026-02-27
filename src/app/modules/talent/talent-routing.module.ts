@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '',
     component: IndexComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' , data: { title: 'Dashboard' }},
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full', data: { title: 'Dashboard' } },
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -38,9 +38,14 @@ const routes: Routes = [
         component: ExploreComponent,
         data: { title: 'Explore' }
       },
+      // {
+      //   path: 'chat',
+      //   component: ChatComponent,
+      //   data: { title: 'Chat' }
+      // },
       {
         path: 'chat',
-        component: ChatComponent,
+        component: DashboardComponent,
         data: { title: 'Chat' }
       },
       {
@@ -66,4 +71,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TalentRoutingModule {}
+export class TalentRoutingModule { }
