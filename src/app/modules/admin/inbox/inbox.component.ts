@@ -10,6 +10,7 @@ import { SharedService } from '../../../services/shared.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { ChatjsService } from '../../../services/chatjs.service';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class InboxComponent {
     private translateService: TranslateService,
     private sharedservice: SharedService,
     private router: Router,
+    private chatjs: ChatjsService,
     private globalSettings: GlobalSettingsService,
   ) { }
 
@@ -402,7 +404,8 @@ export class InboxComponent {
       console.info('Users Selected for chats ', this.users)
       if (this.users.length === 1) {
         const u = this.users[0];
-        await this.talkService.createOneOnOneConversation(u.id, u.name, u.email, u.photoUrl);
+        this.chatjs.createOneOnOneConversation2(u.id, u.name, u.email, u.photoUrl);
+        // await this.talkService.createOneOnOneConversation(u.id, u.name, u.email, u.photoUrl);
       } else if (this.users.length > 1) {
         // this.talkService.createGroupConversation(this.talkService['session']!.id + '_' + Date.now(), this.users);
         this.talkService.createGroupConversation(this.generateGroupId(), this.users);
