@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SharedService } from '../../../services/shared.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 
 @Component({
@@ -37,10 +38,50 @@ export class InboxComponent {
     private titleService: TitleService,
     private translateService: TranslateService,
     private sharedservice: SharedService,
-    private router: Router
+    private router: Router,
+    private globalSettings: GlobalSettingsService,
   ) { }
 
+
   async ngOnInit() {
+    let themeStored = localStorage.getItem('theme') === 'dark' ? true : false;
+    this.globalSettings.indexFunctionCall$.subscribe((data) => {
+      console.log('Global Settings IndexFunction Call');
+      themeStored = localStorage.getItem('theme') === 'dark' ? true : false;
+      console.info('Theme in ChatComponent GlobalSettings IndexFunction Call is ', themeStored);
+
+      const isDark = localStorage.getItem('theme') === 'dark';
+
+      if ((window as any).ChatWidget?.updateTheme) {
+        (window as any).ChatWidget.updateTheme(isDark);
+      }
+    });
+
+    const script = document.createElement('script');
+    script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.51d11e3f.js';
+    script.onload = () => {
+      (window as any)['ChatWidget'].init({
+        projectId: "soccer",
+        userId: "45",
+        token: "jwt-token",
+        isDarkMode: themeStored,
+
+        theme: {
+          light: {
+            primaryGreen: "#6FB95D",
+            primaryDarkBg: "#fff",
+            secondaryDarkBg: "#ebeef2b3"
+          },
+          dark: {
+            primaryGreen: "#BDE34F",
+            primaryDarkBg: "#072944",
+            secondaryDarkBg: "#0C3453"
+          }
+        }
+      });
+    };
+    document.body.appendChild(script);
+
     this.getJsonTranslations();
     this.sharedservice.data$.subscribe((data) => {
       if (data.action == 'lang_updated') {

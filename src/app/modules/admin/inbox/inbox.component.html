@@ -12,8 +12,10 @@
             </div>
             <div class="card-body p-0">
                 <div class="chat_row d-flex h-100 testing" style="min-height: 68vh;">
-                    <app-loader *ngIf="isLoading" class="col-lg-12 border-end px-0"></app-loader>
-                    <div class="col-lg-12 border-end px-0" id="talkjs-container" [ngClass]="{'invisible':isLoading}">
+                    <!-- <app-loader *ngIf="isLoading" class="col-lg-12 border-end px-0"></app-loader> -->
+                    <!-- <div class="col-lg-12 border-end px-0" id="talkjs-container" [ngClass]="{'invisible':isLoading}">
+                    </div> -->
+                    <div class="col-lg-12 border-end px-0" id="my-chat-widget">
                     </div>
                 </div>
             </div>
