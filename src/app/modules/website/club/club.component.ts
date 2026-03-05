@@ -91,12 +91,6 @@ export class ClubComponent {
     this.getCurrencyPrice('monthly');
     this.getCurrencyPrice('yearly');
 
-    // this.webPages.languageId$.subscribe((data) => {
-    //   this.getPageData(data);
-    //   this.currentLang = this.getLangslugByID(data);
-    //   this.getCurrencyPrice('monthly');
-    //   this.getCurrencyPrice('yearly');
-    // });
     this.webPages.languageId$
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
@@ -271,18 +265,6 @@ export class ClubComponent {
 
   }
 
-  // checkActive(obj: any){
-  //   if(this.isExists(obj) && this.isActive[obj]){
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
-  // isExists(key: string): boolean {
-  //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  // }
-
-
   isEmptyObject(obj: any) {
     if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
@@ -301,10 +283,6 @@ export class ClubComponent {
     return false;
   }
 
-  // isExists(key: any): boolean {
-  //   return key in this.advertisementData;
-  // }
-
   isExists(key: any): boolean {
     return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
@@ -316,15 +294,30 @@ export class ClubComponent {
   getCurrencyPrice(interval: string) {
     this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
       if (res.status) {
+        // if (res.status && res.data?.premium?.plans?.length > 0) {
+        //   this.Currency = res.data.premium.plans[0].currency;
+        //   if (interval == 'yearly') {
+        //     this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);
+        //     this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10);
+        //     this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10);
+        //   }
+        //   if (interval == 'monthly') {
+        //     this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10);
+        //     this.boostPrice = parseInt(res.data.booster.plans[0].price, 10);
+        //     this.countryPrice = parseInt(res.data.country.plans[0].price, 10);
+        //   }
+        // }
         if (res.status && res.data?.premium?.plans?.length > 0) {
-          this.Currency = res.data.premium.plans[0].currency;
+          this.Currency = res.data.premium_talent.plans[0].currency;
           if (interval == 'yearly') {
-            this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);
+            this.premiumYearlyPrice = parseInt(res.data.premium_talent.plans[0].price, 10);
+            // this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);
             this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10);
             this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10);
           }
           if (interval == 'monthly') {
-            this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10);
+            this.premiumPrice = parseInt(res.data.premium_talent.plans[0].price, 10);
+            // this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10);
             this.boostPrice = parseInt(res.data.booster.plans[0].price, 10);
             this.countryPrice = parseInt(res.data.country.plans[0].price, 10);
           }
@@ -413,23 +406,7 @@ export class ClubComponent {
     return index; // Tracks items by index to prevent re-rendering
   }
 
-  getArrayItemByIndex12(index: number, field: keyof FeatureSection) {
-    // alert('button clicked')
-    let theme = localStorage.getItem('theme');
-    if (typeof theme === 'undefined' || theme == null) {
-      theme = 'light';
-    }
-    // console.info(this.feature_sctn);
-    let lang = localStorage.getItem('lang');
-    let image_index = index + 1;
-    if (index >= 0 && index < this.feature_sctn.length) {
-      this.accordinCurrentIndex = index;
-      this.currentFeatureImage = '/assets/images/club_page/features/' + image_index + '_' + lang + '_' + theme + '.png';
-      if (this.currentFeatureImage != '') {
-        this.currentFeatureImage = this.currentFeatureImage;
-      }
-    }
-  }
+
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
     let theme = localStorage.getItem('theme') || 'light';
     let lang = localStorage.getItem('lang');

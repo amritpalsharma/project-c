@@ -23,7 +23,10 @@ export class AboutComponent {
     { name: 'Spain', url: 'https://www.socceryou.es' },
     { name: 'Belgium', url: 'https://www.socceryou.be' },
     { name: 'Sweden', url: 'https://www.socceryou.se' },
-    { name: 'Denmark', url: 'https://www.socceryou.dk' }
+    { name: 'Denmark', url: 'https://www.socceryou.dk' },
+    { name: 'Austria', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', url: 'https://www.socceryou.org' },
+    { name: 'Albanien', url: 'https://www.socceryou.al' }, 
   ];
 
   countriesUrl = [
@@ -36,7 +39,10 @@ export class AboutComponent {
     { name: 'Spain', url: 'https://www.socceryou.es' },
     { name: 'Belgium', url: 'https://www.socceryou.be' },
     { name: 'Sweden', url: 'https://www.socceryou.se' },
-    { name: 'Denmark', url: 'https://www.socceryou.dk' }
+    { name: 'Denmark', url: 'https://www.socceryou.dk' },
+    { name: 'Austria', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', url: 'https://www.socceryou.org' },
+    { name: 'Albanien', url: 'https://www.socceryou.al' },
   ];
   about_hero_heading_txt: string = '';
   about_hero_heading: string = '';

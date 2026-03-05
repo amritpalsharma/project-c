@@ -38,6 +38,8 @@ export const environment = {
     { language: 'Portuguese', slug: 'pt', id: 6, flag: 'Portugal.svg', locale: 'pt-PT' },
     { language: 'Danish', slug: 'dk', id: 7, flag: 'Denmark.svg', locale: 'da-DK' },
     { language: 'Swedish', slug: 'sv', id: 8, flag: 'Sweden-sweden.svg', locale: 'sv-SE' },
+    // { language: 'Albania', slug: 'sq', id: 9, flag: 'Albanien.svg', locale: 'sq-AL' },
+    // { language: 'Serbian', slug: 'sr', id: 10, flag: 'Serbia.svg', locale: 'sr-RS' },
   ],
 
   langs_de: [
@@ -49,6 +51,7 @@ export const environment = {
     { language: 'Portugiesisch', slug: 'pt', id: 6, flag: 'Portugal.svg', locale: 'pt-PT' },
     { language: 'Dänisch', slug: 'dk', id: 7, flag: 'Denmark.svg', locale: 'da-DK' },
     { language: 'Schwedisch', slug: 'sv', id: 8, flag: 'Sweden-sweden.svg', locale: 'sv-SE' },
+    // { language: 'Albanien', slug: 'sq', id: 9, flag: 'Albanien.svg', locale: 'sq-AL' },
   ],
 
 
@@ -97,8 +100,8 @@ export const environment = {
   apiBaseUrl: 'https://apitest.socceryou.ch/',
   baseUrl: 'https://apitest.socceryou.ch/uploads/',
   url: 'https://apitest.socceryou.ch/',
-  socketUrl: 'https://alerts.socceryou.ch/', 
-  mailchimp: { 
+  socketUrl: 'https://alerts.socceryou.ch/',
+  mailchimp: {
     apiUrl: 'https://us5.api.mailchimp.com/3.0/lists/7afbbb070a/members',
     apiKey: '62a0ffa8d6e9c3d5ed7c8a09e9111b41-us17',  // Correct API key
   },

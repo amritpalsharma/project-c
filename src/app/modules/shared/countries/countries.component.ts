@@ -107,6 +107,7 @@ export class CountriesComponent {
   }
 
   addCountryPopup(country: any) {
+    console.log('country',country)
     const dialogRef = this.dialog.open(AddCountryComponent, {
       width: '600px',
       data: {

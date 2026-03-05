@@ -191,7 +191,7 @@ export class PrivacyComponent implements OnInit {
       let countryName = '';
       let privacyPDF = '';
       let termsPDF = '';
-      if (tld == 'ch' || tld == 'de') {
+      if (tld == 'ch' || tld == 'de' || tld == 'at') {
         countryName = 'Schweiz_Deutschland';
         privacyPDF = 'Allgemeine Datenschutzerklärung Succer You Sports AG_2025_Schweiz_Deutschland.pdf';
         termsPDF = 'AGB SoccerYou Schweiz_Deutschland 2025.pdf';
@@ -203,7 +203,7 @@ export class PrivacyComponent implements OnInit {
         countryName = 'France_Belgique';
         termsPDF = 'CGU SoccerYou France_Belgique 2025.pdf';
         privacyPDF = 'Déclaration générale de protection des données Succer You Sports AG_2025_France_Belgique.pdf';
-      } else if (tld == 'uk') {
+      } else if (tld == 'uk' || tld == 'org' || tld == 'al') {
         countryName = 'England';
         termsPDF = 'Terms & Conditions SoccerYou England 2025.pdf';
         privacyPDF = 'General data protection declaration England Succer You Sports AG_2025.pdf';

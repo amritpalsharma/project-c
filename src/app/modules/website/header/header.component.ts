@@ -131,12 +131,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Germany', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italy', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'France', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'England', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'England', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spain', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgium', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
     { name: 'Denmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Sweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Austria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanien', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // German Country Names
@@ -145,12 +148,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Deutschland', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italien', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Frankreich', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'England', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'England', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
     { name: 'Dänemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Schweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Österreich', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanien', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Italian Country Names
@@ -159,12 +165,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Germania', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italia', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Francia', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'Inghilterra', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'Inghilterra', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spagna', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portogallo', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgio', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
     { name: 'Danimarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Svezia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Austria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albania', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // French Country Names
@@ -173,12 +182,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Allemagne', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italie', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'France', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'Angleterre', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'Angleterre', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Suède', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgique', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
     { name: 'Danemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suède', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Autriche', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanie', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Spanish Country Names
@@ -187,12 +199,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Alemania', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italia', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Francia', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'Inglaterra', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'Inglaterra', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'España', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Bélgica', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
     { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suecia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Austria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albania', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Portuguese Country Names
@@ -201,12 +216,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Alemanha', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Itália', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'França', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'Inglaterra', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'Inglaterra', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Espanha', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Bélgica', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
     { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suécia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Áustria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albânia', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
 
@@ -216,12 +234,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Tyskland', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italien', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Frankrig', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'England', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'England', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
     { name: 'Danmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Sverige', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Østrig', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanië', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Swedish Country Names
@@ -230,12 +251,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Tyskland', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italien', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Frankrike', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'England', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'England', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
     { name: 'Danmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Sverige', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Österrike', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanien', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
 
@@ -841,7 +865,7 @@ export class HeaderComponent implements OnInit {
       if (!this.selectedCountry) {
         console.info('selectedClub Empty ', this.selectedCountry)
         this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
-        return; 
+        return;
       } else if (!this.selectedClub) {
         console.info('team_id Empty ', this.selectedClub)
         this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
@@ -1082,7 +1106,7 @@ export class HeaderComponent implements OnInit {
           this.forgotPasswordMessage = res;
         });
       }
-      
+
     );
   }
 

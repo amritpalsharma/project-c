@@ -100,14 +100,6 @@ export class TalentComponent {
     this.isActive3 = savedState2 === 'true' ? true : false;
     this.adVisible = [true, true, true, true, true, true, true];
 
-    // this.webPages.languageId$.subscribe((data) => {
-    //   // alert(data);
-    //   this.getPageData(data)
-    //   this.getCurrencyPrice('monthly');
-    //   this.getCurrencyPrice('yearly');
-    //   this.custIndex = 1;
-    //   this.selectedLangSlug = localStorage.getItem('lang') || "en";
-    // });
 
     this.webPages.languageId$
       .pipe(takeUntil(this.destroy$))
@@ -345,7 +337,6 @@ export class TalentComponent {
       if (res.status) {
         if (res.status && res.data?.premium?.plans?.length > 0) {
           this.Currency = res.data.premium_talent.plans[0].currency;
-          // this.Currency = res.data.premium.plans[0].currency;
           if (interval == 'yearly') {
             this.premiumYearlyPrice = parseInt(res.data.premium_talent.plans[0].price, 10);
             // this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);

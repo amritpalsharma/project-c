@@ -159,43 +159,7 @@ export class TermsComponent implements OnInit {
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  // async downloadPDf(type: string) {
-  //   let src = '../assets/pdf/'
-  //   let name;
-  //   let key;
-  //   if (type == 'terms') {
-  //     src += 'terms/';
-  //     name = 'Terms & Conditions';
-  //     key = 'Terms_Conditions';
-  //   } else if (type == 'coummunity') {
-  //     src += 'community_guidelines/';
-  //     name = 'Community Guidelines';
-  //     key = 'Community_Guidelines_2025';
-  //   } else if (type == 'privacy_policy') {
-  //     src += 'privacy_policy/';
-  //     name = 'Privacy Policy';
-  //     key = 'Privacy_Policy';
-  //   }
-  //   try {
-  //     let lang = localStorage.getItem('lang');
-  //     src += lang + '_' + key + '.pdf';
-  //     const response = await fetch(src);
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok');
-  //     }
-  //     const blob = await response.blob(); // Convert the response to a Blob object
-  //     const url = window.URL.createObjectURL(blob);
-  //     const anchor = document.createElement('a');
-  //     anchor.href = url;
-  //     anchor.download = name + `.pdf`; // Set the filename for download
-  //     document.body.appendChild(anchor);
-  //     anchor.click();
-  //     window.URL.revokeObjectURL(url);
-  //     document.body.removeChild(anchor);
-  //   } catch (error) {
-  //     console.error('There was an error downloading the file:', error);
-  //   }
-  // }
+ 
   async downloadPDf(type: string) {
     let src = '../assets/pdf/'
     let name;
@@ -222,7 +186,7 @@ export class TermsComponent implements OnInit {
       let countryName = '';
       let privacyPDF = '';
       let termsPDF = '';
-      if (tld == 'ch' || tld == 'de') {
+      if (tld == 'ch' || tld == 'de'|| tld == 'at') {
         countryName = 'Schweiz_Deutschland';
         privacyPDF = 'Allgemeine Datenschutzerklärung Succer You Sports AG_2025_Schweiz_Deutschland.pdf';
         termsPDF = 'AGB_SoccerYou_Schweiz_Deutschland_2025.pdf';
@@ -234,7 +198,7 @@ export class TermsComponent implements OnInit {
         countryName = 'France_Belgique';
         termsPDF = 'CGU_SoccerYou_France_Belgique_2025.pdf';
         privacyPDF = 'Déclaration générale de protection des données Succer You Sports AG_2025_France_Belgique.pdf';
-      } else if (tld == 'uk') {
+      } else if (tld == 'uk' || tld == 'org' || tld == 'al') {
         countryName = 'England';
         termsPDF = 'Terms_Conditions_SoccerYou_England_2025.pdf';
         privacyPDF = 'General data protection declaration England Succer You Sports AG_2025.pdf';
