@@ -204,6 +204,8 @@ export class GlobalSettingsService {
       currency = 'DKK';
     } else if (this.defaultDomainId == 10) {
       currency = 'SEK';
+    } else if (this.defaultDomainId == 13) {
+      currency = 'LEK';
     }
     this.domainCurrency = currency;
   }
@@ -226,7 +228,9 @@ export class GlobalSettingsService {
       '.pt': '+351',
       '.be': '+32',
       '.dk': '+45',
-      '.se': '+46'
+      '.se': '+46',
+      '.at': '+43',
+      '.al': '+355'
     };
 
     return dialCodes[domainExt] || '+1'; // Default to +1 (USA) if no match

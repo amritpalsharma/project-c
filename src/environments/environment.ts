@@ -98,7 +98,7 @@ export const environment = {
   paymentMode: 'test',
   apiUrl: 'https://apitest.socceryou.ch/api/',
   apiBaseUrl: 'https://apitest.socceryou.ch/',
-  baseUrl: 'https://apitest.socceryou.ch/uploads/',
+  baseUrl: 'https://apitest.socceryou.ch/uploads/', 
   url: 'https://apitest.socceryou.ch/',
   socketUrl: 'https://alerts.socceryou.ch/',
   mailchimp: {
