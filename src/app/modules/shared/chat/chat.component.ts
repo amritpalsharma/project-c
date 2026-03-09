@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { ChatjsService } from '../../../services/chatjs.service';
 
 import { ThemeService } from '../../../services/theme.service';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
     selector: 'talent-chat',
@@ -30,7 +31,8 @@ export class ChatComponent implements AfterViewInit {
         private globalSettings: GlobalSettingsService,
         private router: Router,
         private chatjs: ChatjsService,
-        private themeService: ThemeService
+        private themeService: ThemeService,
+        private translate: TranslateService
     ) { }
 
 
@@ -41,7 +43,7 @@ export class ChatComponent implements AfterViewInit {
             height: '450px',
             width: '760px',
         }).afterClosed().subscribe(async users => {
-            
+
             if (!users?.data || !Array.isArray(users.data)) return;
 
             users.data.forEach((user: any) => {
@@ -119,14 +121,26 @@ export class ChatComponent implements AfterViewInit {
             }
         });
 
+        // let lang = "en"
+        // this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        //     lang = event.lang;
+
+        //     if ((window as any).ChatWidget && (window as any).ChatWidget?.updateLanguage) {
+        //         console.log('chat widget lang', event.lang, typeof(event.lang));
+        //         (window as any).ChatWidget?.updateLanguage('de');
+        //     }
+            
+        // });
+
         const script = document.createElement('script');
-        script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.51d11e3f.js';
+        script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.eeec32ea.js';
         script.onload = () => {
             (window as any)['ChatWidget'].init({
                 projectId: "soccer",
                 userId: "45",
                 token: "jwt-token",
                 isDarkMode: themeStored,
+                lang: localStorage.getItem('lang'),
 
                 theme: {
                     light: {
@@ -142,8 +156,8 @@ export class ChatComponent implements AfterViewInit {
                 }
             });
         };
-        document.body.appendChild(script); 
-    } 
+        document.body.appendChild(script);
+    }
 
     async ngAfterViewInit() {
         const themeStored = localStorage.getItem('theme');
