@@ -49,7 +49,7 @@ export class FooterComponent implements OnInit {
     { name: 'Sweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
     { name: 'Austria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
     { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
-    { name: 'Albanien', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
+    { name: 'Albania', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // German Country Names
@@ -100,7 +100,7 @@ export class FooterComponent implements OnInit {
     { name: 'Suède', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
     { name: 'Autriche', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
     { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
-    { name: 'Albanie', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
+    { name: 'Albanie  ', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Spanish Country Names

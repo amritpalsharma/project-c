@@ -32,7 +32,7 @@ export class CountriesComponent {
   activeCountryCount: number = 0;
 
   constructor(
-    private talentService: TalentService,
+    private talentService: TalentService, 
     public dialog: MatDialog,
     public webPages: WebPages,
     private translateService: TranslateService,

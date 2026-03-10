@@ -211,7 +211,7 @@ export class AddCountryComponent {
     const selected = this.countryPlans.find(
       (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
     );
-    // console.info('selected',selected);
+    console.info('selected',selected);
     if (selected.price != '' && selected.price != undefined) {
       this.countryPlanPrice = selected.price;
     } else {

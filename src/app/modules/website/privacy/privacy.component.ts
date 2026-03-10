@@ -191,7 +191,7 @@ export class PrivacyComponent implements OnInit {
       let countryName = '';
       let privacyPDF = '';
       let termsPDF = '';
-      if (tld == 'ch' || tld == 'de' || tld == 'at') {
+      if (tld == 'ch' || tld == 'de') {
         countryName = 'Schweiz_Deutschland';
         privacyPDF = 'Allgemeine Datenschutzerklärung Succer You Sports AG_2025_Schweiz_Deutschland.pdf';
         termsPDF = 'AGB SoccerYou Schweiz_Deutschland 2025.pdf';
@@ -203,7 +203,7 @@ export class PrivacyComponent implements OnInit {
         countryName = 'France_Belgique';
         termsPDF = 'CGU SoccerYou France_Belgique 2025.pdf';
         privacyPDF = 'Déclaration générale de protection des données Succer You Sports AG_2025_France_Belgique.pdf';
-      } else if (tld == 'uk' || tld == 'org' || tld == 'al') {
+      } else if (tld == 'uk') {
         countryName = 'England';
         termsPDF = 'Terms & Conditions SoccerYou England 2025.pdf';
         privacyPDF = 'General data protection declaration England Succer You Sports AG_2025.pdf';
@@ -223,6 +223,18 @@ export class PrivacyComponent implements OnInit {
         countryName = 'Sverige';
         termsPDF = 'Allmänna villkor SoccerYou Sverige 2025.pdf';
         privacyPDF = 'Allmän integritetspolicy Sverige Succer You Sports AG_2025.pdf';
+      } else if (tld == 'al') {
+        countryName = 'Albania';  //english
+        privacyPDF = 'General data protection declaration Albania Succer You Sports AG_2025.pdf';
+        termsPDF = 'Terms & Conditions SoccerYou Albania 2025.pdf';
+      } else if (tld == 'org') {
+        countryName = 'Kosovo'; //english
+        privacyPDF = 'General data protection declaration Kosovo Succer You Sports AG_2025.pdf';
+        termsPDF = 'Terms & Conditions SoccerYou Kosovo 2025.pdf';
+      } else if (tld == 'at') {
+        countryName = 'Austria'; // detuch
+        privacyPDF = 'General data protection declaration Austria Succer You Sports AG_2025.pdf';
+        termsPDF = 'Terms & Conditions SoccerYou Austria 2025.pdf';
       }
       let pdfName = '';
       if (type == 'community') {
@@ -238,8 +250,8 @@ export class PrivacyComponent implements OnInit {
         src = '../assets/pdf/newTerms/' + privacyPDF;
       }
 
-     // alert(type);
-      console.log('src',src)
+      // alert(type);
+      console.log('src', src)
       const response = await fetch(src);
       if (!response.ok) {
         throw new Error('Network response was not ok');
