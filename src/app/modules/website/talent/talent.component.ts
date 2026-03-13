@@ -12,6 +12,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { provideNetlifyLoader } from '@angular/common';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -80,7 +81,12 @@ export class TalentComponent {
     // }
   }
 
-  constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) { }
+  constructor(
+    private webPages: WebPages,
+    private globalSettings: GlobalSettingsService,
+    private meta: Meta,
+    private title: Title
+  ) { }
 
   plansPageLink: any = this.globalSettings.getPlansLink();
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
@@ -187,6 +193,7 @@ export class TalentComponent {
 
       if (res.status) {
         this.pageData = res.data.pageData;
+        this.updateSeo(this.pageData);
         this.baseUrl = res.data.base_url;
         this.advertisementData = res.data.advertisementData;
         this.advertisementList = res.data.allAdsList;
@@ -484,5 +491,40 @@ export class TalentComponent {
       // Open the clicked tab
       this.activeIndex = index;
     }
+  }
+
+  updateSeo(data: any) {
+
+    const pageTitle = data.meta_title || 'Talent Page';
+    const pageDesc = data.meta_description || 'Talent page description';
+    const pageImage = this.baseUrl + (data.meta_image || 'default.jpg');
+
+    this.title.setTitle(pageTitle);
+
+    this.meta.updateTag({
+      name: 'description',
+      content: pageDesc
+    });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: pageTitle
+    });
+
+    this.meta.updateTag({
+      property: 'og:description',
+      content: pageDesc
+    });
+
+    this.meta.updateTag({
+      property: 'og:image',
+      content: pageImage
+    });
+
+    this.meta.updateTag({
+      property: 'og:url',
+      content: window.location.href
+    });
+
   }
 }
