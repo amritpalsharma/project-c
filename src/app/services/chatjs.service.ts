@@ -7,13 +7,14 @@ export class ChatjsService {
 
   constructor() { }
 
-  async createOneOnOneConversation2(userId: string, name: string, email: string, photoUrl: string) {
+  async createOneOnOneConversation2(userId: string, name: string, email: string, photoUrl: string, role: string) {
   // async createOneOnOneConversation2() {
     (window as any)['ChatWidget'].createChat({
       userId: userId,
       name: name,
       email: email,
-      photoUrl: photoUrl
+      photoUrl: photoUrl,
+      role: role
     });
   }
 }

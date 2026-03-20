@@ -64,13 +64,14 @@ export class ChatComponent implements AfterViewInit {
                     id: user.id,
                     name: full_name,
                     email: user.username,
-                    photoUrl: user.profile_image_path
+                    photoUrl: user.profile_image_path,
+                    role: user.role_id
                 });
             });
             console.info('Users Selected for chats ', this.users)
             if (this.users.length === 1) {
                 const u = this.users[0];
-                this.chatjs.createOneOnOneConversation2(u.id, u.name, u.email, u.photoUrl);
+                this.chatjs.createOneOnOneConversation2(u.id, u.name, u.email, u.photoUrl, u.role);
                 // await this.talkService.createOneOnOneConversation(u.id, u.name, u.email, u.photoUrl);
             } else if (this.users.length > 1) {
                 // this.talkService.createGroupConversation(this.talkService['session']!.id + '_' + Date.now(), this.users);
@@ -133,7 +134,7 @@ export class ChatComponent implements AfterViewInit {
         // });
 
         const script = document.createElement('script');
-        script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.eeec32ea.js';
+        script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.2d387857.js';
         script.onload = () => {
             (window as any)['ChatWidget'].init({
                 projectId: "soccer",
@@ -145,11 +146,13 @@ export class ChatComponent implements AfterViewInit {
                 theme: {
                     light: {
                         primaryGreen: "#6FB95D",
+                        primaryRed: "#f93c65",
                         primaryDarkBg: "#fff",
                         secondaryDarkBg: "#ebeef2b3"
                     },
                     dark: {
                         primaryGreen: "#BDE34F",
+                        primaryRed: "#f93c65",
                         primaryDarkBg: "#072944",
                         secondaryDarkBg: "#0C3453"
                     }

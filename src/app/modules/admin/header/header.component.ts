@@ -448,7 +448,7 @@ export class HeaderComponent {
     const locale = chatSelectedLanguage.locale;
     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
     this.translateService.use(selectedLanguage);
-    this.talkService.changeLocale(locale);
+    // this.talkService.changeLocale(locale);
     this.getPageTitle();
     this._adapter.setLocale(selectedLanguage);
     // langs
@@ -483,7 +483,7 @@ export class HeaderComponent {
   }
   onThemeToggle(isDarkModeEnabled: boolean): void {
     // Call the toggleTheme function from the service
-    this.talkService.toggleTheme(isDarkModeEnabled);
+    // this.talkService.toggleTheme(isDarkModeEnabled);
   }
   onSearch() {
     if (this.searchUser.trim().length === 0) {

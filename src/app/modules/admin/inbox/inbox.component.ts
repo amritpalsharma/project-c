@@ -23,7 +23,7 @@ export class InboxComponent {
   userData: any;
   groupName: string = '';
   groupId: string = '';
-  users: { id: string; name: string; email: string; photoUrl: string }[] = [];
+  users: any[] = [];
   newUser: { id: string; name: string; email: string; photoUrl: string }[] = [];
   createdGroups: { groupId: string, groupName: string }[] = [];
   user: any = {};
@@ -60,22 +60,25 @@ export class InboxComponent {
     });
 
     const script = document.createElement('script');
-    script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.eeec32ea.js';
+    script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.eb4a983b.js';
     script.onload = () => {
       (window as any)['ChatWidget'].init({
         projectId: "soccer",
         userId: "45",
         token: "jwt-token",
         isDarkMode: themeStored,
+        lang: localStorage.getItem('lang'),
 
         theme: {
           light: {
             primaryGreen: "#6FB95D",
+            PrimaryRed: "#f93c65",
             primaryDarkBg: "#fff",
             secondaryDarkBg: "#ebeef2b3"
           },
           dark: {
             primaryGreen: "#BDE34F",
+            PrimaryRed: "#f93c65",
             primaryDarkBg: "#072944",
             secondaryDarkBg: "#0C3453"
           }
@@ -145,13 +148,13 @@ export class InboxComponent {
   startOneOnOneChat(user: any) {
     this.receiverUser = user;
     this.socketService.emit('sendMessage', { senderId: this.user.id, receiverIds: [user.id] });
-    this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
-      .then(() => {
-        this.talkService.mountChat('talkjs-container');
-      })
-      .catch(err => {
-        console.error('Error starting chat:', err);
-      });
+    // this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
+    //   .then(() => {
+    //     this.talkService.mountChat('talkjs-container');
+    //   })
+    //   .catch(err => {
+    //     console.error('Error starting chat:', err);
+    //   });
   }
 
 
@@ -231,7 +234,7 @@ export class InboxComponent {
     })
 
     if (users.length === 1) {
-      this.startOneOnOneChat(users[0]);
+      // this.startOneOnOneChat(users[0]);
     } else if (users.length > 1) {
       this.startGroupChat();
     }
@@ -398,13 +401,14 @@ export class InboxComponent {
           id: user.id,
           name: full_name,
           email: user.username,
-          photoUrl: user.profile_image_path
+          photoUrl: user.profile_image_path,
+          role: user.role_id
         });
       });
       console.info('Users Selected for chats ', this.users)
       if (this.users.length === 1) {
         const u = this.users[0];
-        this.chatjs.createOneOnOneConversation2(u.id, u.name, u.email, u.photoUrl);
+        this.chatjs.createOneOnOneConversation2(u.id, u.name, u.email, u.photoUrl, u.role);
         // await this.talkService.createOneOnOneConversation(u.id, u.name, u.email, u.photoUrl);
       } else if (this.users.length > 1) {
         // this.talkService.createGroupConversation(this.talkService['session']!.id + '_' + Date.now(), this.users);
