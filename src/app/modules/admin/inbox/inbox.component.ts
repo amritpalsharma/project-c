@@ -60,7 +60,7 @@ export class InboxComponent {
     });
 
     const script = document.createElement('script');
-    script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.eb4a983b.js';
+    script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.c235f392.js';
     script.onload = () => {
       (window as any)['ChatWidget'].init({
         projectId: "soccer",
