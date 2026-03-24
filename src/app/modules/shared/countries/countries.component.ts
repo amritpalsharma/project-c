@@ -32,7 +32,7 @@ export class CountriesComponent {
   activeCountryCount: number = 0;
 
   constructor(
-    private talentService: TalentService,
+    private talentService: TalentService, 
     public dialog: MatDialog,
     public webPages: WebPages,
     private translateService: TranslateService,
@@ -107,6 +107,7 @@ export class CountriesComponent {
   }
 
   addCountryPopup(country: any) {
+    // console.log('country',country)
     const dialogRef = this.dialog.open(AddCountryComponent, {
       width: '600px',
       data: {

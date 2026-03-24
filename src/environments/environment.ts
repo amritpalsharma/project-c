@@ -24,36 +24,10 @@ export const environment = {
     { role: "Talente", name: "Talente", slug: "talent", id: 4 },
   ],
 
-
-
   adminLangs: [
     { language: 'English', slug: "en", id: 1, flag: "England.svg" },
     { language: 'German', slug: "de", id: 2, flag: "Germany.svg" },
   ],
-
-  // langs:[
-  //   { language:'English', slug: "en", id: 1, flag: "England.svg" },
-  //   { language:'German', slug: "de", id: 2, flag: "Germany.svg" },
-  //   { language:'Italian', slug: "it", id: 3, flag: "Italy.svg"},
-  //   { language:'French', slug: "fr", id: 4, flag: "France.svg"},
-  //   { language:'Spanish', slug: "es", id: 5, flag: "Spain.svg" },
-  //   { language:'Portuguese', slug: "pt", id: 6, flag: "Portugal.svg" },
-  //   { language:'Danish', slug: "dk", id: 7, flag: "Denmark.svg" },
-  //   { language:'Swedish', slug: "se", id: 8, flag: "Sweden-sweden.svg"},
-  // ],
-
-  // domains:[
-  //   { name:'Switzerland', slug: "ch", id: 1, flag: "Switzerland.svg" },
-  //   { name:'German', slug: "de", id: 2, flag: "Germany.svg" },
-  //   { name:'Italy', slug: "it", id: 3, flag: "Italy.svg" },
-  //   { name:'France', slug: "fr", id: 4, flag: "France.svg" },
-  //   { name:'United Kingdom', slug: "uk", id: 5, flag: "England.svg" },
-  //   { name:'Spain', slug: "es", id: 6, flag: "Spain.svg" },
-  //   { name:'Portugal', slug: "pt", id: 7, flag: "Portugal.svg" },
-  //   { name:'Belgium', slug: "be", id: 8, flag: "Belgium.svg" },
-  //   { name:'Denmark', slug: "dk", id: 9, flag: "Denmark.svg" },
-  //   { name:'Sweden', slug: "se", id: 10, flag: "Sweden-sweden.svg" },
-  // ],
 
   langs: [
     { language: 'English', slug: 'en', id: 1, flag: 'England.svg', locale: 'en-US' },
@@ -64,6 +38,8 @@ export const environment = {
     { language: 'Portuguese', slug: 'pt', id: 6, flag: 'Portugal.svg', locale: 'pt-PT' },
     { language: 'Danish', slug: 'dk', id: 7, flag: 'Denmark.svg', locale: 'da-DK' },
     { language: 'Swedish', slug: 'sv', id: 8, flag: 'Sweden-sweden.svg', locale: 'sv-SE' },
+    // { language: 'Albania', slug: 'sq', id: 9, flag: 'Albanien.svg', locale: 'sq-AL' },
+    // { language: 'Serbian', slug: 'sr', id: 10, flag: 'Serbia.svg', locale: 'sr-RS' },
   ],
 
   langs_de: [
@@ -75,6 +51,7 @@ export const environment = {
     { language: 'Portugiesisch', slug: 'pt', id: 6, flag: 'Portugal.svg', locale: 'pt-PT' },
     { language: 'Dänisch', slug: 'dk', id: 7, flag: 'Denmark.svg', locale: 'da-DK' },
     { language: 'Schwedisch', slug: 'sv', id: 8, flag: 'Sweden-sweden.svg', locale: 'sv-SE' },
+    // { language: 'Albanien', slug: 'sq', id: 9, flag: 'Albanien.svg', locale: 'sq-AL' },
   ],
 
 

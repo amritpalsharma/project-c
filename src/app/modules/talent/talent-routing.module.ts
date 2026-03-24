@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '',
     component: IndexComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' , data: { title: 'Dashboard' }},
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full', data: { title: 'Dashboard' } },
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -44,6 +44,11 @@ const routes: Routes = [
         data: { title: 'Chat' }
       },
       {
+        path: 'chat',
+        component: DashboardComponent,
+        data: { title: 'Chat' }
+      },
+      {
         path: 'plans',
         component: PlanComponent,
         data: { title: 'Plans' }
@@ -66,4 +71,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TalentRoutingModule {}
+export class TalentRoutingModule { }

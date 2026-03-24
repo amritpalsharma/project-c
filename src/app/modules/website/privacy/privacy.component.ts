@@ -223,6 +223,18 @@ export class PrivacyComponent implements OnInit {
         countryName = 'Sverige';
         termsPDF = 'Allmänna villkor SoccerYou Sverige 2025.pdf';
         privacyPDF = 'Allmän integritetspolicy Sverige Succer You Sports AG_2025.pdf';
+      } else if (tld == 'al') {
+        countryName = 'Albania';  //english
+        privacyPDF = 'General data protection declaration Albania Succer You Sports AG_2025.pdf';
+        termsPDF = 'Terms & Conditions SoccerYou Albania 2025.pdf';
+      } else if (tld == 'org') {
+        countryName = 'Kosovo'; //english
+        privacyPDF = 'General data protection declaration Kosovo Succer You Sports AG_2025.pdf';
+        termsPDF = 'Terms & Conditions SoccerYou Kosovo 2025.pdf';
+      } else if (tld == 'at') {
+        countryName = 'Austria'; // detuch
+        privacyPDF = 'General data protection declaration Austria Succer You Sports AG_2025.pdf';
+        termsPDF = 'Terms & Conditions SoccerYou Austria 2025.pdf';
       }
       let pdfName = '';
       if (type == 'community') {
@@ -238,8 +250,8 @@ export class PrivacyComponent implements OnInit {
         src = '../assets/pdf/newTerms/' + privacyPDF;
       }
 
-     // alert(type);
-      console.log('src',src)
+      // alert(type);
+      console.log('src', src)
       const response = await fetch(src);
       if (!response.ok) {
         throw new Error('Network response was not ok');

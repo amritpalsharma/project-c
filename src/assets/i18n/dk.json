@@ -1406,5 +1406,8 @@
   "noClubFound": "Er I en klub? Registrer jer nu gratis – jeres profil vil blive vist her, og I kan opdage jeres næste talent.",
   "deleteSelectPerformanceFirst": "Vælg hvilke analyser du ønsker at slette.",
   "areYouSureToDeleteConvo": "Er du sikker på, at du vil slette denne samtale permanent? Dette kan ikke fortrydes.",
-  "updateSubscriptionSuccess": "Dit abonnement er blevet opdateret."
+  "updateSubscriptionSuccess": "Dit abonnement er blevet opdateret.",
+  "chatFeatureTitle": "Chat-funktion snart tilgængelig!",
+  "chatFeatureSubTitle": "Vi arbejder på en spændende ny mulighed for dig til at kommunikere direkte inden for SoccerYou.",
+  "chatFeatureBtn": "Til dashboardet"
 }

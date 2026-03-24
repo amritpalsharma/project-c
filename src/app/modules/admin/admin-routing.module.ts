@@ -26,6 +26,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'users', component: UsersComponent},
       { path: 'inbox', component: InboxComponent},
+      { path: 'inbox', component: DashboardComponent},
       { path: 'templates', component: TemplatesComponent},
       { path: 'marketing', component: MarketingComponent},
       { path: 'website', component: WebsiteComponent},

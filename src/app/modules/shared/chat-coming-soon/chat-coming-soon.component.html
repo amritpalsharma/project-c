@@ -1,0 +1,26 @@
+<div class="popup-overlay" *ngIf="isOpen">
+    <div class="popup-container">
+
+        <!-- Close Button -->
+        <div class="msg-popup-close" (click)="close()">
+            <img src="../../../assets/images/carbon_close-outline-light.svg" alt="">
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <!-- <img src="assets/images/sy-logo.png" alt="SoccerYou Logo"> -->
+            <img src="../../../../assets/images/chat-{{currentTheme}}-logo.svg" alt="">
+        </div>
+
+        <!-- Content -->
+        <h2 class="main_heading">{{ 'chatFeatureTitle' | translate }}</h2>
+        <p>
+            {{ 'chatFeatureSubTitle' | translate }}
+        </p>
+
+        <!-- CTA -->
+        <button class="cta-btn" (click)="goToDashboard()">
+            {{ 'chatFeatureBtn' | translate }}
+        </button>
+
+    </div>
+</div>

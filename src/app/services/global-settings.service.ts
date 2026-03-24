@@ -8,7 +8,7 @@ import { ThemeService } from './theme.service';
 })
 export class GlobalSettingsService {
 
-  private domainExtensions = ['.ch', '.de', '.it', '.fr', '.co.uk', '.es', '.pt', '.be', '.dk', '.se']; // List of domain extensions to check
+  private domainExtensions = ['.ch', '.de', '.it', '.fr', '.co.uk', '.es', '.pt', '.be', '.dk', '.se', '.at', '.org', '.al']; // List of domain extensions to check
   private defaultLanguage = 'en'; // Default language
   private defaultLangId: number = 1;
   private defaultDomainId: number = 1;
@@ -99,8 +99,20 @@ export class GlobalSettingsService {
         this.defaultLanguage = 'se';
         this.defaultDomainId = 10;
         break;
-      default:
+      case '.at':
+        this.defaultLanguage = 'de';
+        this.defaultDomainId = 11;
+        break;
+      case '.org':
         this.defaultLanguage = 'en';
+        this.defaultDomainId = 12;
+        break;
+      case '.al':
+        this.defaultLanguage = 'en';
+        this.defaultDomainId = 13;
+        break;
+      default:
+        this.defaultLanguage = 'de';
     }
 
     console.log(`Domain: ${window.location.hostname}, Language Set: ${this.defaultLanguage}`);
@@ -192,6 +204,8 @@ export class GlobalSettingsService {
       currency = 'DKK';
     } else if (this.defaultDomainId == 10) {
       currency = 'SEK';
+    } else if (this.defaultDomainId == 13) {
+      currency = 'ALL';
     }
     this.domainCurrency = currency;
   }
@@ -214,7 +228,9 @@ export class GlobalSettingsService {
       '.pt': '+351',
       '.be': '+32',
       '.dk': '+45',
-      '.se': '+46'
+      '.se': '+46',
+      '.at': '+43',
+      '.al': '+355'
     };
 
     return dialCodes[domainExt] || '+1'; // Default to +1 (USA) if no match

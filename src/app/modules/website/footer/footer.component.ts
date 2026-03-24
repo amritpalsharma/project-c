@@ -45,8 +45,11 @@ export class FooterComponent implements OnInit {
     { name: 'Spain', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgium', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
-    { name: 'Denmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.dk' },
-    { name: 'Sweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.se' },
+    { name: 'Denmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
+    { name: 'Sweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Austria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albania', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // German Country Names
@@ -59,8 +62,11 @@ export class FooterComponent implements OnInit {
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
-    { name: 'Dänemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.dk' },
-    { name: 'Schweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.se' },
+    { name: 'Dänemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
+    { name: 'Schweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Österreich', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanien', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Italian Country Names
@@ -73,8 +79,11 @@ export class FooterComponent implements OnInit {
     { name: 'Spagna', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portogallo', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgio', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
-    { name: 'Danimarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.dk' },
-    { name: 'Svezia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.se' },
+    { name: 'Danimarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
+    { name: 'Svezia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Austria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albania', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // French Country Names
@@ -87,8 +96,11 @@ export class FooterComponent implements OnInit {
     { name: 'Suède', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgique', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
-    { name: 'Danemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.dk' },
-    { name: 'Suède', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.se' },
+    { name: 'Danemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
+    { name: 'Suède', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Autriche', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanie  ', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Spanish Country Names
@@ -101,8 +113,11 @@ export class FooterComponent implements OnInit {
     { name: 'España', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Bélgica', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
-    { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.dk' },
-    { name: 'Suecia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.se' },
+    { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
+    { name: 'Suecia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Austria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albania', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Portuguese Country Names
@@ -115,8 +130,11 @@ export class FooterComponent implements OnInit {
     { name: 'Espanha', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Bélgica', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
-    { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.dk' },
-    { name: 'Suécia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.se' },
+    { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
+    { name: 'Suécia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Áustria', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albânia', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
 
@@ -130,8 +148,11 @@ export class FooterComponent implements OnInit {
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
-    { name: 'Danmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.dk' },
-    { name: 'Sverige', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.se' },
+    { name: 'Danmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
+    { name: 'Sverige', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Østrig', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanië', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
   // Swedish Country Names
@@ -144,8 +165,11 @@ export class FooterComponent implements OnInit {
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
-    { name: 'Danmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.dk' },
-    { name: 'Sverige', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.se' },
+    { name: 'Danmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
+    { name: 'Sverige', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
+    { name: 'Österrike', slug: 'at', id: 11, flag: 'Austria.svg', url: 'https://www.socceryou.at' },
+    { name: 'Kosovo', slug: 'org', id: 12, flag: 'Kosovo.svg', url: 'https://www.socceryou.org' },
+    { name: 'Albanien', slug: 'al', id: 13, flag: 'Albanien.svg', url: 'https://www.socceryou.al' },
   ];
 
 
@@ -182,8 +206,6 @@ export class FooterComponent implements OnInit {
   }
 
   countries = environment.domains; // Assuming the countries are defined in the environment
-  // selectedCountryId: string = '';
-  // domains: any = environment.domains;
 
 
   activeIndex: number = 1; // -1 means no button is active initially
@@ -291,12 +313,10 @@ export class FooterComponent implements OnInit {
     this.translateService.onLangChange.subscribe(() => {
       this.language = this.translateService.currentLang;
       this.loadCountries();
-      console.log(this.selectedcountry);
+      // console.log(this.selectedcountry);
       setTimeout(() => {
         const selectedLang = this.countrie.find((data: any) => data.id == this.selectedcountry);
         this.name = selectedLang?.name || '';
-        // this.selectedcountry = this.countrie[0]?.id || 1;
-        // this.name = this.selectedLang?.name || '';
       }, 100);
 
       let selectedLang = localStorage.getItem('lang');
@@ -670,16 +690,20 @@ export class FooterComponent implements OnInit {
   footerCountries() {
     this.currentDomainExtension = this.globalSettings.getCurrentDomainExtension();
     this.currentDomainExtension = this.currentDomainExtension.replaceAll('.', '');
+
     if (this.currentDomainExtension == 'couk') {
       this.currentDomainExtension = 'en';
     } else if (this.currentDomainExtension == '') {
       this.currentDomainExtension = 'ch';
     }
+    console.log('currentDomainExtension is ', this.currentDomainExtension)
+    console.log('countrie is ', this.countrie)
 
     let selectedLang = this.countrie.find((data: any) => data.slug == this.currentDomainExtension);
     // console.info(selectedLang)
     this.name = selectedLang?.name || '';
     this.selectedcountry = selectedLang?.id || '';
+    console.log('selectedcountry is ', this.selectedcountry)
   }
   scrollToTop() {
 

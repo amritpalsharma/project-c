@@ -56,7 +56,7 @@ export class AddCountryComponent {
     this.theme = localStorage.getItem('theme');
     // If this.data.plans is an array, assign it directly
     this.country = this.data.country;
-    console.log(this.country)
+    // console.log(this.country)
     this.stripe = await this.stripeService.getStripe();
     this.loadCountries();
     this.getJsonTranslations();
@@ -134,6 +134,9 @@ export class AddCountryComponent {
       interval = 'monthly';
     }
 
+    console.info('countryPlans', this.countryPlans)
+    console.info('country', this.country)
+
     const selected = this.countryPlans.find(
       (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
     );
@@ -144,7 +147,7 @@ export class AddCountryComponent {
       this.countryPlanPrice = '';
     }
 
-    // console.log('selectedPlan',selected)
+    console.log('selectedPlan',selected)
   }
   async redirectToCheckout(planId: string, coupon: any = '') {
     this.toastr.info(this.Processing, this.pleaseWait, { timeOut: 2000 });
@@ -208,7 +211,7 @@ export class AddCountryComponent {
     const selected = this.countryPlans.find(
       (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
     );
-    // console.info('selected',selected);
+    console.info('selected',selected);
     if (selected.price != '' && selected.price != undefined) {
       this.countryPlanPrice = selected.price;
     } else {

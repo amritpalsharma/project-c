@@ -115,6 +115,17 @@ export class DomainSlugService {
       terms: 'termini-condizioni',
       contact: 'contatto',
     },
+    'at': {
+      talent: 'talente',
+      clubAndScout: 'clubs-scouts',
+      about: 'ueber-uns',
+      pricing: 'preise',
+      faq: 'faq',
+      imprint: 'impressum',
+      privacy: 'datenschutz',
+      terms: 'agb',
+      contact: 'kontakt',
+    },
     
   };
 
@@ -129,7 +140,7 @@ export class DomainSlugService {
   }
 
   getRouteSlug(key: string): string {
-    // console.warn('currentDomain',this.currentDomain);
+    console.warn('currentDomain',this.currentDomain);
     // console.warn(this.domainSlugMap[this.currentDomain]);
     return (
       this.domainSlugMap[this.currentDomain]?.[key] ??

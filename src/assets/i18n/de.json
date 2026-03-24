@@ -1541,12 +1541,15 @@
   "noTeamMemberAddedHere": "Hier wurde kein Team-Mitglied hinzugefügt.",
   "passwordResetLinkHasExpired": "Leider ist dein Link zum Zurücksetzen deines Passwortes abgelaufen. Klicke erneut auf «Passwort vergessen», um einen neuen Link zu erhalten.",
   "linkExpired": "LINK ABGELAUFEN",
-  "noSightFound":"Es wurde noch kein Sichtungs-Event erfasst.",
-  "manageNoPaymentBtnTxt":"zu den Abos",
-  "noScoutFound":"Bist du ein Scout? Registriere dich jetzt kostenlos – dein Profil wird hier angezeigt und Talente können dich entdecken und kontaktieren.",
-  "noClubFound":"Ihr seid ein Club? Registriert euch jetzt kostenlos – euer Profil wird hier angezeigt und ihr könnt euer neues Talent entdecken.",
-  "deleteSelectPerformanceFirst":"Wähle aus, welche Analysen du löschen möchtest.",
-  "resendEmailVerification":"E-Mail-Verifizierung",
-  "areYouSureToDeleteConvo":"Möchtest du diese Konversation endgültig löschen? Dies kann nicht rückgängig gemacht werden.",
-  "updateSubscriptionSuccess":"Ihr Abonnement wurde erfolgreich aktualisiert."
+  "noSightFound": "Es wurde noch kein Sichtungs-Event erfasst.",
+  "manageNoPaymentBtnTxt": "zu den Abos",
+  "noScoutFound": "Bist du ein Scout? Registriere dich jetzt kostenlos – dein Profil wird hier angezeigt und Talente können dich entdecken und kontaktieren.",
+  "noClubFound": "Ihr seid ein Club? Registriert euch jetzt kostenlos – euer Profil wird hier angezeigt und ihr könnt euer neues Talent entdecken.",
+  "deleteSelectPerformanceFirst": "Wähle aus, welche Analysen du löschen möchtest.",
+  "resendEmailVerification": "E-Mail-Verifizierung",
+  "areYouSureToDeleteConvo": "Möchtest du diese Konversation endgültig löschen? Dies kann nicht rückgängig gemacht werden.",
+  "updateSubscriptionSuccess": "Ihr Abonnement wurde erfolgreich aktualisiert.",
+  "chatFeatureTitle": "Chat-Funktion in Kürze verfügbar!",
+  "chatFeatureSubTitle": "Wir arbeiten an einer spannenden neuen Möglichkeit für dich, direkt innerhalb von SoccerYou zu kommunizieren.",
+  "chatFeatureBtn": "zum Dashboard"
 }

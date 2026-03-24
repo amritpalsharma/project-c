@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { AuthService } from '../../../services/auth.service';
+import { ChatComingSoonComponent } from '../../shared/chat-coming-soon/chat-coming-soon.component';
 
 // New Code
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
@@ -28,6 +29,7 @@ export class SidebarComponent implements OnInit {
     private socketService: SocketService,
     public dialog: MatDialog,
     private router: Router,// New Code
+    // private dialogRef: MatDialogRef<ChatComingSoonComponent>
     // New Code
   ) { }
 
@@ -135,39 +137,6 @@ export class SidebarComponent implements OnInit {
     event.preventDefault();
   }
 
-  // openSidebar(): void {
-  //   this.sidebarOpen = true;
-  //   document.body.classList.remove('compact-sidebar');
-  //   document.body.classList.add('mobile-sidebar-active');
-  // }
-
-  logout240625() {
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
-    }
-    let lang_id = localStorage.getItem('lang_id');
-    let cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
-    let cookiesent = localStorage.getItem('cookieConsent');
-
-    console.log(userId);
-    this.socketService.disconnectUser(userId);
-    let theme = localStorage.getItem('theme') || 'light';
-    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
-    let domainLang = this.globalSettings.getLanguage();
-    if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
-      lang = domainLang;
-    }
-    localStorage.clear();
-    localStorage.setItem('cookieConsent', cookiesent + '');
-    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang);
-    localStorage.setItem('lang_id', lang_id + '');
-    this.authService.logout();
-  }
 
   logout() {
     const jsonData = localStorage.getItem("userData");
@@ -188,10 +157,8 @@ export class SidebarComponent implements OnInit {
       lang = domainLang;
     }
 
-    // 🔌 Disconnect user socket
     this.socketService.disconnectUser(userId);
 
-    // 🧹 Clear & Restore necessary values
     localStorage.clear();
     localStorage.setItem('cookieConsent', cookiesent + '');
     localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
@@ -199,16 +166,20 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem('lang', lang);
     localStorage.setItem('lang_id', lang_id + '');
 
-    // ✅ Perform logout logic
     this.authService.logout();
 
-    // 🔁 Navigate directly to homepage or login (choose your route)
-    // this.router.navigate(['/']); // Or use '/login' or another route as needed
-
-    // ✅ Finally, force hard redirect to base page
     window.location.href = '/';
   }
 
+  comingSoonPopup(event: Event) {
+    event.preventDefault();
+    this.dialog.open(ChatComingSoonComponent, {
+      width: '500px',
+      position: { top: '150px' },
+      hasBackdrop: true,         
+      backdropClass: 'custom-backdrop'
+    });
+  }
 
   ngOnDestroy() {
     // Cleanup the subscription when the component is destroyed
@@ -217,33 +188,8 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+
   ngAfterViewInit() {
-    // Adding the click event listener to detect clicks anywhere in the document
-    // document.body.addEventListener('click', (event) => {
-    //   const target = event.target as HTMLElement;
-    //   console.info('target', target.tagName)
-
-    //   if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
-
-    //     const parentLink = target.closest('a') as HTMLElement;
-
-
-    //     if (parentLink && parentLink.classList.contains('active')) {
-    //       console.log('Clicked on an active link!');
-
-    //       const targetDiv = document.querySelector('.page-container');
-    //       if (targetDiv) {
-    //         targetDiv.scrollTo({
-    //           top: 0,
-    //           left: 0,
-    //           behavior: 'smooth'
-    //         });
-    //       }
-    //     }
-    //   }
-    // });
-
-
     document.body.addEventListener('click', (event) => {
       const target = event.target as HTMLElement;
 
@@ -271,4 +217,6 @@ export class SidebarComponent implements OnInit {
       }
     });
   }
+
+
 }

@@ -1487,5 +1487,8 @@
   "noClubFound": "Är ni en klubb? Registrera er nu gratis – er profil visas här och ni kan hitta ert nästa stjärnskott.",
   "deleteSelectPerformanceFirst": "Välj vilka analyser du vill ta bort.",
   "areYouSureToDeleteConvo": "Är du säker på att du vill radera denna konversation permanent? Detta kan inte ångras.",
-  "updateSubscriptionSuccess": "Din prenumeration har uppdaterats."
+  "updateSubscriptionSuccess": "Din prenumeration har uppdaterats.",
+  "chatFeatureTitle": "Chattfunktion snart tillgänglig!",
+  "chatFeatureSubTitle": "Vi arbetar på en spännande ny funktion som gör att du kan kommunicera direkt i SoccerYou.",
+  "chatFeatureBtn": "Till instrumentpanelen"
 }
