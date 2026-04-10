@@ -205,7 +205,7 @@ export class GlobalSettingsService {
     } else if (this.defaultDomainId == 10) {
       currency = 'SEK';
     } else if (this.defaultDomainId == 13) {
-      currency = 'ALL';
+      currency = 'LEK';
     }
     this.domainCurrency = currency;
   }
