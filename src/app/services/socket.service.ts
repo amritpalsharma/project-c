@@ -24,7 +24,7 @@ interface ApiResponse {
 export class SocketService {
   private socket: Socket;
   private socket2: Socket;
-  // private readonly socketUrl: string = 'https://alerts.socceryou.ch/'; // Replace with your backend URL
+  // private readonly socketUrl: string = 'https://alertstest.socceryou.ch/'; // Replace with your backend URL
   private readonly socketUrl: string = environment.socketUrl; // Replace with your backend URL
   private readonly socketUrl2: string = 'https://talk.socceryou.ch'; // Replace with your backend URL
 

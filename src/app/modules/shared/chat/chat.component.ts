@@ -130,11 +130,12 @@ export class ChatComponent implements AfterViewInit {
         //         console.log('chat widget lang', event.lang, typeof(event.lang));
         //         (window as any).ChatWidget?.updateLanguage('de');
         //     }
-            
+
         // });
 
         const script = document.createElement('script');
-        script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.c235f392.js';
+        script.id = 'chat-widget-script'; // 👈 give it an id
+        script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.19ab0eeb.js';
         script.onload = () => {
             (window as any)['ChatWidget'].init({
                 projectId: "soccer",
@@ -220,6 +221,22 @@ export class ChatComponent implements AfterViewInit {
                 this.isLoading = false;
             }
         }, 1500);
+    }
+
+    ngOnDestroy(): void {
+        if ((window as any).ChatWidget?.destroy) {
+            (window as any).ChatWidget.destroy();
+        }
+
+        const script = document.getElementById('chat-widget-script');
+        if (script) {
+            let userDataString = localStorage.getItem('chatUserData');
+            let userData = userDataString ? JSON.parse(userDataString) : null;
+            (window as any)['ChatWidget'].disconnectChatUser({
+                userId: userData?._id
+            });
+            script.remove();
+        }
     }
 
 }

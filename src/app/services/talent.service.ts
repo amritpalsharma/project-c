@@ -29,7 +29,7 @@ export class TalentService {
   message$ = this.messageSource.asObservable();
   public lang: any;
   languages: any = environment.langs;
-  private apiUrl3 = "https://alerts.socceryou.ch/";
+  private apiUrl3 = "https://alertstest.socceryou.ch/";
 
   constructor(private http: HttpClient) {
 

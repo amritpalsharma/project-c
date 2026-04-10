@@ -35,7 +35,7 @@ export class ClubService {
   message$ = this.messageSource.asObservable();
   public lang: any; // You can dynamically set this if needed
   languages: any = environment.langs;
-  private apiUrl3 = "https://alerts.socceryou.ch/";
+  private apiUrl3 = "https://alertstest.socceryou.ch/";
 
   constructor(
     private http: HttpClient,

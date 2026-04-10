@@ -140,7 +140,7 @@ export class DomainSlugService {
   }
 
   getRouteSlug(key: string): string {
-    console.warn('currentDomain',this.currentDomain);
+    // console.warn('currentDomain',this.currentDomain);
     // console.warn(this.domainSlugMap[this.currentDomain]);
     return (
       this.domainSlugMap[this.currentDomain]?.[key] ??
