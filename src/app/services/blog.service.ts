@@ -1,61 +1,80 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable  } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class BlogService {
     private apiUrl;
     // private currentLang;
-    constructor(private http: HttpClient) {
-        this.apiUrl = environment?.apiUrl;    
-        // this.currentLang = localStorage.getItem('lang_id');    
+    constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
+        this.apiUrl = environment?.apiUrl;
     }
-    getBlogs(params:any): Observable<{ status: boolean, message: string, data: any }> {
-        let currentLang = localStorage.getItem('lang_id');
+    getBlogs(params: any): Observable<{ status: boolean, message: string, data: any }> {
+        let currentLang = '';
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-blogs/${currentLang}`, {params}
-          );
+            `${this.apiUrl}admin/get-blogs/${currentLang}`, { params }
+        );
     }
-    getBlogBySlug(slug:any){
+    getBlogBySlug(slug: any) {
         return this.http.get<{ status: boolean, message: string, data: any }>(
             `${this.apiUrl}admin/get-blog/${slug}`
-          );
+        );
     }
-    getBlogById(id:any){
+    getBlogById(id: any) {
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: any }>(
             `${this.apiUrl}admin/get-blog?id=${id}&num=${random}`
-          );
+        );
     }
     addBlog(record: any): Observable<any> {
-        let currentLang = localStorage.getItem('lang_id');
+        let currentLang = '';
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.post<any>(`${this.apiUrl}admin/add-blog/${currentLang}`, record);
     }
     // Method to update an existing record
     updateBlog(id: number, record: any): Observable<any> {
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
-        let currentLang = localStorage.getItem('lang_id');
+        let currentLang = '';
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.post<any>(`${this.apiUrl}admin/edit-blog/${id}/${currentLang}?num=${random}`, record);
     }
 
     // Method to delete a record by IDs
     deleteBlog(params: any): Observable<any> {
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
-        let currentLang = localStorage.getItem('lang_id');
+        let currentLang = '';
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.post<any>(`${this.apiUrl}admin/delete-blog/${currentLang}?num=${random}`, params);
     }
 
     publishBlogs(params: any): Observable<any> {
-        let currentLang = localStorage.getItem('lang_id');
+        let currentLang = '';
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.post<any>(`${this.apiUrl}admin/publish-blog/${currentLang}`, params);
     }
 
     draftBlogs(params: any): Observable<any> {
-        let currentLang = localStorage.getItem('lang_id');
+        let currentLang = '';
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.post<any>(`${this.apiUrl}admin/draft-blog/${currentLang}`, params);
     }
 

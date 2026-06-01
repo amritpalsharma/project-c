@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { BrowserService } from './browser.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -126,21 +129,34 @@ export class DomainSlugService {
       terms: 'agb',
       contact: 'kontakt',
     },
-    
+
   };
 
   private currentDomain: string;
 
-  constructor() {
-    // const host = window.location.hostname;
-    // const parts = host.split('.');
-    // this.currentDomain = parts.slice(-2).join('.');
-    const tld = window.location.hostname.split('.').slice(-1)[0];
-    this.currentDomain = tld;
+  constructor(private browserService: BrowserService, @Inject(PLATFORM_ID) private platformId: Object) {
+    // SSR protection
+    if (!isPlatformBrowser(this.platformId)) {
+      this.currentDomain = 'ch';
+      return;
+    }
+    if (typeof window === 'undefined') {
+      this.currentDomain = 'ch';
+      return;
+    }
+
+
+    const hostname = this.browserService.hostname || 'socceryou.ch';
+
+    if (hostname.includes('co.uk')) {
+      this.currentDomain = 'co.uk';
+    } else {
+      this.currentDomain = hostname.split('.').pop() || 'ch';
+    }
   }
 
   getRouteSlug(key: string): string {
-    console.warn('currentDomain',this.currentDomain);
+    console.warn('currentDomain is ', key);
     // console.warn(this.domainSlugMap[this.currentDomain]);
     return (
       this.domainSlugMap[this.currentDomain]?.[key] ??

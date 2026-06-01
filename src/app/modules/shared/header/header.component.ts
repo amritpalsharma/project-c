@@ -703,10 +703,16 @@ export class HeaderComponent {
   }
 
   toggleSidebar() {
+    if (typeof document === 'undefined') {
+      return;
+    }
     document.body.classList.toggle('mobile-sidebar-active');
   }
 
   closeSidebar() {
+    if (typeof document === 'undefined') {
+      return;
+    }
     document.body.classList.toggle('mobile-sidebar-active');
   }
 

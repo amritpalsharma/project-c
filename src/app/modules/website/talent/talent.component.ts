@@ -13,6 +13,9 @@ import { provideNetlifyLoader } from '@angular/common';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
 
 
 @Component({
@@ -45,7 +48,7 @@ export class TalentComponent {
     pricing_sctn_title: '',
     pricing_tab: [],
   }];
-  currentTheme: string = localStorage.getItem('theme') + '';
+  currentTheme: string = 'dark';
   activeAccordionIndex = 0;
   // advertisementData:any=null;
   advertisemnet_base_url: string = '';
@@ -69,6 +72,7 @@ export class TalentComponent {
 
 
   advertisemnet_new_base_url: string = '';
+  selectedLangSlug: string = "de";
 
   setActiveAccordion(index: number, event?: Event): void {
     if (event) { event.preventDefault(); }
@@ -84,39 +88,47 @@ export class TalentComponent {
   constructor(
     private webPages: WebPages,
     private globalSettings: GlobalSettingsService,
-    private meta: Meta,
-    private title: Title
-  ) { }
+    private metaService: Meta,
+    private title: Title,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    ssrDebug(this.platformId, 'TalentComponent');
+    if (isPlatformBrowser(this.platformId)) {
+      let theme = localStorage.getItem('theme');
+
+      if (theme !== null && theme !== undefined && theme !== '') {
+        this.currentTheme = localStorage.getItem('theme') + '';
+      }
+      this.selectedLangSlug = localStorage.getItem('lang') || "en";
+    }
+  }
 
   plansPageLink: any = this.globalSettings.getPlansLink();
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
-
-  selectedLangSlug: string = localStorage.getItem('lang') || "en";
-
   priceArr: any;
 
   ngOnInit() {
-    // Retrieve the states from local storage
-    const savedState1 = localStorage.getItem('toggleState1');
-    const savedState2 = localStorage.getItem('toggleState2');
+    if (isPlatformBrowser(this.platformId)) {
+      // Retrieve the states from local storage
+      const savedState1 = localStorage.getItem('toggleState1');
+      const savedState2 = localStorage.getItem('toggleState2');
 
-    // Set isActive for each toggle based on the saved states or default to false
-    this.isActive1 = savedState1 === 'true' ? true : false;
-    this.isActive2 = savedState2 === 'true' ? true : false;
-    this.isActive3 = savedState2 === 'true' ? true : false;
-    this.adVisible = [true, true, true, true, true, true, true];
+      // Set isActive for each toggle based on the saved states or default to false
+      this.isActive1 = savedState1 === 'true' ? true : false;
+      this.isActive2 = savedState2 === 'true' ? true : false;
+      this.isActive3 = savedState2 === 'true' ? true : false;
+      this.adVisible = [true, true, true, true, true, true, true];
+      this.webPages.languageId$
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(data => {
+          this.getPageData(data);
+          this.getCurrencyPrice('monthly');
+          this.getCurrencyPrice('yearly');
+          this.custIndex = 1;
+          this.selectedLangSlug = localStorage.getItem('lang') || "en";
+        });
+    }
 
-
-    this.webPages.languageId$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        // ✅ This will stop running after component is destroyed
-        this.getPageData(data);
-        this.getCurrencyPrice('monthly');
-        this.getCurrencyPrice('yearly');
-        this.custIndex = 1;
-        this.selectedLangSlug = localStorage.getItem('lang') || "en";
-      });
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.ThemeUpdated(); // Call the function when event is received
@@ -192,8 +204,26 @@ export class TalentComponent {
     this.webPages.getDynamicContentPage('talent', languageId).subscribe((res) => {
 
       if (res.status) {
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /* ### Meta Tags ### */
         this.pageData = res.data.pageData;
-        this.updateSeo(this.pageData);
+        // this.updateSeo(this.pageData);
         this.baseUrl = res.data.base_url;
         this.advertisementData = res.data.advertisementData;
         this.advertisementList = res.data.allAdsList;
@@ -249,19 +279,23 @@ export class TalentComponent {
   toggle1() {
     this.isActive1 = !this.isActive1;
     // Save the new state to local storage
-    localStorage.setItem('toggleState1', this.isActive1.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState1', this.isActive1.toString());
+    }
   }
 
   toggle2() {
     this.isActive2 = !this.isActive2;
-    // Save the new state to local storage
-    localStorage.setItem('toggleState2', this.isActive2.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState2', this.isActive2.toString());
+    }
   }
 
   toggle3() {
     this.isActive3 = !this.isActive3;
-    // Save the new state to local storage
-    localStorage.setItem('toggleState2', this.isActive3.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState2', this.isActive3.toString());
+    }
   }
 
   addText() {
@@ -442,7 +476,9 @@ export class TalentComponent {
   }
 
   ThemeUpdated() {
-    this.currentTheme = localStorage.getItem('theme') + '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.currentTheme = localStorage.getItem('theme') + '';
+    }
 
     // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
   }
@@ -450,9 +486,11 @@ export class TalentComponent {
 
 
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
-    let theme = localStorage.getItem('theme');
+    let theme = 'dark';
+    if (isPlatformBrowser(this.platformId)) {
+      theme = String(localStorage.getItem('theme'));
+    }
     this.custIndex = index + 1;
-    // alert(index);
     if (index >= 0 && index < this.feature_sctn.length) {
       this.accordinCurrentIndex = index;
       if (theme == 'dark') {
@@ -468,7 +506,9 @@ export class TalentComponent {
     // return null;
   }
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   setActiveTab(currentTab: any) {
@@ -495,36 +535,37 @@ export class TalentComponent {
 
   updateSeo(data: any) {
 
-    const pageTitle = data.meta_title || 'Talent Page';
-    const pageDesc = data.meta_description || 'Talent page description';
-    const pageImage = this.baseUrl + (data.meta_image || 'default.jpg');
+    // const pageTitle = data.meta_title || 'Talent Page';
+    // const pageDesc = data.meta_description || 'Talent page description';
+    // const pageImage = this.baseUrl + (data.meta_image || 'default.jpg');
 
-    this.title.setTitle(pageTitle);
+    // this.title.setTitle(pageTitle);
 
-    this.meta.updateTag({
-      name: 'description',
-      content: pageDesc
-    });
+    // this.meta.updateTag({
+    //   name: 'description',
+    //   content: pageDesc
+    // });
 
-    this.meta.updateTag({
-      property: 'og:title',
-      content: pageTitle
-    });
+    // this.meta.updateTag({
+    //   property: 'og:title',
+    //   content: pageTitle
+    // });
 
-    this.meta.updateTag({
-      property: 'og:description',
-      content: pageDesc
-    });
+    // this.meta.updateTag({
+    //   property: 'og:description',
+    //   content: pageDesc
+    // });
 
-    this.meta.updateTag({
-      property: 'og:image',
-      content: pageImage
-    });
-
-    this.meta.updateTag({
-      property: 'og:url',
-      content: window.location.href
-    });
+    // this.meta.updateTag({
+    //   property: 'og:image',
+    //   content: pageImage
+    // });
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.meta.updateTag({
+    //     property: 'og:url',
+    //     // content: window.location.href
+    //   });
+    // }
 
   }
 }

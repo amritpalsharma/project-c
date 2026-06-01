@@ -4,7 +4,10 @@ import {
 } from '@angular/material/dialog';
 import { ClubService } from '../../../../services/club.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-upload-attachment',

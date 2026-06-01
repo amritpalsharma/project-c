@@ -4,6 +4,8 @@ import { User } from '../modules/admin/users/user.model';
 import { environment } from '../../environments/environment';
 import { Observable, of, Subject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators'; // For storing data after fetching
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface Notification {
   id: number;
@@ -21,6 +23,7 @@ export interface Notification {
   providedIn: 'root'
 })
 export class TalentService {
+  private platformId = inject(PLATFORM_ID);
   private apiUrl: string;
   private domain: any;
   private userToken: string | null;
@@ -34,7 +37,10 @@ export class TalentService {
   constructor(private http: HttpClient) {
 
     // Retrieve the selected language code from localStorage
-    const selectedLanguageSlug = localStorage.getItem('lang') || '';
+    let selectedLanguageSlug = '';
+    if (isPlatformBrowser(this.platformId)){
+      selectedLanguageSlug = localStorage.getItem('lang') || '';
+    }
 
     // Find the corresponding language ID from the langs array
     const lang = this.languages.find(
@@ -45,7 +51,10 @@ export class TalentService {
     this.lang = lang ? lang.id : 1;
 
     this.apiUrl = environment.apiUrl;
-    this.userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)){
+      this.userToken = localStorage.getItem('lang') || '';
+    }
     this.domain = environment.targetDomain.id;
     console.log(this.domain);
   }
@@ -70,7 +79,10 @@ export class TalentService {
   }
 
   deleteNotifications(ids: any[] = []): Observable<{ status: boolean, message: string }> {
-    let langId = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('lang_id') || '';
+    }
     return this.http.request<{ status: boolean, message: string }>('DELETE', `${this.apiUrl3}notifications?langId=${langId}`, {
       body: { ids },
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -92,18 +104,25 @@ export class TalentService {
 
   getProfileData(params: any = {}): Observable<any> {
     const headers = this.headers();
-    console.warn('tetstetsts',this.apiUrl + 'profile/')
-    let lang_id = localStorage.getItem('lang_id');
+    console.warn('tetstetsts', this.apiUrl + 'profile/')
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}profile/${lang_id}?header_profile=true`,
+      `${this.apiUrl}profile/${langId}?header_profile=true`,
       { headers, params }
     );
   }
 
   getPackages(): Observable<any> {
     const headers = this.headers();
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-packages?lang=` + localStorage.getItem('lang_id'),
+      `${this.apiUrl}user/get-packages?lang=` + langId,
       { headers }
     );
   }
@@ -134,9 +153,12 @@ export class TalentService {
 
   getUser(user: any, params: any = {}): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/profile/${lang_id}/${user}`,
+      `${this.apiUrl}user/profile/${langId}/${user}`,
       { headers, params }
     );
   }
@@ -159,7 +181,10 @@ export class TalentService {
 
   getBoosterData(params: any = {}): Observable<any> {
     const headers = this.headers();
-    let langId = localStorage.getItem('lang_id')
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/get-booster-stats/${langId}`,
       { headers }
@@ -219,7 +244,10 @@ export class TalentService {
 
   getPerformanceData(): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}player/get-performance-detail/${lang_id}`, { headers }
     );
@@ -227,7 +255,10 @@ export class TalentService {
 
   getTransferData(): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}player/get-transfer-detail/${lang_id}`, { headers }
     );
@@ -243,7 +274,10 @@ export class TalentService {
 
   getViewTransfersData(id: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-transfer-detail/${lang_id}/${id}`, { headers }
     );
@@ -268,7 +302,10 @@ export class TalentService {
 
   getCountriesHavingClub(params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-countries-having-clubs/${lang_id}`, { headers, params }
     );
@@ -312,15 +349,21 @@ export class TalentService {
   }
 
   getUserPlans(params: any = {}): Observable<any> {
-    let lang = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: any }>(
-      `${this.apiUrl}user/get-active-packages/${lang}`, { params }
+      `${this.apiUrl}user/get-active-packages/${lang_id}`, { params }
     );
   }
 
   uploadCoverImage(formdata: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/${lang_id}`, formdata, { headers });
   }
 
@@ -340,7 +383,10 @@ export class TalentService {
 
   deleteCoverImage(): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/delete-cover-image/${lang_id}`, { headers }
     );
@@ -348,14 +394,20 @@ export class TalentService {
 
   uploadProfileImage(formdata: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/${lang_id}`, formdata, { headers });
   }
 
   uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
-    let currentLang = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${currentLang}/`, formdata,
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${lang_id}/`, formdata,
       {
         headers,
         reportProgress: true,
@@ -365,7 +417,10 @@ export class TalentService {
 
   deleteGalleryImage(params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file/${lang_id}`, params, { headers });
   }
 
@@ -391,20 +446,29 @@ export class TalentService {
 
   updatePerformance(performanceId: any, params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.post<any>(`${this.apiUrl}player/edit-performance-detail/${performanceId}/${lang_id}`, params, { headers });
   }
 
   updatePerformanceManual(performanceId: any, params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.post<any>(`${this.apiUrl}player/edit-performance-detail-manual/${performanceId}/${lang_id}`, params, { headers });
   }
 
   // Update newsletter subscription
   updateNewsletter(params: any): Observable<any> {
     const headers = this.headers();
-    params.lang = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      params.lang = localStorage.getItem('lang_id') || '';
+    }
 
     return this.http.post<any>(`${this.apiUrl}user/settings/newsletter`, params, { headers });
   }
@@ -422,19 +486,28 @@ export class TalentService {
 
   addPerformance(params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.post<any>(`${this.apiUrl}player/add-performance-detail/${lang_id}`, params, { headers });
   }
 
   addPerformanceManual(params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.post<any>(`${this.apiUrl}player/add-performance-detail-manual/${lang_id}`, params, { headers });
   }
 
   deletePerformanceReport(params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.post<any>(`${this.apiUrl}player/delete-performance-report`, params, { headers });
   }
 
@@ -446,8 +519,10 @@ export class TalentService {
 
   deletePerformanceManual(params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
-
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<any>(`${this.apiUrl}player/delete-performance-detail-manual/${params}/${lang_id}`, { headers });
   }
 
@@ -518,7 +593,10 @@ export class TalentService {
     if (unset_all) {
       params = params.append('unset_all', true);
     }
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     params = params.append('lang', lang_id + '');
 
     return this.http.post(`${this.apiUrl}user/set-featured-file/${lang_id}`, params, { headers });
@@ -545,7 +623,10 @@ export class TalentService {
 
   getPerformancesList(id: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<any>(
       `${this.apiUrl}get-performance-detail/${lang_id}/${id}`,
       { headers }
@@ -591,7 +672,11 @@ export class TalentService {
 
     let params = new HttpParams();
     params = params.append('coupon_code', couponCode);
-    params = params.append('lang', localStorage.getItem('lang_id') + '');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
+    params = params.append('lang', lang_id + '');
 
     return this.http.post(`${this.apiUrl}user/validate-coupon`, params, { headers });
   }
@@ -677,7 +762,10 @@ export class TalentService {
   // Fetch teams and store globally and in localStorage
   getTeams(): Observable<any> {
     const headers = this.headers();
-
+    //let lang_id = '';
+    if (!this.platformId) {
+      return of(this.teams)
+    }
     const cachedTeams = localStorage.getItem('teams');
 
     if (cachedTeams) {
@@ -729,7 +817,10 @@ export class TalentService {
 
   getPurchaseData(pageNumber: number, pageSize: number, lang: any = {}): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: any }>(
       `${this.apiUrl}user/get-purchase-history?lang=${lang_id}`, {
       params: {
@@ -835,10 +926,13 @@ export class TalentService {
 
   deleteProfile(): Observable<any> {
     const headers = this.headers();
-    let langID = localStorage.getItem('lang_id')
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
     // const headers = this.headers();
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}user/delete-my-account/${langID}`,
+      `${this.apiUrl}user/delete-my-account/${lang_id}`,
       { headers }
     )
     // return this.http.get<any>(`${this.apiUrl}/delete-user`, params, { headers });
@@ -848,7 +942,10 @@ export class TalentService {
     let date = new Date(datetime);
 
     // Get language from localStorage
-    let language = localStorage.getItem('lang') || 'en'; // Default to English
+    let language = 'de';
+    if (isPlatformBrowser(this.platformId)){
+      language = localStorage.getItem('lang') || 'de';
+    }
 
     // Define locale and determine whether to use 12-hour or 24-hour format
     let locale: string;
@@ -963,8 +1060,12 @@ export class TalentService {
     const headers = this.headers();
     let params = new HttpParams();
     params = params.append('scout_id', scoutID);
-    let langID = localStorage.getItem('lang_id');
-    return this.http.post(`${this.apiUrl}player/remove-scout/${langID}`, params, {
+    
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = localStorage.getItem('lang_id') || '';
+    }
+    return this.http.post(`${this.apiUrl}player/remove-scout/${lang_id}`, params, {
       headers // Specify response type for downloading files
     });
   }

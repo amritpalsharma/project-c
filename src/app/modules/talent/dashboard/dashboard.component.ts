@@ -9,7 +9,8 @@ import { EditHighlightsComponent } from '../tabs/edit-highlights/edit-highlights
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { ToastrService } from 'ngx-toastr';
 import introJs from 'intro.js';
-import 'intro.js/introjs.css'; // Import the styles for Intro.js
+// import 'intro.js/introjs.css'; // Import the styles for Intro.js
+
 import { Lightbox } from 'ngx-lightbox';
 // import { LightboxDialogComponent } from '../lightbox-dialog/lightbox-dialog.component';
 import { LightboxDialogComponent } from '../../shared/lightbox-dialog/lightbox-dialog.component';
@@ -30,6 +31,8 @@ import { descriptors } from 'chart.js/dist/core/core.defaults';
 import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-membership-profile.component';
 import { UserStateService } from '../../../services/user-state.service';
 import { GalleryTabComponent } from '../tabs/gallery-tab/gallery-tab.component';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -67,7 +70,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     public webPages: WebPages,
     private titleService: TitleService,
     private globalSettings: GlobalSettingsService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -145,7 +149,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.getJsonTranslations();
     this.themeChanged();
-    this.introInstance = introJs();
+    if (isPlatformBrowser(this.platformId)) {
+      this.introInstance = introJs();
+    }
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;
@@ -223,33 +229,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   ngAfterViewInit() {
-    // const videoEl = this.videoPlayer.nativeElement;
 
-    // // 🔐 Ensure it's muted in code too
-    // videoEl.muted = true;
-
-    // const tryPlay = () => {
-    //   const playPromise = videoEl.play();
-    //   if (playPromise !== undefined) {
-    //     playPromise
-    //       .then(() => {
-    //         console.log('Video autoplayed successfully.');
-    //       })
-    //       .catch((error) => {
-    //         console.warn('Autoplay failed:', error);
-    //       });
-    //   }
-    // };
-
-    // const io = new IntersectionObserver((entries) => {
-    //   if (entries[0].isIntersecting) {
-    //     videoEl.load();
-    //     tryPlay();
-    //     io.disconnect();
-    //   }
-    // });
-
-    // io.observe(videoEl);
   }
 
   stopIntroTour() {
@@ -511,7 +491,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
           this.photoLoading = false;
           // this.isPremium = false;
-          if (this.StartTour && this.isTourFirstTime) {
+          if (this.StartTour && this.isTourFirstTime && isPlatformBrowser(this.platformId)) {
             // if (true) {
             setTimeout(() => {
               this.isTourFirstTime = false;

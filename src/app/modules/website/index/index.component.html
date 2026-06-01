@@ -137,6 +137,7 @@
       <div class="container-fluid" *ngIf="sliderDetail?.users">
         <div class="carousel-slide" #owlCarousel (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
           (touchstart)="onTouchStart()" (touchend)="onTouchEnd()">
+          @if (isBrowser) {
           <owl-carousel-o [options]="customOptions">
             <!-- {{ sliderDetail?.users | json }} -->
             @for(slider of sliderDetail?.users; track $index) {
@@ -199,6 +200,7 @@
               }
 
           </owl-carousel-o>
+          } 
         </div>
         <div class="joined-btn d-flex justify-content-center mt-5">
           <button *ngIf="pageDetail?.slider_btn_txt" type="button" [routerLink]="'/explore'"

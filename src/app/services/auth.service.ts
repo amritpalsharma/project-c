@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,13 @@ export class AuthService {
   languages: any = environment.langs;
   public lang: any;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
 
     // Retrieve the selected language code from localStorage
-    const selectedLanguageSlug = localStorage.getItem('lang_id') || '';
+    let selectedLanguageSlug = '2';
+    if (isPlatformBrowser(this.platformId)) {
+      selectedLanguageSlug = String(localStorage.getItem('lang_id'));
+    }
 
     // Default to a specific language ID if none is found (e.g., English)
     this.lang = selectedLanguageSlug ? selectedLanguageSlug : 1;
@@ -30,13 +35,16 @@ export class AuthService {
   }
 
   resetPassword(newPassword: string, confirmPassword: string): Observable<any> {
-    let token = localStorage.getItem('authToken');
-    // formData.append('lang', langId);
-    let langID = localStorage.getItem('lang_id');
+    let token = '';
+    let langID = '2';
+    if (isPlatformBrowser(this.platformId)) {
+      token = String(localStorage.getItem('authToken'));
+      langID = String(localStorage.getItem('lang_id'));
+    }
     const data = {
       new_password: newPassword,
       new_con_password: confirmPassword,
-      lang:langID
+      lang: langID
     };
     return this.http.post(this.apiUrl + '/reset-password', data, {
       headers: {
@@ -46,9 +54,13 @@ export class AuthService {
   }
 
   register(registrationData: any): Observable<any> {
+    let langID = '2';
+    if (isPlatformBrowser(this.platformId)) {
+      langID = String(localStorage.getItem('lang_id'));
+    }
     return this.http.post<any>(`${this.apiUrl}register`, registrationData, {
       headers: {
-        'Lang': localStorage.getItem('lang_id') || '1'
+        'Lang': langID
       }
     });
   }
@@ -58,26 +70,32 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userRole');
-    localStorage.removeItem('userData');
-    localStorage.removeItem('notificationSeen');
-    sessionStorage.clear();
 
-    // localStorage.setItem('logoutMessage', 'true');
-    this.router.navigate(['/']); // Redirect to the login or home page
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userRole');
+      localStorage.removeItem('userData');
+      localStorage.removeItem('notificationSeen');
+      sessionStorage.clear();
+      // localStorage.setItem('logoutMessage', 'true');
+      this.router.navigate(['/']); // Redirect to the login or home page
+      // window.location.reload();
+    }
 
-    window.location.reload();
   }
 
   isLoggedIn(): boolean {
-    // Implement your logic to check if the user is logged in
-    // For example, check if a token exists in local storage
-    return !!localStorage.getItem('authToken');
+    if (isPlatformBrowser(this.platformId)) {
+      return !!localStorage.getItem('authToken');
+    }
+    return false;
   }
 
   forgotPassword(email: string): Observable<any> {
-    let confirmation_link = window.location.origin + '/home';
+    let confirmation_link = '';
+    if (isPlatformBrowser(this.platformId)) {
+      // confirmation_link = window.location.origin + '/home';
+    }
     return this.http.post(`${this.apiUrl}/forgot-password`, { email, confirmation_link });
   }
 
@@ -116,7 +134,10 @@ export class AuthService {
 
   getDashboardLink(): string {
     // const role = this.getUserRole();
-    const role = localStorage.getItem('userRole');
+    let role = '';
+    if (isPlatformBrowser(this.platformId)) {
+      role = String(localStorage.getItem('userRole'));
+    }
     // console.log('current role is : '+role);
     switch (role) {
       case '1':
@@ -140,7 +161,10 @@ export class AuthService {
 
   getPlansPageLink() {
     if (this.isLoggedIn()) {
-      const role = localStorage.getItem('userRole');
+      let role = '';
+      if (isPlatformBrowser(this.platformId)) {
+        role = String(localStorage.getItem('userRole'));
+      }
       switch (role) {
         case '1':
           return false;

@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog'; // ← pulls overlay.mjs into SSR bundle
 
 @Component({
   selector: 'scout-lightbox-dialog',
@@ -19,7 +20,8 @@ export class LightboxDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, // Receive data from parent
-    private dialogRef: MatDialogRef<LightboxDialogComponent>
+    private dialogRef: MatDialogRef<LightboxDialogComponent>,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {

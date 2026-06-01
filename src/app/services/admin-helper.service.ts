@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminHelperService {
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
   /**
      * ✅ Convert Date-Time to 24-hour format
      * @param inputDateTime Example: "02.21.2025 - 10.30 AM"
@@ -62,8 +64,10 @@ export class AdminHelperService {
     // Convert the input string into a Date object
     let date = new Date(datetime);
 
-    // Get language from localStorage
-    let language = localStorage.getItem('lang') || 'en'; // Default to English if null
+    let language = 'de';
+    if (isPlatformBrowser(this.platformId)) {
+      language = localStorage.getItem('lang') || 'de'; // Default to English if null
+    }
 
     // Define locale and time zone based on language
     let locale: string;

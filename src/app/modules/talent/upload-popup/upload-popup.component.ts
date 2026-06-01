@@ -45,6 +45,9 @@ export class UploadPopupComponent {
   onDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
+    if (typeof document === 'undefined') {
+      return;
+    }
     const element = event.currentTarget as HTMLElement;
     element.classList.add('dragover');
   }
@@ -53,6 +56,9 @@ export class UploadPopupComponent {
   onDragLeave(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
+    if (typeof document === 'undefined') {
+      return;
+    }
     const element = event.currentTarget as HTMLElement;
     element.classList.remove('dragover');
   }
@@ -62,6 +68,9 @@ export class UploadPopupComponent {
 
     event.preventDefault();
     event.stopPropagation();
+    if (typeof document === 'undefined') {
+      return;
+    }
 
     const validTypes = ['image/jpeg', 'image/png', 'video/mp4'];
     const file = event.dataTransfer?.files[0];

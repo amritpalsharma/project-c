@@ -4,6 +4,10 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { GlobalSettingsService } from '../services/global-settings.service';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -11,16 +15,25 @@ import { GlobalSettingsService } from '../services/global-settings.service';
 
 export class WebPages {
 
-    constructor(private http: HttpClient, private globalSettings: GlobalSettingsService) {
-        this.apiUrl = environment?.apiUrl;
-    }
+    private platformId = inject(PLATFORM_ID);
     private apiUrl = environment?.apiUrl;
     private apiBaseUrl = environment?.apiBaseUrl;
     private url = environment?.url;
     // private frontendApiUrl = this.url + 'frontend/';
     private frontendApiUrl = this.apiBaseUrl + '/frontend/';
     private domainDefaultLang = this.globalSettings.getLanguageId();
-    private langId = localStorage.getItem('lang_id') || '' + this.domainDefaultLang + '';
+    private langId = this.domainDefaultLang + '';
+    constructor(private http: HttpClient, private globalSettings: GlobalSettingsService) {
+        this.apiUrl = environment?.apiUrl;
+
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            let lang = localStorage.getItem('lang_id');
+            if (lang) {
+                this.langId = lang;
+            }
+        }
+    }
     private languageId = new BehaviorSubject<string>(this.langId); // Initial value
     languageId$ = this.languageId.asObservable(); // Expose as observable
 
@@ -32,8 +45,11 @@ export class WebPages {
 
 
     getAllPages(lang_id: any = 1, params: any): Observable<any> {
-        let currentLang = localStorage.getItem('lang_id');
-
+        let currentLang = '2';
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.get<{ status: boolean, message: string, data: {} }>(
             `${this.apiUrl}admin/get-pages/${currentLang}`, { params }
         );
@@ -57,14 +73,22 @@ export class WebPages {
     }
 
     getAllLanguage(): Observable<any> {
-        let currentLang = localStorage.getItem('lang_id');
+        let currentLang = '2';
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.get<{ status: boolean, message: string, data: {} }>(
             `${this.apiUrl}get-languages/${currentLang}`
         );
     }
 
     getAllLocations(): Observable<any> {
-        let currentLang = localStorage.getItem('lang_id');
+        let currentLang = '2';
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.get<{ status: boolean, message: string, data: {} }>(
             `${this.apiUrl}get-domains/${currentLang}`
         );
@@ -111,16 +135,24 @@ export class WebPages {
     }
 
     getDynamicHomePage(langId: any): Observable<any> {
-        let lang_id = localStorage.getItem('lang_id');
+        let currentLang = '2';
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            currentLang = String(localStorage.getItem('lang_id'));
+        }
         let currentDomain = this.globalSettings.getdomainId();
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-page-by-slug?page_type=home&whereClause[role]=4&lang_id=${lang_id}&domain=${currentDomain}&num=${random}`
+            `${this.frontendApiUrl}get-page-by-slug?page_type=home&whereClause[role]=4&lang_id=${currentLang}&domain=${currentDomain}&num=${random}`
         );
     }
 
     getDynamicContentPage(content: any, langId: any): Observable<any> {
-        let lang_id = localStorage.getItem('lang_id');
+        let lang_id = '2';
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            lang_id = String(localStorage.getItem('lang_id'));
+        }
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
             `${this.frontendApiUrl}get-page-by-slug?page_type=${content}&lang_id=${lang_id}&mum=${random}`
@@ -128,7 +160,11 @@ export class WebPages {
     }
 
     getDynamicNewsPage(langID: any): Observable<any> {
-        let lang_id = localStorage.getItem('lang_id');
+        let lang_id = '2';
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            lang_id = String(localStorage.getItem('lang_id'));
+        }
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
             `${this.frontendApiUrl}get-news-page/${lang_id}?page_type=news&random=${random}`
@@ -136,7 +172,11 @@ export class WebPages {
     }
 
     getNewsContentPage(id: any, langId: any): Observable<any> {
-        let lang_id = localStorage.getItem('lang_id');
+        let lang_id = '2';
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            lang_id = String(localStorage.getItem('lang_id'));
+        }
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
             `${this.frontendApiUrl}get-single-news/${id}/${lang_id}?random=${random}`
@@ -172,10 +212,14 @@ export class WebPages {
     }
 
     getPriceAndCurrency(interVal: string): Observable<any> {
-        let currentLang = localStorage.getItem('lang_id');
+        let lang_id = '2';
+        // if (isPlatformBrowser(this.platformId)){
+        if (isPlatformBrowser(this.platformId)) {
+            lang_id = String(localStorage.getItem('lang_id'));
+        }
         let currentDomainId = this.globalSettings.getdomainId();
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.apiUrl}/get-packages-by-domain/${interVal}/${currentDomainId}/${currentLang}`
+            `${this.apiUrl}/get-packages-by-domain/${interVal}/${currentDomainId}/${lang_id}`
         );
     }
 }

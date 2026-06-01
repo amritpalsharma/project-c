@@ -1,5 +1,7 @@
+import { DOCUMENT } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 import { NgModule, isDevMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 // import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxEditorModule } from 'ngx-editor';
@@ -12,11 +14,11 @@ import { MaterialModule } from '../app/modules/material/material.module'
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { SharedModule } from './modules/shared/shared.module';
+// import { SharedModule } from './modules/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { LightboxDialogComponent } from './modules/talent/lightbox-dialog/lightbox-dialog.component';
 import { WebsiteModule } from './modules/website/website.module';
-import { MatTooltipModule } from '@angular/material/tooltip';
+// import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getPaginatorIntl } from './modules/shared/paginator/custom-paginator-intl';
 // import { PerformanceAnalysisComponent } from './modules/admin/tabs/performance-analysis/performance-analysis.component';
@@ -27,24 +29,29 @@ import { getPaginatorIntl } from './modules/shared/paginator/custom-paginator-in
 // import { DOCUMENT } from '@angular/common';
 
 // New By Amrit
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { MatSelectModule } from '@angular/material/select';
+// import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+// import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 // No Scroll Body
-import { Overlay, OverlayModule } from '@angular/cdk/overlay';
-import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
-import { ScrollStrategy } from '@angular/cdk/overlay';
+// import { Overlay, OverlayModule } from '@angular/cdk/overlay';
+// import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
+// import { ScrollStrategy } from '@angular/cdk/overlay';
 import { GlobalSettingsService } from './services/global-settings.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-export function matSelectScrollStrategyFactory(overlay: Overlay): ScrollStrategy {
-  return overlay.scrollStrategies.reposition(); // you can try .noop() as well
-}
+// export function matSelectScrollStrategyFactory(overlay: Overlay): ScrollStrategy {
+//   return overlay.scrollStrategies.reposition(); // you can try .noop() as well
+// }
 // End No Scroll Body
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { SeoService } from './services/seo.service';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 
@@ -64,12 +71,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     ReactiveFormsModule,
     FormsModule,
-    MatTooltipModule,
+    // MatTooltipModule,
     HttpClientModule,
     MaterialModule,
-    MatTooltipModule,
+    // MatTooltipModule,
     MatDialogModule,
-    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
@@ -85,21 +91,21 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgxEditorModule,
+    // NgxEditorModule,
     // NgSelectModule,
     OAuthModule.forRoot(),
     // Added By AMrit
-    MatSelectModule,
+    // MatSelectModule,
     MatFormFieldModule,
-    NgxMatSelectSearchModule,
-    OverlayModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      // enabled: !isDevMode(),
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
+    // NgxMatSelectSearchModule,
+    // OverlayModule,
+    // ServiceWorkerModule.register('ngsw-worker.js', {
+    //   // enabled: !isDevMode(),
+    //   enabled: environment.production,
+    //   // Register the ServiceWorker as soon as the application is stable
+    //   // or after 30 seconds (whichever comes first).
+    //   registrationStrategy: 'registerWhenStable:30000'
+    // }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
@@ -108,22 +114,42 @@ export function HttpLoaderFactory(http: HttpClient) {
       useFactory: getPaginatorIntl,
       deps: [TranslateService] // or TranslateService if used directly in factory
     },
-    {
-      provide: MAT_SELECT_SCROLL_STRATEGY,
-      useFactory: matSelectScrollStrategyFactory,
-      deps: [Overlay],
-    }
+    // {
+    //   // provide: MAT_SELECT_SCROLL_STRATEGY
+    //   // useFactory: matSelectScrollStrategyFactory,
+    //   // deps: [Overlay],
+    // },
+    // provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(
     private globalSettingsService: GlobalSettingsService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private router: Router,
+    private seoService: SeoService,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.setLanguage();
   }
 
+  ngOnInit() {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        // const canonicalUrl =
+        //   window.location.origin +
+        //   this.router.url;
+        // this.seoService.setCanonical(canonicalUrl);
+        const currentUrl = this.document.URL;
+
+        console.log('DOCUMENT URL:', currentUrl);
+
+        this.seoService.setCanonical(currentUrl);
+
+      });
+  }
 
 
   // Set the language based on the GlobalSettingsService

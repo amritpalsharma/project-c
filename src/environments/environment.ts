@@ -38,8 +38,6 @@ export const environment = {
     { language: 'Portuguese', slug: 'pt', id: 6, flag: 'Portugal.svg', locale: 'pt-PT' },
     { language: 'Danish', slug: 'dk', id: 7, flag: 'Denmark.svg', locale: 'da-DK' },
     { language: 'Swedish', slug: 'sv', id: 8, flag: 'Sweden-sweden.svg', locale: 'sv-SE' },
-    // { language: 'Albania', slug: 'sq', id: 9, flag: 'Albanien.svg', locale: 'sq-AL' },
-    // { language: 'Serbian', slug: 'sr', id: 10, flag: 'Serbia.svg', locale: 'sr-RS' },
   ],
 
   langs_de: [
@@ -98,7 +96,7 @@ export const environment = {
   paymentMode: 'live',
   apiUrl: 'https://api.socceryou.ch/api/',
   apiBaseUrl: 'https://api.socceryou.ch/',
-  baseUrl: 'https://api.socceryou.ch/uploads/', 
+  baseUrl: 'https://api.socceryou.ch/uploads/',
   url: 'https://api.socceryou.ch/',
   socketUrl: 'https://alerts.socceryou.ch/',
   mailchimp: {
@@ -108,6 +106,20 @@ export const environment = {
 
   //6Ld7hb8qAAAAAOVuEobWsckFQVqnzeqmXm6ljs_W
   //for staging : 6LegcsYqAAAAAGqGAxm-bpXs96qJdYcxBMIOrD26
-  captchaKey: '6LdrnMcqAAAAAFF3MvbmI8vhzplwmf_EIUuQc1jZ'
+  captchaKey: '6LdrnMcqAAAAAFF3MvbmI8vhzplwmf_EIUuQc1jZ',
+  // currentDomain: 'https://staging.socceryou.pt'
+  // currentDomain: 'https://www.socceryou.al'
+  // currentDomain: 'https://www.socceryou.at'
+  // currentDomain: 'https://www.socceryou.be'
+  // currentDomain: 'https://www.socceryou.ch'
+  // currentDomain: 'https://www.socceryou.co.uk'
+  // currentDomain: 'https://www.socceryou.de'
+  // currentDomain: 'https://www.socceryou.dk'
+  // currentDomain: 'https://www.socceryou.es'
+  // currentDomain: 'https://www.socceryou.fr'
+  // currentDomain: 'https://www.socceryou.it'
+  // currentDomain: 'https://www.socceryou.org'
+  // currentDomain: 'https://www.socceryou.pt'  
+  currentDomain: 'https://www.socceryou.se'
 } as const;
 

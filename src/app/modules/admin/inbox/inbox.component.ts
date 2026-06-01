@@ -9,7 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { SharedService } from '../../../services/shared.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-inbox',
@@ -37,54 +38,31 @@ export class InboxComponent {
     private titleService: TitleService,
     private translateService: TranslateService,
     private sharedservice: SharedService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   async ngOnInit() {
     this.getJsonTranslations();
-    this.sharedservice.data$.subscribe((data) => {
-      if (data.action == 'lang_updated') {
-        this.getJsonTranslations();
-        // this.reloadChatComponent();
+    if (isPlatformBrowser(this.platformId)) {
+      this.sharedservice.data$.subscribe((data) => {
+        if (data.action == 'lang_updated') {
+          this.getJsonTranslations();
+          // this.reloadChatComponent();
+        }
+      })
+      const userDataString = localStorage.getItem('userData');
+      if (userDataString) {
+        this.userData = JSON.parse(userDataString);
+        console.log('pic', this.userData)
+
       }
-    })
-    const userDataString = localStorage.getItem('userData');
-    if (userDataString) {
-      this.userData = JSON.parse(userDataString);
-      console.log('pic', this.userData)
-      // this.user = {
-      //   id: this.userData.id,
-      //   name: this.userData.first_name,
-      //   email: this.userData.username,
-      //   photoUrl: this.userData.profile_image_path,
-      //   welcomeMessage: null,
-      //   role: "hidden"
-      // };
-      // const session = await this.talkService.init(this.user);
-      // const chatbox = session.createInbox();
 
+      const theme = localStorage.getItem('theme');
 
-      // chatbox.onSendMessage((event) => {
-      //   let getReceiverIds = Object.keys(event.conversation.participants)
-      //     .filter(val => val != this.user.id);
-      //   this.socketService.emit('sendMessage', { senderId: this.user.id, receiverIds: getReceiverIds });
-      // });
-
-      // // Defer mounting chatbox until next event loop cycle
-      // setTimeout(() => {
-      //   chatbox.mount(document.getElementById('talkjs-container'));
-
-      // }, 0);
-      // setTimeout(() => {
-      //   this.isLoading = false;
-      // }, 1500);
-
-    }
-
-    const theme = localStorage.getItem('theme');
-
-    if (theme == 'dark') {
-      this.talkService.toggleTheme(true);
+      if (theme == 'dark') {
+        this.talkService.toggleTheme(true);
+      }
     }
   }
 
@@ -198,6 +176,9 @@ export class InboxComponent {
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     const chatContainer = document.getElementById('talkjs-container');
+    if (typeof document === 'undefined') {
+      return;
+    }
     if (chatContainer) {
       if (this.isDarkMode) {
         chatContainer.classList.add('dark-theme');
@@ -268,7 +249,11 @@ export class InboxComponent {
 
   // code by amrit
   async ngAfterViewInit() {
+    if (typeof document === 'undefined') {
+      return;
+    }
     const themeStored = localStorage.getItem('theme');
+
     this.theme = themeStored === 'dark' ? 'dark_custom_users' : 'default_users';
     document.body.classList.toggle('dark-mode', this.theme === 'dark_custom_users');
     const userDataString = localStorage.getItem('userData');

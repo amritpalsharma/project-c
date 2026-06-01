@@ -37,6 +37,9 @@ export class UploadPopupComponent {
 
   // Handles when dragging files over the drop zone
   onDragOver(event: DragEvent) {
+    if (typeof document === 'undefined') {
+      return;
+    }
     event.preventDefault();
     event.stopPropagation();
     const element = event.currentTarget as HTMLElement;
@@ -45,6 +48,9 @@ export class UploadPopupComponent {
 
   // Handles when dragging files leaves the drop zone
   onDragLeave(event: DragEvent) {
+    if (typeof document === 'undefined') {
+      return;
+    }
     event.preventDefault();
     event.stopPropagation();
     const element = event.currentTarget as HTMLElement;
@@ -55,6 +61,9 @@ export class UploadPopupComponent {
   onFileDropped(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
+    if (typeof document === 'undefined') {
+      return;
+    }
     const element = event.currentTarget as HTMLElement;
     element.classList.remove('dragover');
 

@@ -7,8 +7,12 @@ import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
 import { ThemeService } from '../../../services/theme.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
-import { isNumber } from 'util';
+// import { isNumber } from 'util';
 import { Subject, takeUntil } from 'rxjs';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
+import { Title, Meta } from '@angular/platform-browser';
 
 declare var bootstrap: any; // Declare bootstrap
 
@@ -74,7 +78,7 @@ export class IndexComponent {
 
   @ViewChild('heroVideo') heroVideo!: ElementRef<HTMLVideoElement>;
   fallbackImage: string = 'assets/images/1.png'; // Path to your fallback image
-  currentTheme: string = localStorage.getItem('theme') || 'light';
+  currentTheme: string = 'dark';
   selectedLangId: any = null;
   pageDetail: any = null;
   sliderDetail: any = null;
@@ -267,8 +271,23 @@ export class IndexComponent {
   isUserLoggedIn: boolean = false;
   LoggedInUserDashboardLink: string = '';
 
-  constructor(private shareservice: SharedService, private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService, private themeService: ThemeService, private globalSettings: GlobalSettingsService) {
+  constructor(private shareservice: SharedService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private advertisementService: AdvertisementService,
+    private webPages: WebPages,
+    private authService: AuthService,
+    private themeService: ThemeService,
+    private metaService: Meta,
+    private globalSettings: GlobalSettingsService) {
+    ssrDebug(this.platformId, 'IndexComponent');
+    if (typeof localStorage !== 'undefined') {
+      const theme = localStorage.getItem('theme');
 
+      if (theme !== null && theme !== undefined) {
+        // your code
+        this.currentTheme = theme;
+      }
+    }
   }
 
 
@@ -304,10 +323,16 @@ export class IndexComponent {
 
   // Event handlers for mouse enter and leave
   onMouseEnter() {
+    if (typeof document === 'undefined') {
+      return;
+    }
     this.owlCarousel.nativeElement.classList.add('stop-autoplay');
   }
 
   onMouseLeave() {
+    if (typeof document === 'undefined') {
+      return;
+    }
     this.owlCarousel.nativeElement.classList.remove('stop-autoplay');
   }
 
@@ -336,9 +361,11 @@ export class IndexComponent {
   }
 
   adVisible: boolean[] = [true, true, true, true, true]; // Array to manage ad visibility
-  currentLang: string = localStorage.getItem('lang') || this.globalSettings.getLanguage();
+  currentLang: string = this.globalSettings.getLanguage();
+  isBrowser = false;
 
   ngOnInit() {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.getLangslugByID(this.currentLang);
     this.globalSettings.indexFunctionCall$.subscribe((data) => {
       console.log('Global Settings IndexFunction Call');
@@ -347,13 +374,9 @@ export class IndexComponent {
     // Initially, all ads are visible
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.adVisible = [true, true, true, true, true];
-    // alert(localStorage.getItem('lang'));
-    // this.webPages.languageId$.subscribe((data) => {
-    //   // if(confirm('theme is '+this.currentTheme)){
-    //   this.getPageDynamicData(data);
-    //   this.getLangslugByID(data);
-    //   // this.showContent(this.selectedContent);
-    // });
+    if (typeof localStorage !== 'undefined') {
+      this.currentLang = localStorage.getItem('lang') + '';
+    }
     this.webPages.languageId$
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
@@ -364,9 +387,7 @@ export class IndexComponent {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.showContent(this.selectedContent);
     });
-    // let selectedLang = localStorage.getItem('lang');
     this.LoggedInUserDashboardLink = this.authService.getDashboardLink();
-    // console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
   }
 
   destroy$ = new Subject<void>();
@@ -392,58 +413,217 @@ export class IndexComponent {
     return true;
   }
 
+  // getPageDynamicData(languageId: any) {
+
+  //   this.webPages.getDynamicHomePage(languageId).subscribe((res) => {
+  //     let pageData = res.data.pageData;
+  //     let sliderData = res.data.sliderData;
+  //     if (res.status) {
+  //       this.pageDetail = pageData;
+  //       this.banner_img = res.data.base_url + pageData.banner_img;
+  //       this.banner_img_dark_mode = res.data.base_url + pageData.banner_img_dark_mode;
+  //       this.banner_bg_img = res.data.base_url + pageData.banner_bg_img;
+  //       this.sliderDetail = sliderData;
+  //       if (sliderData.totalCount < 6) {
+  //         for (let i = sliderData.totalCount; i < 7; i++) {
+  //           this.sliderDetail.users.push(
+  //             {
+  //               isPlaceholder: true, role_name: 'talent', first_name: 'lorem', last_name: 'ipusam',
+  //               user_nationalities: [],
+  //               meta: { profile_image_path: this.fallbackImage, date_of_birth: '04-01-2002' }
+  //             });
+  //         }
+  //         console.warn('placeholders ', this.sliderDetail.users);
+  //       } else {
+  //         console.warn('Slider is greater than 6');
+  //       }
+  //       this.club_logo_path = this.sliderDetail.imagePath;
+  //       this.pre_club_logo_path = this.sliderDetail.flagPath;
+
+  //       console.log("data is here", res.data.advertisementData, res.data.advertisemnet_base_url)
+
+  //       this.advertisementData = res.data.advertisementData;
+  //       this.advertisementList = res.data.allAdsList;
+  //       this.imageBaseUrl = res.data.base_url;
+  //       this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+  //       this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
+
+  //       this.isLoading = false;
+
+  //       this.startCountdown();
+
+
+  //     }
+  //   });
+  // }
+
   getPageDynamicData(languageId: any) {
 
+    ssrDebug(this.platformId, 'GET_PAGE_DYNAMIC_DATA_START');
+
     this.webPages.getDynamicHomePage(languageId).subscribe((res) => {
+
+      ssrDebug(this.platformId, 'API_RESPONSE_RECEIVED');
+
       let pageData = res.data.pageData;
+
+      ssrDebug(this.platformId, 'PAGE_DATA_DONE');
+
       let sliderData = res.data.sliderData;
+
+      ssrDebug(this.platformId, 'SLIDER_DATA_DONE');
+
       if (res.status) {
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /*### Meta Tags ###*/
+
+        ssrDebug(this.platformId, 'RES_STATUS_TRUE');
+
         this.pageDetail = pageData;
+
+        ssrDebug(this.platformId, 'PAGE_DETAIL_SET');
+
         this.banner_img = res.data.base_url + pageData.banner_img;
+
+        ssrDebug(this.platformId, 'BANNER_IMG_SET');
+
         this.banner_img_dark_mode = res.data.base_url + pageData.banner_img_dark_mode;
+
+        ssrDebug(this.platformId, 'BANNER_DARK_SET');
+
         this.banner_bg_img = res.data.base_url + pageData.banner_bg_img;
+
+        ssrDebug(this.platformId, 'BANNER_BG_SET');
+
         this.sliderDetail = sliderData;
+
+        ssrDebug(this.platformId, 'SLIDER_DETAIL_SET');
+
         if (sliderData.totalCount < 6) {
+
+          ssrDebug(this.platformId, 'SLIDER_LESS_THAN_6');
+
           for (let i = sliderData.totalCount; i < 7; i++) {
-            this.sliderDetail.users.push(
-              {
-                isPlaceholder: true, role_name: 'talent', first_name: 'lorem', last_name: 'ipusam',
-                user_nationalities: [],
-                meta: { profile_image_path: this.fallbackImage, date_of_birth: '04-01-2002' }
-              });
+
+            ssrDebug(this.platformId, 'PLACEHOLDER_LOOP_' + i);
+
+            this.sliderDetail.users.push({
+              isPlaceholder: true,
+              role_name: 'talent',
+              first_name: 'lorem',
+              last_name: 'ipusam',
+              user_nationalities: [],
+              meta: {
+                profile_image_path: this.fallbackImage,
+                date_of_birth: '04-01-2002'
+              }
+            });
           }
-          console.warn('placeholders ', this.sliderDetail.users);
+
         } else {
+
+          ssrDebug(this.platformId, 'SLIDER_GREATER_THAN_6');
+
           console.warn('Slider is greater than 6');
         }
+
         this.club_logo_path = this.sliderDetail.imagePath;
+
+        ssrDebug(this.platformId, 'CLUB_LOGO_SET');
+
         this.pre_club_logo_path = this.sliderDetail.flagPath;
 
-        console.log("data is here", res.data.advertisementData, res.data.advertisemnet_base_url)
+        ssrDebug(this.platformId, 'PRE_CLUB_LOGO_SET');
+
+        console.log("data is here", res.data.advertisementData);
+
+        ssrDebug(this.platformId, 'BEFORE_ADVERTISEMENT_DATA');
 
         this.advertisementData = res.data.advertisementData;
+
+        ssrDebug(this.platformId, 'AFTER_ADVERTISEMENT_DATA');
+
         this.advertisementList = res.data.allAdsList;
+
+        ssrDebug(this.platformId, 'AFTER_ADVERTISEMENT_LIST');
+
         this.imageBaseUrl = res.data.base_url;
+
+        ssrDebug(this.platformId, 'AFTER_IMAGE_BASE_URL');
+
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+        ssrDebug(this.platformId, 'AFTER_AD_BASE_URL');
+
         this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
+
+        ssrDebug(this.platformId, 'AFTER_NEW_AD_BASE_URL');
 
         this.isLoading = false;
 
+        ssrDebug(this.platformId, 'AFTER_LOADING_FALSE');
+
         this.startCountdown();
 
-
+        ssrDebug(this.platformId, 'AFTER_START_COUNTDOWN');
       }
     });
   }
 
+  // startCountdown() {
+  //   this.countdown = 5; // Reset countdown
+  //   const interval = setInterval(() => {
+  //     this.countdown--;
+  //     if (this.countdown === 0) {
+  //       clearInterval(interval);
+  //       this.btnLoading = false; // Stop loading when countdown reaches 0
+  //     }
+  //   }, 1000);
+  // }
   startCountdown() {
-    this.countdown = 5; // Reset countdown
+
+    ssrDebug(this.platformId, 'START_COUNTDOWN_ENTER');
+
+    if (!isPlatformBrowser(this.platformId)) {
+      ssrDebug(this.platformId, 'START_COUNTDOWN_SSR_RETURN');
+      return;
+    }
+
+    ssrDebug(this.platformId, 'START_COUNTDOWN_BROWSER');
+
+    this.countdown = 5;
+
     const interval = setInterval(() => {
+
+      ssrDebug(this.platformId, 'START_COUNTDOWN_INTERVAL_RUNNING');
+
       this.countdown--;
+
       if (this.countdown === 0) {
+
+        ssrDebug(this.platformId, 'START_COUNTDOWN_CLEAR');
+
         clearInterval(interval);
-        this.btnLoading = false; // Stop loading when countdown reaches 0
+
+        this.btnLoading = false;
       }
+
     }, 1000);
   }
 
@@ -481,116 +661,42 @@ export class IndexComponent {
   isFeaturedImageExists(key: any): boolean {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
+  // showRegisterModal() {
+  //   const registerModal = bootstrap.Modal.getInstance(document.getElementById('exampleModal1'));
+  //   console.info('registerModal', registerModal);
+  //   if (registerModal) {
+  //     registerModal.toggle();
+  //   }
+  // }
   showRegisterModal() {
-    const registerModal = bootstrap.Modal.getInstance(document.getElementById('exampleModal1'));
-    console.info('registerModal', registerModal);
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    const modalEl = document.getElementById('exampleModal1');
+
+    if (!modalEl) {
+      return;
+    }
+
+    const registerModal = bootstrap.Modal.getInstance(modalEl);
+
     if (registerModal) {
       registerModal.toggle();
     }
   }
 
   indexFunction() {
-    this.currentTheme = localStorage.getItem('theme') || 'light';
-    // this.currentHomeTheme = localStorage.getItem('theme') + '';
+    this.currentTheme = 'dark';
+    if (typeof localStorage !== 'undefined') {
+      this.currentTheme = localStorage.getItem('theme') || 'light';
+    }
   }
 
   showImage(clicked: any) {
 
   }
 
-  ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    const videoEl = this.heroVideo.nativeElement;
-
-    // 🔐 Ensure it's muted in code too
-    videoEl.muted = true;
-
-    const tryPlay = () => {
-      const playPromise = videoEl.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log('Video autoplayed successfully.');
-          })
-          .catch((error) => {
-            console.warn('Autoplay failed:', error);
-          });
-      }
-    };
-
-    const io = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        videoEl.load();
-        tryPlay();
-        io.disconnect();
-      }
-    });
-
-    io.observe(videoEl);
-
-    // new code by amrit to play ads 
-
-    // Run immediately after DOM is ready
-    document.addEventListener('DOMContentLoaded', () => {
-      const adVideos = document.querySelectorAll('.auto-play-video');
-      console.info('adVideos found:', adVideos.length);
-
-      if (adVideos.length === 0) {
-        console.warn('No advertisement videos found!');
-        return;
-      }
-
-      adVideos.forEach((adVideoEl: Element) => {
-        const video = adVideoEl as HTMLVideoElement;
-
-        // Force attributes for autoplay compatibility
-        video.muted = true;
-        video.setAttribute('muted', 'true');
-        video.setAttribute('playsinline', 'true'); // iOS Safari requirement
-        video.setAttribute('preload', 'auto');     // Helps instant playback
-        video.setAttribute('autoplay', '');     // Helps instant playback
-        video.setAttribute('loop', '');     // Helps instant playback
-
-        // Function to safely attempt autoplay
-        const tryPlayAd = () => {
-          video.muted = true; // Re-enforce mute (some browsers unmute)
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => console.log('Advertisement video autoplayed successfully.'))
-              .catch((error) => console.warn('Autoplay failed for advertisement:', error));
-          }
-        };
-
-        // IntersectionObserver → play when visible
-        const adVideoIo = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting) {
-            video.load();  // Reload fresh
-            tryPlayAd();
-            adVideoIo.disconnect(); // Only need to trigger once
-          }
-        });
-
-        adVideoIo.observe(video);
-
-        // Restart if user/browser pauses it
-        video.addEventListener('pause', () => {
-          console.log('Video paused, restarting...');
-          tryPlayAd();
-        });
-
-        // Auto replay when ended
-        video.addEventListener('ended', () => {
-          console.log('Video ended, restarting...');
-          video.currentTime = 0; // Reset to beginning
-          tryPlayAd();
-        });
-      });
-    });
-
-
-  }
 
   getLangslugByID(langID: any) {
     let slug = 'en';
@@ -625,5 +731,225 @@ export class IndexComponent {
     } else {
       return null;
     }
+  }
+
+  ngAfterViewInit() {
+
+    ssrDebug(this.platformId, 'NG_AFTER_VIEW_INIT_START');
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      ssrDebug(this.platformId, 'INSIDE_PLATFORM_BROWSER');
+
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      ssrDebug(this.platformId, 'BEFORE_HERO_VIDEO');
+
+      const videoEl = this.heroVideo.nativeElement;
+
+      ssrDebug(this.platformId, 'AFTER_HERO_VIDEO');
+
+      // 🔐 Ensure it's muted in code too
+      videoEl.muted = true;
+
+      ssrDebug(this.platformId, 'AFTER_HERO_VIDEO_MUTED');
+
+      const tryPlay = () => {
+
+        ssrDebug(this.platformId, 'TRY_PLAY_START');
+
+        const playPromise = videoEl.play();
+
+        if (playPromise !== undefined) {
+
+          ssrDebug(this.platformId, 'TRY_PLAY_PROMISE_EXISTS');
+
+          playPromise
+            .then(() => {
+              console.log('Video autoplayed successfully.');
+              ssrDebug(this.platformId, 'TRY_PLAY_SUCCESS');
+            })
+            .catch((error) => {
+              console.warn('Autoplay failed:', error);
+              ssrDebug(this.platformId, 'TRY_PLAY_FAILED');
+            });
+        }
+      };
+
+      ssrDebug(this.platformId, 'BEFORE_MAIN_INTERSECTION');
+
+      if (typeof IntersectionObserver !== 'undefined') {
+
+        ssrDebug(this.platformId, 'MAIN_INTERSECTION_AVAILABLE');
+
+        const io = new IntersectionObserver((entries) => {
+
+          ssrDebug(this.platformId, 'MAIN_INTERSECTION_CALLBACK');
+
+          if (entries[0].isIntersecting) {
+
+            ssrDebug(this.platformId, 'MAIN_VIDEO_INTERSECTING');
+
+            videoEl.load();
+
+            ssrDebug(this.platformId, 'MAIN_VIDEO_LOADED');
+
+            tryPlay();
+
+            ssrDebug(this.platformId, 'MAIN_VIDEO_PLAY_CALLED');
+
+            io.disconnect();
+
+            ssrDebug(this.platformId, 'MAIN_INTERSECTION_DISCONNECTED');
+          }
+        });
+
+        ssrDebug(this.platformId, 'MAIN_INTERSECTION_CREATED');
+
+        io.observe(videoEl);
+
+        ssrDebug(this.platformId, 'MAIN_INTERSECTION_OBSERVING');
+
+      } else {
+
+        ssrDebug(this.platformId, 'MAIN_INTERSECTION_NOT_AVAILABLE');
+      }
+
+      // new code by amrit to play ads
+
+      ssrDebug(this.platformId, 'BEFORE_QUERY_SELECTOR_ALL');
+
+      const adVideos = document.querySelectorAll('.auto-play-video');
+
+      ssrDebug(this.platformId, 'AFTER_QUERY_SELECTOR_ALL');
+
+      console.info('adVideos found:', adVideos.length);
+
+      ssrDebug(this.platformId, 'AD_VIDEOS_COUNT_' + adVideos.length);
+
+      if (adVideos.length === 0) {
+
+        ssrDebug(this.platformId, 'NO_AD_VIDEOS_FOUND');
+
+        console.warn('No advertisement videos found!');
+        return;
+      }
+
+      ssrDebug(this.platformId, 'BEFORE_AD_VIDEO_LOOP');
+
+      adVideos.forEach((adVideoEl: Element, index: number) => {
+
+        ssrDebug(this.platformId, 'INSIDE_AD_VIDEO_LOOP_' + index);
+
+        const video = adVideoEl as HTMLVideoElement;
+
+        ssrDebug(this.platformId, 'VIDEO_CAST_DONE_' + index);
+
+        // Force attributes for autoplay compatibility
+        video.muted = true;
+
+        video.setAttribute('muted', 'true');
+        video.setAttribute('playsinline', 'true');
+        video.setAttribute('preload', 'auto');
+        video.setAttribute('autoplay', '');
+        video.setAttribute('loop', '');
+
+        ssrDebug(this.platformId, 'VIDEO_ATTRIBUTES_DONE_' + index);
+
+        // Function to safely attempt autoplay
+        const tryPlayAd = () => {
+
+          ssrDebug(this.platformId, 'TRY_PLAY_AD_START_' + index);
+
+          video.muted = true;
+
+          const playPromise = video.play();
+
+          if (playPromise !== undefined) {
+
+            playPromise
+              .then(() => {
+
+                ssrDebug(this.platformId, 'TRY_PLAY_AD_SUCCESS_' + index);
+
+                console.log('Advertisement video autoplayed successfully.');
+              })
+              .catch((error) => {
+
+                ssrDebug(this.platformId, 'TRY_PLAY_AD_FAILED_' + index);
+
+                console.warn('Autoplay failed for advertisement:', error);
+              });
+          }
+        };
+
+        ssrDebug(this.platformId, 'BEFORE_AD_INTERSECTION_' + index);
+
+        if (typeof IntersectionObserver !== 'undefined') {
+
+          ssrDebug(this.platformId, 'AD_INTERSECTION_AVAILABLE_' + index);
+
+          const adVideoIo = new IntersectionObserver((entries) => {
+
+            ssrDebug(this.platformId, 'AD_INTERSECTION_CALLBACK_' + index);
+
+            if (entries[0].isIntersecting) {
+
+              ssrDebug(this.platformId, 'AD_VIDEO_INTERSECTING_' + index);
+
+              video.load();
+
+              tryPlayAd();
+
+              adVideoIo.disconnect();
+
+              ssrDebug(this.platformId, 'AD_VIDEO_INTERSECTION_DISCONNECTED_' + index);
+            }
+          });
+
+          ssrDebug(this.platformId, 'AD_INTERSECTION_CREATED_' + index);
+
+          adVideoIo.observe(video);
+
+          ssrDebug(this.platformId, 'AD_INTERSECTION_OBSERVING_' + index);
+
+        } else {
+
+          ssrDebug(this.platformId, 'AD_INTERSECTION_NOT_AVAILABLE_' + index);
+        }
+
+        ssrDebug(this.platformId, 'BEFORE_PAUSE_LISTENER_' + index);
+
+        // Restart if user/browser pauses it
+        video.addEventListener('pause', () => {
+
+          ssrDebug(this.platformId, 'VIDEO_PAUSED_' + index);
+
+          console.log('Video paused, restarting...');
+          tryPlayAd();
+        });
+
+        ssrDebug(this.platformId, 'AFTER_PAUSE_LISTENER_' + index);
+
+        // Auto replay when ended
+        video.addEventListener('ended', () => {
+
+          ssrDebug(this.platformId, 'VIDEO_ENDED_' + index);
+
+          console.log('Video ended, restarting...');
+
+          video.currentTime = 0;
+
+          tryPlayAd();
+        });
+
+        ssrDebug(this.platformId, 'AFTER_ENDED_LISTENER_' + index);
+
+      });
+
+      ssrDebug(this.platformId, 'AFTER_AD_VIDEO_LOOP');
+    }
+
+    ssrDebug(this.platformId, 'NG_AFTER_VIEW_INIT_END');
   }
 }

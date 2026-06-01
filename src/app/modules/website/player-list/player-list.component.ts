@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 
 interface Player {
   name: string;
@@ -33,16 +36,23 @@ export class PlayerListComponent implements OnInit {
   apiDefaultImage: string = '/assets/images/default/dummy-image-soccer.png';
   flagPath: string = 'https://api.socceryou.ch/uploads/logos/';
   isDefaultImage: string = 'default_img';
-  constructor(private http: HttpClient, private globalSettings: GlobalSettingsService) { }
+  constructor(private http: HttpClient,
+    private globalSettings: GlobalSettingsService,
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
   players: Player[] = [ /* ... existing player data ... */];
   clubPlayers: Player[] = [ /* ... existing club player data ... */];
   scoutsPlayers: Player[] = [ /* ... existing scouts player data ... */];
   adVisible: boolean[] = [false, false, false, false, false];
-  theme: string = localStorage.getItem('theme') || 'dark';
+  theme: string =  'dark';
 
   ngOnInit() {
     this.fetchData('talent');
+    if(isPlatformBrowser(this.platformId)){
+      this.theme = localStorage.getItem('theme') || 'dark';
+    }
   }
 
   selectTab(tab: 'talent' | 'club' | 'scouts'): void {
@@ -141,10 +151,11 @@ export class PlayerListComponent implements OnInit {
     } else {
       role = '4';
     }
-
-    setTimeout(function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 500);  // Adjust the delay as per the content loading time
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 500);  // Adjust the delay as per the content loading time
+    }
 
     // Calculate offset based on current page and items per page
     const offset = (this.currentPage - 1) * this.itemsPerPage;
@@ -170,10 +181,11 @@ export class PlayerListComponent implements OnInit {
         this.totalPagesCount = Math.ceil(response.data.userData.totalCount / this.itemsPerPage);
         this.TotalCount = response.data.userData.totalCount;
         this.isLoading = false;
-
-        setTimeout(function () {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 100);  // Adjust the delay as per the content loading time
+        if (isPlatformBrowser(this.platformId)) {
+          setTimeout(function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 100);
+        }  // Adjust the delay as per the content loading time
       },
       (error) => {
         console.error(error);

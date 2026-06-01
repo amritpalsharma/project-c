@@ -9,7 +9,7 @@ import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { TalentService } from '../../../services/talent.service';
 import { ToastrService } from 'ngx-toastr';
 import introJs from 'intro.js';
-import 'intro.js/introjs.css'; // Import the styles for Intro.js
+// import 'intro.js/introjs.css'; // Import the styles for Intro.js
 import { Lightbox } from 'ngx-lightbox';
 // import { LightboxDialogComponent } from '../lightbox-dialog/lightbox-dialog.component';
 import { LightboxDialogComponent } from '../../shared/lightbox-dialog/lightbox-dialog.component';
@@ -30,6 +30,8 @@ import { PopupComponent } from '../../shared/popup/popup.component';
 
 import { UserStateService } from '../../../services/user-state.service';
 import { GalleryTabComponent } from '../tabs/gallery-tab/gallery-tab.component';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -66,7 +68,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     public webPages: WebPages,
     private titleService: TitleService,
     public globalSettings: GlobalSettingsService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -271,9 +274,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
           closeSection.className = 'close-section';
 
           // Apply styling to align elements
-          closeSection.style.display = 'flex';
-          closeSection.style.alignItems = 'center';
-          closeSection.style.justifyContent = 'flex-end';
+          // closeSection.style.display = 'flex';
+          // closeSection.style.alignItems = 'center';
+          // closeSection.style.justifyContent = 'flex-end';
 
           // Add the checkbox and label
           closeSection.innerHTML = `
@@ -375,7 +378,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           this.user = response.data.user_data;
           if (response.data.representator_data && response.data.representator_data != '') {
-            localStorage.setItem('sideBarinfo', JSON.stringify(response.data.representator_data	));
+            localStorage.setItem('sideBarinfo', JSON.stringify(response.data.representator_data));
             if (response.data.representator_data.permission == 'admin.view') {
               this.currentLoggedInPermission = 'club_view_only';
               this.globalSettings.setViewOnly(this.currentLoggedInPermission);

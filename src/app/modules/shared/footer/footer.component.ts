@@ -8,7 +8,8 @@ import {
 } from '@angular/router';
 
 @Component({
-  selector: 'shared-footer',
+  // selector: 'shared-footer',
+  selector: 'app-shared-footer',
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })

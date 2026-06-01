@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { EditorConfigService } from '../../../../services/editor-config.service';
 import tinymce from 'tinymce';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'club-history-tab',
@@ -19,10 +21,6 @@ export class HistoryTabComponent implements OnInit {
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
-    //['link', 'image'],
-    // ['ordered_list', 'bullet_list'],
-    // ['text_color', 'background_color'],
-    // ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
 
   isLoading: boolean = false;
@@ -39,7 +37,8 @@ export class HistoryTabComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private clubService: ClubService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit(): void {
@@ -87,18 +86,20 @@ export class HistoryTabComponent implements OnInit {
   // ✅ This function removes only anchor tags, keeps inner content
   private removeLinks(html: string): string {
     if (!html) return '';
+    if (isPlatformBrowser(this.platformId)) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
 
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
+      // Remove <a> tags but preserve text
+      tempDiv.querySelectorAll('a').forEach(anchor => {
+        const span = document.createElement('span');
+        span.innerHTML = anchor.innerHTML;
+        anchor.replaceWith(span);
+      });
 
-    // Remove <a> tags but preserve text
-    tempDiv.querySelectorAll('a').forEach(anchor => {
-      const span = document.createElement('span');
-      span.innerHTML = anchor.innerHTML;
-      anchor.replaceWith(span);
-    });
-
-    return tempDiv.innerHTML;
+      return tempDiv.innerHTML;
+    }
+    return html;
   }
   updateClubHistory(): any {
     let history = this.history;
@@ -106,7 +107,7 @@ export class HistoryTabComponent implements OnInit {
     // if(history.trim() == ""){
     //   return false;
     // }
-     history = this.removeLinks(history);  
+    history = this.removeLinks(history);
     if (history === "") {
       return false;
     }

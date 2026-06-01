@@ -10,12 +10,19 @@ import { TalkJsHelperComponent, ConfirmDialogData } from '../modules/shared/talk
 import { NgZone } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+
+
 
 @Injectable({ providedIn: 'root' })
 export class TalkService {
+  private platformId = inject(PLATFORM_ID);
   private session: Talk.Session | null = null;
   public currentUser: Talk.User | null = null;
-  currentTheme: string = localStorage.getItem('theme') == 'dark' ? 'dark_custom_users' : 'default_users';
+  currentTheme = 'dark_custom_users';
+  //currentTheme: string = localStorage.getItem('theme') == 'dark' ? 'dark_custom_users' : 'default_users';
   public currentUserRole: string = '';
   public currentUserId: string = '';
   private talkSession: Talk.Session | null = null;
@@ -38,11 +45,16 @@ export class TalkService {
   }
   async init(user: any): Promise<Talk.Session> {
 
+
     // 🔄 Fetch both appId and signature from backend
+    let authToken = '';
+    if (isPlatformBrowser(this.platformId)){
+      authToken = String(localStorage.getItem('authToken'));
+    }
     const res = await fetch(this.apiUrl + '/get-talk-signature?chatMode=' + this.chatMode, {
       method: 'GET',
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
+        'Authorization': 'Bearer ' + authToken,
         'Content-Type': 'application/json'
       }
     });
@@ -64,6 +76,10 @@ export class TalkService {
 
 
     await Talk.ready;
+    let lang = 'de';
+    if (isPlatformBrowser(this.platformId)){
+      lang = String(localStorage.getItem('lang'));
+    }
     this.currentUser = new Talk.User({
       id: String(user.id),
       name: user.name,
@@ -71,7 +87,7 @@ export class TalkService {
       photoUrl: user.photoUrl,
       welcomeMessage: null,
       role: user.role || 'default',
-      locale: localStorage.getItem('lang') || 'de'
+      locale: lang
       // role: 'default'
     });
 
@@ -95,7 +111,7 @@ export class TalkService {
     this.inbox = this.session.createInbox({
       theme: this.currentTheme,
       conversationActions: [
-        { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
+        { id: 'delete_convo', label: this.getDeleteLabel(lang), icon: 'trash' }
       ]
     } as any);
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
@@ -128,7 +144,7 @@ export class TalkService {
 
   toggleTheme(isDark: boolean) {
     let theme = isDark ? 'dark' : 'light';
-    localStorage.setItem('theme', theme);
+    // localStorage.setItem('theme', theme);
     this.currentTheme = isDark ? 'dark_custom_users' : 'default_users';
 
     if (!this.session) {
@@ -159,11 +175,14 @@ export class TalkService {
     // const inbox = this.session!.createInbox({
     //   theme: this.currentTheme // ✅ theme applied here
     // });
-
+    let lang = 'de';
+    if (isPlatformBrowser(this.platformId)){
+      lang = String(localStorage.getItem('lang'));
+    }
     const inbox = this.session!.createInbox({
       theme: this.currentTheme,
       conversationActions: [
-        { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
+        { id: 'delete_convo', label: this.getDeleteLabel(lang), icon: 'trash' }
       ]
     } as any);
 
@@ -197,10 +216,15 @@ export class TalkService {
     email: string,
     photoUrl: string
   ): Promise<void> {
+
+    let lang = 'de';
+    if (isPlatformBrowser(this.platformId)){
+      lang = String(localStorage.getItem('lang'));
+    }
     try {
       console.info('chat with  profile ', photoUrl);
       const ADMIN_ID = '1';
-      const currentLang = localStorage.getItem('lang') || 'de';
+      const currentLang = lang;
 
 
       if (!this.session && this.currentUser) {
@@ -260,7 +284,7 @@ export class TalkService {
       this.inbox = this.session!.createInbox({
         theme: this.currentTheme,
         conversationActions: [
-          { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
+          { id: 'delete_convo', label: this.getDeleteLabel(lang), icon: 'trash' }
         ]
       } as any);
 
@@ -330,6 +354,10 @@ export class TalkService {
               action: 'confirmation'
             }
           });
+          let lang = 'de';
+          if (isPlatformBrowser(this.platformId)){
+            lang = String(localStorage.getItem('lang'));
+          }
 
           dialogRef.afterClosed().subscribe(async (result: boolean) => {
             if (!result) return;
@@ -339,19 +367,19 @@ export class TalkService {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': 'Bearer ' + localStorage.getItem('authToken') // your auth header
+                  'Authorization': 'Bearer ' + lang // your auth header
                 },
                 body: JSON.stringify({ conversationId })
               });
 
               if (resp.ok) {
-                this.toaster.success(this.getDeleteSuccessMessage(String(localStorage.getItem('lang'))));
+                this.toaster.success(this.getDeleteSuccessMessage(lang));
                 if (this.inbox) {
                   this.inbox.destroy();
                   this.inbox = this.session!.createInbox({
                     theme: this.currentTheme,
                     conversationActions: [
-                      { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
+                      { id: 'delete_convo', label: this.getDeleteLabel(lang), icon: 'trash' }
                     ]
                   } as any);
                   this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);

@@ -62,6 +62,9 @@ export class ClubDetailComponent implements OnInit {
   }
 
   getUserProfile(userId: any) {
+    if (typeof document === 'undefined') {
+      return;
+    }
     try {
       this.userService.getProfileData(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
@@ -218,6 +221,9 @@ export class ClubDetailComponent implements OnInit {
   }
 
   download(fileUrl: any, fileName: any) {
+    if (typeof document === 'undefined') {
+      return;
+    }
     // use the fetch/blob method because single download isn't working 
     fetch(fileUrl)
       .then(response => {

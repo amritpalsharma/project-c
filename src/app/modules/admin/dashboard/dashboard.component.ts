@@ -21,6 +21,8 @@ import { AdminHelperService } from '../../../services/admin-helper.service';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { UserRoleService } from '../../../services/user-role.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 interface Notification {
   id: number;
@@ -117,12 +119,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private adminHelper: AdminHelperService,
     private titleService: TitleService,
     private globalSettings: GlobalSettingsService,
-    public userRoleService: UserRoleService
+    public userRoleService: UserRoleService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
-
+    if (typeof document === 'undefined') {
+      return;
+    }
   }
 
   ngOnInit() {
+    if (typeof document === 'undefined') {
+      return;
+    }
     const currentDate = new Date();
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const year = currentDate.getFullYear();
@@ -311,39 +319,51 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   initializeTabs() {
-    const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
 
-    tabs.forEach((tab) => {
-      tab.addEventListener('shown.bs.tab', (event: any) => {
-        const targetPaneId = event.target.getAttribute('data-bs-target');
+      tabs.forEach((tab) => {
+        tab.addEventListener('shown.bs.tab', (event: any) => {
+          const targetPaneId = event.target.getAttribute('data-bs-target');
 
-        setTimeout(() => {
-          if (targetPaneId === '#home-tab-pane') {
-            this.chart1?.destroy();
-            this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', this.chartData.users.labels, this.chartData.users.values)!;
-          } else if (targetPaneId === '#profile-tab-pane') {
-            this.chart2?.destroy();
-            this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', this.chartData.sales.labels, this.chartData.sales.values)!;
-          } else if (targetPaneId === '#contact-tab-pane') {
-            this.chart3?.destroy();
-            this.chart3 = this.createChart(this.canvas3.nativeElement, 'canvas3', this.chartData.subscriptions.labels, this.chartData.subscriptions.values)!;
-          }
-        }, 200); // Delay to allow tab switch animation
+          setTimeout(() => {
+            if (targetPaneId === '#home-tab-pane') {
+              this.chart1?.destroy();
+              this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', this.chartData.users.labels, this.chartData.users.values)!;
+            } else if (targetPaneId === '#profile-tab-pane') {
+              this.chart2?.destroy();
+              this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', this.chartData.sales.labels, this.chartData.sales.values)!;
+            } else if (targetPaneId === '#contact-tab-pane') {
+              this.chart3?.destroy();
+              this.chart3 = this.createChart(this.canvas3.nativeElement, 'canvas3', this.chartData.subscriptions.labels, this.chartData.subscriptions.values)!;
+            }
+          }, 200); // Delay to allow tab switch animation
+        });
       });
-    });
+    }
   }
 
   yearChange(e: any) {
-    let lang_id = localStorage.getItem('lang_id');
-    this.selectedYear = e.target.value;
-    this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
+    if (isPlatformBrowser(this.platformId)) {
+      let lang_id = localStorage.getItem('lang_id');
+      this.selectedYear = e.target.value;
+      this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
+    }
   }
 
   domainChange(e: any) {
-    let lang_id = localStorage.getItem('lang_id');
-    this.selectedDomain = e.target.value;
-    this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
-    localStorage.setItem('selected_domain', this.selectedDomain)
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      let lang_id = localStorage.getItem('lang_id');
+      this.selectedDomain = e.target.value;
+      this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
+      localStorage.setItem('selected_domain', this.selectedDomain)
+    }
   }
 
   getLocations() {
@@ -417,102 +437,87 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   updateChartData(year: any, domain_id: any, lang_id: any) {
-    try {
-      this.chart1.destroy();
-      this.chart2.destroy();
-      this.chart3.destroy();
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        this.chart1.destroy();
+        this.chart2.destroy();
+        this.chart3.destroy();
 
-      this.dashboardApi.getChartData(year, domain_id, lang_id).subscribe((response) => {
-        if (response && response.status && response.data) {
-          this.chartData = response.data;
+        this.dashboardApi.getChartData(year, domain_id, lang_id).subscribe((response) => {
+          if (response && response.status && response.data) {
+            this.chartData = response.data;
 
-          setTimeout(() => {
-            this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', response.data.users.labels, response.data.users.values)!;
-            this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', response.data.sales.labels, response.data.sales.values)!;
-            this.chart3 = this.createChart(this.canvas3.nativeElement, 'canvas3', response.data.subscriptions.labels, response.data.subscriptions.values)!;
-            //this.chart4 = this.createChart(this.canvas4.nativeElement, 'canvas4')!;
-            this.updateChartBackgroundColor();
+            setTimeout(() => {
+              this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', response.data.users.labels, response.data.users.values)!;
+              this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', response.data.sales.labels, response.data.sales.values)!;
+              this.chart3 = this.createChart(this.canvas3.nativeElement, 'canvas3', response.data.subscriptions.labels, response.data.subscriptions.values)!;
+              //this.chart4 = this.createChart(this.canvas4.nativeElement, 'canvas4')!;
+              this.updateChartBackgroundColor();
 
-          }, 1000);
-        } else {
-          console.error('Invalid API response structure:', response);
-        }
-      });
-    } catch (error) {
-      console.error('Error fetching users:', error);
+            }, 1000);
+          } else {
+            console.error('Invalid API response structure:', response);
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
     }
   }
   getChardData(year: any, domain_id: any, lang_id: any) {
-    try {
-      this.dashboardApi.getChartData(year, domain_id, lang_id).subscribe((response) => {
-        if (response && response.status && response.data) {
-          this.chartData = response.data;
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        this.dashboardApi.getChartData(year, domain_id, lang_id).subscribe((response) => {
+          if (response && response.status && response.data) {
+            this.chartData = response.data;
 
-          setTimeout(() => {
-            this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', response.data.users.labels, response.data.users.values)!;
-            this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', response.data.sales.labels, response.data.sales.values)!;
-            this.chart3 = this.createChart(this.canvas3.nativeElement, 'canvas3', response.data.subscriptions.labels, response.data.subscriptions.values)!;
-            //this.chart4 = this.createChart(this.canvas4.nativeElement, 'canvas4')!;
-            this.updateChartBackgroundColor();
+            setTimeout(() => {
+              this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', response.data.users.labels, response.data.users.values)!;
+              this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', response.data.sales.labels, response.data.sales.values)!;
+              this.chart3 = this.createChart(this.canvas3.nativeElement, 'canvas3', response.data.subscriptions.labels, response.data.subscriptions.values)!;
+              //this.chart4 = this.createChart(this.canvas4.nativeElement, 'canvas4')!;
+              this.updateChartBackgroundColor();
 
-          }, 1000);
+            }, 1000);
 
-        } else {
-          console.error('Invalid API response structure:', response);
-        }
-      });
-    } catch (error) {
-      console.error('Error fetching users:', error);
+          } else {
+            console.error('Invalid API response structure:', response);
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
     }
   }
 
   private chartsMap: Map<string, Chart> = new Map(); // Store charts by ID
   createChart(canvas: HTMLCanvasElement, chartId: string, labels: any, values: any): Chart | null {
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      console.error(`Failed to get canvas context for ${chartId}`);
-      return null;
-    }
+    if (isPlatformBrowser(this.platformId)) {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        console.error(`Failed to get canvas context for ${chartId}`);
+        return null;
+      }
 
-    // Destroy existing chart if it exists
-    if (this.chartsMap.has(chartId)) {
-      this.chartsMap.get(chartId)?.destroy();
-      this.chartsMap.delete(chartId);
-    }
+      // Destroy existing chart if it exists
+      if (this.chartsMap.has(chartId)) {
+        this.chartsMap.get(chartId)?.destroy();
+        this.chartsMap.delete(chartId);
+      }
 
-    const gradientStroke = ctx.createLinearGradient(100, 0, 700, 0);
-    gradientStroke.addColorStop(0, '#7BDA66');
-    gradientStroke.addColorStop(0.5, '#236115');
-    gradientStroke.addColorStop(1, '#7BDA66');
+      const gradientStroke = ctx.createLinearGradient(100, 0, 700, 0);
+      gradientStroke.addColorStop(0, '#7BDA66');
+      gradientStroke.addColorStop(0.5, '#236115');
+      gradientStroke.addColorStop(1, '#7BDA66');
 
-    let style = {
-      data: values,
-      borderWidth: 6,
-      borderColor: gradientStroke,
-      pointBorderWidth: 3,
-      pointBackgroundColor: '#BDE34F',
-      pointBorderColor: '#FFFFFF',
-      pointRadius: 10,
-      weight: 700,
-
-
-      fill: {
-        target: 'origin',
-        above: 'rgba(11, 149, 100, 0.08)',
-      },
-    }
-
-    const screenSize = window.innerWidth;
-
-    if (screenSize <= 480) {
-      style = {
+      let style = {
         data: values,
-        borderWidth: 4,
+        borderWidth: 6,
         borderColor: gradientStroke,
-        pointBorderWidth: 1,
+        pointBorderWidth: 3,
         pointBackgroundColor: '#BDE34F',
         pointBorderColor: '#FFFFFF',
-        pointRadius: 5,
+        pointRadius: 10,
         weight: 700,
 
 
@@ -521,137 +526,160 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           above: 'rgba(11, 149, 100, 0.08)',
         },
       }
-    }
 
-    const data = {
-      labels: labels,
-      datasets: [
-        style as ChartDataset<'line'>,
-      ],
-    };
+      const screenSize = window.innerWidth;
 
-    // let color = '#878787';
-    let color = '#4F7A9D';
-
-    if (localStorage.getItem('theme') != 'light') {
-      color = '#fff';
-    }
+      if (screenSize <= 480) {
+        style = {
+          data: values,
+          borderWidth: 4,
+          borderColor: gradientStroke,
+          pointBorderWidth: 1,
+          pointBackgroundColor: '#BDE34F',
+          pointBorderColor: '#FFFFFF',
+          pointRadius: 5,
+          weight: 700,
 
 
-    let labelcolor = '#86888A';
-    if (localStorage.getItem('theme') != 'light') {
-      labelcolor = '#4F7A9D';
-    }
-
-    // Create and store new chart instance
-    const newChart = new Chart(ctx, {
-      type: 'line',
-      data,
-      options: {
-        layout: { padding: 0 },
-        responsive: true,
-        scales: {
-          y: {
-
-            stacked: false,
-            beginAtZero: true,
-            grid: { display: false },
-            ticks: {
-              display: false,
-              // color: color
-            },
-            border: { display: false },
+          fill: {
+            target: 'origin',
+            above: 'rgba(11, 149, 100, 0.08)',
           },
-          x: {
-            grid: { display: false },
-            ticks: {
-              color: labelcolor,
-              display: true,
-              font: { size: 20, family: 'Libre Franklin,sans-serif', weight: 700 },
-              // font: { size: 20, family: 'poppins,sans-serif', weight: 700 },
-            },
-            border: { display: false },
-          },
-        },
-        elements: { line: { tension: 0.5 } },
-        plugins: {
-          legend: { display: false, labels: { color: 'red' } },
-          tooltip: {
-            enabled: true,
-            mode: 'index',
-            intersect: false,
-            backgroundColor: '#E05263',
-            titleColor: '#fff',
-            bodyColor: '#fff',
-            titleFont: { family: 'Libre Franklin,sans-serif', size: 20, weight: 800 },
-            // titleFont: { family: 'Poppins', size: 20, weight: 800 },
-            callbacks: {
-              label: (tooltipItem: any) => {
-                let graph_label_tooltip = 'tooltip.totalUsers';
-                if (chartId == 'canvas1') {
-                  graph_label_tooltip = 'tooltip.totalUsers';
-                } else if (chartId == 'canvas2') {
-                  graph_label_tooltip = 'tooltip.totalSales';
-                } else if (chartId == 'canvas3') {
-                  graph_label_tooltip = 'tooltip.totalSubscriptions';
-                }
-                return this.translateService.instant(graph_label_tooltip, { count: tooltipItem.raw });
+        }
+      }
+
+      const data = {
+        labels: labels,
+        datasets: [
+          style as ChartDataset<'line'>,
+        ],
+      };
+
+      // let color = '#878787';
+      let color = '#4F7A9D';
+
+      if (localStorage.getItem('theme') != 'light') {
+        color = '#fff';
+      }
+
+
+      let labelcolor = '#86888A';
+      if (localStorage.getItem('theme') != 'light') {
+        labelcolor = '#4F7A9D';
+      }
+
+      // Create and store new chart instance
+      const newChart = new Chart(ctx, {
+        type: 'line',
+        data,
+        options: {
+          layout: { padding: 0 },
+          responsive: true,
+          scales: {
+            y: {
+
+              stacked: false,
+              beginAtZero: true,
+              grid: { display: false },
+              ticks: {
+                display: false,
+                // color: color
               },
+              border: { display: false },
             },
-            displayColors: false,
+            x: {
+              grid: { display: false },
+              ticks: {
+                color: labelcolor,
+                display: true,
+                font: { size: 20, family: 'Libre Franklin,sans-serif', weight: 700 },
+                // font: { size: 20, family: 'poppins,sans-serif', weight: 700 },
+              },
+              border: { display: false },
+            },
+          },
+          elements: { line: { tension: 0.5 } },
+          plugins: {
+            legend: { display: false, labels: { color: 'red' } },
+            tooltip: {
+              enabled: true,
+              mode: 'index',
+              intersect: false,
+              backgroundColor: '#E05263',
+              titleColor: '#fff',
+              bodyColor: '#fff',
+              titleFont: { family: 'Libre Franklin,sans-serif', size: 20, weight: 800 },
+              // titleFont: { family: 'Poppins', size: 20, weight: 800 },
+              callbacks: {
+                label: (tooltipItem: any) => {
+                  let graph_label_tooltip = 'tooltip.totalUsers';
+                  if (chartId == 'canvas1') {
+                    graph_label_tooltip = 'tooltip.totalUsers';
+                  } else if (chartId == 'canvas2') {
+                    graph_label_tooltip = 'tooltip.totalSales';
+                  } else if (chartId == 'canvas3') {
+                    graph_label_tooltip = 'tooltip.totalSubscriptions';
+                  }
+                  return this.translateService.instant(graph_label_tooltip, { count: tooltipItem.raw });
+                },
+              },
+              displayColors: false,
+            },
           },
         },
-      },
-    });
+      });
 
-    this.chartsMap.set(chartId, newChart); // Save chart instance
-    setTimeout(() => {
-      newChart.resize(); // Ensures it adapts to the canvas size
-    }, 300);
-    return newChart;
+      this.chartsMap.set(chartId, newChart); // Save chart instance
+      setTimeout(() => {
+        newChart.resize(); // Ensures it adapts to the canvas size
+      }, 300);
+      return newChart;
 
+    }
+    return null;
   }
 
   updateChartBackgroundColor() {
-
-    let isDarkMode = false;
-    // this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
-    //   isDarkMode = isDarkTheme;
-    // });
-    let labelcolor = '#86888A';
-    if (localStorage.getItem('theme') != 'light') {
-      labelcolor = '#4F7A9D';
-      isDarkMode = true;
-    }
-    const charts = [this.chart1, this.chart2, this.chart3];
-    charts.forEach((chart) => {
-      if (chart.options && chart.options.scales && chart.options.plugins) {
-        if (chart.options.scales['x'] && chart.options.scales['x'].grid) {
-          chart.options.scales['x'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
-        }
-        if (chart.options.scales['x'] && chart.options.scales['x'].ticks) {
-          // chart.options.scales['x'].ticks.color = isDarkMode ? '#A5AFBA' : '#878787';
-          chart.options.scales['x'].ticks.color = labelcolor;
-        }
-        if (chart.options.scales['y'] && chart.options.scales['y'].grid) {
-          chart.options.scales['y'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
-        }
-        if (chart.options.scales['y'] && chart.options.scales['y'].ticks) {
-          chart.options.scales['y'].ticks.color = isDarkMode ? '#fff' : '#878787';
-        }
-        if (chart.options.plugins.tooltip) {
-          // console.warn('isDarkMode',isDarkMode)
-          chart.options.plugins.tooltip.backgroundColor = isDarkMode ? '#BDE34F' : '#E05263';
-          chart.options.plugins.tooltip.titleColor = isDarkMode ? '#072944' : '#fff';
-          chart.options.plugins.tooltip.bodyColor = isDarkMode ? '#072944' : '#fff';
-        }
-        // chart.options.backgroundColor = isDarkMode ? '#BDE34F' : '#FFFFFF';
-        chart.options.backgroundColor = isDarkMode ? '#BDE34F' : 'red';
-        chart.update();
-        // this.updateChartBackgroundColor();
+    if (isPlatformBrowser(this.platformId)) {
+      let isDarkMode = false;
+      // this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
+      //   isDarkMode = isDarkTheme;
+      // });
+      let labelcolor = '#86888A';
+      if (localStorage.getItem('theme') != 'light') {
+        labelcolor = '#4F7A9D';
+        isDarkMode = true;
       }
-    });
+      const charts = [this.chart1, this.chart2, this.chart3];
+      charts.forEach((chart) => {
+        if (chart.options && chart.options.scales && chart.options.plugins) {
+          if (chart.options.scales['x'] && chart.options.scales['x'].grid) {
+            chart.options.scales['x'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
+          }
+          if (chart.options.scales['x'] && chart.options.scales['x'].ticks) {
+            // chart.options.scales['x'].ticks.color = isDarkMode ? '#A5AFBA' : '#878787';
+            chart.options.scales['x'].ticks.color = labelcolor;
+          }
+          if (chart.options.scales['y'] && chart.options.scales['y'].grid) {
+            chart.options.scales['y'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
+          }
+          if (chart.options.scales['y'] && chart.options.scales['y'].ticks) {
+            chart.options.scales['y'].ticks.color = isDarkMode ? '#fff' : '#878787';
+          }
+          if (chart.options.plugins.tooltip) {
+            // console.warn('isDarkMode',isDarkMode)
+            chart.options.plugins.tooltip.backgroundColor = isDarkMode ? '#BDE34F' : '#E05263';
+            chart.options.plugins.tooltip.titleColor = isDarkMode ? '#072944' : '#fff';
+            chart.options.plugins.tooltip.bodyColor = isDarkMode ? '#072944' : '#fff';
+          }
+          // chart.options.backgroundColor = isDarkMode ? '#BDE34F' : '#FFFFFF';
+          chart.options.backgroundColor = isDarkMode ? '#BDE34F' : 'red';
+          chart.update();
+          // this.updateChartBackgroundColor();
+        }
+      });
 
+    }
   }
 
 
@@ -722,23 +750,35 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ChangeLang(lang: any) {
-    const selectedLanguage = typeof lang !== 'string' ? lang.target.value : lang;
-    localStorage.setItem('lang', selectedLanguage);
-    const selectedLang = this.envlangs.find((lang: any) => lang.slug === selectedLanguage);
-    this.language = selectedLang;
-    console.log('language', this.language);
-    let selectedLandId = selectedLang ? selectedLang.id : 1;
-    localStorage.setItem('lang_id', selectedLandId);
-    this.translateService.use(selectedLanguage);
-    this.activeLanguage = selectedLanguage;
+    if (isPlatformBrowser(this.platformId)) {
+      const selectedLanguage = typeof lang !== 'string' ? lang.target.value : lang;
+      localStorage.setItem('lang', selectedLanguage);
+      const selectedLang = this.envlangs.find((lang: any) => lang.slug === selectedLanguage);
+      this.language = selectedLang;
+      console.log('language', this.language);
+      let selectedLandId = selectedLang ? selectedLang.id : 1;
+      localStorage.setItem('lang_id', selectedLandId);
+      this.translateService.use(selectedLanguage);
+      this.activeLanguage = selectedLanguage;
+    }
   }
 
   toggleSidebar() {
-    document.body.classList.toggle('mobile-sidebar-active');
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.toggle('mobile-sidebar-active');
+    }
   }
 
   closeSidebar() {
-    document.body.classList.toggle('mobile-sidebar-active');
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.toggle('mobile-sidebar-active');
+    }
   }
 
   onNotificationClick(event: Event) {
@@ -746,61 +786,67 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   onScroll(): void {
-    console.log("something")
-    const notificationBox = document.getElementById('notification-box-id');
-    if (notificationBox) {
-      // Check if scroll position is greater than 300
-      this.isScrolledBeyond = notificationBox.scrollTop > 200;
+    if (isPlatformBrowser(this.platformId)) {
+      console.log("something")
+      const notificationBox = document.getElementById('notification-box-id');
+      if (notificationBox) {
+        // Check if scroll position is greater than 300
+        this.isScrolledBeyond = notificationBox.scrollTop > 200;
+      }
     }
   }
 
   scrollToTop(): void {
-    const notificationBox = document.getElementById('notification-box-id');
-    if (notificationBox) {
-      notificationBox.scrollTop = 0;
+    if (isPlatformBrowser(this.platformId)) {
+      const notificationBox = document.getElementById('notification-box-id');
+      if (notificationBox) {
+        notificationBox.scrollTop = 0;
+      }
+      this.clickedNewNotification = false;
+      this.updateChartBackgroundColor();
     }
-    this.clickedNewNotification = false;
-    this.updateChartBackgroundColor();
   }
 
   fetchNotifications(userId: number, langId: any): void {
-    this.talentService.getNotifications(userId, langId, 1, 10).subscribe({
-      next: (response) => {
-        console.log('Fetched notifications response:', response);
+    if (isPlatformBrowser(this.platformId)) {
+      this.talentService.getNotifications(userId, langId, 1, 10).subscribe({
+        next: (response) => {
+          console.log('Fetched notifications response:', response);
 
-        if (response.status && response.notifications) {
-          this.unseenCount = response.unseen_count;
-          // Clear existing notifications to avoid stale data
-          this.allNotifications = [];
-          this.notifications = [];
-          console.log("info", this.currentIndex, this.notificationsPerPage)
-          if (this.currentIndex != 0) {
-            this.notificationsPerPage = this.currentIndex;
+          if (response.status && response.notifications) {
+            this.unseenCount = response.unseen_count;
+            // Clear existing notifications to avoid stale data
+            this.allNotifications = [];
+            this.notifications = [];
+            console.log("info", this.currentIndex, this.notificationsPerPage)
+            if (this.currentIndex != 0) {
+              this.notificationsPerPage = this.currentIndex;
+            }
+            this.currentIndex = 0;
+
+            // Map fetched notifications to the Notification interface
+            this.allNotifications = response.notifications.map((notif: any) => ({
+              id: notif.id,
+              image: notif.senderProfileImage || '../../../assets/images/default.jpg',
+              title: notif.senderName || 'Unknown',
+              content: notif.message,
+              time: notif.time,
+              seen: notif.seen,
+              senderId: notif.senderId,
+              shouldAnimate: false,
+              relativeTime: notif.relativeTime,
+            }));
+
+            this.loadMoreNotifications(); // Load the initial set of notifications
+          } else {
+            console.warn('No notifications found in the response.');
           }
-          this.currentIndex = 0;
-
-          // Map fetched notifications to the Notification interface
-          this.allNotifications = response.notifications.map((notif: any) => ({
-            id: notif.id,
-            image: notif.senderProfileImage || '../../../assets/images/default.jpg',
-            title: notif.senderName || 'Unknown',
-            content: notif.message,
-            time: notif.time,
-            seen: notif.seen,
-            senderId: notif.senderId,
-            shouldAnimate: false,
-            relativeTime: notif.relativeTime,
-          }));
-
-          this.loadMoreNotifications(); // Load the initial set of notifications
-        } else {
-          console.warn('No notifications found in the response.');
-        }
-      },
-      error: (err) => {
-        console.error('Error fetching notifications:', err);
-      },
-    });
+        },
+        error: (err) => {
+          console.error('Error fetching notifications:', err);
+        },
+      });
+    }
   }
 
   something: boolean = false;
@@ -842,11 +888,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   toggleLoadmore() {
-    const elements = document.querySelectorAll('.Toggle-Notification');
-    // console.log(elements);
-    elements.forEach(el => {
-      el.classList.toggle('d-none');
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      const elements = document.querySelectorAll('.Toggle-Notification');
+      if (typeof document === 'undefined') {
+        return;
+      }
+      // console.log(elements);
+      elements.forEach(el => {
+        el.classList.toggle('d-none');
+      });
+    }
   }
 
   getDaysAgo(creationDate: string) {

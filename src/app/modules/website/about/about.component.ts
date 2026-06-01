@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { Subject, takeUntil } from 'rxjs';
+import { SeoService } from '../../../services/seo.service';
+import { Title, Meta } from '@angular/platform-browser';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
 
 @Component({
   selector: 'app-about',
@@ -12,7 +17,7 @@ export class AboutComponent {
   adVisible = [true, true, true, true, true, true, true]; // Array to control ad visibility
   about_banner_title: string = '';
   about_banner_desc: string = '';
-  currentTheme: string = localStorage.getItem('theme') + '';
+  currentTheme: string = '';
   countries = [
     { name: 'Switzerland', url: 'https://www.socceryou.ch' },
     { name: 'Germany', url: 'https://www.socceryou.de' },
@@ -26,7 +31,7 @@ export class AboutComponent {
     { name: 'Denmark', url: 'https://www.socceryou.dk' },
     { name: 'Austria', url: 'https://www.socceryou.at' },
     { name: 'Kosovo', url: 'https://www.socceryou.org' },
-    { name: 'Albanien', url: 'https://www.socceryou.al' }, 
+    { name: 'Albanien', url: 'https://www.socceryou.al' },
   ];
 
   countriesUrl = [
@@ -60,8 +65,6 @@ export class AboutComponent {
   isLoading: boolean = true;
   btnLoading: boolean = false;
   countdown: number = 10;
-
-  // isLoading : boolean = true;
 
   isActive: any = {
     skyscraper: true,
@@ -119,9 +122,26 @@ export class AboutComponent {
 
   constructor(
     private webPages: WebPages,
-    private globalSettings: GlobalSettingsService
-  ) { }
+    private globalSettings: GlobalSettingsService,
+    private seo: SeoService,
+    private titleService: Title,
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    ssrDebug(this.platformId, 'AboutComponent');
+  }
   ngOnInit(): void {
+
+    console.log('Platform ID:', this.platformId);
+
+    if (isPlatformBrowser(this.platformId)) {
+      //  alert('Browser');
+      console.log('Browser');
+      this.currentTheme = localStorage.getItem('theme') + '';
+    } else {
+      //alert('Server');
+      console.log('Server');
+    }
     // Initialize form with validation rules
     // this.webPages.languageId$.subscribe((data) => {
     //   this.getPageData(data)
@@ -150,6 +170,36 @@ export class AboutComponent {
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('about_us', languageId).subscribe((res) => {
       if (res.status) {
+
+        console.info(res.data.pageData)
+        console.warn('Plateform ID is ', this.platformId)
+
+        // this.titleService.setTitle(res.data.pageData.meta_title);
+        /* ##### Meta Tags ##### */
+        const title = res.data.pageData.meta_title;
+        const description = res.data.pageData.meta_description;
+
+        // this.titleService.setTitle(res.data.pageData.meta_title);
+
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        /* ##### Meta Tags ##### */
         this.about_banner_title = res.data.pageData.about_banner_title;
         this.about_banner_desc = res.data.pageData.about_banner_desc;
         this.countries = res.data.pageData.about_country_names;
@@ -158,18 +208,17 @@ export class AboutComponent {
         this.about_hero_heading = res.data.pageData.about_hero_heading;
         this.about_hero_btn_txt = res.data.pageData.about_hero_btn_txt;
         this.about_hero_btn_link = res.data.pageData.about_hero_btn_link;
-        // this.about_banner_bg_img = res.data.base_url+res.data.pageData.about_banner_bg_img;
         this.about_banner_img = res.data.base_url + res.data.pageData.about_banner_img;
         this.country_section_banner_img = res.data.base_url + res.data.pageData.country_section_banner_img;
 
         this.advertisementData = res.data.advertisementData;
         this.advertisementList = res.data.allAdsList;
-        // this.advertisementData = [];
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
 
         this.isLoading = false;
         this.startCountdown();
+
 
       }
     });
@@ -226,10 +275,14 @@ export class AboutComponent {
   }
   ThemeUpdated() {
     // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
-    this.currentTheme = localStorage.getItem('theme') + '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.currentTheme = localStorage.getItem('theme') + '';
+    }
   }
 
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }

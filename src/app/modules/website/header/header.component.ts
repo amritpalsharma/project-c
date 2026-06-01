@@ -22,7 +22,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TalentService } from '../../../services/talent.service';
 import { DomainSlugService } from '../../../services/domain-slug.service';
 import { MatSelectChange } from '@angular/material/select';
-
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
 
 @Component({
   selector: 'app-header',
@@ -42,7 +44,7 @@ export class HeaderComponent implements OnInit {
   showRequiredErrors: boolean = false;
   LoggedInUserDashboardLink: string = '';
   isNavbarExpanded = false;
-  isDarkMode: boolean = false;
+  isDarkMode: boolean = true;
   activeIndex: number = 1; // Default active tab
   role: number = 4; // Initialize role to 4 (Player)
   username: string = '';
@@ -358,9 +360,11 @@ export class HeaderComponent implements OnInit {
     private globalSettings: GlobalSettingsService,
     private sanitizer: DomSanitizer,
     private talentService: TalentService,
-    public domainSlugService: DomainSlugService
+    public domainSlugService: DomainSlugService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
 
+      ssrDebug(this.platformId, 'HeaderComponent');
     this.privacySlug = this.domainSlugService.getRouteSlug('privacy');
     this.pricing = this.domainSlugService.getRouteSlug('pricing');
     this.faq = this.domainSlugService.getRouteSlug('faq');
@@ -399,7 +403,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     this.isPageLoaded = true;
   }
   loadCountries() {
@@ -430,151 +436,147 @@ export class HeaderComponent implements OnInit {
   @HostListener('window:scroll', [])
 
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 50; // Adjust the scroll value as needed
+    if (isPlatformBrowser(this.platformId)) {
+      this.isScrolled = window.scrollY > 50; // Adjust the scroll value as needed
+    }
   }
   searchedClubsPlayer: any = [];
   ngOnInit(): void {
     this.loadToasterMsg();
-    this.route.queryParams.subscribe(params => {
-      this.token = params['token'] || '';
-      this.verifyTime = params['time'];
-      if (this.token && !this.verifyTime) {
-        this.toastr.info(this.Processing, this.pleaseWait);
-
-        this.authService.magicLogin(this.token).subscribe(
-          response => {
-            if (response.status && response.data) {
-              const token = response.data.token;
-              const userData = response.data.user;
-              const userRole = userData.role;
-
-              localStorage.setItem('authToken', token);
-              localStorage.setItem('userRole', userRole);
-              localStorage.setItem('userData', JSON.stringify(userData));
-              this.tokenVerified = true;
-              this.openModal();
-
-            } else {
-              this.tokenVerified = false;
-              this.router.navigate(['/expired-link']);
-            }
-          },
-          error => {
-            console.error('Error verifying token:', error);
-            this.tokenVerified = false;
-            this.router.navigate(['/expired-link']);
-          }
-        );
-      }
-
-      this.verifyToken = params['token'];
-      this.verifyTime = params['time'];
-
-      setTimeout(() => {
-        if (this.verifyToken && this.verifyTime) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.route.queryParams.subscribe(params => {
+        this.token = params['token'] || '';
+        this.verifyTime = params['time'];
+        if (this.token && !this.verifyTime) {
           this.toastr.info(this.Processing, this.pleaseWait);
 
-          this.authService.verifyEmail(this.verifyToken, this.verifyTime).subscribe(
+          this.authService.magicLogin(this.token).subscribe(
             response => {
-              if (response.status) {
-                // this.toastr.clear();
-                if (response.message != '') {
-                  this.toastr.success(this.emailVerifiedSuccessfully, this.EmailVerified);
-                } else {
-                  this.toastr.success('Email is verified. You can login now...', this.EmailVerified);
-                }
+              if (response.status && response.data) {
+                const token = response.data.token;
+                const userData = response.data.user;
+                const userRole = userData.role;
 
-                const loginModal = new bootstrap.Modal(document.getElementById('exampleModal-login'));
-                loginModal.show();
+                localStorage.setItem('authToken', token);
+                localStorage.setItem('userRole', userRole);
+                localStorage.setItem('userData', JSON.stringify(userData));
+                this.tokenVerified = true;
+                this.openModal();
 
               } else {
-                this.toastr.clear();
-
+                this.tokenVerified = false;
                 this.router.navigate(['/expired-link']);
               }
             },
             error => {
-              this.toastr.clear();
-
+              console.error('Error verifying token:', error);
+              this.tokenVerified = false;
               this.router.navigate(['/expired-link']);
             }
           );
         }
-      }, 1000);
 
+        this.verifyToken = params['token'];
+        this.verifyTime = params['time'];
 
-    });
-    this.isUserLoggedIn = this.authService.isLoggedIn();
-    this.LoggedInUserDashboardLink = this.authService.getDashboardLink();
-    // Ensure language is set to 'en' if it's not already in localStorage
-    this.lang = this.globalSettings.getLanguage(); // Default to 'en' if no language is set
-
-    if (localStorage.getItem('lang') != null || localStorage.getItem('lang') != undefined) {
-      this.slug = '' + localStorage.getItem('lang');
-      // console.warn('Selected Lang in LocalStoroage ' + localStorage.getItem('lang'));
-    } else {
-      // console.warn('No Selected Lang in LocalStoroage');
-      this.slug = this.lang;
-    }
-    // Set default language to English if not set
-    // if (!this.lang || this.lang === '' && localStorage.getItem('lang') == null) {
-    //   this.lang = 'en';
-    //   localStorage.setItem('lang', this.lang); // Store default language in localStorage
-    //   // this.translateService.use(this.lang);
-    // }
-    document.body.classList.add(this.slug);
-
-    this.lang_id = this.globalSettings.getLanguageId();
-    if (localStorage.getItem('lang_id') == '' || localStorage.getItem('lang_id') == null) {
-      localStorage.setItem('lang_id', this.lang_id);
-    }
-    if (this.lang_id == null) {
-      this.lang_id = environment.targetDomain.default_lang;
-      localStorage.setItem('lang_id', this.lang_id); // Store default language in localStorage
-    }
-    // Use the selected language (or 'en' if none)
-    // Set the language for ngx-translate
-
-    // Apply dark mode from localStorage
-    this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
-      this.isDarkMode = isDarkTheme;
-    });
-    // this.applyTheme();
-
-    // Initialize Google Sign-In if available
-    if (typeof google !== 'undefined' && google.accounts) {
-      //  this.initializeGoogleSignIn();
-    }
-    let isFrontendDarkMode = localStorage.getItem('theme');
-    if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
-      this.isDarkMode = true;
-    } else {
-      this.isDarkMode = false;
-    }
-    // console.log('LocalStorage Mode is Dark ? = ' + this.isDarkMode);
-    this.getAllCountries();
-    // this.getAllClubs();
-    this.getAllLanguage();
-    // console.log('Header Last updated language localstorage ' + localStorage.getItem('lang'));
-
-
-    this.clubSearching.valueChanges.subscribe(() => {
-      const search = this.clubSearching.value?.toLowerCase() || '';
-      this.searchedClubsPlayer = this.displayedClubs.filter(
-        (club: any) => club.club_name.toLowerCase().includes(search)
-      );
-    });
-
-
-    // alert(this.router.url)
-    if (this.router.url === '/login') {
-      let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal-login'));
-      // let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal-login'));
-      // console.info('modalmodal', modal)
-      if (modal) {
         setTimeout(() => {
-          modal.show();
-        }, 3000);
+          if (this.verifyToken && this.verifyTime) {
+            this.toastr.info(this.Processing, this.pleaseWait);
+
+            this.authService.verifyEmail(this.verifyToken, this.verifyTime).subscribe(
+              response => {
+                if (response.status) {
+                  // this.toastr.clear();
+                  if (response.message != '') {
+                    this.toastr.success(this.emailVerifiedSuccessfully, this.EmailVerified);
+                  } else {
+                    this.toastr.success('Email is verified. You can login now...', this.EmailVerified);
+                  }
+
+                  const loginModal = new bootstrap.Modal(document.getElementById('exampleModal-login'));
+                  loginModal.show();
+
+                } else {
+                  this.toastr.clear();
+
+                  this.router.navigate(['/expired-link']);
+                }
+              },
+              error => {
+                this.toastr.clear();
+
+                this.router.navigate(['/expired-link']);
+              }
+            );
+          }
+        }, 1000);
+
+
+      });
+      this.isUserLoggedIn = this.authService.isLoggedIn();
+      this.LoggedInUserDashboardLink = this.authService.getDashboardLink();
+      // Ensure language is set to 'en' if it's not already in localStorage
+      this.lang = this.globalSettings.getLanguage(); // Default to 'en' if no language is set
+      if (typeof localStorage !== 'undefined') {
+        if (localStorage.getItem('lang') != null || localStorage.getItem('lang') != undefined) {
+          this.slug = '' + localStorage.getItem('lang');
+          // console.warn('Selected Lang in LocalStoroage ' + localStorage.getItem('lang'));
+        } else {
+          // console.warn('No Selected Lang in LocalStoroage');
+          this.slug = this.lang;
+        }
+        document.body.classList.add(this.slug);
+
+        this.lang_id = this.globalSettings.getLanguageId();
+        if (localStorage.getItem('lang_id') == '' || localStorage.getItem('lang_id') == null) {
+          localStorage.setItem('lang_id', this.lang_id);
+        }
+        if (this.lang_id == null) {
+          this.lang_id = environment.targetDomain.default_lang;
+          localStorage.setItem('lang_id', this.lang_id); // Store default language in localStorage
+        }
+      }
+
+      // Apply dark mode from localStorage
+      this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
+        this.isDarkMode = isDarkTheme;
+      });
+      // this.applyTheme();
+
+      // Initialize Google Sign-In if available
+      if (typeof google !== 'undefined' && google.accounts) {
+        //  this.initializeGoogleSignIn();
+      }
+      if (typeof localStorage !== 'undefined') {
+        let isFrontendDarkMode = localStorage.getItem('theme');
+        if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
+          this.isDarkMode = true;
+        }  
+      }
+      this.getAllCountries();
+      // this.getAllClubs();
+      this.getAllLanguage();
+      // console.log('Header Last updated language localstorage ' + localStorage.getItem('lang'));
+
+
+      this.clubSearching.valueChanges.subscribe(() => {
+        const search = this.clubSearching.value?.toLowerCase() || '';
+        this.searchedClubsPlayer = this.displayedClubs.filter(
+          (club: any) => club.club_name.toLowerCase().includes(search)
+        );
+      });
+
+
+      // alert(this.router.url)
+      if (this.router.url === '/login') {
+        let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal-login'));
+        // let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal-login'));
+        // console.info('modalmodal', modal)
+        if (modal) {
+          setTimeout(() => {
+            modal.show();
+          }, 3000);
+        }
       }
     }
   }
@@ -591,13 +593,18 @@ export class HeaderComponent implements OnInit {
     } else {
       this.isThisPlayer = 'd-none';
     }
-    console.warn('Selected role is ', this.activeIndex)
+
   }
 
   toggleNavbar() {
     this.isNavbarExpanded = !this.isNavbarExpanded;
-    document.body.classList.toggle('navbar-expanded', this.isNavbarExpanded);
-    document.body.classList.toggle('body-overflow', this.isNavbarExpanded);
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.toggle('navbar-expanded', this.isNavbarExpanded);
+      document.body.classList.toggle('body-overflow', this.isNavbarExpanded);
+    }
   }
 
   toggleTheme(event: any) {
@@ -606,55 +613,69 @@ export class HeaderComponent implements OnInit {
   }
 
   applyTheme() {
-    document.body.classList.toggle('dark-mode', this.isDarkMode);
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.toggle('dark-mode', this.isDarkMode);
+    }
   }
 
   ChangeLang(newSlug: string, lang_id: any, event: Event): void {
-    this.translateService.use(newSlug);  // Switch translation language
-    // console.log('working', newSlug);
-    this.slug = newSlug;  // Update the slug to the selected language
-    localStorage.setItem('lang', newSlug);
-    localStorage.setItem('lang_id', lang_id);
-    event.preventDefault(); // Prevent default action (e.g., preventing link navigation)
-    this.selectedLanguageId = lang_id;
-    // Retrieve the selected language code from localStorage
-    const selectedLanguageSlug = newSlug;
-    // Find the corresponding language ID from the langs array
-    const selectedLanguageObj = this.langs.find(
-      (lang: any) => lang.slug === selectedLanguageSlug
-    );
-    this.webpage.updateData(lang_id);
-    // console.log('selectedLanguageId', lang_id);
-    this.sharedservice.updateData({
-      action: 'updatedLang',
-      id: lang_id
-    });
-    this.sharedservice.data$.subscribe((data: any) => {
-      if (data.action == 'updatedLang') {
-        this.lang_id = data.id;
-        this.getAllCountries();
-        // this.getAllClubs();
-        this.getAllLanguage();
+    if (isPlatformBrowser(this.platformId)) {
+      this.translateService.use(newSlug);  // Switch translation language
+      // console.log('working', newSlug);
+      this.slug = newSlug;  // Update the slug to the selected language
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('lang', newSlug);
+        localStorage.setItem('lang_id', lang_id);
       }
-    });
-    this.getContentForLanguage(this.lang);
-    this.globalSettings.callIndexComponentFunction();
-    // Define the array of classes to remove
-    const MyClassesArray = ['en', 'de', 'it', 'fr', 'es', 'pt', 'da', 'sv'];  // Example array, adjust it as needed
-    // Get the body element
-    const body = document.getElementsByTagName('body')[0];
-    // Remove all classes that are in the MyClassesArray
-    Array.from(body.classList).forEach(className => {
-      if (MyClassesArray.includes(className)) {
-        body.classList.remove(className);
-      }
-    });
-    // Add the new class
-    body.classList.add(selectedLanguageSlug);
+
+      event.preventDefault(); // Prevent default action (e.g., preventing link navigation)
+      this.selectedLanguageId = lang_id;
+      // Retrieve the selected language code from localStorage
+      const selectedLanguageSlug = newSlug;
+      // Find the corresponding language ID from the langs array
+      const selectedLanguageObj = this.langs.find(
+        (lang: any) => lang.slug === selectedLanguageSlug
+      );
+      this.webpage.updateData(lang_id);
+      // console.log('selectedLanguageId', lang_id);
+      this.sharedservice.updateData({
+        action: 'updatedLang',
+        id: lang_id
+      });
+      this.sharedservice.data$.subscribe((data: any) => {
+        if (data.action == 'updatedLang') {
+          this.lang_id = data.id;
+          this.getAllCountries();
+          // this.getAllClubs();
+          this.getAllLanguage();
+        }
+      });
+      this.getContentForLanguage(this.lang);
+      this.globalSettings.callIndexComponentFunction();
+      // Define the array of classes to remove
+      const MyClassesArray = ['en', 'de', 'it', 'fr', 'es', 'pt', 'da', 'sv'];  // Example array, adjust it as needed
+      // Get the body element
+      const body = document.getElementsByTagName('body')[0];
+      // Remove all classes that are in the MyClassesArray
+      Array.from(body.classList).forEach(className => {
+        if (MyClassesArray.includes(className)) {
+          body.classList.remove(className);
+        }
+      });
+      // Add the new class
+      body.classList.add(selectedLanguageSlug);
+    }
   }
 
   getContentForLanguage(lang: string): void {
-    let currentLang = localStorage.getItem('lang_id');
+    let currentLang = '2';
+    if (typeof localStorage !== 'undefined') {
+      currentLang = localStorage.getItem('lang_id') + '';
+    }
+
     const apiUrl = `${environment.apiUrl}get-languages/${currentLang}`;  // Use the API URL from the environment file
     this.http.get(apiUrl).subscribe({
       next: (response: any) => {
@@ -670,124 +691,136 @@ export class HeaderComponent implements OnInit {
 
 
   login() {
-    this.loginButtonClicked = true;
-    this.isLoading = true;
+    if (isPlatformBrowser(this.platformId)) {
+      this.loginButtonClicked = true;
+      this.isLoading = true;
 
-    // isEmailError = false;
-    // isPasswordError = false;
-    if (!this.email) {
-      this.isEmailError = true;
-      this.isLoading = false;
-    } else {
-      this.isEmailError = false;
-    }
-
-    if (!this.password) {
-      this.isPasswordError = true;
-      this.isLoading = false;
-    } else {
-      this.isPasswordError = false;
-    }
-
-    if (!this.email || !this.password) {
-      console.error('Please fill in all required fields.');
-      this.isLoading = false;
-      return;
-    }
-
-    let selectedLanguage = localStorage.getItem('lang') || environment.targetDomain?.default_lang;
-    const domain = environment.targetDomain?.domain || this.globalSettings.getdomainId();
-
-    let localStorageLang = localStorage.getItem('lang_id');
-    if (localStorageLang != '' && localStorageLang != undefined) {
-      selectedLanguage = localStorageLang;
-    }
-
-    const loginData = {
-      email: this.email,
-      password: this.password,
-      lang: selectedLanguage,
-      domain: domain,
-      user_domain: this.globalSettings.getdomainId()
-      // user_domain:8
-    };
-
-    this.authService.login(loginData).subscribe(
-      response => {
-        if (response.status === false) {
-          this.invalidCred = response.message;
-          if (response.message != '' && response.message != undefined) {
-            this.toastr.error(response.message);
-          }
-          else if (response.data.error != '' && response.data.error != undefined) {
-            this.toastr.error(response.data.error);
-          }
-
-          this.showInvalidCredMessage();
-          this.isLoading = false;
-        } else {
-          const token = response.data.token;
-          const userData = response.data.user_data;
-
-          let langId = localStorage.getItem("lang_id") || '1';
-          console.log("socket connected with user: ", response.data.user_data.id)
-          // this.socketService.connectUser({ userId: response.data.user_data.id, langId });
-          // code by  amrit
-          const userRole = userData.role;
-          let navigationRoute = '';
-          switch (userRole) {
-            case "1":
-              navigationRoute = '/admin/dashboard';
-              break;
-            case "2":
-              navigationRoute = '/club/dashboard';
-              break;
-            case "3":
-              navigationRoute = '/scout/dashboard';
-              break;
-            case "4":
-              navigationRoute = '/talent/dashboard';
-              break;
-            case "5":
-              navigationRoute = '/admin/dashboard';
-              break;
-            case "6":
-              navigationRoute = '/club/dashboard';
-              break;
-            case "7":
-              navigationRoute = '/scout/dashboard';
-              break;
-            default:
-              navigationRoute = '';
-              break;
-          }
-
-          let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal-login'));
-          if (modal) {
-            modal.hide();
-          }
-
-          localStorage.setItem('authToken', token);
-          localStorage.setItem('userRole', userRole);
-          localStorage.setItem('userData', JSON.stringify(userData));
-
-          // console.info('navigationRoute',navigationRoute)
-          this.router.navigate([navigationRoute]).then(() => {
-            // Delay non-essential operations (WebSocket, etc.)
-            setTimeout(() => {
-              this.socketService.connectUser({ userId: response.data.user_data.id, langId });
-            }, 0);
-          });
-
-          this.isLoading = false;
-          // this.router.navigate([navigationRoute]);
-        }
-      },
-      error => {
+      // isEmailError = false;
+      // isPasswordError = false;
+      if (!this.email) {
+        this.isEmailError = true;
         this.isLoading = false;
-        console.error('An error occurred while logging in:', error);
+      } else {
+        this.isEmailError = false;
       }
-    );
+
+      if (!this.password) {
+        this.isPasswordError = true;
+        this.isLoading = false;
+      } else {
+        this.isPasswordError = false;
+      }
+
+      if (!this.email || !this.password) {
+        console.error('Please fill in all required fields.');
+        this.isLoading = false;
+        return;
+      }
+
+      let selectedLanguage = String(environment.targetDomain?.default_lang);
+
+      const domain = environment.targetDomain?.domain || this.globalSettings.getdomainId();
+      if (typeof localStorage !== 'undefined') {
+        selectedLanguage = localStorage.getItem('lang') + '' || environment.targetDomain?.default_lang + '';
+
+
+        let localStorageLang = localStorage.getItem('lang_id');
+        if (localStorageLang != '' && localStorageLang != undefined) {
+          selectedLanguage = localStorageLang;
+        }
+      }
+
+
+      const loginData = {
+        email: this.email,
+        password: this.password,
+        lang: selectedLanguage,
+        domain: domain,
+        user_domain: this.globalSettings.getdomainId()
+        // user_domain:8
+      };
+
+      this.authService.login(loginData).subscribe(
+        response => {
+          if (response.status === false) {
+            this.invalidCred = response.message;
+            if (response.message != '' && response.message != undefined) {
+              this.toastr.error(response.message);
+            }
+            else if (response.data.error != '' && response.data.error != undefined) {
+              this.toastr.error(response.data.error);
+            }
+
+            this.showInvalidCredMessage();
+            this.isLoading = false;
+          } else {
+            const token = response.data.token;
+            const userData = response.data.user_data;
+
+            let langId = '1';
+            console.log("socket connected with user: ", response.data.user_data.id)
+            if (typeof localStorage !== 'undefined') {
+              langId = localStorage.getItem("lang_id") + '';
+            }
+            // code by  amrit
+            const userRole = userData.role;
+            let navigationRoute = '';
+            switch (userRole) {
+              case "1":
+                navigationRoute = '/admin/dashboard';
+                break;
+              case "2":
+                navigationRoute = '/club/dashboard';
+                break;
+              case "3":
+                navigationRoute = '/scout/dashboard';
+                break;
+              case "4":
+                navigationRoute = '/talent/dashboard';
+                break;
+              case "5":
+                navigationRoute = '/admin/dashboard';
+                break;
+              case "6":
+                navigationRoute = '/club/dashboard';
+                break;
+              case "7":
+                navigationRoute = '/scout/dashboard';
+                break;
+              default:
+                navigationRoute = '';
+                break;
+            }
+
+            let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal-login'));
+            if (modal) {
+              modal.hide();
+            }
+
+            if (typeof localStorage !== 'undefined') {
+              localStorage.setItem('authToken', token);
+              localStorage.setItem('userRole', userRole);
+              localStorage.setItem('userData', JSON.stringify(userData));
+            }
+
+            // console.info('navigationRoute',navigationRoute)
+            this.router.navigate([navigationRoute]).then(() => {
+              // Delay non-essential operations (WebSocket, etc.)
+              setTimeout(() => {
+                this.socketService.connectUser({ userId: response.data.user_data.id, langId });
+              }, 0);
+            });
+
+            this.isLoading = false;
+            // this.router.navigate([navigationRoute]);
+          }
+        },
+        error => {
+          this.isLoading = false;
+          console.error('An error occurred while logging in:', error);
+        }
+      );
+    }
   }
 
   private showInvalidCredMessage() {
@@ -843,6 +876,9 @@ export class HeaderComponent implements OnInit {
   }
 
   register() {
+    if (typeof window === 'undefined') {
+      return;
+    }
     // this.isFormValid();
     this.registerButtonClicked = true;
     // console.log(this.role);
@@ -895,13 +931,16 @@ export class HeaderComponent implements OnInit {
       this.isShowErrors = true;
     }
 
-    const selectedLanguage = localStorage.getItem('lang') || '';
+    // const selectedLanguage = localStorage.getItem('lang') || '';
     const domain = this.globalSettings.getdomainExtension();
     this.userDomain = '' + this.globalSettings.getdomainId();
     // const domain = ;
 
     // Retrieve the selected language code from localStorage
-    const selectedLanguageSlug = localStorage.getItem('lang') || '';
+    let selectedLanguageSlug = '';
+    if (typeof localStorage !== 'undefined') {
+      selectedLanguageSlug = localStorage.getItem('lang') + '';
+    }
 
     // Find the corresponding language ID from the langs array
     const selectedLanguageObj = this.languages.find(
@@ -910,7 +949,10 @@ export class HeaderComponent implements OnInit {
 
     // Default to a specific language ID if none is found (e.g., English)
     const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
-    let verification_link = window.location.origin + '/home';
+    let verification_link = '';
+    if (isPlatformBrowser(this.platformId)) {
+      verification_link = window.location.origin + '/home';
+    }
     // Custom Validation By Amrit
     const registrationData = {
       first_name: this.firstName,
@@ -1129,7 +1171,9 @@ export class HeaderComponent implements OnInit {
   handleGoogleSignIn(response: any): void {
     const idToken = response.credential;
     if (idToken) {
-      localStorage.setItem('authToken', idToken);
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('authToken', idToken);
+      }
       let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal-login'));
       if (modal) {
         modal.hide();
@@ -1181,7 +1225,9 @@ export class HeaderComponent implements OnInit {
 
   closeNavbar() {
     this.isNavbarExpanded = false;
-    document.body.classList.remove('body-overflow');
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.remove('body-overflow');
+    }
   }
 
 
@@ -1239,7 +1285,9 @@ export class HeaderComponent implements OnInit {
     this.webpage.getAllLanguage().subscribe((response) => {
       if (response.status) {
         this.languages = response.data.languages;
-        localStorage.setItem('languages', JSON.stringify(this.languages));
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('languages', JSON.stringify(this.languages));
+        }
       }
     });
   }
@@ -1269,18 +1317,20 @@ export class HeaderComponent implements OnInit {
   }
 
   updateInputClass(inputName: string): void {
-    // Select all input elements with the given name inside the modal form
-    let inputFields = document.querySelectorAll<HTMLInputElement>(`#exampleModal1 form input[name="${inputName}"]`);
+    if (isPlatformBrowser(this.platformId)) {
+      // Select all input elements with the given name inside the modal form
+      let inputFields = document.querySelectorAll<HTMLInputElement>(`#exampleModal1 form input[name="${inputName}"]`);
 
-    inputFields.forEach(input => {
-      // Remove "empty-field" class first
-      input.classList.remove("empty-field");
+      inputFields.forEach(input => {
+        // Remove "empty-field" class first
+        input.classList.remove("empty-field");
 
-      // Check if the input is empty and add "empty-field" class dynamically
-      if (input.value.trim() === "") {
-        input.classList.add("empty-field");
-      }
-    });
+        // Check if the input is empty and add "empty-field" class dynamically
+        if (input.value.trim() === "") {
+          input.classList.add("empty-field");
+        }
+      });
+    }
   }
 
   get sanitizedError(): SafeHtml {
@@ -1322,19 +1372,24 @@ export class HeaderComponent implements OnInit {
 
   loadClubs(test: any): void {
     // Prepare query parameters
+
+    let lang_id = '2';
+    if (typeof localStorage !== 'undefined') {
+      lang_id = localStorage.getItem('lang_id') + '';
+    }
     let params: any = {
-      lang: localStorage.getItem('lang_id'),
+      lang: lang_id,
     };
 
     if (this.selectedCountry != '' && this.selectedCountry != undefined) {
       if (this.activeIndex == 1) {
         params = {
-          lang: localStorage.getItem('lang_id'),
+          lang: lang_id,
           country: this.selectedCountry,
         }
       } else {
         params = {
-          lang: localStorage.getItem('lang_id'),
+          lang: lang_id,
           country: this.selectedCountry,
           is_taken: 'no'
         }

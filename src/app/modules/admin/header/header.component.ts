@@ -23,15 +23,17 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerIntl } from '@angular/material/datepicker';
 import { inject } from '@angular/core';
-import 'moment/locale/fr';
-import 'moment/locale/de';
-import 'moment/locale/it';
-import 'moment/locale/es';
-import 'moment/locale/sv';
-import 'moment/locale/da';
-import { permission } from 'process';
+// import 'moment/locale/fr';
+// import 'moment/locale/de';
+// import 'moment/locale/it';
+// import 'moment/locale/es';
+// import 'moment/locale/sv';
+// import 'moment/locale/da';
+// import { permission } from 'process';
 
 import { UserRoleService } from '../../../services/user-role.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 interface Notification {
   id: number;
@@ -72,7 +74,8 @@ export class HeaderComponent {
     private cdRef: ChangeDetectorRef,
     private titleService: TitleService,
     private globalSettings: GlobalSettingsService,
-    public userRoleService: UserRoleService
+    public userRoleService: UserRoleService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     let locale = localStorage.getItem('lang') || 'en';
     this._adapter.setLocale(locale);
@@ -125,223 +128,27 @@ export class HeaderComponent {
 
   ngOnInit() {
     // Component's Title
-    this.getPageTitle();
-    this.searchControl.setValue('', { emitEvent: false });
+    if (isPlatformBrowser(this.platformId)) {
+      this.getPageTitle();
+      this.searchControl.setValue('', { emitEvent: false });
 
-    this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
-      this.isDarkMode = isDarkTheme;
-    });
+      this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
+        this.isDarkMode = isDarkTheme;
+      });
 
-    let userRole = localStorage.getItem("userRole");
+      let userRole = localStorage.getItem("userRole");
 
-    this.role = this.roles.find((role: any) => role.id == userRole);
+      this.role = this.roles.find((role: any) => role.id == userRole);
 
-    let notificationStatus = localStorage.getItem("notificationSeen");
-    if (notificationStatus) {
-      let jsonData = JSON.parse(notificationStatus);
-      this.notificationSeen = jsonData;
-    }
-    else {
-      console.log("No data found in localStorage.");
-    }
-
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
-    }
-    else {
-      console.log("No data found in localStorage.");
-    }
-
-    let langId = localStorage.getItem('lang_id');
-
-    this.fetchNotifications(userId, langId);
-    this.languages = JSON.parse(this.languages);
-
-    this.socketService.on('notification').subscribe((data) => {
-      // Fetch all notifications to update this.allNotifications with the latest data
-      // let userId = this.loggedInUser?.id;
-      // if (userId) {
-      //   this.fetchNotifications(userId);
-      // }
-
-      this.unseenCount++;
-      this.notificationSeen = false;
-      localStorage.setItem('notificationSeen', 'false');
-
-      console.log("data", data);
-
-      const obj = {
-        id: 0,
-        image: data.senderProfileImage,
-        title: data.senderName,
-        content: data.message,
-        time: 'just now',
-        seen: data.seen,
-        senderId: data.senderId,
-        shouldAnimate: true,
-        relativeTime: 'just now',
-        senderRole: 'talent'
-      };
-
-      // Add the notification to the array and show the notification box
-      this.liveNotification = [obj]; // Keep only the latest notification
-      this.showNotification = true;
-      if (this.isScrolledBeyond) {
-        this.clickedNewNotification = true;
+      let notificationStatus = localStorage.getItem("notificationSeen");
+      if (notificationStatus) {
+        let jsonData = JSON.parse(notificationStatus);
+        this.notificationSeen = jsonData;
+      }
+      else {
+        console.log("No data found in localStorage.");
       }
 
-      this.notifications.unshift(obj);
-
-      console.log('New notification:', data.message);
-
-      // Hide the notification after 3 seconds
-      setTimeout(() => {
-        this.liveNotification = [];
-        this.showNotification = false;
-        obj.shouldAnimate = false;
-      }, 5000); // 5000 ms = 5 seconds
-    });
-
-    this.userService.adminImageUrl.subscribe((newUrl) => {
-      console.log(newUrl, 'testing...', this.loggedInUser.profile_image_path)
-      if (newUrl == 'default') {
-        if (this.loggedInUser.profile_image_path) {
-          this.profileImgUrl = this.loggedInUser.profile_image_path;
-        } else {
-          this.profileImgUrl = "../../../assets/images/1.png";
-        }
-      }
-
-      this.loggedInUser = JSON.parse(this.loggedInUser);
-      if (this.loggedInUser.profile_image_path) {
-        this.profileImgUrl = this.loggedInUser.profile_image_path;
-      } else {
-        this.profileImgUrl = "../../../assets/images/1.png";
-      }
-
-      this.lang = localStorage.getItem('lang') || 'en';
-
-      const selectedLanguage = this.envLang.find((lang: any) => lang.slug === this.lang);
-      if (selectedLanguage) {
-        this.language = selectedLanguage;
-      } else {
-        this.language = this.envLang[0];
-      }
-
-    });
-
-
-
-
-    //  Update code by amrit for search
-    // this is used in ngOnit Now 
-    this.searchControl.valueChanges
-      .pipe(
-        filter((value): value is string => value !== null),
-        debounceTime(300),
-        distinctUntilChanged(),
-        switchMap((searchText: string) => {
-          this.isLoading = true;
-          return this.userService.searchUser(searchText).pipe(
-            finalize(() => (this.isLoading = false))
-          );
-        })
-      )
-      .subscribe(
-        (response: any) => {
-          let searchText = response.data.searchText;
-          let searchResults = response.data.userData;
-          // searchResults = searchResults.filter((user: any) => {
-          //   const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
-          //   const search = searchText.toLowerCase();
-
-          //   return (
-          //     user.first_name.toLowerCase().startsWith(search) || 
-          //     user.last_name.toLowerCase().startsWith(search) ||
-          //     fullName.startsWith(search)
-          //   );
-          // });
-          if (response?.status && Array.isArray(response.data?.userData)) {
-            this.filteredUsers = response.data.userData;
-          } else {
-            this.filteredUsers = [];
-          }
-          // this.filteredUsers = searchResults;
-        },
-        (error) => {
-          console.error('Error fetching users:', error);
-          this.filteredUsers = [];
-        }
-      );
-
-    // **Listen for route changes and reset search**
-    this.route.params.subscribe(() => {
-      this.searchControl.setValue('', { emitEvent: false }); // Clear search input
-      this.filteredUsers = []; // Reset search results
-    });
-
-
-    this.userService.getAdminProfile().subscribe((response) => {
-      if (response && response.status) {
-        let userData = response.data.user_data;
-        // adminRoleAccess
-        if (response?.data?.representator_data && response?.data?.representator_data != '') {
-          // permission	
-          let userType = '';
-          if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'admin.edit') {
-            this.adminRoleAccess = 'admin_editor';
-            userType = 'admin.edit';
-          }
-          if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'view-only') {
-            this.adminRoleAccess = 'admin_view_only';
-            userType = 'admin.view';
-          }
-          this.userRoleService.setRole(userType, this.adminRoleAccess);
-        }
-        // this.firstName = this.userData.first_name || '';
-        // this.lastName = this.userData.last_name || '';
-        // this.email = this.userData.username || '';
-        // this.contactNumber = this.userData.meta.contact_number || '';
-        // this.address = this.userData.meta.address || '';
-        // this.city = this.userData.meta.city || '';
-        // this.state = this.userData.meta.state || '';
-        // this.zipcode = this.userData.meta.zipcode || '';
-        this.profileImgUrl = userData.meta.profile_image_path || '../../../assets/images/1.png';
-        // this.isLoading = false;
-
-      } else {
-        console.error('Invalid API response structure:', response);
-      }
-    });
-    let current_lang = localStorage.getItem('lang');;
-    if (current_lang == 'en' || current_lang == 'de') {
-
-    } else {
-      console.info('Current Selected Lang is ' + current_lang + ' Now set as de default for admin only')
-      current_lang = 'de'; // by default de selected
-      localStorage.setItem('lang', 'de');
-      localStorage.setItem('lang_id', '2');
-      this.translateService.use('de');
-      this.language.flag = 'Germany.svg';
-    }
-
-  }
-
-
-
-  isUserOnline(senderId: number): boolean {
-    if (!this.socketService.onlineUsers) {
-      return false;
-    }
-    return senderId.toString() in this.socketService.onlineUsers;
-  }
-
-  toggleDropdown() {
-    let isDeleted: any = localStorage.getItem('isDeleted');
-    if (isDeleted) {
       let jsonData = localStorage.getItem("userData");
       let userId;
       if (jsonData) {
@@ -354,27 +161,227 @@ export class HeaderComponent {
 
       let langId = localStorage.getItem('lang_id');
 
-      this.notifications = []
       this.fetchNotifications(userId, langId);
-      // this.fetchNotifications
-      localStorage.removeItem('isDeleted');
-    }
+      this.languages = JSON.parse(this.languages);
 
-    this.notificationSeen = true;
-    localStorage.setItem('notificationSeen', 'true');
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
-    }
-    else {
-      console.log("No data found in localStorage.");
-    }
+      this.socketService.on('notification').subscribe((data) => {
+        // Fetch all notifications to update this.allNotifications with the latest data
+        // let userId = this.loggedInUser?.id;
+        // if (userId) {
+        //   this.fetchNotifications(userId);
+        // }
 
-    console.log(this.currentIndex)
+        this.unseenCount++;
+        this.notificationSeen = false;
+        localStorage.setItem('notificationSeen', 'false');
 
-    this.isClosed = !this.isClosed;
+        console.log("data", data);
+
+        const obj = {
+          id: 0,
+          image: data.senderProfileImage,
+          title: data.senderName,
+          content: data.message,
+          time: 'just now',
+          seen: data.seen,
+          senderId: data.senderId,
+          shouldAnimate: true,
+          relativeTime: 'just now',
+          senderRole: 'talent'
+        };
+
+        // Add the notification to the array and show the notification box
+        this.liveNotification = [obj]; // Keep only the latest notification
+        this.showNotification = true;
+        if (this.isScrolledBeyond) {
+          this.clickedNewNotification = true;
+        }
+
+        this.notifications.unshift(obj);
+
+        console.log('New notification:', data.message);
+
+        // Hide the notification after 3 seconds
+        setTimeout(() => {
+          this.liveNotification = [];
+          this.showNotification = false;
+          obj.shouldAnimate = false;
+        }, 5000); // 5000 ms = 5 seconds
+      });
+
+      this.userService.adminImageUrl.subscribe((newUrl) => {
+        console.log(newUrl, 'testing...', this.loggedInUser.profile_image_path)
+        if (newUrl == 'default') {
+          if (this.loggedInUser.profile_image_path) {
+            this.profileImgUrl = this.loggedInUser.profile_image_path;
+          } else {
+            this.profileImgUrl = "../../../assets/images/1.png";
+          }
+        }
+
+        this.loggedInUser = JSON.parse(this.loggedInUser);
+        if (this.loggedInUser.profile_image_path) {
+          this.profileImgUrl = this.loggedInUser.profile_image_path;
+        } else {
+          this.profileImgUrl = "../../../assets/images/1.png";
+        }
+
+        this.lang = localStorage.getItem('lang') || 'en';
+
+        const selectedLanguage = this.envLang.find((lang: any) => lang.slug === this.lang);
+        if (selectedLanguage) {
+          this.language = selectedLanguage;
+        } else {
+          this.language = this.envLang[0];
+        }
+
+      });
+
+
+
+
+      //  Update code by amrit for search
+      // this is used in ngOnit Now 
+      this.searchControl.valueChanges
+        .pipe(
+          filter((value): value is string => value !== null),
+          debounceTime(300),
+          distinctUntilChanged(),
+          switchMap((searchText: string) => {
+            this.isLoading = true;
+            return this.userService.searchUser(searchText).pipe(
+              finalize(() => (this.isLoading = false))
+            );
+          })
+        )
+        .subscribe(
+          (response: any) => {
+            let searchText = response.data.searchText;
+            let searchResults = response.data.userData;
+            // searchResults = searchResults.filter((user: any) => {
+            //   const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
+            //   const search = searchText.toLowerCase();
+
+            //   return (
+            //     user.first_name.toLowerCase().startsWith(search) || 
+            //     user.last_name.toLowerCase().startsWith(search) ||
+            //     fullName.startsWith(search)
+            //   );
+            // });
+            if (response?.status && Array.isArray(response.data?.userData)) {
+              this.filteredUsers = response.data.userData;
+            } else {
+              this.filteredUsers = [];
+            }
+            // this.filteredUsers = searchResults;
+          },
+          (error) => {
+            console.error('Error fetching users:', error);
+            this.filteredUsers = [];
+          }
+        );
+
+      // **Listen for route changes and reset search**
+      this.route.params.subscribe(() => {
+        this.searchControl.setValue('', { emitEvent: false }); // Clear search input
+        this.filteredUsers = []; // Reset search results
+      });
+
+
+      this.userService.getAdminProfile().subscribe((response) => {
+        if (response && response.status) {
+          let userData = response.data.user_data;
+          // adminRoleAccess
+          if (response?.data?.representator_data && response?.data?.representator_data != '') {
+            // permission	
+            let userType = '';
+            if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'admin.edit') {
+              this.adminRoleAccess = 'admin_editor';
+              userType = 'admin.edit';
+            }
+            if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'view-only') {
+              this.adminRoleAccess = 'admin_view_only';
+              userType = 'admin.view';
+            }
+            this.userRoleService.setRole(userType, this.adminRoleAccess);
+          }
+          // this.firstName = this.userData.first_name || '';
+          // this.lastName = this.userData.last_name || '';
+          // this.email = this.userData.username || '';
+          // this.contactNumber = this.userData.meta.contact_number || '';
+          // this.address = this.userData.meta.address || '';
+          // this.city = this.userData.meta.city || '';
+          // this.state = this.userData.meta.state || '';
+          // this.zipcode = this.userData.meta.zipcode || '';
+          this.profileImgUrl = userData.meta.profile_image_path || '../../../assets/images/1.png';
+          // this.isLoading = false;
+
+        } else {
+          console.error('Invalid API response structure:', response);
+        }
+      });
+      let current_lang = localStorage.getItem('lang');;
+      if (current_lang == 'en' || current_lang == 'de') {
+
+      } else {
+        console.info('Current Selected Lang is ' + current_lang + ' Now set as de default for admin only')
+        current_lang = 'de'; // by default de selected
+        localStorage.setItem('lang', 'de');
+        localStorage.setItem('lang_id', '2');
+        this.translateService.use('de');
+        this.language.flag = 'Germany.svg';
+      }
+
+    }
+  }
+
+
+
+  isUserOnline(senderId: number): boolean {
+    if (!this.socketService.onlineUsers) {
+      return false;
+    }
+    return senderId.toString() in this.socketService.onlineUsers;
+  }
+
+  toggleDropdown() {
+    if (isPlatformBrowser(this.platformId)) {
+      let isDeleted: any = localStorage.getItem('isDeleted');
+      if (isDeleted) {
+        let jsonData = localStorage.getItem("userData");
+        let userId;
+        if (jsonData) {
+          let userData = JSON.parse(jsonData);
+          userId = userData.id;
+        }
+        else {
+          console.log("No data found in localStorage.");
+        }
+
+        let langId = localStorage.getItem('lang_id');
+
+        this.notifications = []
+        this.fetchNotifications(userId, langId);
+        // this.fetchNotifications
+        localStorage.removeItem('isDeleted');
+      }
+
+      this.notificationSeen = true;
+      localStorage.setItem('notificationSeen', 'true');
+      let jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        let userData = JSON.parse(jsonData);
+        userId = userData.id;
+      }
+      else {
+        console.log("No data found in localStorage.");
+      }
+
+      console.log(this.currentIndex)
+
+      this.isClosed = !this.isClosed;
+    }
   }
 
   notificationClicked(id: number, seen: number, notification: any) {
@@ -400,58 +407,60 @@ export class HeaderComponent {
   }
 
   ChangeLang(lang: any) {
-    // console.log('LangObj',lang);
-    this.notifications = [];
+    if (isPlatformBrowser(this.platformId)) {
+      // console.log('LangObj',lang);
+      this.notifications = [];
 
-    const selectedLanguage = typeof lang != 'string' ? lang.target.value : lang;
-    localStorage.setItem('lang', selectedLanguage);
-    this.lang = selectedLanguage;
+      const selectedLanguage = typeof lang != 'string' ? lang.target.value : lang;
+      localStorage.setItem('lang', selectedLanguage);
+      this.lang = selectedLanguage;
 
-    // Retrieve the selected language code from localStorage
-    const selectedLanguageSlug = selectedLanguage;
-    // Find the corresponding language ID from the langs array
-    const selectedLanguageObj = this.envLang.find(
-      (lang: any) => lang.slug === selectedLanguageSlug
-    );
-    this.language = selectedLanguageObj;
+      // Retrieve the selected language code from localStorage
+      const selectedLanguageSlug = selectedLanguage;
+      // Find the corresponding language ID from the langs array
+      const selectedLanguageObj = this.envLang.find(
+        (lang: any) => lang.slug === selectedLanguageSlug
+      );
+      this.language = selectedLanguageObj;
 
-    // Default to a specific language ID if none is found (e.g., English)
-    const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
-    if (lang == 'en') {
-      localStorage.setItem('lang_id', '1');
-    } else if (lang == 'de') {
-      localStorage.setItem('lang_id', '2');
-    } else {
-      localStorage.setItem('lang_id', selectedLanguageId);
+      // Default to a specific language ID if none is found (e.g., English)
+      const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
+      if (lang == 'en') {
+        localStorage.setItem('lang_id', '1');
+      } else if (lang == 'de') {
+        localStorage.setItem('lang_id', '2');
+      } else {
+        localStorage.setItem('lang_id', selectedLanguageId);
+      }
+      this.shareService.updateData({
+        action: 'lang_updated',
+        id: selectedLanguageId
+      })
+
+      // this.shareService.updateLanguage(selectedLanguageId);
+
+      let jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        let userData = JSON.parse(jsonData);
+        userId = userData.id;
+      }
+      else {
+        console.log("No data found in localStorage.");
+      }
+
+      this.socketService.emit('updateLanguage', { userId, langId: selectedLanguageId });
+      this.fetchNotifications(userId, selectedLanguageId);
+      const chatSelectedLanguage = this.langs.find((lang: any) => lang.slug === this.lang);
+      // Now safely access the locale
+      const locale = chatSelectedLanguage.locale;
+      // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
+      this.translateService.use(selectedLanguage);
+      this.talkService.changeLocale(locale);
+      this.getPageTitle();
+      this._adapter.setLocale(selectedLanguage);
+      // langs
     }
-    this.shareService.updateData({
-      action: 'lang_updated',
-      id: selectedLanguageId
-    })
-
-    // this.shareService.updateLanguage(selectedLanguageId);
-
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
-    }
-    else {
-      console.log("No data found in localStorage.");
-    }
-
-    this.socketService.emit('updateLanguage', { userId, langId: selectedLanguageId });
-    this.fetchNotifications(userId, selectedLanguageId);
-    const chatSelectedLanguage = this.langs.find((lang: any) => lang.slug === this.lang);
-    // Now safely access the locale
-    const locale = chatSelectedLanguage.locale;
-    // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
-    this.translateService.use(selectedLanguage);
-    this.talkService.changeLocale(locale);
-    this.getPageTitle();
-    this._adapter.setLocale(selectedLanguage);
-    // langs
   }
   getPageTitle() {
     this.titleService.currentTitle.subscribe(updatedTitle => {
@@ -460,18 +469,20 @@ export class HeaderComponent {
   }
 
   logout() {
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
+    if (isPlatformBrowser(this.platformId)) {
+      let jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        let userData = JSON.parse(jsonData);
+        userId = userData.id;
+      }
+      else {
+        console.log("No data found in localStorage.");
+      }
+      this.socketService.disconnectUser(userId);
+      localStorage.removeItem('userPermissionRole');
+      this.authService.logout();
     }
-    else {
-      console.log("No data found in localStorage.");
-    }
-    this.socketService.disconnectUser(userId);
-    localStorage.removeItem('userPermissionRole');
-    this.authService.logout();
   }
 
   themeText: string = 'Light Mode'
@@ -538,11 +549,22 @@ export class HeaderComponent {
 
 
   toggleSidebar() {
-    document.body.classList.toggle('mobile-sidebar-active');
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.toggle('mobile-sidebar-active');
+
+    }
   }
 
   closeSidebar() {
-    document.body.classList.toggle('mobile-sidebar-active');
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.toggle('mobile-sidebar-active');
+    }
   }
 
   // notifications: Notification[] = [
@@ -559,19 +581,23 @@ export class HeaderComponent {
   }
 
   onScroll(): void {
-    const notificationBox = document.getElementById('notification-box-id');
-    if (notificationBox) {
-      // Check if scroll position is greater than 300
-      this.isScrolledBeyond = notificationBox.scrollTop > 200;
+    if (isPlatformBrowser(this.platformId)) {
+      const notificationBox = document.getElementById('notification-box-id');
+      if (notificationBox) {
+        // Check if scroll position is greater than 300
+        this.isScrolledBeyond = notificationBox.scrollTop > 200;
+      }
     }
   }
 
   scrollToTop(): void {
-    const notificationBox = document.getElementById('notification-box-id');
-    if (notificationBox) {
-      notificationBox.scrollTop = 0;
+    if (isPlatformBrowser(this.platformId)) {
+      const notificationBox = document.getElementById('notification-box-id');
+      if (notificationBox) {
+        notificationBox.scrollTop = 0;
+      }
+      this.clickedNewNotification = false;
     }
-    this.clickedNewNotification = false;
   }
 
   fetchNotifications(userId: number, langId: any): void {

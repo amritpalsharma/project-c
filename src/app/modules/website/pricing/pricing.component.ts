@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pricing',
@@ -42,19 +46,26 @@ export class PricingComponent {
   adVisible: boolean[] = [false, false, false, false, false, false, false];
 
   constructor(private webPages: WebPages,
-    private globalSettings: GlobalSettingsService
-  ) { }
+    private globalSettings: GlobalSettingsService,
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    ssrDebug(this.platformId, 'PricingComponent');
+
+  }
   plansPageLink: any = this.globalSettings.getPlansLink();
   ngOnInit() {
     // Retrieve the states from local storage
-    const savedState1 = localStorage.getItem('toggleState1');
-    const savedState2 = localStorage.getItem('toggleState2');
-    const savedState3 = localStorage.getItem('toggleState3');
+    if (isPlatformBrowser(this.platformId)) {
+      const savedState1 = localStorage.getItem('toggleState1');
+      const savedState2 = localStorage.getItem('toggleState2');
+      const savedState3 = localStorage.getItem('toggleState3');
 
-    // Set isActive for each toggle based on the saved states or default to false
-    this.isActive1 = savedState1 === 'true' ? true : false;
-    this.isActive2 = savedState2 === 'true' ? true : false;
-    this.isActive3 = savedState3 === 'true' ? true : false;
+      // Set isActive for each toggle based on the saved states or default to false
+      this.isActive1 = savedState1 === 'true' ? true : false;
+      this.isActive2 = savedState2 === 'true' ? true : false;
+      this.isActive3 = savedState3 === 'true' ? true : false;
+    }
 
     this.webPages.languageId$.subscribe((data) => {
       this.getPageData(data);
@@ -123,28 +134,46 @@ export class PricingComponent {
   toggle1() {
 
     this.isActive1 = !this.isActive1;
-    localStorage.setItem('toggleState1', this.isActive1.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState1', this.isActive1.toString());
+    }
   }
 
   toggle2() {
     this.isActive2 = !this.isActive2;
-    localStorage.setItem('toggleState2', this.isActive2.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState2', this.isActive2.toString());
+    }
   }
 
   toggle3() {
     this.isActive3 = !this.isActive3;
-    localStorage.setItem('toggleState3', this.isActive3.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState3', this.isActive3.toString());
+    }
   }
-
-  // closeAd(index: number) {
-  //   this.adVisible[index] = false;
-  // }
-
-  // base_url : string = '';
 
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('pricing', languageId).subscribe((res) => {
       if (res.status) {
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /*### Meta Tags ###*/
         this.pageData = res.data.pageData; // Store the page data in the component
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
@@ -152,7 +181,6 @@ export class PricingComponent {
         this.advertisementList = res?.data?.allAdsList;
         this.priceArr = this.pageData.pricing_tab;
         console.info('pageData', this.pageData);
-        // this.pricing_banner_img = this.pageData.pricing_banner_img;
         this.base_url = res.data.base_url;
         this.isLoading = false;
         this.startCountdown();
@@ -200,9 +228,6 @@ export class PricingComponent {
     return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
-  // isExists(key: any): boolean {
-  //   return key in this.advertisementData;
-  // }
 
   isFeaturedImageExists(key: any): boolean {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
@@ -233,7 +258,9 @@ export class PricingComponent {
     })
   }
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   setActiveTab(currentTab: any) {

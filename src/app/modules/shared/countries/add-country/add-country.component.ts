@@ -5,13 +5,16 @@ import { TalentService } from '../../../../services/talent.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from '../../../../services/payment.service';
-import { loadStripe } from '@stripe/stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../../environments/environment';
 import { ScoutService } from '../../../../services/scout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
 import { CouponCodeAlertComponent } from '../../coupon-code-alert/coupon-code-alert.component';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 
 @Component({
   selector: 'shared-add-country',
@@ -48,9 +51,18 @@ export class AddCountryComponent {
   errorTxt: string = '';
   generalError: string = '';
   countryPlanPrice: string = '';
-
-  stripePromise = loadStripe(environment.stripePublishableKey);
+  private platformId = inject(PLATFORM_ID);
+  // stripePromise = loadStripe(environment.stripePublishableKey);
+  stripePromise: any;
   currency: string = '';
+
+  async initStripe() {
+
+    if (isPlatformBrowser(this.platformId)) {
+      const { loadStripe } = await import('@stripe/stripe-js');
+      this.stripePromise = loadStripe(environment.stripePublishableKey);
+    }
+  }
 
   async ngOnInit() {
     this.theme = localStorage.getItem('theme');
@@ -90,10 +102,10 @@ export class AddCountryComponent {
           const selected = this.countryPlans.find(
             (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
           );
-          console.log('selected_selected',selected)
+          console.log('selected_selected', selected)
           if (selected.id != '') {
             this.redirectToCheckout(selected.id, coupon);
-          }else{
+          } else {
             console.error('something went wrong no package found');
           }
         }
@@ -147,7 +159,7 @@ export class AddCountryComponent {
       this.countryPlanPrice = '';
     }
 
-    console.log('selectedPlan',selected)
+    console.log('selectedPlan', selected)
   }
   async redirectToCheckout(planId: string, coupon: any = '') {
     this.toastr.info(this.Processing, this.pleaseWait, { timeOut: 2000 });
@@ -211,7 +223,7 @@ export class AddCountryComponent {
     const selected = this.countryPlans.find(
       (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
     );
-    console.info('selected',selected);
+    console.info('selected', selected);
     if (selected.price != '' && selected.price != undefined) {
       this.countryPlanPrice = selected.price;
     } else {

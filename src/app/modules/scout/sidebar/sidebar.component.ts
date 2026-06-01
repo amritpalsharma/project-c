@@ -6,6 +6,8 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { AuthService } from '../../../services/auth.service';
 import { SharedDataService } from '../../shared/shared-data.service';
 import { ChatComingSoonComponent } from '../../shared/chat-coming-soon/chat-coming-soon.component';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
   selector: 'scout-sidebar',
@@ -24,31 +26,34 @@ export class SidebarComponent {
     private globalSettings: GlobalSettingsService,
     public dialog: MatDialog,
     private sharedDataService: SharedDataService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
 
   }
   ngOnInit(): void {
-    // Add any initialization logic if needed
-    if (this.isNum == 1 && window.innerWidth >= 992) {
-      document.body.classList.remove('compact-sidebar');
-      document.body.classList.add('mobile-sidebar-active');
-      this.isNum = 0;
+    if (typeof document === 'undefined') {
+      return;
     }
-    // if(this.loggedInUser && this.loggedInUser != ''){
-    //   this.loggedInUser = JSON.parse(this.loggedInUser);
-    //   console.warn(this.loggedInUser.status)
-    // }
-    if (typeof this.loggedInUser !== 'undefined' && this.loggedInUser !== null && this.loggedInUser !== '') {
-      // Do something
-      this.loggedInUser = JSON.parse(this.loggedInUser);
-    } else {
-      // window.location.reload();
-    }
+    if (isPlatformBrowser(this.platformId)) {
+      // Add any initialization logic if needed
+      if (this.isNum == 1 && window.innerWidth >= 992) {
+        document.body.classList.remove('compact-sidebar');
+        document.body.classList.add('mobile-sidebar-active');
+        this.isNum = 0;
+      }
 
-    this.sharedDataService.sharedText$.subscribe(text => {
-      this.currentLoggedInPermission = text;
-    });
+      if (typeof this.loggedInUser !== 'undefined' && this.loggedInUser !== null && this.loggedInUser !== '') {
+        // Do something
+        this.loggedInUser = JSON.parse(this.loggedInUser);
+      } else {
+        // window.location.reload();
+      }
+
+      this.sharedDataService.sharedText$.subscribe(text => {
+        this.currentLoggedInPermission = text;
+      });
+    }
     this.getUserStatus();
   }
   isLoadingStatus: boolean = true;
@@ -68,28 +73,37 @@ export class SidebarComponent {
 
   toggleState() {
     this.sidebarOpen = !this.sidebarOpen;
-
-    // Toggle classes on body element
-    if (!this.sidebarOpen) {
-      document.body.classList.remove('compact-sidebar');
-      document.body.classList.add('mobile-sidebar-active');
-    } else {
-      document.body.classList.add('compact-sidebar');
-      document.body.classList.remove('mobile-sidebar-active');
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      // Toggle classes on body element
+      if (!this.sidebarOpen) {
+        document.body.classList.remove('compact-sidebar');
+        document.body.classList.add('mobile-sidebar-active');
+      } else {
+        document.body.classList.add('compact-sidebar');
+        document.body.classList.remove('mobile-sidebar-active');
+      }
     }
   }
 
   closeSidebar(isMobile: any): void {
-    if (!isMobile) {
-      this.sidebarOpen = false;
-      document.body.classList.remove('mobile-sidebar-active');
-      document.body.classList.add('compact-sidebar');
+    if (typeof document === 'undefined') {
+      return;
     }
-    else {
-      if (window.innerWidth < 992) {
+    if (isPlatformBrowser(this.platformId)) {
+      if (!isMobile) {
         this.sidebarOpen = false;
         document.body.classList.remove('mobile-sidebar-active');
         document.body.classList.add('compact-sidebar');
+      }
+      else {
+        if (window.innerWidth < 992) {
+          this.sidebarOpen = false;
+          document.body.classList.remove('mobile-sidebar-active');
+          document.body.classList.add('compact-sidebar');
+        }
       }
     }
   }
@@ -112,43 +126,45 @@ export class SidebarComponent {
   }
 
   logout() {
-    const jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      const userData = JSON.parse(jsonData);
-      userId = userData.id;
+    if (isPlatformBrowser(this.platformId)) {
+      const jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        const userData = JSON.parse(jsonData);
+        userId = userData.id;
+      }
+
+      const lang_id = localStorage.getItem('lang_id');
+      const cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
+      const cookiesent = localStorage.getItem('cookieConsent');
+      const theme = localStorage.getItem('theme') || 'light';
+      let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
+      const domainLang = this.globalSettings.getLanguage();
+
+      if ((domainLang !== '') && (!localStorage.getItem('lang'))) {
+        lang = domainLang;
+      }
+
+      // 🔌 Disconnect user socket
+      this.socketService.disconnectUser(userId);
+
+      // 🧹 Clear & Restore necessary values
+      localStorage.clear();
+      localStorage.setItem('cookieConsent', cookiesent + '');
+      localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
+      localStorage.setItem('theme', theme);
+      localStorage.setItem('lang', lang);
+      localStorage.setItem('lang_id', lang_id + '');
+
+      // ✅ Perform logout logic
+      this.authService.logout();
+
+      // 🔁 Navigate directly to homepage or login (choose your route)
+      // this.router.navigate(['/']); // Or use '/login' or another route as needed
+
+      // ✅ Finally, force hard redirect to base page
+      window.location.href = '/';
     }
-
-    const lang_id = localStorage.getItem('lang_id');
-    const cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
-    const cookiesent = localStorage.getItem('cookieConsent');
-    const theme = localStorage.getItem('theme') || 'light';
-    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
-    const domainLang = this.globalSettings.getLanguage();
-
-    if ((domainLang !== '') && (!localStorage.getItem('lang'))) {
-      lang = domainLang;
-    }
-
-    // 🔌 Disconnect user socket
-    this.socketService.disconnectUser(userId);
-
-    // 🧹 Clear & Restore necessary values
-    localStorage.clear();
-    localStorage.setItem('cookieConsent', cookiesent + '');
-    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang);
-    localStorage.setItem('lang_id', lang_id + '');
-
-    // ✅ Perform logout logic
-    this.authService.logout();
-
-    // 🔁 Navigate directly to homepage or login (choose your route)
-    // this.router.navigate(['/']); // Or use '/login' or another route as needed
-
-    // ✅ Finally, force hard redirect to base page
-    window.location.href = '/';
   }
 
   comingSoonPopup(event: Event) {
@@ -162,30 +178,35 @@ export class SidebarComponent {
   }
 
   ngAfterViewInit() {
-    // Adding the click event listener to detect clicks anywhere in the document
-    document.body.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      console.info('target', target.tagName)
-      // Check if the target is an svg or p tag (children inside the a tag)
-      if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
-        // Find the closest parent <a> tag
-        const parentLink = target.closest('a') as HTMLElement;
+    if (isPlatformBrowser(this.platformId)) {
+      // Adding the click event listener to detect clicks anywhere in the document
+      document.body.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+        console.info('target', target.tagName)
+        if (typeof document === 'undefined') {
+          return;
+        }
+        // Check if the target is an svg or p tag (children inside the a tag)
+        if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
+          // Find the closest parent <a> tag
+          const parentLink = target.closest('a') as HTMLElement;
 
-        // Check if the parent <a> tag has the "active" class
-        if (parentLink && parentLink.classList.contains('active')) {
-          console.log('Clicked on an active link!');
-          // You can add custom logic here, like resetting scroll position
-          // Example: Reset scroll when clicking on the active link
-          const targetDiv = document.querySelector('.page-container');
-          if (targetDiv) {
-            targetDiv.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: 'smooth'
-            });
+          // Check if the parent <a> tag has the "active" class
+          if (parentLink && parentLink.classList.contains('active')) {
+            console.log('Clicked on an active link!');
+            // You can add custom logic here, like resetting scroll position
+            // Example: Reset scroll when clicking on the active link
+            const targetDiv = document.querySelector('.page-container');
+            if (targetDiv) {
+              targetDiv.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+              });
+            }
           }
         }
-      }
-    });
+      });
+    }
   }
 }

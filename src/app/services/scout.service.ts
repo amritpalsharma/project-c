@@ -4,8 +4,12 @@ import { User } from '../modules/admin/users/user.model';
 import { environment } from '../../environments/environment';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators'; // For storing data after fetching
-import { loadStripe, StripeCardElement, StripeElements, Stripe } from '@stripe/stripe-js';
+// import { loadStripe, StripeCardElement, StripeElements, Stripe } from '@stripe/stripe-js';
+import { StripeCardElement, StripeElements, Stripe } from '@stripe/stripe-js';
 import { Subject } from 'rxjs';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 
 export interface Notification {
   id: number;
@@ -24,6 +28,7 @@ export interface Notification {
 })
 
 export class ScoutService {
+  private platformId = inject(PLATFORM_ID);
   private apiUrl: string;
   private domain: any;
   private userToken: string | null;
@@ -36,13 +41,17 @@ export class ScoutService {
 
   private apiUrl2: any;
   private stripe!: any;
-  private stripePromise = loadStripe(environment.stripePublishableKey); // Replace with your Stripe publishable key
+  stripePromise: any;
+  // private stripePromise = loadStripe(environment.stripePublishableKey); // Replace with your Stripe publishable key
 
   constructor(private http: HttpClient) {
 
     // Retrieve the selected language code from localStorage
-    const selectedLanguageSlug = localStorage.getItem('lang') || '';
+    let selectedLanguageSlug = '2';
 
+    if (isPlatformBrowser(this.platformId)){
+      selectedLanguageSlug = localStorage.getItem('lang') || '';
+    }
     // Find the corresponding language ID from the langs array
     const lang = this.languages.find(
       (lang: any) => lang.slug === selectedLanguageSlug
@@ -52,9 +61,22 @@ export class ScoutService {
     this.lang = lang ? lang.id : 1;
 
     this.apiUrl = this.apiUrl2 = environment.apiUrl;
-    this.userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)){
+      this.userToken = localStorage.getItem('authToken') || '';
+    }
     this.domain = environment.targetDomain.id;
     console.log(this.domain);
+  }
+
+  async initStripe() {
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      const { loadStripe } = await import('@stripe/stripe-js');
+      this.stripe = await loadStripe(environment.stripePublishableKey);
+      return this.stripe;
+    }
   }
 
 
@@ -64,8 +86,8 @@ export class ScoutService {
 
   // Initialize Stripe.js with your publishable key
   async initializeStripe() {
-    this.stripe = await loadStripe(environment.stripePublishableKey); // Use your Stripe Publishable Key
-    return this.stripe;
+    // this.stripe = await loadStripe(environment.stripePublishableKey); // Use your Stripe Publishable Key
+    return this.initStripe();
   }
 
   // Create a payment method using Stripe.js
@@ -84,7 +106,7 @@ export class ScoutService {
   }
 
   getScoutHistory(): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -94,8 +116,11 @@ export class ScoutService {
   }
 
   getScoutPlayers(): Observable<any> {
-    let langId = localStorage.getItem('lang_id');
-    const userToken = localStorage.getItem('authToken');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -105,7 +130,7 @@ export class ScoutService {
   }
 
   deleteScoutPlayer(id: any, langId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -115,7 +140,7 @@ export class ScoutService {
   }
 
   getRepresentators(): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -126,7 +151,7 @@ export class ScoutService {
 
   updateScoutHistory(history: any): Observable<any> {
 
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -164,7 +189,10 @@ export class ScoutService {
 
   getPackages(): Observable<any> {
     const headers = this.headers();
-    let langId = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/get-packages?lang=${langId}`,
       { headers }
@@ -181,7 +209,10 @@ export class ScoutService {
 
   getBoosterData(): Observable<any> {
     const headers = this.headers();
-    let langId = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/get-booster-stats/${langId}`,
       { headers }
@@ -232,9 +263,12 @@ export class ScoutService {
   }
 
   getUserPlans(): Observable<any> {
-    let lang = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: any }>(
-      `${this.apiUrl}user/get-active-packages/${lang}`
+      `${this.apiUrl}user/get-active-packages/${langId}`
     );
   }
 
@@ -412,9 +446,12 @@ export class ScoutService {
 
   getCountries(): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-countries/${lang_id}`, { headers }
+      `${this.apiUrl}get-countries/${langId}`, { headers }
     );
 
   }
@@ -468,10 +505,13 @@ export class ScoutService {
   getProfileData(userId: any = 1): Observable<any> {
     const headers = this.headers();
 
-    let lang_id = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
 
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}profile/${lang_id}`,
+      `${this.apiUrl}profile/${langId}`,
       { headers }
     );
   }
@@ -532,8 +572,11 @@ export class ScoutService {
 
   uploadCoverImage(formdata: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/${lang_id}`, formdata, { headers });
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
+    return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/${langId}`, formdata, { headers });
   }
 
   getAllUses(): Observable<any> {
@@ -547,22 +590,31 @@ export class ScoutService {
 
   deleteCoverImage(): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/delete-cover-image/${lang_id}`, { headers }
+      `${this.apiUrl}user/delete-cover-image/${langId}`, { headers }
     );
   }
 
   uploadProfileImage(formdata: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/${lang_id}`, formdata, { headers });
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
+    return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/${langId}`, formdata, { headers });
   }
 
   uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${lang_id}`, formdata,
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${langId}`, formdata,
       {
         headers,
         reportProgress: true,
@@ -572,8 +624,11 @@ export class ScoutService {
 
   deleteGalleryImage(params: any): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file/${lang_id}`, params, { headers });
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
+    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file/${langId}`, params, { headers });
   }
 
   updateTransferDetails(transferId: number, transferData: any): Observable<any> {
@@ -685,9 +740,12 @@ export class ScoutService {
       params = params.append('unset_all', true);
     }
 
-    let lang_id = localStorage.getItem('lang_id');
+    let langId = '';
+    if (isPlatformBrowser(this.platformId)){
+      langId = localStorage.getItem('langId') || '';
+    }
 
-    return this.http.post(`${this.apiUrl}user/set-featured-file/${lang_id}`, params, { headers });
+    return this.http.post(`${this.apiUrl}user/set-featured-file/${langId}`, params, { headers });
   }
 
 
@@ -759,7 +817,14 @@ export class ScoutService {
   getTeams(): Observable<any> {
     const headers = this.headers();
 
-    const cachedTeams = localStorage.getItem('teams');
+    if (!this.platformId) {
+      return of(this.teams);
+    }
+    let cachedTeams = '';
+    if (isPlatformBrowser(this.platformId)){
+      cachedTeams = localStorage.getItem('teams') || '';
+    }
+
 
     if (cachedTeams) {
       // Parse and return teams from localStorage if available

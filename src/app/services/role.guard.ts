@@ -7,13 +7,15 @@ import {
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleGuard implements CanActivate {
   constructor(private router: Router) { }
-
+  private platformId = inject(PLATFORM_ID);
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -24,8 +26,12 @@ export class RoleGuard implements CanActivate {
     | UrlTree {
 
     const expectedRoles: string[] = route.data['roles']; // roles: ['admin']
-    // let userRole = localStorage.getItem('userRole'); // Get from auth service in real use
-    let userRole = localStorage.getItem('userRole');
+
+
+    let userRole = '2';
+    if (isPlatformBrowser(this.platformId)) {
+      userRole = String(localStorage.getItem('userRole'));
+    }
     if (userRole == '1') {
       userRole = 'admin';
     } else if (userRole == '2' || userRole == '6') {
@@ -34,7 +40,7 @@ export class RoleGuard implements CanActivate {
       userRole = 'scout';
     } else if (userRole == '4') {
       userRole = 'talent';
-    }else if (userRole == '5') {
+    } else if (userRole == '5') {
       userRole = 'admin';
     }
     console.info('expectedRoles', expectedRoles);

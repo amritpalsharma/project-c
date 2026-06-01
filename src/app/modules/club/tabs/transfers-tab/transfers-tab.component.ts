@@ -7,6 +7,10 @@ import { EditTransferDetailsComponent } from '../../edit-transfer-details/edit-t
 import { MatDialog } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../../delete-popup/delete-popup.component';
 import { AddTransferComponent } from './add-transfer/add-transfer.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'scout-transfers-tab',

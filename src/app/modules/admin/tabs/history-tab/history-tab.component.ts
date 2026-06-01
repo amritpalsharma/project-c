@@ -4,6 +4,8 @@ import { UserService } from '../../../../services/user.service';
 import { EditorConfigService } from '../../../../services/editor-config.service';
 import tinymce from 'tinymce';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-history-tab',
@@ -24,7 +26,9 @@ export class HistoryTabComponent {
     public userRoleService: UserRoleService,
     private configService: EditorConfigService,
     private route: ActivatedRoute,
-    private userService: UserService) {
+    private userService: UserService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
 
   }
 
@@ -96,18 +100,20 @@ export class HistoryTabComponent {
   // ✅ This function removes only anchor tags, keeps inner content
   private removeLinks(html: string): string {
     if (!html) return '';
+    if (isPlatformBrowser(this.platformId)) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
 
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
+      // Remove <a> tags but preserve text
+      tempDiv.querySelectorAll('a').forEach(anchor => {
+        const span = document.createElement('span');
+        span.innerHTML = anchor.innerHTML;
+        anchor.replaceWith(span);
+      });
 
-    // Remove <a> tags but preserve text
-    tempDiv.querySelectorAll('a').forEach(anchor => {
-      const span = document.createElement('span');
-      span.innerHTML = anchor.innerHTML;
-      anchor.replaceWith(span);
-    });
-
-    return tempDiv.innerHTML;
+      return tempDiv.innerHTML;
+    }
+    return html;
   }
 
   updateScoutHistory(): any {

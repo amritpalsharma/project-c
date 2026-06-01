@@ -261,11 +261,11 @@ export class AddPageComponent {
 
   onEditorReady(editor: any): void {
     const editableElement = editor.ui.view.editable.element;
-    editableElement.style.height = '300px'; // Set desired height
+    // editableElement.style.height = '300px'; // Set desired height
   }
 
   addNewPage(form: any){
-
+ 
     // Append lang_id to FormData
     form.append('lang', String(localStorage.getItem('lang_id')));
 

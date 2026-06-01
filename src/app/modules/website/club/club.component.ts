@@ -11,6 +11,10 @@ import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-club',
@@ -22,8 +26,8 @@ export class ClubComponent {
   currentFeatureImage: string = '';
   accordinCurrentIndex: number = 0;
   feature_sctn: any = [];
-  currentTheme: string = localStorage.getItem('theme') || 'light';
-  currentLang: any = localStorage.getItem('lang') || 'en';
+  currentTheme: string = 'dark';
+  currentLang: any = 'de';
   pageData: any = [{
     banner_title: '',
     banner_desc: '',
@@ -67,8 +71,12 @@ export class ClubComponent {
   selectedTab: string = 'monthly';
   // 
 
-  constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) {
-
+  constructor(private webPages: WebPages,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private globalSettings: GlobalSettingsService,
+    private metaService: Meta
+  ) {
+    ssrDebug(this.platformId, 'ClubComponent');
   }
   plansPageLink: any = this.globalSettings.getPlansLink();
   setActiveAccordion(index: number): void {
@@ -79,14 +87,23 @@ export class ClubComponent {
 
   ngOnInit() {
     // Retrieve the states from local storage
-    const savedState1 = localStorage.getItem('toggleState1');
-    const savedState2 = localStorage.getItem('toggleState2');
+    if (isPlatformBrowser(this.platformId)) {
+      let theme = localStorage.getItem('theme');
+      if (theme !== null && theme !== undefined && theme !== '') {
+        this.currentTheme = localStorage.getItem('theme') + '';
+      }
+      this.currentLang = localStorage.getItem('lang') || 'en';
+      const savedState1 = localStorage.getItem('toggleState1');
+      const savedState2 = localStorage.getItem('toggleState2');
+      this.isActive1 = savedState1 === 'true' ? true : false;
+      this.isActive2 = savedState2 === 'true' ? true : false;
+      this.isActive3 = savedState2 === 'true' ? true : false;
+    }
+
     this.adVisible = [true, true, true, true, true, true, true];
 
     // Set isActive for each toggle based on the saved states or default to false
-    this.isActive1 = savedState1 === 'true' ? true : false;
-    this.isActive2 = savedState2 === 'true' ? true : false;
-    this.isActive3 = savedState2 === 'true' ? true : false;
+
 
     this.getCurrencyPrice('monthly');
     this.getCurrencyPrice('yearly');
@@ -170,6 +187,25 @@ export class ClubComponent {
         this.pageData = res.data.pageData;
         this.baseUrl = res.data.base_url;
 
+        /* ### Meta Tags ### */
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /* ### Meta Tags ### */
+
 
         this.advertisementData = res.data.advertisementData;
         this.advertisementList = res.data.allAdsList;
@@ -214,19 +250,26 @@ export class ClubComponent {
   toggle1() {
     this.isActive1 = !this.isActive1;
     // Save the new state to local storage
-    localStorage.setItem('toggleState1', this.isActive1.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState1', this.isActive1.toString());
+    }
   }
 
   toggle2() {
     this.isActive2 = !this.isActive2;
     // Save the new state to local storage
-    localStorage.setItem('toggleState2', this.isActive2.toString());
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState2', this.isActive2.toString());
+    }
   }
 
   toggle3() {
     this.isActive3 = !this.isActive3;
     // Save the new state to local storage
-    localStorage.setItem('toggleState2', this.isActive3.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('toggleState2', this.isActive3.toString());
+    }
   }
 
   premiumFeatures = [
@@ -294,19 +337,7 @@ export class ClubComponent {
   getCurrencyPrice(interval: string) {
     this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
       if (res.status) {
-        // if (res.status && res.data?.premium?.plans?.length > 0) {
-        //   this.Currency = res.data.premium.plans[0].currency;
-        //   if (interval == 'yearly') {
-        //     this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);
-        //     this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10);
-        //     this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10);
-        //   }
-        //   if (interval == 'monthly') {
-        //     this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10);
-        //     this.boostPrice = parseInt(res.data.booster.plans[0].price, 10);
-        //     this.countryPrice = parseInt(res.data.country.plans[0].price, 10);
-        //   }
-        // }
+
         if (res.status && res.data?.premium?.plans?.length > 0) {
           this.Currency = res.data.premium_talent.plans[0].currency;
           if (interval == 'yearly') {
@@ -407,9 +438,13 @@ export class ClubComponent {
   }
 
 
-  getArrayItemByIndex(index: number, field: keyof FeatureSection) {
-    let theme = localStorage.getItem('theme') || 'light';
-    let lang = localStorage.getItem('lang');
+  getArrayItemByIndexold25_5_26(index: number, field: keyof FeatureSection) {
+    let theme = 'dark';
+    let lang = 'de';
+    if (isPlatformBrowser(this.platformId)) {
+      theme = localStorage.getItem('theme') || 'dark';
+      lang = localStorage.getItem('lang') || 'de';
+    }
     let image_index = index + 1;
 
     // Check if the index is within bounds
@@ -430,6 +465,45 @@ export class ClubComponent {
           // Update DOM or trigger necessary changes once the image has loaded
           this.currentFeatureImage = image.src;
         };
+      }
+    }
+  }
+
+  getArrayItemByIndex(index: number, field: keyof FeatureSection) {
+
+    let theme = 'dark';
+    let lang = 'de';
+
+    if (isPlatformBrowser(this.platformId)) {
+      theme = localStorage.getItem('theme') || 'dark';
+      lang = localStorage.getItem('lang') || 'de';
+    }
+
+    let image_index = index + 1;
+
+    if (index >= 0 && index < this.feature_sctn.length) {
+
+      this.accordinCurrentIndex = index;
+
+      const newImageSrc =
+        `/assets/images/club_page/features/${image_index}_${lang}_${theme}.png`;
+
+      if (this.currentFeatureImage !== newImageSrc) {
+
+        this.currentFeatureImage = newImageSrc;
+
+        // Browser-only code
+        if (isPlatformBrowser(this.platformId)) {
+
+          const image = new Image();
+
+          image.src = newImageSrc;
+
+          image.onload = () => {
+            this.currentFeatureImage = image.src;
+          };
+
+        }
       }
     }
   }
@@ -455,7 +529,9 @@ export class ClubComponent {
 
   ThemeUpdated() {
     this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
-    this.currentTheme = localStorage.getItem('theme') + '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.currentTheme = localStorage.getItem('theme') + '';
+    }
   }
 
   setActiveAccordionNew(index: number): void {
@@ -497,6 +573,8 @@ export class ClubComponent {
   }
 
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }

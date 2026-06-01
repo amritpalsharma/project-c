@@ -9,6 +9,8 @@ import { ChatComingSoonComponent } from '../../shared/chat-coming-soon/chat-comi
 // New Code
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
   selector: 'talent-sidebar',
@@ -29,48 +31,54 @@ export class SidebarComponent implements OnInit {
     private socketService: SocketService,
     public dialog: MatDialog,
     private router: Router,// New Code
+    @Inject(PLATFORM_ID) private platformId: Object
     // private dialogRef: MatDialogRef<ChatComingSoonComponent>
     // New Code
   ) { }
 
   ngOnInit(): void {
-    // Add any initialization logic if needed
-    if (this.isNum == 1 && window.innerWidth >= 992) {
-      document.body.classList.remove('compact-sidebar');
-      document.body.classList.add('mobile-sidebar-active');
-      this.isNum = 0;
+    if (typeof document === 'undefined') {
+      return;
     }
-    if (typeof this.loggedInUser !== 'undefined' && this.loggedInUser !== null && this.loggedInUser !== '') {
-      // Do something
-      this.loggedInUser = JSON.parse(this.loggedInUser);
-    } else {
-      // window.location.reload();
-    }
-    this.isUserVerified = false;
-    this.getUserStatus();
-
-    this.routerEventsSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        // If the current URL is the same as the target URL, prevent any action
-        const currentUrl = this.router.url;
-        const targetUrl = event.url;  // The URL being navigated to
-        console.info('currentUrl ' + currentUrl + ' targetUrl = ' + targetUrl)
-        if (currentUrl === targetUrl) {
-          console.log('You are already on the target page, no need to navigate');
-          // Optionally, you can handle this case specifically, for example:
-          // Resetting scroll position, showing a message, etc.
-          const targetDiv = document.querySelector('.page-container');
-          if (targetDiv) {
-            targetDiv.scrollTo(0, 0);
-          }
-          return;  // Stop further execution if the route is the same
-        }
-
-        // If the navigation is to a different route, proceed with custom actions
-        console.log('Navigating to a different route:', targetUrl);
-        // You can perform actions like scroll reset, etc.
+    if (isPlatformBrowser(this.platformId)) {
+      // Add any initialization logic if needed
+      if (this.isNum == 1 && window.innerWidth >= 992) {
+        document.body.classList.remove('compact-sidebar');
+        document.body.classList.add('mobile-sidebar-active');
+        this.isNum = 0;
       }
-    });
+      if (typeof this.loggedInUser !== 'undefined' && this.loggedInUser !== null && this.loggedInUser !== '') {
+        // Do something
+        this.loggedInUser = JSON.parse(this.loggedInUser);
+      } else {
+        // window.location.reload();
+      }
+      this.isUserVerified = false;
+      this.getUserStatus();
+
+      this.routerEventsSubscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          // If the current URL is the same as the target URL, prevent any action
+          const currentUrl = this.router.url;
+          const targetUrl = event.url;  // The URL being navigated to
+          console.info('currentUrl ' + currentUrl + ' targetUrl = ' + targetUrl)
+          if (currentUrl === targetUrl) {
+            console.log('You are already on the target page, no need to navigate');
+            // Optionally, you can handle this case specifically, for example:
+            // Resetting scroll position, showing a message, etc.
+            const targetDiv = document.querySelector('.page-container');
+            if (targetDiv) {
+              targetDiv.scrollTo(0, 0);
+            }
+            return;  // Stop further execution if the route is the same
+          }
+
+          // If the navigation is to a different route, proceed with custom actions
+          console.log('Navigating to a different route:', targetUrl);
+          // You can perform actions like scroll reset, etc.
+        }
+      });
+    }
   }
 
   getUserStatus() {
@@ -88,31 +96,39 @@ export class SidebarComponent implements OnInit {
 
   toggleState(): void {
     this.sidebarOpen = !this.sidebarOpen; // Toggles the sidebar state
-    console.log("working");
-
-    // Update body classes based on sidebar state
-    if (this.sidebarOpen) {
-      document.body.classList.remove('compact-sidebar');
-      document.body.classList.add('mobile-sidebar-active');
-    } else {
-      document.body.classList.add('compact-sidebar');
-      document.body.classList.remove('mobile-sidebar-active');
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      // Update body classes based on sidebar state
+      if (this.sidebarOpen) {
+        document.body.classList.remove('compact-sidebar');
+        document.body.classList.add('mobile-sidebar-active');
+      } else {
+        document.body.classList.add('compact-sidebar');
+        document.body.classList.remove('mobile-sidebar-active');
+      }
     }
   }
 
 
 
   closeSidebar(isMobile: any): void {
-    if (!isMobile) {
-      this.sidebarOpen = false;
-      document.body.classList.remove('mobile-sidebar-active');
-      document.body.classList.add('compact-sidebar');
+    if (typeof document === 'undefined') {
+      return;
     }
-    else {
-      if (window.innerWidth < 992) {
+    if (isPlatformBrowser(this.platformId)) {
+      if (!isMobile) {
         this.sidebarOpen = false;
         document.body.classList.remove('mobile-sidebar-active');
         document.body.classList.add('compact-sidebar');
+      }
+      else {
+        if (window.innerWidth < 992) {
+          this.sidebarOpen = false;
+          document.body.classList.remove('mobile-sidebar-active');
+          document.body.classList.add('compact-sidebar');
+        }
       }
     }
   }
@@ -139,36 +155,38 @@ export class SidebarComponent implements OnInit {
 
 
   logout() {
-    const jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      const userData = JSON.parse(jsonData);
-      userId = userData.id;
+    if (isPlatformBrowser(this.platformId)) {
+      const jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        const userData = JSON.parse(jsonData);
+        userId = userData.id;
+      }
+
+      const lang_id = localStorage.getItem('lang_id');
+      const cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
+      const cookiesent = localStorage.getItem('cookieConsent');
+      const theme = localStorage.getItem('theme') || 'light';
+      let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
+      const domainLang = this.globalSettings.getLanguage();
+
+      if ((domainLang !== '') && (!localStorage.getItem('lang'))) {
+        lang = domainLang;
+      }
+
+      this.socketService.disconnectUser(userId);
+
+      localStorage.clear();
+      localStorage.setItem('cookieConsent', cookiesent + '');
+      localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
+      localStorage.setItem('theme', theme);
+      localStorage.setItem('lang', lang);
+      localStorage.setItem('lang_id', lang_id + '');
+
+      this.authService.logout();
+
+      window.location.href = '/';
     }
-
-    const lang_id = localStorage.getItem('lang_id');
-    const cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
-    const cookiesent = localStorage.getItem('cookieConsent');
-    const theme = localStorage.getItem('theme') || 'light';
-    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
-    const domainLang = this.globalSettings.getLanguage();
-
-    if ((domainLang !== '') && (!localStorage.getItem('lang'))) {
-      lang = domainLang;
-    }
-
-    this.socketService.disconnectUser(userId);
-
-    localStorage.clear();
-    localStorage.setItem('cookieConsent', cookiesent + '');
-    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang);
-    localStorage.setItem('lang_id', lang_id + '');
-
-    this.authService.logout();
-
-    window.location.href = '/';
   }
 
   comingSoonPopup(event: Event) {
@@ -176,7 +194,7 @@ export class SidebarComponent implements OnInit {
     this.dialog.open(ChatComingSoonComponent, {
       width: '500px',
       position: { top: '150px' },
-      hasBackdrop: true,         
+      hasBackdrop: true,
       backdropClass: 'custom-backdrop'
     });
   }
@@ -190,32 +208,36 @@ export class SidebarComponent implements OnInit {
 
 
   ngAfterViewInit() {
-    document.body.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
 
-      // Only continue if the clicked element is inside the .side_bar
-      const insideSidebar = target.closest('.side_bar_parent');
-      if (!insideSidebar) return;
+        // Only continue if the clicked element is inside the .side_bar
+        const insideSidebar = target.closest('.side_bar_parent');
+        if (!insideSidebar) return;
 
-      console.info('target', target.tagName);
+        console.info('target', target.tagName);
+        if (typeof document === 'undefined') {
+          return;
+        }
+        if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
+          const parentLink = target.closest('a') as HTMLElement;
 
-      if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
-        const parentLink = target.closest('a') as HTMLElement;
+          if (parentLink && parentLink.classList.contains('active')) {
+            console.log('Clicked on an active link!');
 
-        if (parentLink && parentLink.classList.contains('active')) {
-          console.log('Clicked on an active link!');
-
-          const targetDiv = document.querySelector('.page-container');
-          if (targetDiv) {
-            targetDiv.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: 'smooth'
-            });
+            const targetDiv = document.querySelector('.page-container');
+            if (targetDiv) {
+              targetDiv.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+              });
+            }
           }
         }
-      }
-    });
+      });
+    }
   }
 
 

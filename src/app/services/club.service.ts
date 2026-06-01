@@ -4,11 +4,13 @@ import { User } from '../modules/admin/users/user.model';
 import { environment } from '../../environments/environment';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators'; // For storing data after fetching
-import { loadStripe, StripeCardElement, StripeElements, Stripe } from '@stripe/stripe-js';
+import { StripeCardElement, StripeElements, Stripe } from '@stripe/stripe-js';
 import { Subject } from 'rxjs';
 
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface Notification {
   id: number;
@@ -36,15 +38,17 @@ export class ClubService {
   public lang: any; // You can dynamically set this if needed
   languages: any = environment.langs;
   private apiUrl3 = "https://alerts.socceryou.ch/";
-
+  private platformId = inject(PLATFORM_ID);
   constructor(
     private http: HttpClient,
     private toaster: ToastrService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {
-
-    // Retrieve the selected language code from localStorage
-    const selectedLanguageSlug = localStorage.getItem('lang') || '';
+    this.initStripe();
+    let selectedLanguageSlug = 'de';
+    if (isPlatformBrowser(this.platformId)) {
+      selectedLanguageSlug = localStorage.getItem('lang') || '';
+    }
 
     // Find the corresponding language ID from the langs array
     const lang = this.languages.find(
@@ -54,15 +58,27 @@ export class ClubService {
     // Default to a specific language ID if none is found (e.g., English)
     this.lang = lang ? lang.id : 1;
     this.apiUrl = environment.apiUrl;
-    this.userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = localStorage.getItem('authToken');
+    }
     this.domain = environment.targetDomain.id;
 
   }
 
   private apiUrl2 = environment.apiUrl;
   private stripe!: any;
-  private stripePromise = loadStripe(environment.stripePublishableKey); // Replace with your Stripe publishable key
+  private stripePromise: any;// Replace with your Stripe publishable key
+  async initStripe() {
 
+    if (isPlatformBrowser(this.platformId)) {
+
+      const { loadStripe } = await import('@stripe/stripe-js');
+
+      this.stripePromise = loadStripe(environment.stripePublishableKey);
+
+    }
+  }
   // Method to create common headers for all requests
   private headers(): HttpHeaders {
     return new HttpHeaders({
@@ -78,8 +94,8 @@ export class ClubService {
 
   // Initialize Stripe.js with your publishable key
   async initializeStripe() {
-    this.stripe = await loadStripe(environment.stripePublishableKey); // Use your Stripe Publishable Key
-    return this.stripe;
+    // this.stripe = await loadStripe(environment.stripePublishableKey); // Use your Stripe Publishable Key
+    // return this.stripe;
   }
 
   // Create a payment method using Stripe.js
@@ -91,7 +107,10 @@ export class ClubService {
   }
 
   getRepresentators(): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = localStorage.getItem('authToken');
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -107,7 +126,10 @@ export class ClubService {
   }
 
   getClubHistory(): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = localStorage.getItem('authToken');
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -117,7 +139,10 @@ export class ClubService {
   }
 
   updateClubHistory(history: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = localStorage.getItem('authToken');
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -505,7 +530,11 @@ export class ClubService {
 
   uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/?lang=` + localStorage.getItem('lang_id'), formdata, { headers });
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)) {
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/?lang=` + lang_id, formdata, { headers });
   }
 
   deleteGalleryImage(params: any): Observable<any> {
@@ -629,34 +658,79 @@ export class ClubService {
   }
 
   // Fetch teams and store globally and in localStorage
+  // getTeams(): Observable<any> {
+  //   const headers = this.headers();
+  //   let cachedTeams = '';
+  //   if (isPlatformBrowser(this.platformId)) {
+  //     cachedTeams = String(localStorage.getItem('teams'));
+
+  //     if (cachedTeams) {
+  //       // Parse and return teams from localStorage if available
+  //       this.teams = JSON.parse(cachedTeams);
+  //       return of(this.teams);
+  //     } else if (this.teams.length) {
+  //       // If teams are already fetched globally, return them
+  //       return of(this.teams);
+  //     } else {
+  //       // Fetch teams from the API, store in global variable and localStorage
+  //       return this.http.get<any>(`${this.apiUrl}get-teams`, { headers }).pipe(
+  //         tap((response: any) => {
+  //           if (response && response.status) {
+  //             this.teams = response.data.teams; // Store teams globally
+  //             localStorage.setItem('teams', JSON.stringify(this.teams)); // Cache in localStorage
+  //           }
+  //         }),
+  //         catchError(this.handleError<any>('getTeams', [])) // Handle errors gracefully
+  //       );
+  //     }
+  //   }else{
+
+  //   }
+
+  // }
   getTeams(): Observable<any> {
     const headers = this.headers();
 
+    if (!isPlatformBrowser(this.platformId)) {
+      // SSR-safe fallback
+      return of(this.teams || []);
+    }
+
     const cachedTeams = localStorage.getItem('teams');
 
+    // 1. Try localStorage
     if (cachedTeams) {
-      // Parse and return teams from localStorage if available
-      this.teams = JSON.parse(cachedTeams);
-      return of(this.teams);
-    } else if (this.teams.length) {
-      // If teams are already fetched globally, return them
-      return of(this.teams);
-    } else {
-      // Fetch teams from the API, store in global variable and localStorage
-      return this.http.get<any>(`${this.apiUrl}get-teams`, { headers }).pipe(
-        tap((response: any) => {
-          if (response && response.status) {
-            this.teams = response.data.teams; // Store teams globally
-            localStorage.setItem('teams', JSON.stringify(this.teams)); // Cache in localStorage
-          }
-        }),
-        catchError(this.handleError<any>('getTeams', [])) // Handle errors gracefully
-      );
+      try {
+        this.teams = JSON.parse(cachedTeams);
+        return of(this.teams);
+      } catch (e) {
+        localStorage.removeItem('teams'); // corrupted cache cleanup
+      }
     }
+
+    // 2. Fallback to in-memory cache
+    if (this.teams?.length) {
+      return of(this.teams);
+    }
+
+    // 3. API call
+    return this.http.get<any>(`${this.apiUrl}get-teams`, { headers }).pipe(
+      tap((response: any) => {
+        if (response?.status) {
+          this.teams = response.data.teams || [];
+          localStorage.setItem('teams', JSON.stringify(this.teams));
+        }
+      }),
+      catchError(this.handleError<any>('getTeams', []))
+    );
   }
 
   getSightings(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -666,7 +740,10 @@ export class ClubService {
   }
 
   getSingleSighting(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -676,7 +753,10 @@ export class ClubService {
 
 
   deleteSightings(params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -685,11 +765,16 @@ export class ClubService {
   }
 
   deleteAttachment(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    let lang = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+      lang = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang = localStorage.getItem('lang_id');
+
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl2}club/delete-sighting-attachment/${id}/${lang}`, { headers }
     );
@@ -697,11 +782,15 @@ export class ClubService {
 
 
   getClubTeamPlayers(teamId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}club/get-club-players/${teamId}/${lang_id}`, { headers }
     );
@@ -709,11 +798,16 @@ export class ClubService {
 
 
   getClubPlayers(teamId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}/get-club-players/${teamId}/${lang_id}`, { headers }
     );
@@ -783,10 +877,16 @@ export class ClubService {
   }
 
   deleteTeamPlayer(id: any): Observable<any> {
+    this.userToken = '';
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}club/delete-club-player/${id}/${lang_id}`, { headers }
     );
@@ -812,10 +912,15 @@ export class ClubService {
   }
 
   updateRepresentatorRole(id: any, params: any): Observable<any> {
+    this.userToken = '';
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
     return this.http.post<any>(`${this.apiUrl}club/update-representator-role/${id}/${lang_id}`, params, { headers });
   }
 
@@ -823,28 +928,39 @@ export class ClubService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+
     return this.http.post<any>(`${this.apiUrl}club/update-representator/${id}`, params, { headers });
     // return this.http.post<any>(`${this.apiUrl}user/update-profile/${id}`, params, { headers });
   }
 
 
   deleteRepresentator(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    this.userToken = '';
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}club/delete-representator/${id}/${lang_id}`, { headers }
     );
   }
 
   updateEventStatus(params: any): Observable<any> {
+    this.userToken = '';
+    let lang_id = '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = String(localStorage.getItem('authToken'));
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+
     return this.http.post<any>(`${this.apiUrl}club/update-sighting-status/${lang_id}`, params, { headers });
   }
 

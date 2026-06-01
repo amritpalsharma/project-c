@@ -4,6 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ShareService } from '../../../services/share.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detail-pages',
@@ -18,23 +22,32 @@ export class DetailPagesComponent {
   moreNews: any = [];
   adVisible: boolean[] = [true, true, true, true, true, true]; // Array to manage ad visibility
   baseUrl: string = 'https://api.socceryou.ch/uploads/';
-  currentLang: any = localStorage.getItem('lang_id');
+  currentLang: any = '2';
 
   blogTitle: string = '';
   blogSlug: string = '';
 
-  blogUrl = window.location.href;
+  blogUrl: string = '';
   description: string = '';
   constructor(
     private shareService: ShareService,
     private route: ActivatedRoute,
     private router: Router,
     private webPages: WebPages,
+    private metaService: Meta,
     private translateService: TranslateService,
-    private sanitizer: DomSanitizer
-  ) { }
+    private sanitizer: DomSanitizer,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    ssrDebug(this.platformId, 'DetailPageComponent');
+
+  }
 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.currentLang = localStorage.getItem('lang_id');
+      // this.blogUrl = window.location.href;
+    }
     this.description = 'SoccerYou News';
     // Initially, all ads are visible
     // this.adVisible = [true, true, true,true, true, true];
@@ -60,6 +73,27 @@ export class DetailPagesComponent {
     let noSpace = str.replace(/\s+/g, '');
     this.webPages.getNewsContentPage(noSpace, languageId).subscribe((res) => {
       if (res.status) {
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.metaArr.meta_description
+        });
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.metaArr.meta_title
+        });
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.metaArr.meta_description
+        });
+
+        this.metaService.updateTag({
+          property: 'og:image',
+          content: res.data.metaArr.meta_image
+        });
+        /*### Meta Tags ###*/
         this.news = res.data.news;
         this.moreNews = res.data.moreNews;
         this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);

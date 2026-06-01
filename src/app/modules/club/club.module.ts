@@ -71,7 +71,7 @@ import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 // import { NgxStripeModule } from 'ngx-stripe';
 
 // 01-07-2025
-import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+// import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD.MM.YYYY', // Parse input in DD.MM.YYYY format
@@ -136,7 +136,6 @@ export const MY_FORMATS = {
     ScoutRoutingModule,  // This includes RouterModule
     // TranslateModule.forChild(),
     TranslateModule,
-    RouterModule,
     RouterOutlet,
     MatPaginator,
     FormsModule,
@@ -153,7 +152,6 @@ export const MY_FORMATS = {
     MatTabsModule,
     MatTableModule,
     MatToolbarModule,
-    MatTableModule,
     NgxEditorModule,
     MatProgressSpinnerModule,
     LightboxModule,
@@ -174,15 +172,14 @@ export const MY_FORMATS = {
     MatInputModule,
     ReactiveFormsModule,
     MatTabsModule,
-    MatTableModule,
     MatPaginator,
     NgxEditorModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
     EditorModule,
-    NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule,
-    NgxMatTimepickerModule
+    // NgxMatDatetimePickerModule,
+    // NgxMatNativeDateModule,
+    // NgxMatTimepickerModule
   ]
 })
 

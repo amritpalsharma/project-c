@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class EditorConfigService {
+  private platformId = inject(PLATFORM_ID);
+
   getConfig(language: string) {
-    const currentTheme = localStorage.getItem('theme'); // 'dark' or 'light'
+
+    let currentTheme = 'dark';
+    if (isPlatformBrowser(this.platformId)) {
+      currentTheme = String(localStorage.getItem('theme'));
+    }
     const isDarkMode = currentTheme === 'dark';
 
     return {

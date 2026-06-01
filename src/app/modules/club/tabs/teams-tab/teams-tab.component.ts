@@ -8,6 +8,10 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { MessagePopupComponent } from '../../../shared/message-popup/message-popup.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'club-teams-tab',

@@ -4,11 +4,17 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from 'talkjs/all';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
   private apiUrl;
+  private platformId = inject(PLATFORM_ID);
+
   constructor(private http: HttpClient) {
     this.apiUrl = environment?.apiUrl;
 
@@ -20,8 +26,10 @@ export class DashboardService {
   }
 
   getNewRegistration(limit = 3, month_year: any): Observable<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }> {
-    let currentLang = localStorage.getItem('lang_id');
-
+    let currentLang = '2';
+    if (isPlatformBrowser(this.platformId)) {
+      currentLang = String(localStorage.getItem('lang_id'));
+    }
     const params = new HttpParams()
       .set('limit', limit)
       .set('orderBy', 'id')
@@ -33,7 +41,10 @@ export class DashboardService {
     );
   }
   getNewRegistrationWithRole(role = 2, limit = 3): Observable<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }> {
-    let currentLang = localStorage.getItem('lang_id');
+    let currentLang = '2';
+    if (isPlatformBrowser(this.platformId)) {
+      currentLang = String(localStorage.getItem('lang_id'));
+    }
     let whererole = [role];
     const params = new HttpParams()
       .set('limit', limit)
@@ -46,7 +57,10 @@ export class DashboardService {
     );
   }
   getUsers(): Observable<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }> {
-    let currentLang = localStorage.getItem('lang_id');
+    let currentLang = '2';
+    if (isPlatformBrowser(this.platformId)) {
+      currentLang = String(localStorage.getItem('lang_id'));
+    }
     const params = new HttpParams()
       .set('limit', '10')
       .set('orderBy', 'id')

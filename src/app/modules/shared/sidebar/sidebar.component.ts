@@ -22,7 +22,9 @@ export class SidebarComponent {
 
   ngOnInit() {
     this.loggedInUser = JSON.parse(this.loggedInUser);
-
+    if (typeof document === 'undefined') {
+      return;
+    }
     if (this.isNum == 1 && window.innerWidth >= 992) {
       document.body.classList.remove('compact-sidebar');
       document.body.classList.add('mobile-sidebar-active');
@@ -34,7 +36,9 @@ export class SidebarComponent {
 
   toggleState() {
     this.sidebarOpen = !this.sidebarOpen;
-
+    if (typeof document === 'undefined') {
+      return;
+    }
     // Toggle classes on body element
     if (!this.sidebarOpen) {
       document.body.classList.remove('compact-sidebar');
@@ -46,6 +50,9 @@ export class SidebarComponent {
   }
 
   closeSidebar(isMobile: any): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
     if (!isMobile) {
       this.sidebarOpen = false;
       document.body.classList.remove('mobile-sidebar-active');

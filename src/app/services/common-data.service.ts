@@ -3,6 +3,8 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class CommonDataService {
 
   private apiUrl: string;
   private domain: any;
-  private userToken: string | null;
+  userToken: string = '';
   public teams: any[] = [];
   private messageSource = new Subject<string>();
   message$ = this.messageSource.asObservable();
@@ -22,28 +24,41 @@ export class CommonDataService {
   profilePic$ = this.profilePicSource.asObservable();
 
   // Create a BehaviorSubject to store the current language
-  private currentLangSubject = new BehaviorSubject<string>(localStorage.getItem('lang') || '1');
+  // private currentLangSubject = new BehaviorSubject<string>(localStorage.getItem('lang') || '1');
+  private currentLangSubject = new BehaviorSubject<string>('1');
 
   // Observable to allow components to subscribe to language changes
   currentLang$ = this.currentLangSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
 
+      if (typeof localStorage !== 'undefined') {
 
-    // Retrieve the selected language code from localStorage
-    const selectedLanguageSlug = localStorage.getItem('lang') || '';
+        const selectedLanguageSlug = localStorage.getItem('lang') || '';
 
-    // Find the corresponding language ID from the langs array
-    const lang = this.languages.find(
-      (lang: any) => lang.slug === selectedLanguageSlug
-    );
+        const lang = this.languages.find(
+          (lang: any) => lang.slug === selectedLanguageSlug
+        );
 
-    // Default to a specific language ID if none is found (e.g., English)
-    this.lang = lang ? lang.id : 1;
+        this.lang = lang ? lang.id : 1;
 
+        this.currentLangSubject.next(
+          localStorage.getItem('lang') || '1'
+        );
+
+      } else {
+
+        this.lang = 1;
+      }
+
+      this.apiUrl = environment.apiUrl;
+      this.domain = environment.targetDomain.id;
+    }
     this.apiUrl = environment.apiUrl;
-    this.userToken = localStorage.getItem('authToken');
-    this.domain = environment.targetDomain.id;
   }
 
 
@@ -57,7 +72,11 @@ export class CommonDataService {
   }
 
   getAllCountries(): Observable<any> {
-    let currentLang = localStorage.getItem('lang_id');
+    let currentLang = '2';
+
+    if (isPlatformBrowser(this.platformId)) {
+      currentLang = localStorage.getItem('lang_id') || '2';
+    }
     return this.http.get(
       `${this.apiUrl}get-domains/${currentLang}`
     );
@@ -94,3 +113,4 @@ export class CommonDataService {
   }
 
 }
+

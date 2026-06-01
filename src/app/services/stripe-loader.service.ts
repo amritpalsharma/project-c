@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 export class StripeLoaderService {
   // private readonly testKey = 'pk_test_DbR8a';
   // private readonly liveKey = 'pk_live_5haMAUKO';
+  private platformId = inject(PLATFORM_ID);
   private readonly testKey = 'pk_test_51PVE08Ru80loAFQXg7MVGXFZuriJbluM9kOaTzZ0GteRhI0FIlkzkL2TSVDQ9QEIp1bZcVBzmzWne3fGkCITAy7X00gGODbR8a';
   private readonly liveKey = 'pk_live_51PVE08Ru80loAFQXNIL4kBDfjj9YNWZNgyZZQRzDJXl1Xc629uJkegyUbV3qCSnFyfVlaKlM4u1Qmrs4waZB6Q55001haMAUKO';
 
@@ -54,8 +56,13 @@ export class StripeLoaderService {
 
 
   getStripePublishKey(): Observable<string | null> {
+
+    let userToken = '';
+    if (isPlatformBrowser(this.platformId)) {
+      userToken = String(localStorage.getItem('authToken'));
+    }
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('authToken') || ''}`,
+      Authorization: `Bearer ${userToken}`,
     });
 
     // Return an Observable instead of using async/await with Promise
@@ -64,7 +71,7 @@ export class StripeLoaderService {
       .pipe(
         map((res) => {
           const mode = res?.data?.mode;
-          console.info('Stripe Loaded getting :: '+mode)
+          console.info('Stripe Loaded getting :: ' + mode)
           return mode === 'live' ? this.liveKey : this.testKey;
         })
       );

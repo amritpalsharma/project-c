@@ -3,6 +3,9 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { AuthService } from '../../../services/auth.service';
 import { ChatComingSoonComponent } from '../../shared/chat-coming-soon/chat-coming-soon.component';
 import { MatDialog } from '@angular/material/dialog';
+import { BrowserService } from '../../../services/browser.service';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,85 +20,104 @@ export class SidebarComponent {
     private authService: AuthService,
     private globalSettings: GlobalSettingsService,
     public dialog: MatDialog,
+    private browserService: BrowserService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
 
   }
   ngOnInit() {
     if (this.isNum == 1 && window.innerWidth >= 992) {
-      document.body.classList.remove('compact-sidebar');
-      document.body.classList.add('mobile-sidebar-active');
-      this.isNum = 0;
+      if (typeof document === 'undefined') {
+        return;
+      }
+      if (isPlatformBrowser(this.platformId)) {
+        document.body.classList.remove('compact-sidebar');
+        document.body.classList.add('mobile-sidebar-active');
+        this.isNum = 0;
+      }
     }
   }
   toggleState() {
     this.sidebarOpen = !this.sidebarOpen;
+    if (typeof document === 'undefined') {
+      return;
+    }
     // Toggle classes on body element
-    if (this.sidebarOpen) {
-      document.body.classList.remove('compact-sidebar');
-      document.body.classList.add('mobile-sidebar-active');
-    } else {
-      document.body.classList.add('compact-sidebar');
-      document.body.classList.remove('mobile-sidebar-active');
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.sidebarOpen) {
+        document.body.classList.remove('compact-sidebar');
+        document.body.classList.add('mobile-sidebar-active');
+      } else {
+        document.body.classList.add('compact-sidebar');
+        document.body.classList.remove('mobile-sidebar-active');
+      }
     }
     // alert('sidebar_state');
     console.log(this.isNum)
   }
 
   closeSidebar(isMobile: any): void {
-    if (!isMobile) {
-      this.sidebarOpen = false;
-      document.body.classList.remove('mobile-sidebar-active');
-      document.body.classList.add('compact-sidebar');
+    if (typeof document === 'undefined') {
+      return;
     }
-    else {
-      if (window.innerWidth < 992) {
+    if (isPlatformBrowser(this.platformId)) {
+      if (!isMobile) {
         this.sidebarOpen = false;
         document.body.classList.remove('mobile-sidebar-active');
         document.body.classList.add('compact-sidebar');
+      }
+      else {
+        if (window.innerWidth < 992) {
+          this.sidebarOpen = false;
+          document.body.classList.remove('mobile-sidebar-active');
+          document.body.classList.add('compact-sidebar');
+        }
       }
     }
   }
 
 
   logout() {
-    const jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      const userData = JSON.parse(jsonData);
-      userId = userData.id;
+    if (isPlatformBrowser(this.platformId)) {
+      const jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        const userData = JSON.parse(jsonData);
+        userId = userData.id;
+      }
+
+      const lang_id = localStorage.getItem('lang_id');
+      const cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
+      const cookiesent = localStorage.getItem('cookieConsent');
+      const theme = localStorage.getItem('theme') || 'light';
+      let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
+      const domainLang = this.globalSettings.getLanguage();
+
+      if ((domainLang !== '') && (!localStorage.getItem('lang'))) {
+        lang = domainLang;
+      }
+
+      // 🔌 Disconnect user socket
+      // this.socketService.disconnectUser(userId);
+
+      // 🧹 Clear & Restore necessary values
+      localStorage.clear();
+      localStorage.setItem('cookieConsent', cookiesent + '');
+      localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
+      localStorage.setItem('theme', theme);
+      localStorage.setItem('lang', lang);
+      localStorage.setItem('lang_id', lang_id + '');
+      localStorage.removeItem('userPermissionRole');
+
+      // ✅ Perform logout logic
+      this.authService.logout();
+
+      // 🔁 Navigate directly to homepage or login (choose your route)
+      // this.router.navigate(['/']); // Or use '/login' or another route as needed
+
+      // ✅ Finally, force hard redirect to base page
+      // window.location.href = '/';
     }
-
-    const lang_id = localStorage.getItem('lang_id');
-    const cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
-    const cookiesent = localStorage.getItem('cookieConsent');
-    const theme = localStorage.getItem('theme') || 'light';
-    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
-    const domainLang = this.globalSettings.getLanguage();
-
-    if ((domainLang !== '') && (!localStorage.getItem('lang'))) {
-      lang = domainLang;
-    }
-
-    // 🔌 Disconnect user socket
-    // this.socketService.disconnectUser(userId);
-
-    // 🧹 Clear & Restore necessary values
-    localStorage.clear();
-    localStorage.setItem('cookieConsent', cookiesent + '');
-    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang);
-    localStorage.setItem('lang_id', lang_id + '');
-    localStorage.removeItem('userPermissionRole');
-
-    // ✅ Perform logout logic
-    this.authService.logout();
-
-    // 🔁 Navigate directly to homepage or login (choose your route)
-    // this.router.navigate(['/']); // Or use '/login' or another route as needed
-
-    // ✅ Finally, force hard redirect to base page
-    // window.location.href = '/';
   }
 
   comingSoonPopup(event: Event) {
@@ -109,30 +131,35 @@ export class SidebarComponent {
   }
 
   ngAfterViewInit() {
-    // Adding the click event listener to detect clicks anywhere in the document
-    document.body.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      // Check if the target is an svg or p tag (children inside the a tag)
-      if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
-        // Find the closest parent <a> tag
-        const parentLink = target.closest('a') as HTMLElement;
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      // Adding the click event listener to detect clicks anywhere in the document
+      document.body.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+        // Check if the target is an svg or p tag (children inside the a tag)
+        if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
+          // Find the closest parent <a> tag
+          const parentLink = target.closest('a') as HTMLElement;
 
-        // Check if the parent <a> tag has the "active" class
-        if (parentLink && parentLink.classList.contains('active')) {
-          console.info('target', target.tagName)
-          console.log('Clicked on an active link!');
-          // You can add custom logic here, like resetting scroll position
-          // Example: Reset scroll when clicking on the active link
-          const targetDiv = document.querySelector('.page-container');
-          if (targetDiv) {
-            targetDiv.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: 'smooth'
-            });
+          // Check if the parent <a> tag has the "active" class
+          if (parentLink && parentLink.classList.contains('active')) {
+            console.info('target', target.tagName)
+            console.log('Clicked on an active link!');
+            // You can add custom logic here, like resetting scroll position
+            // Example: Reset scroll when clicking on the active link
+            const targetDiv = document.querySelector('.page-container');
+            if (targetDiv) {
+              targetDiv.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+              });
+            }
           }
         }
-      }
-    });
+      });
+    }
   }
 }

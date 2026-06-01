@@ -6,6 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { BrowserService } from '../../../services/browser.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class ContactComponent implements OnInit {
-  honeypot:string='';
+  honeypot: string = '';
   apiUrl: any = environment.url;
   disableSentButton: boolean = false;
   base_url: string = '';
@@ -64,25 +69,50 @@ export class ContactComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    private translateService: TranslateService
-  ) { }
+    private translateService: TranslateService,
+    private browserService: BrowserService,
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+
+    ssrDebug(this.platformId, 'ContactComponent');
+  }
 
   ngOnInit(): void {
     // Initialize form with validation rules
+    // if (typeof window === 'undefined') {
+    //   return;
+    // }
+    // this.contactForm = this.fb.group({
+    //   name: ['', Validators.required],
+    //   email: ['', [Validators.required, Validators.email]],
+
+    //   domain: this.browserService.hostname,
+    //   lang: localStorage.getItem('lang_id'),
+    // });
+    // this.getToasterMsg();
+    // this.webPages.languageId$.subscribe((data) => {
+    //   this.getPageData(data)
+    //   this.getToasterMsg();
+    // });
+
+    let langId: string | null = null;
+
+    if (isPlatformBrowser(this.platformId)) {
+      langId = localStorage.getItem('lang_id');
+    }
+
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      // phone: ['', [
-      // Validators.required,
-      // Validators.pattern(/^\+?(41|49|39|33|44|34|351|32|45|46)\d{7,}$/)
-      // ]],
-      // message: ['', Validators.required],
-      domain: window.location.hostname,
-      lang: localStorage.getItem('lang_id'),
+      domain: [this.browserService.hostname],
+      lang: [langId]
     });
+
     this.getToasterMsg();
+
     this.webPages.languageId$.subscribe((data) => {
-      this.getPageData(data)
+      this.getPageData(data);
       this.getToasterMsg();
     });
   }
@@ -141,6 +171,24 @@ export class ContactComponent implements OnInit {
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('contact', languageId).subscribe((res) => {
       if (res.status) {
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /*### Meta Tags ###*/
         this.address = res.data.pageData.address;
         this.banner_title = res.data.pageData.banner_title;
         this.club_label_txt = res.data.pageData.club_label_txt;
@@ -379,6 +427,8 @@ export class ContactComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }

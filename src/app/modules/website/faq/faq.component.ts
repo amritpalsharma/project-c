@@ -1,5 +1,9 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
@@ -27,7 +31,10 @@ export class FaqComponent {
     scout: []
   };
 
-  constructor(private webPages: WebPages, private cdRef: ChangeDetectorRef) {
+  constructor(private webPages: WebPages,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private metaService: Meta,
+    private cdRef: ChangeDetectorRef) {
     this.initializeIsOpen();
 
   }
@@ -96,6 +103,24 @@ export class FaqComponent {
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('faq', languageId).subscribe((res) => {
       if (res.status) {
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /*### Meta Tags ###*/
         this.faq_banner_title = res.data.pageData.faq_banner_title;
         this.faq_collapse_titile = res.data.pageData.faq_collapse_titile;
         this.faq_first_btn_txt = res.data.pageData.faq_first_btn_txt;
@@ -129,15 +154,15 @@ export class FaqComponent {
   }
   // Sections for each tab
   talentSections: any = [
-    
+
   ];
 
   clubSections: any = [
-   
+
   ];
 
   scoutSections: any = [
-   
+
   ];
 
 
@@ -218,24 +243,25 @@ export class FaqComponent {
   }
 
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    this.cdRef.detectChanges();
+    if (isPlatformBrowser(this.platformId)) {
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.cdRef.detectChanges();
 
-    document.querySelectorAll<HTMLElement>('.collapse').forEach(collapseEl => {
-      collapseEl.addEventListener('shown.bs.collapse', (event) => {
-        const collapse = event.currentTarget as HTMLElement;
-        const card = collapse.closest('.card') as HTMLElement;
-        if (!card) return;
+      document.querySelectorAll<HTMLElement>('.collapse').forEach(collapseEl => {
+        collapseEl.addEventListener('shown.bs.collapse', (event) => {
+          const collapse = event.currentTarget as HTMLElement;
+          const card = collapse.closest('.card') as HTMLElement;
+          if (!card) return;
 
-        const resizeObserver = new ResizeObserver(() => {
-          const cardTop = card.getBoundingClientRect().top + window.scrollY - 100;
-          window.scrollTo({ top: cardTop, behavior: 'smooth' });
-          resizeObserver.disconnect();
+          const resizeObserver = new ResizeObserver(() => {
+            resizeObserver.disconnect();
+          });
+
+          resizeObserver.observe(collapse);
         });
-
-        resizeObserver.observe(collapse);
       });
-    });
+    }
+
   }
 
 }

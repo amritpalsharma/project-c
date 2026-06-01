@@ -1,5 +1,9 @@
 import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
+import { Title, Meta } from '@angular/platform-browser';
 
 interface NewsData {
   id: number;
@@ -51,7 +55,12 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   ];
 
-  constructor(private webPages: WebPages) { }
+  constructor(private webPages: WebPages,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private metaService: Meta
+  ) {
+    ssrDebug(this.platformId, 'NewsComponent');
+  }
 
   ngOnInit() {
     // this.startAutoplay();
@@ -128,6 +137,24 @@ export class NewsComponent implements OnInit, OnDestroy {
         } else {
           this.advertisementData = [];
         }
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /*### Meta Tags ###*/
         this.DataFound = true;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
@@ -237,38 +264,6 @@ export class NewsComponent implements OnInit, OnDestroy {
     // Optional: Logic for touch end can be added here if needed
   }
 
-  // closeAd(object: any) {
-
-  //   switch(object){
-  //     case 'skyscraper':
-  //         this.advertisementData.skyscraper = [];
-  //         break;
-  //     case 'small_square':
-  //         this.advertisementData.small_square = [];
-  //         break;
-  //     case 'leaderboard':
-  //         this.advertisementData.leaderboard = [];
-  //         break;
-  //     case 'large_leaderboard':
-  //         this.advertisementData.large_leaderboard = [];
-  //         break;
-  //     case 'large_rectangle':
-  //         this.advertisementData.large_rectangle = [];
-  //         break;
-
-  //     case 'inline_rectangle':
-  //         this.advertisementData.inline_rectangle = [];
-  //         break;
-  //     case 'square':
-  //         this.advertisementData.square = [];
-  //         break;
-  //     default:
-  //         //when no case is matched, this block will be executed;
-  //         break;  //optional
-  //     }
-
-  // }
-
   getcurrentImage() {
     return this.images[this.currentImageIndex].featured_image;
   }
@@ -277,31 +272,12 @@ export class NewsComponent implements OnInit, OnDestroy {
     // Returns a dynamic URL based on the slider index
     return '/news/' + index;
   }
-  // isEmptyObject(obj:any) {
-  //   if(typeof obj != 'undefined'){
-  //     return (obj && (Object.keys(obj).length === 0));
-  //   }
-  //   return true;
-  // }
-
 
   closeAd(object: any) {
 
     this.isActive[object] = false;
 
   }
-
-  // checkActive(obj: any){
-  //   if(this.isExists(obj) && this.isActive[obj]){
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
-  // isExists(key: string): boolean {
-  //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  // }
-
 
   isEmptyObject(obj: any) {
     if (typeof obj != 'undefined') {
@@ -333,11 +309,6 @@ export class NewsComponent implements OnInit, OnDestroy {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
-  // addThreeElements(originalArray: any) {
-  //   let selectedItems = originalArray.slice(0, 3); // Get first 3 elements
-  //   this.images.push(...selectedItems); // Push to target array
-  //   console.warn(this.images, originalArray, selectedItems)
-  // }
 
   addThreeElements(originalArray: any) {
     this.images = [];
@@ -346,13 +317,13 @@ export class NewsComponent implements OnInit, OnDestroy {
       const day = String(dateObj.getDate()).padStart(2, '0');
       const month = String(dateObj.getMonth() + 1).padStart(2, '0');
       const year = String(dateObj.getFullYear()).slice(-2); // Get last 2 digits
-  
+
       return {
         ...item,
         date: `${day}.${month}.${year}`
       };
     });
-  
+
     this.images.push(...selectedItems);
     console.warn(this.images, originalArray, selectedItems);
   }
@@ -362,9 +333,11 @@ export class NewsComponent implements OnInit, OnDestroy {
     target.src = 'assets/images/no_cover_img1.png'; // or wherever your fallback image is
   }
 
-  
+
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
 }

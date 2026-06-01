@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { TalentService } from '../../../services/talent.service';
 import { PaymentService } from '../../../services/payment.service';
 import { environment } from '../../../../environments/environment';
-import { loadStripe } from '@stripe/stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 import { MessagePopupComponent } from '../../shared/message-popup/message-popup.component';
 import { ActivatedRoute } from '@angular/router';
 import { CouponCodeAlertComponent } from '../../shared/coupon-code-alert/coupon-code-alert.component';
@@ -12,6 +12,8 @@ import { UpdateConfirmationPlanComponent } from '../update-confirmation-plan/upd
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { SocketService } from '../../../services/socket.service';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'shared-edit-plan',
@@ -19,6 +21,7 @@ import { SocketService } from '../../../services/socket.service';
   styleUrls: ['./edit-plan.component.scss']
 })
 export class EditPlanComponent implements OnInit {
+  private platformId = inject(PLATFORM_ID);
   isHideCouponCodeOption: boolean = false;
   action: string = 'buy';
   countries: any[] = []; // Array to hold country plans
@@ -26,7 +29,7 @@ export class EditPlanComponent implements OnInit {
   selectedPlan: any = {}; // Selected country plan details
   // stripePromise = loadStripe(environment.stripePublishableKey); // Your Stripe public key
   // stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
-  stripePromise = loadStripe(environment.stripePublishableKey);
+  stripePromise: any;
   stripe: any;
   isYearly = false; // Subscription type
   defaultCard: any = null; // Variable to hold the default card
@@ -67,8 +70,18 @@ export class EditPlanComponent implements OnInit {
     private translate: TranslateService
   ) { }
 
+  async initStripe() {
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      const { loadStripe } = await import('@stripe/stripe-js');
+      this.stripePromise = loadStripe(environment.stripePublishableKey);
+    }
+  }
+
   async ngOnInit() {
     this.theme = localStorage.getItem('theme') || "light";
+    this.initStripe();
     // If this.data.plans is an array, assign it directly
     this.selectedPlan = this.data.selectedPlan;
     console.info('this.selectedPlan', this.selectedPlan)

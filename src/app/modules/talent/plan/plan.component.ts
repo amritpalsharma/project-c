@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TalentService } from '../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { loadStripe } from '@stripe/stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../environments/environment';
 import { PaymentService } from '../../../services/payment.service';
 import { MessagePopupComponent } from '../../shared/message-popup/message-popup.component';
@@ -21,7 +21,8 @@ import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-
 // import { LoaderComponent } from '../../shared/loader/loader.component';
 import { SocketService } from '../../../services/socket.service';
 
-
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface Plan {
   id: number;
@@ -95,11 +96,11 @@ export class PlanComponent implements OnInit, OnDestroy {
   isLoadingPlans: boolean = false;
   isLoadingCheckout: boolean = false;
   isLoadingCards: boolean = false;
-
+  private platformId = inject(PLATFORM_ID);
   private plansSubscription: Subscription = new Subscription();
   // stripePromise = loadStripe(environment.stripePublishableKey);
   // payment_mode = localStorage.getItem('payment_mode');
-  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  stripePromise: any;
   // stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   premiumFeatures: string[] = []; // Store the fetched feature list
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
@@ -128,6 +129,14 @@ export class PlanComponent implements OnInit, OnDestroy {
     private router: Router,
     private socketService: SocketService,
   ) { }
+
+  async initStripe() {
+
+    if (isPlatformBrowser(this.platformId)) {
+      const { loadStripe } = await import('@stripe/stripe-js');
+      this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+    }
+  }
 
   async ngOnInit() {
     this.getJsonTranslations();
@@ -777,7 +786,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         country: country,
         selectedInterval: this.selectedPlan.isYearly
       },
-      panelClass:'edit_plan_country_popup'
+      panelClass: 'edit_plan_country_popup'
     });
   }
 

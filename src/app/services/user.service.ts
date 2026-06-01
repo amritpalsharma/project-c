@@ -9,6 +9,10 @@ import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { GlobalSettingsService } from './global-settings.service';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +21,8 @@ export class UserService {
 
   private apiUrl;
   private userToken;
-  private apiUrl2 = environment.apiUrl+'admin';
-
+  private apiUrl2 = environment.apiUrl + 'admin';
+  private platformId = inject(PLATFORM_ID);
   private adminImageUrlSource = new BehaviorSubject<string>('default');
   adminImageUrl = this.adminImageUrlSource.asObservable();
   errorTxt: string = '';
@@ -31,7 +35,9 @@ export class UserService {
     private globalSettings: GlobalSettingsService,
   ) {
     this.apiUrl = environment?.apiUrl;
-    this.userToken = localStorage.getItem('authToken');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = localStorage.getItem('authToken');
+    }
 
   }
 
@@ -49,8 +55,10 @@ export class UserService {
     //   .set('order', 'desc');
 
     let params = new HttpParams();
-    let currentLang = localStorage.getItem('lang_id');
-
+    let currentLang = '2';
+    if (isPlatformBrowser(this.platformId)){
+      currentLang = String(localStorage.getItem('lang_id'));
+    }
     // Loop through the queryParams object and set each parameter
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
@@ -66,40 +74,40 @@ export class UserService {
 
   updateUserStatus(userIds: any, newStatus: number): Observable<any> {
 
-    const userToken = localStorage.getItem('authToken');
-    const lang = localStorage.getItem('lang_id');
+    // const userToken = localStorage.getItem('authToken');
+    let currentLang = '2';
+    if (isPlatformBrowser(this.platformId)) {
+      currentLang = String(localStorage.getItem('lang_id'));
+    }
 
     // Set headers with token
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    return this.http.post<any>(`${this.apiUrl2}/update-user-status`, { id: userIds, status: newStatus, lang: lang }, { headers });
+    return this.http.post<any>(`${this.apiUrl2}/update-user-status`, { id: userIds, status: newStatus, lang: currentLang }, { headers });
   }
 
-  // getProfileData(): Observable<any> {
-  //   const authToken = localStorage.getItem('authToken'); 
 
-  //   // Example headers with authorization token
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${authToken}`,
-  //     'Content-Type': 'application/json'
-  //   });
-
-  //   return this.http.get<any>(`${this.apiUrl2}/profile/`, { headers });
-  // }
 
   getLocations(): Observable<any> {
-    const lang = localStorage.getItem('lang_id');
+    // const lang = localStorage.getItem('lang_id');
+    let lang = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang = String(localStorage.getItem('lang_id'));
+    }
     return this.http.get<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }>(
       `${this.apiUrl}get-domains/${lang}?lang=` + lang
     );
   }
 
   getProfileData(userId: any): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    let lang = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang = String(localStorage.getItem('lang_id'));
+    }
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}admin/profile/${lang_id}/${userId}`
+      `${this.apiUrl}admin/profile/${lang}/${userId}`
     );
   }
 
@@ -125,7 +133,10 @@ export class UserService {
 
   addFavoritesData(id: any): Observable<any> {
     const formData = new FormData();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     formData.append('favorite_id', id);
     formData.append('lang_id', String(lang_id));
     return this.http.post<{ status: boolean, message: string, data: {} }>(
@@ -136,7 +147,10 @@ export class UserService {
 
   removeFavoritesData(id: any): Observable<any> {
     const formData = new FormData();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     formData.append('id[]', id);
     formData.append('lang_id', String(lang_id));
     return this.http.post<{ status: boolean, message: string, data: {} }>(
@@ -147,7 +161,10 @@ export class UserService {
 
   removeSingleFavorite(id: any): Observable<any> {
     const formData = new FormData();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     formData.append('id[]', id);
     formData.append('lang_id', String(lang_id));
 
@@ -164,14 +181,17 @@ export class UserService {
   }
 
   getTransferData(userId: any): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}admin/get-transfer-detail/${lang_id}/${userId}`
     );
   }
 
   deleteUser(userIds: any, langId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -181,14 +201,20 @@ export class UserService {
   }
 
   getPerformanceData(userId: any): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl2}/get-performance-detail/${lang_id}/${userId}`
     );
   }
 
   getPerformanceAnalysis(userId: any): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl2}/get-performance-reports/${userId}`
     );
@@ -202,11 +228,14 @@ export class UserService {
   }
 
   updatePerformance(performanceId: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     console.info('recivedDataInService', params);
     if (params?.type == 'manual') {
       return this.http.post<any>(`${this.apiUrl2}/edit-performance-detail-manual/${performanceId}/${lang_id}`, params, { headers });
@@ -216,7 +245,7 @@ export class UserService {
   }
 
   updateTransfer(transferId: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -234,7 +263,7 @@ export class UserService {
   }
 
   uploadCoverImage(userId: any, formdata: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -242,7 +271,7 @@ export class UserService {
   }
 
   deleteCoverImage(userId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -265,8 +294,11 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let currentLang = localStorage.getItem('lang_id') + '';
-    return this.http.post<any>(`${this.apiUrl2}/upload-gallery-image/${userId}/?lang=` + localStorage.getItem('lang_id'), formdata,
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
+    return this.http.post<any>(`${this.apiUrl2}/upload-gallery-image/${userId}/?lang=` + lang_id, formdata,
 
       {
         headers, reportProgress: true,
@@ -275,7 +307,7 @@ export class UserService {
   }
 
   deleteGalleryImage(params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -283,7 +315,7 @@ export class UserService {
   }
 
   getScoutHistory(userId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -293,7 +325,7 @@ export class UserService {
   }
 
   getClubHistory(userId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -303,7 +335,7 @@ export class UserService {
   }
 
   updateScoutHistory(userId: any, history: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -311,7 +343,7 @@ export class UserService {
   }
 
   updateClubHistory(userId: any, history: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -319,8 +351,12 @@ export class UserService {
   }
 
   getScoutPlayers(userId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
-    let lang_id = localStorage.getItem('lang_id');
+    // const userToken = localStorage.getItem('authToken');
+    // let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -330,7 +366,7 @@ export class UserService {
   }
 
   getScoutPlayersAdmin(userId: any, lang_id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     // let lang_id = localStorage.getItem('lang_id');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
@@ -341,8 +377,12 @@ export class UserService {
   }
 
   deleteScoutPlayer(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
-    const lang_id = localStorage.getItem('lang_id');
+    // const userToken = localStorage.getItem('authToken');
+    // const lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -352,7 +392,7 @@ export class UserService {
   }
 
   getClubTeams(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -362,7 +402,7 @@ export class UserService {
   }
 
   getTeamPlayers(teamId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -372,7 +412,7 @@ export class UserService {
   }
 
   getSightings(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -382,7 +422,7 @@ export class UserService {
   }
 
   getClubSightings(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -393,7 +433,7 @@ export class UserService {
   }
 
   getClubSingleSighting(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -402,7 +442,7 @@ export class UserService {
   }
 
   getSingleSighting(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -411,7 +451,7 @@ export class UserService {
   }
 
   uploadProfileImage(userId: any, formdata: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -419,18 +459,22 @@ export class UserService {
   }
 
   getAdminProfile(): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
-    const lang = localStorage.getItem('lang_id');
+    // const userToken = localStorage.getItem('authToken');
+    // const lang = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}profile/${lang}`, { headers }
+      `${this.apiUrl}profile/${lang_id}`, { headers }
     );
   }
 
   updateAdminProfile(formdata: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -438,7 +482,7 @@ export class UserService {
   }
 
   updateAdminImage(formdata: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -446,8 +490,12 @@ export class UserService {
   }
 
   getCountries(): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
-    const userToken = localStorage.getItem('authToken');
+    // let lang_id = localStorage.getItem('lang_id');
+    // const userToken = localStorage.getItem('authToken');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -456,18 +504,22 @@ export class UserService {
     );
   }
   getPositions(): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+    // let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-positions/${lang_id}`, { headers }
     );
   }
 
   getClubsForPlayer(): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -477,7 +529,7 @@ export class UserService {
   }
 
   updateUser(userId: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -485,7 +537,7 @@ export class UserService {
   }
 
   getRepresentators(userId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -495,7 +547,7 @@ export class UserService {
   }
 
   getTeamsByClub(clubId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -505,7 +557,7 @@ export class UserService {
   }
 
   sendInviteToRepresentator(userId: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -513,16 +565,20 @@ export class UserService {
   }
 
   updateRepresentatorRole(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+    // let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     return this.http.post<any>(`${this.apiUrl2}/update-representator-role/${id}/${lang_id}`, params, { headers });
   }
 
   updateRepresentator(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -530,18 +586,22 @@ export class UserService {
   }
 
   deleteRepresentator(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+    // let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl2}/delete-representator/${id}/${lang_id}`, { headers }
     );
   }
 
   getAdminRepresentators(): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -551,7 +611,7 @@ export class UserService {
   }
 
   sendInviteToAdminRepresentator(params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -575,11 +635,15 @@ export class UserService {
   }
 
   exportSingleUser(userId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+    // let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     let random = Math.random() * 10;
     return this.http.get<any>(
       `${this.apiUrl}export-single-user/${userId}/${lang_id}?num=${random}`, { headers }
@@ -587,7 +651,7 @@ export class UserService {
   }
 
   deleteSightings(params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -596,7 +660,7 @@ export class UserService {
   }
 
   deleteAttachment(id: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -619,7 +683,7 @@ export class UserService {
   }
 
   addSight(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -628,7 +692,7 @@ export class UserService {
   }
 
   updateSight(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -637,7 +701,7 @@ export class UserService {
   }
 
   uploadSightAttachment(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -646,7 +710,7 @@ export class UserService {
   }
 
   sendSightingInvite(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -655,7 +719,7 @@ export class UserService {
   }
 
   sendScoutPortfolioInvite(id: any, params: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -706,7 +770,11 @@ export class UserService {
     //   .set('order', 'desc');
 
     let params = new HttpParams();
-    let currentLang = localStorage.getItem('lang_id');
+    // let currentLang = localStorage.getItem('lang_id');
+    let currentLang = '2';
+    if (isPlatformBrowser(this.platformId)){
+      currentLang = String(localStorage.getItem('lang_id'));
+    }
 
     // Loop through the queryParams object and set each parameter
     for (const key in data) {
@@ -723,8 +791,11 @@ export class UserService {
   }
 
   getRoles() {
-    let lang_id = localStorage.getItem('lang_id');
-    return this.http.get<any>(`${this.apiUrl}get-roles/${lang_id}`);
+    let currentLang = '2';
+    if (isPlatformBrowser(this.platformId)){
+      currentLang = String(localStorage.getItem('lang_id'));
+    }
+    return this.http.get<any>(`${this.apiUrl}get-roles/${currentLang}`);
   }
 
   apiToasterError() {
@@ -740,8 +811,12 @@ export class UserService {
   }
 
   userGetScoutPlayers(userId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
-    let lang_id = localStorage.getItem('lang_id');
+    // const userToken = localStorage.getItem('authToken');
+    // let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -751,7 +826,10 @@ export class UserService {
   }
 
   getUserPopups(data: any = {}): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     let params = new HttpParams();
 
     for (const key in data) {
@@ -770,7 +848,10 @@ export class UserService {
   }
 
   getPopupSeen(data: any): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     let params = new HttpParams();
 
     for (const key in data) {
@@ -787,7 +868,10 @@ export class UserService {
   }
 
   addPopupSeen(data: any): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
 
     let formData = new FormData();
 
@@ -806,7 +890,10 @@ export class UserService {
   }
 
   editPopupSeen(id: any, data: any): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
 
     let formData = new FormData();
 
@@ -825,7 +912,7 @@ export class UserService {
   }
 
   userGetRepresentators(userId: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -838,14 +925,22 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let lang_id = localStorage.getItem('lang_id');
+    // let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/delete-profile-image/${lang_id}`, { headers }
     );
   }
 
   deleteProfileImageAdmin(userId: any): Observable<any> {
-    let lang_id = localStorage.getItem('lang_id');
+    // let lang_id = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -855,7 +950,7 @@ export class UserService {
   }
 
   getClubTeamsByGroup(id: any, team_group: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -866,7 +961,7 @@ export class UserService {
   }
 
   getClubTeamsByGroupAndClubId(id: any, team_group: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
+    // const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -923,24 +1018,32 @@ export class UserService {
 
 
   resendConfirmationLink(userIds: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
-    const langId = localStorage.getItem('lang_id');
+    // const userToken = localStorage.getItem('authToken');
+    // const langId = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    return this.http.post<any>(`${this.apiUrl2}/resend-confirmation-email`, { id: userIds, lang: langId }, { headers });
+    return this.http.post<any>(`${this.apiUrl2}/resend-confirmation-email`, { id: userIds, lang: lang_id }, { headers });
   }
 
 
-  changeUserLocation(userID: any, domainID:any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
-    const langId = localStorage.getItem('lang_id');
+  changeUserLocation(userID: any, domainID: any): Observable<any> {
+    // const userToken = localStorage.getItem('authToken');
+    // const langId = localStorage.getItem('lang_id');
+    let lang_id = '2';
+    if (isPlatformBrowser(this.platformId)){
+      lang_id = String(localStorage.getItem('lang_id'));
+    }
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    return this.http.post<any>(`${this.apiUrl2}/update-user-location/${langId}/${userID}`, { user_domain: domainID }, { headers });
+    return this.http.post<any>(`${this.apiUrl2}/update-user-location/${lang_id}/${userID}`, { user_domain: domainID }, { headers });
   }
 
 }

@@ -15,12 +15,9 @@
         <div class="cookie-button" *ngIf="showPopup">
             <button type="button" class="choice" (click)="personalizeChoices()">{{ 'PersonalizeMyChoices' | translate
               }}</button>
-             <button type="button" class="decline cursor-pointor" (click)="acceptCookies()">{{ 'iDecline' | translate }}</button> 
+             <!-- <button type="button" class="decline cursor-pointor" (click)="acceptCookies()">{{ 'iDecline' | translate }}</button>  -->
+             <button type="button" class="decline cursor-pointor" (click)="declineCookies()">{{ 'iDecline' | translate }}</button> 
              <button type="button" class="accept" (click)="acceptCookies()" [disabled]="disableButton == 'acceptCookies'">{{ 'iAccept' | translate }}</button>
-          <!-- <div class="accept&decline">
-            <button type="button" class="accept" (click)="acceptCookies()" [disabled]="disableButton == 'acceptCookies'">{{ 'iAccept' | translate }}</button>
-            <button type="button" class="decline cursor-pointor" (click)="acceptCookies()">{{ 'iDecline' | translate }}</button>
-          </div> -->
         </div>
       </div>
     </div>

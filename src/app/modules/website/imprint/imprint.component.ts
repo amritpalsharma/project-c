@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-imprint',
@@ -9,38 +13,41 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class ImprintComponent implements OnInit {
-  banner_title:any = null;
+  banner_title: any = null;
   // advertisementData:any;
-  page_content:any=null;
-  advertisemnet_base_url:string = '';
-  advertisemnet_new_base_url:string = '';
-  banner_img:any=null;
-  base_url:any=null;
+  page_content: any = null;
+  advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
+  banner_img: any = null;
+  base_url: any = null;
 
-  isLoading : boolean = true;
-  btnLoading : boolean = false;
+  isLoading: boolean = true;
+  btnLoading: boolean = false;
   countdown: number = 10;
 
   // advertisemnet_base_url:string= '';
   adVisible: boolean[] = [true, true, true]; // Array to manage ad visibility
-  constructor( private webPages: WebPages, private sanitizer: DomSanitizer){
-
+  constructor(private webPages: WebPages,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private metaService: Meta,
+    private sanitizer: DomSanitizer) {
+    ssrDebug(this.platformId, 'ImprintComponent');
   }
 
   advertisementList: any = null;
 
-  isActive : any ={
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
   }
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -86,28 +93,46 @@ export class ImprintComponent implements OnInit {
       this.getPageData(data)
 
     });
-   
+
   }
 
-  getPageData(languageId: any){
-    this.webPages.getDynamicContentPage('imprint',languageId).subscribe((res) => {
-      if(res.status){
-          this.banner_title = res.data.pageData.banner_title;
-          this.page_content = res.data.pageData.page_content;
-          
-          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-          this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
-         
-          this.banner_img = res.data.pageData.banner_img;
-          this.base_url =  res.data.base_url;
+  getPageData(languageId: any) {
+    this.webPages.getDynamicContentPage('imprint', languageId).subscribe((res) => {
+      if (res.status) {
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
 
-          
-          this.advertisementData = res?.data?.advertisementData;
-          this.advertisementList = res?.data?.allAdsList;
-          
-          this.isLoading = false;
-          this.startCountdown();
-        }
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /*### Meta Tags ###*/
+        this.banner_title = res.data.pageData.banner_title;
+        this.page_content = res.data.pageData.page_content;
+
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
+
+        this.banner_img = res.data.pageData.banner_img;
+        this.base_url = res.data.base_url;
+
+
+        this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
+
+        this.isLoading = false;
+        this.startCountdown();
+      }
     });
   }
 
@@ -164,10 +189,10 @@ export class ImprintComponent implements OnInit {
     this.isActive[object] = false;
 
   }
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
@@ -186,7 +211,7 @@ export class ImprintComponent implements OnInit {
 
   isExists(key: any): boolean {
     return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
-  } 
+  }
 
   // isExists(key: any): boolean {
   //   return key in this.advertisementData;
@@ -197,7 +222,9 @@ export class ImprintComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
 

@@ -42,7 +42,9 @@ export class AddRepresentatorPopupComponent {
     private translateService: TranslateService,
     public webPages: WebPages,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-
+    if (typeof document === 'undefined') {
+      return;
+    }
     this.userId = data.userId;
 
     if (data.action == "edit") {
@@ -165,7 +167,9 @@ export class AddRepresentatorPopupComponent {
   }
 
   sendInvite(): any {
-
+    if (typeof document === 'undefined') {
+      return;
+    }
     let validForm: any = this.validateInviteForm();
     if (validForm) {
       return false;
@@ -202,11 +206,14 @@ export class AddRepresentatorPopupComponent {
   }
 
   updateRepresentator(): any {
-
+    if (typeof document === 'undefined') {
+      return;
+    }
     let validForm: any = this.validateUpdateForm();
     if (validForm) {
       return false;
     }
+
 
     let formdata = new FormData();
 
@@ -228,7 +235,9 @@ export class AddRepresentatorPopupComponent {
   }
 
   sendAdminInvite(): any {
-
+    if (typeof document === 'undefined') {
+      return;
+    }
     let validForm: any = this.validateInviteForm();
     if (validForm) {
       return false;

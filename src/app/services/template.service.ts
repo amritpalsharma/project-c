@@ -3,6 +3,10 @@ import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +18,7 @@ export class TemplateService {
         this.apiUrl = environment?.apiUrl;
 
     }
+    private platformId = inject(PLATFORM_ID);
     getTemplates(data: any): Observable<{ status: boolean, message: string, data: any }> {
         let params = new HttpParams();
         // Loop through the queryParams object and set each parameter
@@ -22,7 +27,11 @@ export class TemplateService {
                 params = params.set(key, data[key]);
             }
         }
-        let lang = localStorage.getItem('lang_id');
+
+        let lang = '2';
+        if (isPlatformBrowser(this.platformId)){
+            lang = String(localStorage.getItem('lang_id'));
+        }
         return this.http.get<{ status: boolean, message: string, data: any }>(
             `${this.apiUrl}admin/get-email-templates/${lang}`, { params }
         );

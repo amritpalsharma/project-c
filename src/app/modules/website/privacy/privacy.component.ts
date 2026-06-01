@@ -1,6 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { WebPages } from '../../../services/webpages.service';
+import { BrowserService } from '../../../services/browser.service';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ssrDebug } from '../../../services/ssr-debug';
+import { Title, Meta } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-privacy',
   templateUrl: './privacy.component.html',
@@ -22,8 +28,14 @@ export class PrivacyComponent implements OnInit {
   accordionDataPrivacy: any = [];
 
 
-  constructor(private webPages: WebPages, private sanitizer: DomSanitizer) {
-
+  constructor(
+    private webPages: WebPages,
+    private sanitizer: DomSanitizer,
+    private browserService: BrowserService,
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    ssrDebug(this.platformId, 'PrivacyComponent');
   }
   ngOnInit() {
     // Initially, all ads are visible
@@ -90,6 +102,25 @@ export class PrivacyComponent implements OnInit {
     // languageId = 1;
     this.webPages.getDynamicContentPage('privacy_policy', languageId).subscribe((res) => {
       if (res.status) {
+        /*### Meta Tags ###*/
+        this.metaService.updateTag({
+          name: 'description',
+          content: res.data.pageData.meta_description
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:title',
+          content: res.data.pageData.meta_title
+        });
+
+
+        this.metaService.updateTag({
+          property: 'og:description',
+          content: res.data.pageData.meta_description
+        });
+        /*### Meta Tags ###*/
+
         this.banner_title = res.data.pageData.banner_title;
         this.page_content = this.sanitizer.bypassSecurityTrustHtml(res.data.pageData.page_content);
         this.banner_img = res.data.pageData.banner_img;
@@ -162,111 +193,119 @@ export class PrivacyComponent implements OnInit {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
   ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   async downloadPDf(type: string) {
-    let src = '../assets/pdf/'
-    let name;
-    let key;
-    if (type == 'terms') {
-      src += 'terms/';
-      name = 'Terms & Conditions';
-      key = 'Terms_Conditions';
-    } else if (type == 'community') {
-      src += 'community_guidelines/';
-      name = 'Community Guidelines';
-      key = 'Community_Guidelines_2025';
-    } else if (type == 'privacy_policy') {
-      src += 'privacy_policy/';
-      name = 'Privacy Policy';
-      key = 'Privacy_Policy';
+    if (typeof window === 'undefined') {
+      return;
     }
-
-    try {
-      let lang = localStorage.getItem('lang');
-      src += lang + '_' + key + '.pdf';
-      const tld = window.location.hostname.split('.').slice(-1)[0];
-      console.log('tld', tld)
-      let countryName = '';
-      let privacyPDF = '';
-      let termsPDF = '';
-      if (tld == 'ch' || tld == 'de') {
-        countryName = 'Schweiz_Deutschland';
-        privacyPDF = 'Allgemeine Datenschutzerklärung Succer You Sports AG_2025_Schweiz_Deutschland.pdf';
-        termsPDF = 'AGB SoccerYou Schweiz_Deutschland 2025.pdf';
-      } else if (tld == 'it') {
-        countryName = 'Italia';
-        termsPDF = 'Termini & Condizioni SoccerYou Italia 2025.pdf';
-        privacyPDF = 'Informativa generale sulla privacy Italila Succer You Sports AG_2025.pdf';
-      } else if (tld == 'fr' || tld == 'be') {
-        countryName = 'France_Belgique';
-        termsPDF = 'CGU SoccerYou France_Belgique 2025.pdf';
-        privacyPDF = 'Déclaration générale de protection des données Succer You Sports AG_2025_France_Belgique.pdf';
-      } else if (tld == 'uk') {
-        countryName = 'England';
-        termsPDF = 'Terms & Conditions SoccerYou England 2025.pdf';
-        privacyPDF = 'General data protection declaration England Succer You Sports AG_2025.pdf';
-      } else if (tld == 'es') {
-        countryName = 'España';
-        termsPDF = 'Normas Comunitairas SoccerYou Espagna 2025.pdf';
-        privacyPDF = 'Política general de privacidad Espagnia Succer You Sports AG_2025.pdf';
-      } else if (tld == 'pt') {
-        countryName = 'Portugal';
-        termsPDF = 'Termos & Condições SoccerYou Portugal 2025.pdf';
-        privacyPDF = 'Política geral de privacidade Portugal Succer You Sports AG_2025.pdf';
-      } else if (tld == 'dk') {
-        countryName = 'Danmark';
-        termsPDF = 'Vilkår & Betingelser SoccerYou Danmark 2025.pdf';
-        privacyPDF = 'Generel privatlivspolitik Danmark Succer You Sports AG_2025.pdf';
-      } else if (tld == 'se') {
-        countryName = 'Sverige';
-        termsPDF = 'Allmänna villkor SoccerYou Sverige 2025.pdf';
-        privacyPDF = 'Allmän integritetspolicy Sverige Succer You Sports AG_2025.pdf';
-      } else if (tld == 'al') {
-        countryName = 'Albania';  //english
-        privacyPDF = 'General data protection declaration Albania Succer You Sports AG_2025.pdf';
-        termsPDF = 'Terms & Conditions SoccerYou Albania 2025.pdf';
-      } else if (tld == 'org') {
-        countryName = 'Kosovo'; //english
-        privacyPDF = 'General data protection declaration Kosovo Succer You Sports AG_2025.pdf';
-        termsPDF = 'Terms & Conditions SoccerYou Kosovo 2025.pdf';
-      } else if (tld == 'at') {
-        countryName = 'Austria'; // detuch
-        privacyPDF = 'General data protection declaration Austria Succer You Sports AG_2025.pdf';
-        termsPDF = 'Terms & Conditions SoccerYou Austria 2025.pdf';
-      }
-      let pdfName = '';
-      if (type == 'community') {
-        pdfName = 'SoccerYou ' + countryName + '_Community Guidelines_2025.pdf';
-        src = '../assets/pdf/communityNew/' + pdfName;
-      }
-      if (type == 'privacy_policy') {
-        pdfName = privacyPDF;
-        src = '../assets/pdf/privacy/' + privacyPDF;
-      }
+    if (isPlatformBrowser(this.platformId)) {
+      let src = '../assets/pdf/'
+      let name;
+      let key;
       if (type == 'terms') {
-        pdfName = termsPDF;
-        src = '../assets/pdf/newTerms/' + privacyPDF;
+        src += 'terms/';
+        name = 'Terms & Conditions';
+        key = 'Terms_Conditions';
+      } else if (type == 'community') {
+        src += 'community_guidelines/';
+        name = 'Community Guidelines';
+        key = 'Community_Guidelines_2025';
+      } else if (type == 'privacy_policy') {
+        src += 'privacy_policy/';
+        name = 'Privacy Policy';
+        key = 'Privacy_Policy';
       }
 
-      // alert(type);
-      console.log('src', src)
-      const response = await fetch(src);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      try {
+        let lang = localStorage.getItem('lang');
+        src += lang + '_' + key + '.pdf';
+
+        const tld = this.browserService.hostname.split('.').slice(-1)[0];
+        console.log('tld', tld)
+        let countryName = '';
+        let privacyPDF = '';
+        let termsPDF = '';
+        if (tld == 'ch' || tld == 'de') {
+          countryName = 'Schweiz_Deutschland';
+          privacyPDF = 'Allgemeine Datenschutzerklärung Succer You Sports AG_2025_Schweiz_Deutschland.pdf';
+          termsPDF = 'AGB SoccerYou Schweiz_Deutschland 2025.pdf';
+        } else if (tld == 'it') {
+          countryName = 'Italia';
+          termsPDF = 'Termini & Condizioni SoccerYou Italia 2025.pdf';
+          privacyPDF = 'Informativa generale sulla privacy Italila Succer You Sports AG_2025.pdf';
+        } else if (tld == 'fr' || tld == 'be') {
+          countryName = 'France_Belgique';
+          termsPDF = 'CGU SoccerYou France_Belgique 2025.pdf';
+          privacyPDF = 'Déclaration générale de protection des données Succer You Sports AG_2025_France_Belgique.pdf';
+        } else if (tld == 'uk') {
+          countryName = 'England';
+          termsPDF = 'Terms & Conditions SoccerYou England 2025.pdf';
+          privacyPDF = 'General data protection declaration England Succer You Sports AG_2025.pdf';
+        } else if (tld == 'es') {
+          countryName = 'España';
+          termsPDF = 'Normas Comunitairas SoccerYou Espagna 2025.pdf';
+          privacyPDF = 'Política general de privacidad Espagnia Succer You Sports AG_2025.pdf';
+        } else if (tld == 'pt') {
+          countryName = 'Portugal';
+          termsPDF = 'Termos & Condições SoccerYou Portugal 2025.pdf';
+          privacyPDF = 'Política geral de privacidade Portugal Succer You Sports AG_2025.pdf';
+        } else if (tld == 'dk') {
+          countryName = 'Danmark';
+          termsPDF = 'Vilkår & Betingelser SoccerYou Danmark 2025.pdf';
+          privacyPDF = 'Generel privatlivspolitik Danmark Succer You Sports AG_2025.pdf';
+        } else if (tld == 'se') {
+          countryName = 'Sverige';
+          termsPDF = 'Allmänna villkor SoccerYou Sverige 2025.pdf';
+          privacyPDF = 'Allmän integritetspolicy Sverige Succer You Sports AG_2025.pdf';
+        } else if (tld == 'al') {
+          countryName = 'Albania';  //english
+          privacyPDF = 'General data protection declaration Albania Succer You Sports AG_2025.pdf';
+          termsPDF = 'Terms & Conditions SoccerYou Albania 2025.pdf';
+        } else if (tld == 'org') {
+          countryName = 'Kosovo'; //english
+          privacyPDF = 'General data protection declaration Kosovo Succer You Sports AG_2025.pdf';
+          termsPDF = 'Terms & Conditions SoccerYou Kosovo 2025.pdf';
+        } else if (tld == 'at') {
+          countryName = 'Austria'; // detuch
+          privacyPDF = 'General data protection declaration Austria Succer You Sports AG_2025.pdf';
+          termsPDF = 'Terms & Conditions SoccerYou Austria 2025.pdf';
+        }
+        let pdfName = '';
+        if (type == 'community') {
+          pdfName = 'SoccerYou ' + countryName + '_Community Guidelines_2025.pdf';
+          src = '../assets/pdf/communityNew/' + pdfName;
+        }
+        if (type == 'privacy_policy') {
+          pdfName = privacyPDF;
+          src = '../assets/pdf/privacy/' + privacyPDF;
+        }
+        if (type == 'terms') {
+          pdfName = termsPDF;
+          src = '../assets/pdf/newTerms/' + privacyPDF;
+        }
+
+        // alert(type);
+        console.log('src', src)
+        const response = await fetch(src);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        // const blob = await response.blob(); // Convert the response to a Blob object
+        // const url = window.URL.createObjectURL(blob);
+        // const anchor = document.createElement('a');
+        // anchor.href = url;
+        // anchor.download = pdfName; // Set the filename for download
+        // document.body.appendChild(anchor);
+        // anchor.click();
+        // window.URL.revokeObjectURL(url);
+        // document.body.removeChild(anchor);
+      } catch (error) {
+        console.error('There was an error downloading the file:', error);
       }
-      const blob = await response.blob(); // Convert the response to a Blob object
-      const url = window.URL.createObjectURL(blob);
-      const anchor = document.createElement('a');
-      anchor.href = url;
-      anchor.download = pdfName; // Set the filename for download
-      document.body.appendChild(anchor);
-      anchor.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(anchor);
-    } catch (error) {
-      console.error('There was an error downloading the file:', error);
     }
   }
 

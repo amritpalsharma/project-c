@@ -19,6 +19,8 @@ import { TitleService } from '../../../title.service';
 import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { SocketService } from '../../../services/socket.service';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface Plan {
   id: number;
@@ -52,6 +54,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private titleService: TitleService,
   ) { }
+  private platformId = inject(PLATFORM_ID);
   isPremiumPurchased: string = '';
   // premiumMonthlyPackageId: number = 0;
   // premiumYearlyPackageId: number = 0;
@@ -85,17 +88,20 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   private plansSubscription: Subscription = new Subscription();
   langSubscription!: Subscription;
-  // stripePromise = loadStripe(environment.stripePublishableKey);
-  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
-  // stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   pageTitle: string = '';
   pleaseWait: string = '';
   Processing: string = '';
   successTxt: string = '';
   premiumPlanTxt: string = '';
-
+  stripePromise: any;
 
   currentLoggedInPermission: string = '';
+  async initStripe() {
+    if (isPlatformBrowser(this.platformId)) {
+      const { loadStripe } = await import('@stripe/stripe-js');
+      this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+    }
+  }
 
   async ngOnInit() {
     this.isLoadingPlans = true;

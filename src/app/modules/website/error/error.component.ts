@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-error',
@@ -6,13 +8,20 @@ import { Component } from '@angular/core';
   styleUrl: './error.component.scss'
 })
 export class ErrorComponent {
-
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
   ngOnInit() {
-    document.body.classList.add('static-common-banner');
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.add('static-common-banner');
+    }
   }
-  
+
   ngOnDestroy() {
-    document.body.classList.remove('static-common-banner');
+    if (isPlatformBrowser(this.platformId)) {
+
+      document.body.classList.remove('static-common-banner');
+    }
   }
-  
+
 }

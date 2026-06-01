@@ -169,7 +169,7 @@
               <td>{{ user.language }}</td>
               <td> {{ user.user_location }}</td>
               <!-- <td> {{ formatDateTime(user.created_at) }}</td> -->
-              <td> {{ user.created_at  | date:'dd.MM.yyyy - HH:mm' }}</td>
+              <td> {{ user.created_at | date:'dd.MM.yyyy - HH:mm' }}</td>
               <!-- <td> {{ user.created_at }}</td> -->
               <td class="main-table-2">
                 <span *ngIf="user.status==1 && userRoleIn(user.role_name)" class="bg_pending same-width">{{ 'pending' |
@@ -291,19 +291,22 @@
   </div>
 
   <script>
-    // Select the element with class 'view-show-notification'
-    const viewShowNotificationButton = document.querySelector('.view-show-notification');
+    if (typeof window !== 'undefined') {
+      // Select the element with class 'view-show-notification'
+      const viewShowNotificationButton = document.querySelector('.view-show-notification');
 
-    // Add a click event listener to the button
-    if (viewShowNotificationButton) {
-      viewShowNotificationButton.addEventListener('click', () => {
-        // Select all elements with the id 'hiddenNotification'
-        const hiddenNotifications = document.querySelectorAll < HTMLElement > ('#hiddenNotification');
+      // Add a click event listener to the button
+      if (viewShowNotificationButton) {
+        viewShowNotificationButton.addEventListener('click', () => {
+          // Select all elements with the id 'hiddenNotification'
+          const hiddenNotifications = document.querySelectorAll < HTMLElement > ('#hiddenNotification');
 
-        // Loop through each element and remove the 'd-none' class
-        hiddenNotifications.forEach(notification => {
-          notification.classList.remove('d-none');
+          // Loop through each element and remove the 'd-none' class
+          hiddenNotifications.forEach(notification => {
+            notification.classList.remove('d-none');
+          });
         });
-      });
+      }
     }
+
   </script>

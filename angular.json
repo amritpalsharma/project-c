@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "c": {
+    "project-c": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,18 +24,25 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/c",
+            "outputPath": "dist/project-c",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "ssr": {
+              "entry": "server.ts"
+            },
+            "prerender": {
+              "routesFile": "routes.txt",
+              "discoverRoutes": false  
+            },
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
+              "src/favicon.png",
               "src/assets",
-              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -48,13 +55,17 @@
               "node_modules/ngx-lightbox/lightbox.css",
               "src/app/modules/website/website-dark.scss",
               "src/app/modules/website/website-light.scss",
-              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "moment"
+              "moment",
+              "intro.js",
+              "jquery",
+              "lightgallery",
+              "owl.carousel",
+              "talkjs"
             ]
           },
           "configurations": {
@@ -84,12 +95,18 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "allowedHosts": [
+              "soceryou.ch",
+              "localhost"
+            ]
+          },
           "configurations": {
             "production": {
-              "buildTarget": "c:build:production"
+              "buildTarget": "project-c:build:production"
             },
             "development": {
-              "buildTarget": "c:build:development"
+              "buildTarget": "project-c:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -97,7 +114,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "c:build"
+            "buildTarget": "project-c:build"
           }
         },
         "test": {

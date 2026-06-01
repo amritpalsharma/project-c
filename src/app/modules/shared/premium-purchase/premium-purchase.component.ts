@@ -2,11 +2,15 @@ import { Component, Inject, Output, EventEmitter, OnInit, OnDestroy } from '@ang
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PaymentService } from '../../../services/payment.service';
 import { Subscription } from 'rxjs';
-import { loadStripe } from '@stripe/stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { CouponCodeAlertComponent } from '../coupon-code-alert/coupon-code-alert.component';
 import { SocketService } from '../../../services/socket.service';
+import { PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+
 @Component({
   selector: 'app-premium-purchase',
   templateUrl: './premium-purchase.component.html',
@@ -19,10 +23,10 @@ export class PremiumPurchaseComponent {
   selectedPlan: any = [];
   couponCode: string = '';
   stripe: any;
+  private platformId = inject(PLATFORM_ID);
 
   private plansSubscription: Subscription = new Subscription();
-  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
-  // stripePromise = loadStripe(environment.stripePublishableKey);
+  stripePromise: any;
 
   constructor(
     public dialogRef: MatDialogRef<PremiumPurchaseComponent>,
@@ -33,7 +37,17 @@ export class PremiumPurchaseComponent {
     public dialog: MatDialog,
   ) { }
 
+  async initStripe() {
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      const { loadStripe } = await import('@stripe/stripe-js');
+      this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+    }
+  }
+
   ngOnInit(): void {
+    this.initStripe();
     this.selectedPlan = this.data.premiumPlans;
     if (this.data?.premiumPlans?.isYearly) {
       this.isYearly = true;
@@ -57,7 +71,7 @@ export class PremiumPurchaseComponent {
 
   buyPlan(): void {
     let planID = this.isYearly ? this.selectedPlan?.yearly?.id : this.selectedPlan?.monthly?.id;
-    console.info('buy now ',planID); 
+    console.info('buy now ', planID);
     if (this.couponCode && typeof this.couponCode != undefined && this.couponCode != '') {
       this.dialogRef.close({ coupon_code: this.couponCode, plan_id: planID });
     } else {

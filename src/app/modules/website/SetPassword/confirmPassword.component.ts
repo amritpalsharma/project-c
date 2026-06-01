@@ -3,6 +3,8 @@ import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-confirm-password',
@@ -12,13 +14,13 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 export class ConfirmPasswordComponent implements OnInit {
   newPassword = '';
   confirmPassword = '';
-  userRole: any = localStorage.getItem('userRole');
+  userRole: any = '';
 
   // Variables to control password visibility
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
 
-  theme: any = localStorage.getItem('theme');
+  theme: any = '';
 
   constructor(
     private authService: AuthService,
@@ -26,8 +28,14 @@ export class ConfirmPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
-    private dialogRef: MatDialogRef<ConfirmPasswordComponent>
-  ) { }
+    private dialogRef: MatDialogRef<ConfirmPasswordComponent>,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId) && typeof document != 'undefined') {
+      this.userRole = localStorage.getItem('userRole')
+      this.theme = localStorage.getItem('theme')
+    }
+  }
 
   ngOnInit(): void { }
 
