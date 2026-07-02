@@ -120,11 +120,12 @@
                       <div class="header_card">
                         <h3 class="premium-heading2"> {{ pageData?.first_tab_plan_name }} </h3>
                         <h2 class="premium-heading3">
-                          {{ selectedTab != 'yearly' ? premiumTalentPrice : premiumTalentYearlyPrice }}<span>.-
+                          <!-- {{ selectedTab != 'yearly' ? premiumTalentPrice : premiumTalentYearlyPrice }}<span>.-
                             {{ Currency }} /
                             <span *ngIf="selectedTab == 'yearly'">{{ pageData?.first_tab_yearly_label }}</span>
                             <span *ngIf="selectedTab != 'yearly'">{{ pageData?.first_tab_monthly_label }}</span>
-                          </span>
+                          </span> -->
+                          <span>Free Forever</span>
                         </h2>
                         <h5 class="premium-heading5">{{ 'premiumPlanForTalent' | translate }}
                         </h5>

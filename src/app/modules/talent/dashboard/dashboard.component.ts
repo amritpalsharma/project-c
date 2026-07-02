@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   booster: any = false;
   activeDomains: any;
   countries: any;
-  isPremium: any = false;
+  isPremium: any = true;
   isTourFirstTime: boolean = true;
   StartTour: boolean = true;
   dontShowAgainTourTxt: string = 'profile';
@@ -134,7 +134,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   async ngOnInit() {
 
     this.userState.isPremium$.subscribe(val => {
-      this.isPremium = val;
+      // this.isPremium = val;
     });
     this.savedDate = localStorage.getItem('popupLoginDate');
 

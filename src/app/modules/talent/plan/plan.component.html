@@ -86,13 +86,16 @@
           <div class="col-lg-4 my-2" *ngIf="newPremium">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">
-                {{'billedMonthly' | translate}}</label>
+                <!-- {{'billedMonthly' | translate}} -->
+                 &nbsp;
+              </label>
               <input class="cursor-pointer" type="checkbox" [id]="newPremium.id" [checked]="(newPremium.isYearly)"
                 [(ngModel)]="newPremium.isYearly"
                 (change)="toggleBillingPlan(newPremium, (newPremium.isYearly), newPremium)"
-                [value]="newPremium.isYearly">
+                [value]="newPremium.isYearly" style="opacity: 0;">
               <label class="switch_on cursor-pointer">
-                {{'billedYearly' | translate}}
+                &nbsp;
+                <!-- {{'billedYearly' | translate}} -->
               </label>
             </div>
             <div class="premium-plan_box">
@@ -100,9 +103,10 @@
                 <!-- Plan price and frequency -->
                 <div class="premium-currency">
                   <h6>
-                    {{ newPremium.isYearly ? newPremium.priceYearly : newPremium.priceMonthly }}<sub
+                    <!-- {{ newPremium.isYearly ? newPremium.priceYearly : newPremium.priceMonthly }}<sub
                       class="premium-month_title">.- {{ newPremium.currency }} / {{ newPremium.isYearly || (premium &&
-                      premium.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
+                      premium.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub> -->
+                      Free Forever
                   </h6>
                 </div>
                 <div class="d-flex align-items-center justify-content-between gap-2">
