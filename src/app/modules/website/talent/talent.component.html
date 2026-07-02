@@ -565,7 +565,7 @@
                           <span *ngIf="selectedTab == 'yearly' && priceArr">{{ priceArr[0].yearly_label }}</span>
                           <span *ngIf="selectedTab != 'yearly' && priceArr">{{ priceArr[0].monthly_label }}</span>
                         </span> -->
-                        <span>Free Forever</span>
+                        <span>{{'talentFree' | translate}}</span>
                       </h2>
                       <h3 class="premium-heading2">{{ getDynamicPlanName('premium') }}</h3>
                     </div>
