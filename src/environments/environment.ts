@@ -93,13 +93,14 @@ export const environment = {
     'home', 'talent', 'clubs_and_scouts', 'about_us', 'pricing', 'news', 'contact', 'imprint', 'privacy_policy', 'terms_and_conditions', 'cookie_policy', 'faq', 'content_page'
   ],
   // apiUrl: 'https://apitest.socceryou.ch/api/',
-  paymentMode: 'live',
+  paymentMode: 'test',
   apiUrl: 'https://apitest.socceryou.ch/api/',
   apiBaseUrl: 'https://apitest.socceryou.ch/',
   baseUrl: 'https://apitest.socceryou.ch/uploads/',
   url: 'https://apitest.socceryou.ch/',
-  socketUrl: 'https://alerts.socceryou.ch/',
-  mailchimp: {
+  socketUrl: 'https://alertstest.socceryou.ch/', 
+  // socketUrl: 'https://alertstest.socceryou.ch/', 
+  mailchimp: { 
     apiUrl: 'https://us5.api.mailchimp.com/3.0/lists/7afbbb070a/members',
     apiKey: '62a0ffa8d6e9c3d5ed7c8a09e9111b41-us17',  // Correct API key
   },

@@ -696,9 +696,9 @@ export class HeaderComponent {
 
     this.themeService.setDarkTheme(event.target.checked);
     // if(event.target.checked){
-    this.onThemeToggle(event.target.checked);
     this.globalSettings.callIndexComponentFunction();
     this.globalSettings.themeAndLangChange('theme', event);
+    this.onThemeToggle(event.target.checked);
     // }
   }
 

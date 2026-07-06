@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { provideNetlifyLoader } from '@angular/common';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { AuthService } from '../../../services/auth.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
 import { Inject, PLATFORM_ID } from '@angular/core';
@@ -69,9 +70,13 @@ export class TalentComponent {
 
   countryPrice: number = 0;
   countryYearlyPrice: number = 0;
+  isUserLoggedIn:any;
+  LoggedInUserPlansLink:any;
+
+  advertisemnet_new_base_url: any = '';
 
 
-  advertisemnet_new_base_url: string = '';
+  // advertisemnet_new_base_url: string = '';
   selectedLangSlug: string = "de";
 
   setActiveAccordion(index: number, event?: Event): void {
@@ -90,6 +95,7 @@ export class TalentComponent {
     private globalSettings: GlobalSettingsService,
     private metaService: Meta,
     private title: Title,
+    private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     ssrDebug(this.platformId, 'TalentComponent');
@@ -106,6 +112,13 @@ export class TalentComponent {
   plansPageLink: any = this.globalSettings.getPlansLink();
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
   priceArr: any;
+
+  destroy$ = new Subject<void>();
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -134,16 +147,9 @@ export class TalentComponent {
       this.ThemeUpdated(); // Call the function when event is received
     });
 
-    if (this.selectedLangSlug == 'se') {
-      this.selectedLangSlug = 'sv';
-    }
-  }
+    this.isUserLoggedIn = this.authService.isLoggedIn();
+    this.LoggedInUserPlansLink = this.authService.getPlansPageLink();
 
-  destroy$ = new Subject<void>();
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   advertisementList: any = null;
@@ -247,6 +253,13 @@ export class TalentComponent {
         } else {
           this.pageData.banner_bg_img = this.pageData.banner_bg_img_dark_mode;
         }
+        //  alert('this.currentTheme is '+this.currentTheme)
+        if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme) {
+        } else {
+          this.currentTheme = 'light'; // default value is light for theme
+        }
+
+
 
         if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme != null) {
 
@@ -482,7 +495,6 @@ export class TalentComponent {
 
     // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
   }
-
 
 
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {

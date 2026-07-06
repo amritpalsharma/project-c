@@ -9,7 +9,7 @@ import { WebPages } from '../../../../../services/webpages.service';
   templateUrl: './teams.component.html',
   styleUrl: './teams.component.scss'
 })
-export class TeamsComponent {
+export class TeamsComponent { 
 
 
   userId: any = '';

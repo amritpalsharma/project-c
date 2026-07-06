@@ -494,7 +494,7 @@ export class HeaderComponent {
   }
   onThemeToggle(isDarkModeEnabled: boolean): void {
     // Call the toggleTheme function from the service
-    this.talkService.toggleTheme(isDarkModeEnabled);
+    // this.talkService.toggleTheme(isDarkModeEnabled);
   }
   onSearch() {
     if (this.searchUser.trim().length === 0) {

@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';  // Import environ
   providedIn: 'root'
 })
 export class MailchimpService {
-  private url = "https://alerts.socceryou.ch/subscribe";  // Mailchimp API URL with list ID
+  private url = "https://alertstest.socceryou.ch/subscribe";  // Mailchimp API URL with list ID
   private apiKey = environment.mailchimp.apiKey;  // Mailchimp API Key
 
   constructor(private http: HttpClient) {}

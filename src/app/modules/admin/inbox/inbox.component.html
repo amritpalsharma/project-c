@@ -1,6 +1,6 @@
 <div class="page-content">
     <div class="main-wrapper">
-        <div class="card bg-color chat_height_mobile">
+        <div class="card bg-color chat_height_mobile pb-0">
             <div class="card-header">
                 <div class="d-flex align-items-center justify-content-between inbox-header-bar">
                     <div class="d-flex align-items-center heading w-100">
@@ -11,9 +11,11 @@
                 </div>
             </div>
             <div class="card-body p-0">
-                <div class="chat_row d-flex h-100 testing" style="min-height: 68vh;">
-                    <app-loader *ngIf="isLoading" class="col-lg-12 border-end px-0"></app-loader>
-                    <div class="col-lg-12 border-end px-0" id="talkjs-container" [ngClass]="{'invisible':isLoading}">
+                <div class="chat_row d-flex h-100 testing" style="min-height: 68vh; max-height: 68vh;">
+                    <!-- <app-loader *ngIf="isLoading" class="col-lg-12 border-end px-0"></app-loader> -->
+                    <!-- <div class="col-lg-12 border-end px-0" id="talkjs-container" [ngClass]="{'invisible':isLoading}">
+                    </div> -->
+                    <div class="col-lg-12 border-end px-0" id="my-chat-widget">
                     </div>
                 </div>
             </div>

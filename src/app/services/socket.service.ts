@@ -30,13 +30,14 @@ interface ApiResponse {
 })
 
 export class SocketService {
-
-  private socket!: Socket;
-
+  private socket: Socket;
   private platformId = inject(PLATFORM_ID);
+  private socket2: Socket;
+  // private readonly socketUrl: string = 'https://alertstest.socceryou.ch/'; // Replace with your backend URL
+  private readonly socketUrl: string = environment.socketUrl; // Replace with your backend URL
+  private readonly socketUrl2: string = 'https://talk.socceryou.ch'; // Replace with your backend URL
 
-  // private readonly socketUrl: string = 'https://alerts.socceryou.ch/';
-  private readonly socketUrl: string = environment.socketUrl;
+
 
   public onlineUsers: { [userId: string]: string } = {};
 
@@ -47,6 +48,38 @@ export class SocketService {
   userToken: any;
 
   constructor(private http: HttpClient) {
+    // Initialize the socket connection
+    this.socket = io(this.socketUrl);
+    this.socket2 = io(this.socketUrl2, {
+      auth: {
+        projectId: 'soccer'
+      }
+    });
+
+    this.socket2.on('connect', () => {
+      console.log('✅ socket2 connected:', this.socket2.id);
+    });
+
+    this.socket2.on('disconnect', () => {
+      console.log('❌ socket2 disconnected');
+    });
+
+    this.socket2.on('connect_error', (err) => {
+      console.error('🚨 socket2 error:', err.message);
+    });
+
+    this.socket2.on('new-notification', ({ message }) => {
+      console.log('workng new socket', message);
+      let jsonData = localStorage.getItem("userData") || '';
+      let userData = JSON.parse(jsonData);
+      if (message?.senderDetails?.companyCode == userData.id) {
+        console.log('sending message notification', message, message?.senderDetails?.companyCode, message?.receiverDetails?.companyCode, this.onlineUsers)
+        if (!this.onlineUsers[message?.receiverDetails?.companyCode]) {
+          this.notificationTrigger(message?.senderDetails?.companyCode, message?.receiverDetails?.companyCode, message?.content)
+        }
+        this.socket.emit('sendMessage2', { senderId: message?.senderDetails?.companyCode, receiverId: message?.receiverDetails?.companyCode })
+      }
+    })
 
     let jsonData = '';
     let langId = '';
@@ -438,6 +471,35 @@ export class SocketService {
 
     return this.chatMode;
 
+  }
+
+  notificationTrigger(senderId: any, receiverId: any, text: string) {
+    const url = 'https://apitest.socceryou.ch/api/talkjs-notification-received';
+
+    const payload = {
+      data: {
+        sender: {
+          id: senderId,
+          role: "default"
+        },
+        recipient: {
+          id: receiverId,
+          role: "default"
+        },
+        message: {
+          text: text
+        }
+      }
+    };
+
+    this.http.post(url, payload).subscribe({
+      next: (res) => {
+        console.log('Notification sent:', res);
+      },
+      error: (err) => {
+        console.error('Notification error:', err);
+      }
+    });
   }
 
 }

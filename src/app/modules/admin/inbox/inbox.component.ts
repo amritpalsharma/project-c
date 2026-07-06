@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { ChatjsService } from '../../../services/chatjs.service';
+
 
 @Component({
   selector: 'app-inbox',
@@ -22,7 +25,7 @@ export class InboxComponent {
   userData: any;
   groupName: string = '';
   groupId: string = '';
-  users: { id: string; name: string; email: string; photoUrl: string }[] = [];
+  users: any[] = [];
   newUser: { id: string; name: string; email: string; photoUrl: string }[] = [];
   createdGroups: { groupId: string, groupName: string }[] = [];
   user: any = {};
@@ -39,10 +42,55 @@ export class InboxComponent {
     private translateService: TranslateService,
     private sharedservice: SharedService,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private chatjs: ChatjsService,
+    private globalSettings: GlobalSettingsService,
   ) { }
 
+
   async ngOnInit() {
+    let themeStored = localStorage.getItem('theme') === 'dark' ? true : false;
+    this.globalSettings.indexFunctionCall$.subscribe((data) => {
+      console.log('Global Settings IndexFunction Call');
+      themeStored = localStorage.getItem('theme') === 'dark' ? true : false;
+      console.info('Theme in ChatComponent GlobalSettings IndexFunction Call is ', themeStored);
+
+      const isDark = localStorage.getItem('theme') === 'dark';
+
+      if ((window as any).ChatWidget?.updateTheme) {
+        (window as any).ChatWidget.updateTheme(isDark);
+      }
+    });
+
+    const script = document.createElement('script');
+    script.id = 'chat-widget-script'; // 👈 give it an id
+    script.src = 'https://bigstuffmovers.au/widget/build/static/js/main.996f04e6.js';
+    script.onload = () => {
+      (window as any)['ChatWidget'].init({
+        projectId: "soccer",
+        userId: "45",
+        token: "jwt-token",
+        isDarkMode: themeStored,
+        lang: localStorage.getItem('lang'),
+
+        theme: {
+          light: {
+            primaryGreen: "#6FB95D",
+            PrimaryRed: "#f93c65",
+            primaryDarkBg: "#fff",
+            secondaryDarkBg: "#ebeef2b3"
+          },
+          dark: {
+            primaryGreen: "#BDE34F",
+            PrimaryRed: "#f93c65",
+            primaryDarkBg: "#072944",
+            secondaryDarkBg: "#0C3453"
+          }
+        }
+      });
+    };
+    document.body.appendChild(script);
+
     this.getJsonTranslations();
     if (isPlatformBrowser(this.platformId)) {
       this.sharedservice.data$.subscribe((data) => {
@@ -80,13 +128,13 @@ export class InboxComponent {
   startOneOnOneChat(user: any) {
     this.receiverUser = user;
     this.socketService.emit('sendMessage', { senderId: this.user.id, receiverIds: [user.id] });
-    this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
-      .then(() => {
-        this.talkService.mountChat('talkjs-container');
-      })
-      .catch(err => {
-        console.error('Error starting chat:', err);
-      });
+    // this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
+    //   .then(() => {
+    //     this.talkService.mountChat('talkjs-container');
+    //   })
+    //   .catch(err => {
+    //     console.error('Error starting chat:', err);
+    //   });
   }
 
 
@@ -166,7 +214,7 @@ export class InboxComponent {
     })
 
     if (users.length === 1) {
-      this.startOneOnOneChat(users[0]);
+      // this.startOneOnOneChat(users[0]);
     } else if (users.length > 1) {
       this.startGroupChat();
     }
@@ -340,13 +388,15 @@ export class InboxComponent {
           id: user.id,
           name: full_name,
           email: user.username,
-          photoUrl: user.profile_image_path
+          photoUrl: user.profile_image_path,
+          role: user.role_id
         });
       });
       console.info('Users Selected for chats ', this.users)
       if (this.users.length === 1) {
         const u = this.users[0];
-        await this.talkService.createOneOnOneConversation(u.id, u.name, u.email, u.photoUrl);
+        this.chatjs.createOneOnOneConversation2(u.id, u.name, u.email, u.photoUrl, u.role);
+        // await this.talkService.createOneOnOneConversation(u.id, u.name, u.email, u.photoUrl);
       } else if (this.users.length > 1) {
         // this.talkService.createGroupConversation(this.talkService['session']!.id + '_' + Date.now(), this.users);
         this.talkService.createGroupConversation(this.generateGroupId(), this.users);
@@ -359,4 +409,23 @@ export class InboxComponent {
     const userIds = this.users.map(u => u.id).join('_');
     return 'SoccerYou_' + userIds + '_' + Date.now();
   }
+
+  ngOnDestroy(): void {
+    if ((window as any).ChatWidget?.destroy) {
+      (window as any).ChatWidget.destroy();
+    }
+
+    const script = document.getElementById('chat-widget-script');
+    if (script) {
+      let userDataString = localStorage.getItem('chatUserData');
+      let userData = userDataString ? JSON.parse(userDataString) : null;
+      (window as any)['ChatWidget'].disconnectChatUser({
+        userId: userData?._id
+      });
+      script.remove();
+    }
+  }
+
+
+
 }

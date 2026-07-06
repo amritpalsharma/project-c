@@ -34,7 +34,7 @@ export const environment = {
       { name:'Sweden', slug: "se", id: 10, flag: "Sweden-sweden.svg" },
     ],
 
-    apiUrl:'https://api.socceryou.ch/api/',
+    apiUrl:'https://apitest.socceryou.ch/api/',
 
     mailchimp: {
         apiUrl: 'https://us5.api.mailchimp.com/3.0/lists/7afbbb070a/members',

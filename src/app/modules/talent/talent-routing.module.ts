@@ -38,11 +38,11 @@ const routes: Routes = [
         component: ExploreComponent,
         data: { title: 'Explore' }
       },
-      // {
-      //   path: 'chat',
-      //   component: ChatComponent,
-      //   data: { title: 'Chat' }
-      // },
+      {
+        path: 'chat',
+        component: ChatComponent,
+        data: { title: 'Chat' }
+      },
       {
         path: 'chat',
         component: DashboardComponent,

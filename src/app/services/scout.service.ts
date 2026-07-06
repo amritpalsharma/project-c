@@ -37,7 +37,7 @@ export class ScoutService {
   message$ = this.messageSource.asObservable();
   public lang: any; // You can dynamically set this if needed
   languages: any = environment.langs;
-  private apiUrl3 = "https://alerts.socceryou.ch/";
+  private apiUrl3 = "https://alertstest.socceryou.ch/";
 
   private apiUrl2: any;
   private stripe!: any;

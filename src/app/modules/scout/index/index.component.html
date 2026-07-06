@@ -4,7 +4,7 @@
   </div>
 
   <div class="all-page-content flex-grow-1" style="overflow: hidden;">
-    <div class="page-container" style="width: 100%;">
+    <div class="page-container" [ngStyle]="{'width': '100%', 'overflow-x': 'hidden'}">
       <shared-header></shared-header>
       <div class="outlet_outer">
         <router-outlet></router-outlet>

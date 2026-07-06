@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'favorites', component: FavoritesComponent},
       { path: 'membership', component: MembershipComponent},
       { path: 'explore', component: ExploreComponent},
-      // { path: 'chat', component: ChatComponent},
+      { path: 'chat', component: ChatComponent},
       { path: 'chat', component: DashboardComponent},
       { path: 'plans', component: PlanComponent},
       { path: 'countries', component: CountriesComponent},

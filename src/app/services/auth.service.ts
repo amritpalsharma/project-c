@@ -75,6 +75,8 @@ export class AuthService {
       localStorage.removeItem('authToken');
       localStorage.removeItem('userRole');
       localStorage.removeItem('userData');
+      localStorage.removeItem('token');
+      localStorage.removeItem('chatUserData');
       localStorage.removeItem('notificationSeen');
       sessionStorage.clear();
       // localStorage.setItem('logoutMessage', 'true');

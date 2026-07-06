@@ -49,7 +49,7 @@
         <!-- CHAT -->
         <li [ngClass]="{'locksideBar': locksideBar, 'd-none':currentLoggedInPermission == 'scout_view_only' || currentLoggedInPermission == 'scout_edit_only'}">
           <a *ngIf="isUserVerified" [matTooltip]="sidebarOpen ? ( 'chat' | translate) : ''" matTooltipPosition="right"
-            (click)="comingSoonPopup($event)" [class.disabled]="!isUserVerified"
+            [routerLink]="'/scout/chat'" (click)="closeSidebar(true)" [class.disabled]="!isUserVerified"
             routerLinkActive="active"><svg width="28" height="26" viewBox="0 0 28 26" fill="none"
               xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
               <path
