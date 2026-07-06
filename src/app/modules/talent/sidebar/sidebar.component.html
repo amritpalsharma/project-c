@@ -87,7 +87,7 @@
           </a>
         </li>
         <!-- MemberShip -->
-        <li [ngClass]="{'locksidebar':locksideBar}" style="display: none;">
+        <li [ngClass]="{'locksidebar':locksideBar}">
           <a *ngIf="isUserVerified" [routerLink]="'/talent/membership'"
             [matTooltip]="!sidebarOpen ? ('membership' | translate) : ''" matTooltipPosition="right"
             (click)="closeSidebar(true)" [class.disabled]="!isUserVerified" routerLinkActive="active">
@@ -101,7 +101,7 @@
           </a>
         </li>
         <!-- Plans -->
-        <li [ngClass]="{'locksidebar':locksideBar}" style="display: none;">
+        <li [ngClass]="{'locksidebar':locksideBar}">
           <a *ngIf="isUserVerified" [routerLink]="'/talent/plans'" (click)="closeSidebar(true)"
             [class.disabled]="!isUserVerified" [matTooltip]="!sidebarOpen? ('plans' | translate) : ''"
             matTooltipPosition="right" routerLinkActive="active">
@@ -189,7 +189,7 @@
             </p>
           </a>
         </li>
-        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}" style="display: none;">
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}" >
           <a *ngIf="!isUserVerified" [matTooltip]="!sidebarOpen ? ('membership' | translate) : ''"
             matTooltipPosition="right" (click)="showVerificationPopup($event)" [class.disabled]="!isUserVerified">
             <svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -201,7 +201,7 @@
             <p class="sidebar_menu_span"> {{ 'membership' | translate }}</p>
           </a>
         </li>
-        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}" style="display: none;">
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="!isUserVerified" (click)="showVerificationPopup($event)" [class.disabled]="!isUserVerified"
             [matTooltip]="!sidebarOpen? ('plans' | translate) : ''" matTooltipPosition="right">
             <svg width="29" height="22" viewBox="0 0 29 18" fill="none" xmlns="http://www.w3.org/2000/svg">
